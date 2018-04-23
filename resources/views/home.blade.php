@@ -14,102 +14,53 @@
                             <span>Acceuil - NTICien</span>
                         </a>
                     </li>
+                    @foreach($departement as  $dep)
                     <li class="list-group-item departement">
                         <i class="icon-grid"></i>
-                        <span class="departement" style="font-weight:bold;">Dépratement MI :</span>
+                        <span class="departement" style="font-weight:bold;">Dépratement :{{$dep->nom}}</span>
                     </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor active">
-                            <span class="l1-circle">L1</span>
-                            <span>L1 - Tronc Commun</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-mi">
-                            <span class="l1-circle">L2</span>
-                            <span>L2 - Tronc Commun</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item departement">
-                        <i class="icon-grid"></i>
-                        <span style="font-weight:bold;">&nbsp; &nbsp;Département IFA :</span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-l3">
-                            <span class="licence-circle">L3</span>
-                            <span>Licence TI</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-l3">
-                            <span class="licence-circle">L3</span>
-                            <span>Licence SCI</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-master1">
-                            <span class="master1-circle">M1</span>
-                            <span>Master 1 - STIC</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-master1">
-                            <span class="master1-circle">M1</span>
-                            <span>Master 1 - RSD</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-master2">
-                            <span class="master2-circle">M2</span>
-                            <span>Master 2 - STIC</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-master2">
-                            <span class="master2-circle">M2</span>
-                            <span>Master 2 - RSD</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item departement">
-                        <i class="icon-grid"></i>
-                        <span style="font-weight:bold;">&nbsp; Département TLSI :</span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-l3">
-                            <span class="licence-circle">L3</span>
-                            <span>Licence SI</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-l3">
-                            <span class="licence-circle">L3</span>
-                            <span>Licence GL</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-master1">
-                            <span class="master1-circle">M1</span>
-                            <span>Master 1 - STIW</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-master1">
-                            <span class="master1-circle">M1</span>
-                            <span>Master 1 - GL</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#" class="list-anchor list-anchor-master2">
-                            <span class="master2-circle">M2</span>
-                            <span>Master 2 - SITW</span>
-                        </a>
-                    </li>
-                    <li class="list-group-item" style="padding-bottom:20px;">
-                        <a href="#" class="list-anchor list-anchor-master2">
-                            <span class="master2-circle">M2</span>
-                            <span>Master 2 - GL</span>
-                        </a>
-                    </li>
+                   
+                     
+                        @foreach($dep->formation as $formation)
+                        @if(str_contains($formation->nom,'Tronc Commun'))
+
+                        <li class="list-group-item">
+                            <a href="#" class="list-anchor ">
+                                <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
+                                <span>{{$formation->nom}}</span>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if(str_contains($formation->nom,'Licence'))
+                        <li class="list-group-item">
+                                <a href="#" class="list-anchor list-anchor-l3">
+                                    <span class="licence-circle">L3</span>
+                                    <span>{{$formation->nom}}</span>
+                                </a>
+                            </li>
+                        @endif
+                       
+                        @if(str_contains($formation->nom,'Master 1'))
+                        <li class="list-group-item">
+                                <a href="#" class="list-anchor list-anchor-master1">
+                                    <span class="master1-circle">M1</span>
+                                    <span>{{$formation->nom}}</span>
+                                </a>
+                            </li>
+                        @endif
+                        @if(str_contains($formation->nom,'Master 2'))
+                        <li class="list-group-item">
+                                <a href="#" class="list-anchor list-anchor-master2">
+                                    <span class="master2-circle">M2</span>
+                                    <span>{{$formation->nom}}</span>
+                                </a>
+                            </li>
+                        @endif
+                        @endforeach
+                        @endforeach
+                       
+              
                     <li class="list-group-item border-top">
                         <a href="#" class="list-anchor">
                             <i class="icon-bell icon-sidebar"></i>
