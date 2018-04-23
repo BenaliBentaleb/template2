@@ -15,4 +15,8 @@ class Module extends Model
     public function formation() {
         return $this->belongsTo(Formation::class);
     } 
+
+    public function publication() {
+        return $this->hasMany(Publication::class);
+    }
 }

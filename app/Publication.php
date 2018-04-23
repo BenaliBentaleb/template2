@@ -10,11 +10,12 @@ use App\Sondage;
 use App\Tag;
 use App\Commentaire;
 use App\Like;
+use App\Module;
 class Publication extends Model
 {
     
     protected $fillable = [
-        'titre','contenu','date_publication','user_id'
+        'titre','contenu','date_publication','user_id','type','module_id'
     ];
 
 
@@ -39,5 +40,8 @@ class Publication extends Model
     }
     public function likes() {
         return $this->hasMany(Like::class);
+    }
+    public function module() {
+        return $this->belongsTo(Module::class);
     }
 }

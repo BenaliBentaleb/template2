@@ -35,7 +35,7 @@ class PublicationFichierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      return $request->blog;
     }
 
     /**

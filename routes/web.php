@@ -23,3 +23,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', [
     "uses" => "PublicationController@pub",
     "as" => "admin.rr"]);
+
+    Route::post('/statut/store',[
+        'uses'=>'PublicationController@store',
+        'as'=>'status.store'
+    ]);
+    Route::post('/blog/store',[
+        'uses'=>'PublicationController@store',
+        'as'=>'blog.store'
+    ]);
+    Route::post('/faq/store',[
+        'uses'=>'FaqController@store',
+        'as'=>'faq.store'
+    ]);
+    Route::post('/sondage/store',[
+        'uses'=>'SondageController@store',
+        'as'=>'sondage.store'
+    ]);

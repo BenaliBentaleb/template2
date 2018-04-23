@@ -3,7 +3,7 @@
 <div style="margin-top:20px;">
     <div class="container" style="margin-top:97px;">
         <div class="row">
-           
+
             <div class="col-md-3">
                 <ul class="list-group side-bar">
                     <li class="list-group-item" style="padding-top:10px;">
@@ -14,53 +14,45 @@
                             <span>Acceuil - NTICien</span>
                         </a>
                     </li>
-                    @foreach($departement as  $dep)
+                    @foreach($departement as $dep)
                     <li class="list-group-item departement">
                         <i class="icon-grid"></i>
                         <span class="departement" style="font-weight:bold;">Dépratement :{{$dep->nom}}</span>
                     </li>
-                   
-                     
-                        @foreach($dep->formation as $formation)
-                        @if(str_contains($formation->nom,'Tronc Commun'))
 
-                        <li class="list-group-item">
-                            <a href="#" class="list-anchor ">
-                                <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
-                                <span>{{$formation->nom}}</span>
-                            </a>
-                        </li>
-                        @endif
 
-                        @if(str_contains($formation->nom,'Licence'))
-                        <li class="list-group-item">
-                                <a href="#" class="list-anchor list-anchor-l3">
-                                    <span class="licence-circle">L3</span>
-                                    <span>{{$formation->nom}}</span>
-                                </a>
-                            </li>
-                        @endif
-                       
-                        @if(str_contains($formation->nom,'Master 1'))
-                        <li class="list-group-item">
-                                <a href="#" class="list-anchor list-anchor-master1">
-                                    <span class="master1-circle">M1</span>
-                                    <span>{{$formation->nom}}</span>
-                                </a>
-                            </li>
-                        @endif
-                        @if(str_contains($formation->nom,'Master 2'))
-                        <li class="list-group-item">
-                                <a href="#" class="list-anchor list-anchor-master2">
-                                    <span class="master2-circle">M2</span>
-                                    <span>{{$formation->nom}}</span>
-                                </a>
-                            </li>
-                        @endif
-                        @endforeach
-                        @endforeach
-                       
-              
+                    @foreach($dep->formation as $formation) @if(str_contains($formation->nom,'Tronc Commun'))
+
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor ">
+                            <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
+                            <span>{{$formation->nom}}</span>
+                        </a>
+                    </li>
+                    @endif @if(str_contains($formation->nom,'Licence'))
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-l3">
+                            <span class="licence-circle">L3</span>
+                            <span>{{$formation->nom}}</span>
+                        </a>
+                    </li>
+                    @endif @if(str_contains($formation->nom,'Master 1'))
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master1">
+                            <span class="master1-circle">M1</span>
+                            <span>{{$formation->nom}}</span>
+                        </a>
+                    </li>
+                    @endif @if(str_contains($formation->nom,'Master 2'))
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master2">
+                            <span class="master2-circle">M2</span>
+                            <span>{{$formation->nom}}</span>
+                        </a>
+                    </li>
+                    @endif @endforeach @endforeach
+
+
                     <li class="list-group-item border-top">
                         <a href="#" class="list-anchor">
                             <i class="icon-bell icon-sidebar"></i>
@@ -96,6 +88,7 @@
                             </optgroup>
                         </select>
                     </div>
+
                     <div>
                         <ul class="nav nav-tabs">
                             <li>
@@ -117,40 +110,61 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane" role="tabpanel" id="tab-1">
-                                <form>
-                                    <textarea class="form-control content" id="summernote-status"></textarea>
+
+                                <form action="{{route('status.store')}}" method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <textarea class="form-control content" name="status" id="summernote-status"></textarea>
+                                    <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
                                 </form>
+
                             </div>
                             <div class="tab-pane" role="tabpanel" id="tab-2">
-                                <form>
-                                    <textarea class="form-control content" id="summernote-blog"></textarea>
+
+                                <form action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <textarea class="form-control content" name="blog" id="summernote-blog"></textarea>
+                                    <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
+                                    <input type="hidden" name="type" value="blog">
+
                                 </form>
                             </div>
                             <div class="tab-pane" role="tabpanel" id="tab-3">
-                                <form>
-                                    <textarea class="form-control content" id="summernote-faq"></textarea>
+
+                                <form action="{{route('faq.store')}}" method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <textarea class="form-control content" name="faq" id="summernote-faq"></textarea>
+                                    <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
+
                                 </form>
                             </div>
                             <div class="tab-pane active" role="tabpanel" id="tab-4">
-                                <form>
-                                    <textarea class="form-control content" id="summernote-sondage"></textarea>
+
+                                <form action="{{route('sondage.store')}}" method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <textarea class="form-control content" name="sondage" id="summernote-sondage"></textarea>
+                                    <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
+
                                 </form>
+
                             </div>
                         </div>
                     </div>
                     <div style="padding-top:0;padding-bottom:11px;">
                         <form style="display:inline-block;">
+                            {{ csrf_field() }}
                             <input type="file" name="file" multiple="" id="file" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                             <div class="box" style="margin-left:10px;">
-                                <input type="file" name="file-7[]" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
+                                <input type="file" name="files[]" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
                                     multiple="">
                                 <label for="file-7" style="border: 1px solid #448ccb; ">
                                     <span></span>
                                     <strong style="font-weight:400;">Choose a file…</strong>
                                 </label>
                             </div>
+
                         </form>
-                        <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
+
+
                     </div>
                 </div>
                 <div class="status">
