@@ -179,6 +179,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom-file-input.js"></script>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <script src="assets/js/main.js"></script>

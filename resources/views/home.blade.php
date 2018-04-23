@@ -1,4 +1,5 @@
 @extends('layouts.app') @section('content')
+
 <div style="margin-top:20px;">
     <div class="container" style="margin-top:97px;">
         <div class="row">
@@ -12,20 +13,102 @@
                             <span>Acceuil - NTICien</span>
                         </a>
                     </li>
-                    @foreach($departement  as $depart)
                     <li class="list-group-item departement">
-                        <span class="departement" style="font-weight:bold;">Dépratement {{ $depart->nom}} :</span>
+                        <i class="icon-grid"></i>
+                        <span class="departement" style="font-weight:bold;">Dépratement MI :</span>
                     </li>
-                    @foreach($depart->formation as $f)
                     <li class="list-group-item">
-                        <a href="#" class="list-anchor ">
+                        <a href="#" class="list-anchor active">
                             <span class="l1-circle">L1</span>
-                            <span>{{ $f->nom }}</span>
+                            <span>L1 - Tronc Commun</span>
                         </a>
                     </li>
-                    @endforeach
-                    @endforeach
-                  
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-mi">
+                            <span class="l1-circle">L2</span>
+                            <span>L2 - Tronc Commun</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item departement">
+                        <i class="icon-grid"></i>
+                        <span style="font-weight:bold;">&nbsp; &nbsp;Département IFA :</span>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-l3">
+                            <span class="licence-circle">L3</span>
+                            <span>Licence TI</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-l3">
+                            <span class="licence-circle">L3</span>
+                            <span>Licence SCI</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master1">
+                            <span class="master1-circle">M1</span>
+                            <span>Master 1 - STIC</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master1">
+                            <span class="master1-circle">M1</span>
+                            <span>Master 1 - RSD</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master2">
+                            <span class="master2-circle">M2</span>
+                            <span>Master 2 - STIC</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master2">
+                            <span class="master2-circle">M2</span>
+                            <span>Master 2 - RSD</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item departement">
+                        <i class="icon-grid"></i>
+                        <span style="font-weight:bold;">&nbsp; Département TLSI :</span>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-l3">
+                            <span class="licence-circle">L3</span>
+                            <span>Licence SI</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-l3">
+                            <span class="licence-circle">L3</span>
+                            <span>Licence GL</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master1">
+                            <span class="master1-circle">M1</span>
+                            <span>Master 1 - STIW</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master1">
+                            <span class="master1-circle">M1</span>
+                            <span>Master 1 - GL</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="list-anchor list-anchor-master2">
+                            <span class="master2-circle">M2</span>
+                            <span>Master 2 - SITW</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item" style="padding-bottom:20px;">
+                        <a href="#" class="list-anchor list-anchor-master2">
+                            <span class="master2-circle">M2</span>
+                            <span>Master 2 - GL</span>
+                        </a>
+                    </li>
                     <li class="list-group-item border-top">
                         <a href="#" class="list-anchor">
                             <i class="icon-bell icon-sidebar"></i>
@@ -103,10 +186,18 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding-top:7px;padding-bottom:11px;">
-                        <i class="icon-camera icons-advanced"></i>
-                        <i class="icon-camrecorder icons-advanced"></i>
-                        <i class="icon-doc icons-advanced"></i>
+                    <div style="padding-top:0;padding-bottom:11px;">
+                        <form style="display:inline-block;">
+                            <input type="file" name="file" multiple="" id="file" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
+                            <div class="box" style="margin-left:10px;">
+                                <input type="file" name="file-7[]" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
+                                    multiple="">
+                                <label for="file-7" style="border: 1px solid #448ccb; ">
+                                    <span></span>
+                                    <strong style="font-weight:400;">Choose a file…</strong>
+                                </label>
+                            </div>
+                        </form>
                         <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
                     </div>
                 </div>
@@ -118,11 +209,43 @@
                         <li>
                             <ul class="list-unstyled publisher-info">
                                 <li class="publisher-name">Bentaleb Youssouf</li>
+                                <li class="role-admin">Administateur</li>
                                 <li class="status-time">20 min ago</li>
                             </ul>
                         </li>
                     </ul>
-                    <i class="icon-options status-options"></i>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-options status-options"></i>
+                        </a>
+                        <ul class="list-unstyled dropdown-menu dropdown-menu-right" style="margin-top:20px;">
+                            <li>
+                                <a href="#">
+                                    <i class="icon-pencil"></i>
+                                    <span>&nbsp; Modifier</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="icon-trash"></i>
+                                    <span>&nbsp; Supprimer</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="icon-eyeglass"></i>
+                                    <span>&nbsp; Suivre</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <i class="icon-flag"></i>
+                                    <span>&nbsp; Signaler</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <h3 class="status-title">Heading</h3>
                     <hr>
                     <div style="text-align:center;">
@@ -163,15 +286,105 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="evenement">
-                    <h3 class="even-title">Heading</h3>
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-                        <br>
-                        <br>
-                    </p>
+                <div class="evenement admin-bar">
+                    <a href="#event-collapse1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="event-collaspe1" style="text-decoration:none;">
+                        <h3 class="text-info even-title">Event title</h3>
+                    </a>
+                    <div id="event-collapse1" class="collapse">
+                        <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                            <br>
+                        </p>
+                        <div style="font-size:15px;">
+                            <i class="icon-calendar" style="font-size:16px;"></i>
+                            <span>&nbsp;Date debut :&nbsp;</span>
+                            <span>2018-04-06</span>
+                        </div>
+                        <div style="font-size:15px;">
+                            <i class="icon-calendar" style="font-size:17px;"></i>
+                            <span>&nbsp;Date fin :&nbsp;</span>
+                            <span>2018-05-05</span>
+                        </div>
+                        <span class="publisher">Publier par :</span>
+                        <div>
+                            <img class="publisher-image" style="width:40px;height:40px;background-image:url(&quot;assets/img/customer.png&quot;);">
+                            <ul class="list-unstyled publisher-info">
+                                <li>
+                                    <strong>Bentaleb Youssouf</strong>
+                                </li>
+                                <li>
+                                    <span class="role-admin">Administration</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="evenement prof-bar">
+                    <a href="#event-collapse2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="event-collaspe2" style="text-decoration:none;">
+                        <h3 class="text-info even-title">Event title</h3>
+                    </a>
+                    <div id="event-collapse2" class="collapse">
+                        <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                            <br>
+                        </p>
+                        <div style="font-size:15px;">
+                            <i class="icon-calendar" style="font-size:16px;"></i>
+                            <span>&nbsp;Date debut :&nbsp;</span>
+                            <span>2018-04-06</span>
+                        </div>
+                        <div style="font-size:15px;">
+                            <i class="icon-calendar" style="font-size:17px;"></i>
+                            <span>&nbsp;Date fin :&nbsp;</span>
+                            <span>2018-05-05</span>
+                        </div>
+                        <span class="publisher">Publier par :</span>
+                        <div>
+                            <img class="publisher-image" style="width:40px;height:40px;background-image:url(&quot;assets/img/customer.png&quot;);">
+                            <ul class="list-unstyled publisher-info">
+                                <li>
+                                    <strong>Bentaleb Youssouf</strong>
+                                </li>
+                                <li>
+                                    <span class="role-prof">Enseignant</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="evenement club-bar">
+                    <a href="#event-collapse3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="event-collaspe3" style="text-decoration:none;">
+                        <h3 class="text-info even-title">Event title</h3>
+                    </a>
+                    <div id="event-collapse3" class="collapse">
+                        <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                            <br>
+                        </p>
+                        <div style="font-size:15px;">
+                            <i class="icon-calendar" style="font-size:16px;"></i>
+                            <span>&nbsp;Date debut :&nbsp;</span>
+                            <span>2018-04-06</span>
+                        </div>
+                        <div style="font-size:15px;">
+                            <i class="icon-calendar" style="font-size:17px;"></i>
+                            <span>&nbsp;Date fin :&nbsp;</span>
+                            <span>2018-05-05</span>
+                        </div>
+                        <span class="publisher">Publier par :</span>
+                        <div>
+                            <img class="publisher-image" style="width:40px;height:40px;background-image:url(&quot;assets/img/customer.png&quot;);">
+                            <ul class="list-unstyled publisher-info">
+                                <li>
+                                    <strong>Bentaleb Youssouf</strong>
+                                </li>
+                                <li>
+                                    <span class="role-club">Club GDG</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

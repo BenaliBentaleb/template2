@@ -14,3 +14,4 @@ $('#summernote-sondage').summernote({
 placeholder: 'Enter le contenu du sondage ..',
 height: 100
 });
+
