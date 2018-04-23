@@ -21,5 +21,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', [
-    "uses" => "PublicationController@grergerre",
+    "uses" => "PublicationController@pub",
     "as" => "admin.rr"]);
