@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('photo_profile');
-            $table->string('formation');
+            $table->integer('formation_id');
             $table->enum('sexe',['femele','homme']);
             $table->string('telephone');
             $table->date('date_naissance');

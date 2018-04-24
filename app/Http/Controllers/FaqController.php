@@ -35,7 +35,7 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-       return $request->faq;
+       return "faq";
     }
 
     /**
