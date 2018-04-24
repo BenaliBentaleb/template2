@@ -27,6 +27,7 @@ class HomeController extends Controller
 
         $departement = Departement::all();
         
-        return view('home')->with('departement',$departement);
+        return view('home')->with('departement',$departement)
+        ->with('a',10);
     }
 }

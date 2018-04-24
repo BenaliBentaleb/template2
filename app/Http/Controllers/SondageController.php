@@ -35,9 +35,15 @@ class SondageController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->sondage;
-    }
+          $f =  $request->files ; 
+          foreach($f as $fil)
+            {
+               return $fil[0]->getClientOriginalName();
 
+            }
+
+    }
+   
     /**
      * Display the specified resource.
      *

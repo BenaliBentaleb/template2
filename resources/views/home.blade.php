@@ -73,21 +73,10 @@
                     </li>
                 </ul>
             </div>
+
             <div class="col-md-6">
                 <div class="share-zone">
-                    <div id="border-bottom">
-                        <span class="status-title">Titre :&nbsp;</span>
-                        <input type="text" class="title" style="font-size:16px;">
-                        <select class="module-options" style="margin-right:0;">
-                            <optgroup label="Modules de Semester 1">
-                                <option value="12" selected="">Algorithme</option>
-                                <option value="13">CRI</option>
-                                <option value="14">Composant</option>
-                                <option value="">Analyse 1</option>
-                                <option value="">Algebre 1</option>
-                            </optgroup>
-                        </select>
-                    </div>
+
 
                     <div>
                         <ul class="nav nav-tabs">
@@ -97,7 +86,7 @@
                             </li>
                             <li>
                                 <a href="#tab-2" role="tab" data-toggle="tab">
-                                    <i class="icon-doc icon"></i>Blog</a>
+                                    <i class="icon-doc icon"></i>Tutorial</a>
                             </li>
                             <li>
                                 <a href="#tab-3" role="tab" data-toggle="tab">
@@ -113,7 +102,36 @@
 
                                 <form action="{{route('status.store')}}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
+                                    <div id="border-bottom">
+                                        <span class="status-title">Titre :&nbsp;</span>
+
+                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;">
+
+                                        <select class="module-options" style="margin-right:0;">
+                                            <optgroup label="{{$a}}">
+                                                <option value="12" selected="">Algorithme</option>
+                                                <option value="13">CRI</option>
+                                                <option value="14">Composant</option>
+                                                <option value="">Analyse 1</option>
+                                                <option value="">Algebre 1</option>
+                                            </optgroup>
+                                        </select>
+
+
+                                    </div>
+
+
+
                                     <textarea class="form-control content" name="status" id="summernote-status"></textarea>
+                                    <input type="file" name="file" multiple="" id="file_status" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
+                                    <div class="box" style="margin-left:10px;display:  inline-block;">
+                                        <input type="file" name="files[]" id="file-status" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
+                                            multiple="">
+                                        <label for="file-status" style="border: 1px solid #448ccb; ">
+                                            <span></span>
+                                            <strong style="font-weight:400;">Choose a file…</strong>
+                                        </label>
+                                    </div>
                                     <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
                                 </form>
 
@@ -122,7 +140,35 @@
 
                                 <form action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
+                                    <div id="border-bottom">
+                                        <span class="status-title">Titre :&nbsp;</span>
+
+                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;">
+
+                                        <select class="module-options" style="margin-right:0;">
+                                            <optgroup label="{{$a}}">
+                                                <option value="12" selected="">Algorithme</option>
+                                                <option value="13">CRI</option>
+                                                <option value="14">Composant</option>
+                                                <option value="">Analyse 1</option>
+                                                <option value="">Algebre 1</option>
+                                            </optgroup>
+                                        </select>
+
+
+                                    </div>
+
                                     <textarea class="form-control content" name="blog" id="summernote-blog"></textarea>
+
+                                    <input type="file" name="file" multiple="" id="file_blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
+                                    <div class="box" style="margin-left:10px;display:  inline-block;">
+                                        <input type="file" name="files[]" id="file-blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
+                                            multiple="">
+                                        <label for="file-blog" style="border: 1px solid #448ccb; ">
+                                            <span></span>
+                                            <strong style="font-weight:400;">Choose a file…</strong>
+                                        </label>
+                                    </div>
                                     <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
                                     <input type="hidden" name="type" value="blog">
 
@@ -132,7 +178,34 @@
 
                                 <form action="{{route('faq.store')}}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
+                                    <div id="border-bottom">
+                                        <span class="status-title">Titre :&nbsp;</span>
+
+                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;">
+
+                                        <select class="module-options" style="margin-right:0;">
+                                            <optgroup label="{{$a}}">
+                                                <option value="12" selected="">Algorithme</option>
+                                                <option value="13">CRI</option>
+                                                <option value="14">Composant</option>
+                                                <option value="">Analyse 1</option>
+                                                <option value="">Algebre 1</option>
+                                            </optgroup>
+                                        </select>
+
+
+                                    </div>
+
                                     <textarea class="form-control content" name="faq" id="summernote-faq"></textarea>
+                                    <input type="file" name="file" multiple="" id="file_faq" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
+                                    <div class="box" style="margin-left:10px;display:  inline-block;">
+                                        <input type="file" name="files[]" id="file-faq" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
+                                            multiple="">
+                                        <label for="file-faq" style="border: 1px solid #448ccb; ">
+                                            <span></span>
+                                            <strong style="font-weight:400;">Choose a file…</strong>
+                                        </label>
+                                    </div>
                                     <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
 
                                 </form>
@@ -141,7 +214,35 @@
 
                                 <form action="{{route('sondage.store')}}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
+                                    <div id="border-bottom">
+                                        <span class="status-title">Titre :&nbsp;</span>
+
+                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;">
+
+                                        <select class="module-options" style="margin-right:0;">
+                                            <optgroup label="{{$a}}">
+                                                <option value="12" selected="">Algorithme</option>
+                                                <option value="13">CRI</option>
+                                                <option value="14">Composant</option>
+                                                <option value="">Analyse 1</option>
+                                                <option value="">Algebre 1</option>
+                                            </optgroup>
+                                        </select>
+
+
+                                    </div>
+
                                     <textarea class="form-control content" name="sondage" id="summernote-sondage"></textarea>
+
+                                    <input type="file" name="file" multiple="" id="file_sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
+                                    <div class="box" style="margin-left:10px;display:  inline-block;">
+                                        <input type="file" name="files[]" id="file-sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
+                                            multiple="">
+                                        <label for="file-sondage" style="border: 1px solid #448ccb; ">
+                                            <span></span>
+                                            <strong style="font-weight:400;">Choose a file…</strong>
+                                        </label>
+                                    </div>
                                     <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
 
                                 </form>
@@ -149,23 +250,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding-top:0;padding-bottom:11px;">
-                        <form style="display:inline-block;">
-                            {{ csrf_field() }}
-                            <input type="file" name="file" multiple="" id="file" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
-                            <div class="box" style="margin-left:10px;">
-                                <input type="file" name="files[]" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
-                                    multiple="">
-                                <label for="file-7" style="border: 1px solid #448ccb; ">
-                                    <span></span>
-                                    <strong style="font-weight:400;">Choose a file…</strong>
-                                </label>
-                            </div>
 
-                        </form>
-
-
-                    </div>
                 </div>
                 <div class="status">
                     <ul class="list-inline">

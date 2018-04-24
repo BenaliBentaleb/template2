@@ -35,7 +35,13 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-       return "faq";
+        $f =  $request->files ; 
+        
+        foreach($f as $fil)
+          {
+             return $fil[0]->getClientOriginalName().''.$request->titre;
+
+          }
     }
 
     /**

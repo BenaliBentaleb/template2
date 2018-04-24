@@ -35,12 +35,17 @@ class PublicationController extends Controller
      */
     public function store(Request $request)
     {
-      if($request->type) {
+     /* if($request->type) {
           return $request->type;
       }
-      return 'status';
+      return 'status';*/
 
-      //return $request->status;
+      $f =  $request->files ; 
+          foreach($f as $fil)
+            {
+               return $fil[0]->getClientOriginalName().''.$request->titre;
+
+            }
     }
 
     /**
