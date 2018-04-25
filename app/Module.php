@@ -16,7 +16,7 @@ class Module extends Model
         return $this->belongsTo(Formation::class);
     } 
 
-    public function publication() {
+    public function publications() {
         return $this->hasMany(Publication::class);
     }
     public function semestre() {

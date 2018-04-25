@@ -172,51 +172,53 @@
 
                 @foreach($publications as $publication)
                 <div class="status">
-                    <ul class="list-inline">
-                        <li>
-                            <img class="publisher-image" style="background-image:url(&quot;assets/img/customer.png&quot;);">
-                        </li>
-                        <li>
-                            <ul class="list-unstyled publisher-info">
-                                <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
-                                @foreach($publication->user->roles as $role)
-                                <li class="role-admin">{{$role->nom}}</li>
-                                @endforeach
-                                <li class="status-time">{{$publication->created_at->diffForHumans()}}</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon-options status-options"></i>
-                        </a>
-                        <ul class="list-unstyled dropdown-menu dropdown-menu-right" style="margin-top:20px;">
+                    <div class="col-md-12">
+                        <ul class="list-inline">
                             <li>
-                                <a href="#">
-                                    <i class="icon-pencil"></i>
-                                    <span>&nbsp; Modifier</span>
-                                </a>
+                                <img class="publisher-image" style="background-image:url(&quot;assets/img/customer.png&quot;);">
                             </li>
                             <li>
-                                <a href="#">
-                                    <i class="icon-trash"></i>
-                                    <span>&nbsp; Supprimer</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-eyeglass"></i>
-                                    <span>&nbsp; Suivre</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-flag"></i>
-                                    <span>&nbsp; Signaler</span>
-                                </a>
+                                <ul class="list-unstyled publisher-info">
+                                    <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
+                                    @foreach($publication->user->roles as $role)
+                                    <li class="role-admin">{{$role->nom}}</li>
+                                    @endforeach
+                                    <li class="status-time">{{$publication->created_at->diffForHumans()}}</li>
+                                </ul>
                             </li>
                         </ul>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon-options status-options"></i>
+                            </a>
+                            <ul class="list-unstyled dropdown-menu dropdown-menu-right" style="margin-top:20px;">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-pencil"></i>
+                                        <span>&nbsp; Modifier</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-trash"></i>
+                                        <span>&nbsp; Supprimer</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-eyeglass"></i>
+                                        <span>&nbsp; Suivre</span>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-flag"></i>
+                                        <span>&nbsp; Signaler</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <h3 class="status-title">{{$publication->titre}}</h3>
                     <hr>

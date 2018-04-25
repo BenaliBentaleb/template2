@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Faq;
 use Illuminate\Http\Request;
+use App\PublicationFichier;
+use Auth;
+use App\Publication;
 
 class FaqController extends Controller
 {
@@ -35,13 +38,45 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        $f =  $request->files ; 
+        $publication = new Publication;
+        $publication->titre = $request->titre;
         
-        foreach($f as $fil)
-          {
-             return $fil[0]->getClientOriginalName().''.$request->titre;
+        $publication->date_publication ='2018-04-23';
+        $publication->user_id = Auth::id();
+        $publication->type = 'faq'; 
+        $publication->contenu = $request->faq;
 
+        if($request->faq_module =='general') {
+            $publication->module_id = null;
+          }else {
+            $publication->module_id = $request->faq_module;
           }
+
+          $publication->save();
+
+          if($request->hasfile('files'))
+            {
+                
+                foreach($request->file('files') as $file)
+                {
+                    $publication_fichier= new PublicationFichier();
+                    $publication_fichier->publication_id = $publication->id;
+                    $name=time().$file->getClientOriginalName();
+                    $file->move(public_path().'/files/', $name);  
+                    $data[] = $name;  
+                    $publication_fichier->chemin_fichier = "/files/".$name;
+                    $publication_fichier->type_fichier = $file->getClientOriginalExtension();
+                    $publication_fichier->save();
+                }
+                
+            }
+          $faq  = new Faq;
+          $faq->publication_id = $publication->id;
+          $faq->meilleur_reponse = 0;
+          $faq->save();
+
+          return redirect()->back();
+
     }
 
     /**

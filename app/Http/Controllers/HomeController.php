@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
 
         $departement = Departement::all();
-        $publications = Publication::all();
+        $publications = Publication::orderBy('created_at', 'desc')->get();
         
         $semestre = Semestre::all();
         return view('home')->with('departement',$departement)
@@ -48,8 +48,11 @@ class HomeController extends Controller
                 $this->collection->put($s->nom,$s->modules);
             }
         }
+
+
        
         return view('formation')->with('modules',$this->collection)
-                                ->with('departement',$departement);
+                                ->with('departement',$departement)
+                                ->with('publications',$formation->modules);
     }
 }

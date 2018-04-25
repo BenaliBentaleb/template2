@@ -198,16 +198,21 @@
                     </div>
 
                 </div>
+               @foreach($publications as $module)
+                @foreach($module->publications as $publication)
                 <div class="status">
+                        <div class="col-md-12">
                     <ul class="list-inline">
                         <li>
                             <img class="publisher-image" style="background-image:url(&quot;assets/img/customer.png&quot;);">
                         </li>
                         <li>
                             <ul class="list-unstyled publisher-info">
-                                <li class="publisher-name">Bentaleb Youssouf</li>
-                                <li class="role-admin">Administateur</li>
-                                <li class="status-time">20 min ago</li>
+                                <li class="publisher-name">{{ $publication->user->nom }} {{ $publication->user->prenom }}</li>
+                                @foreach($publication->user->roles as $role)
+                                <li class="role-admin">{{$role->nom}}</li>
+                                @endforeach
+                                <li class="status-time">{{$publication->created_at->diffForHumans()}}</li>
                             </ul>
                         </li>
                     </ul>
@@ -243,28 +248,20 @@
                             </li>
                         </ul>
                     </div>
-                    <h3 class="status-title">Heading</h3>
+                </div>
+                    <h3 class="status-title">{{$publication->titre}}</h3>
                     <hr>
                     <div style="text-align:center;">
                         <span>Status de module :&nbsp;</span>
                         <span class="module">
-                            <a href="index.html">L1-Algorithme</a>
+                            <a href="index.html">{{$module->nom}}</a>
                             <br>
                         </span>
                     </div>
                     <div>
-                        <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies elit vel placerat pellentesque.
-                            Vestibulum aliquam nulla ac vehicula eleifend. Pellentesque habitant morbi tristique senectus
-                            et netus et malesuada fames ac turpis egestas. Quisque dapibus ac tellus luctus cursus. Maecenas
-                            mattis sollicitudin arcu, vitae rhoncus magna varius sit amet. Duis ultricies sagittis magna,
-                            id ullamcorper turpis rhoncus sed. Curabitur sapien tellus, gravida id tellus eget, blandit egestas
-                            magna. Vestibulum ipsum augue, mattis in pellentesque non, dapibus quis velit. Interdum et malesuada
-                            fames ac ante ipsum primis in faucibus. Pellentesque suscipit fermentum convallis. Morbi aliquam
-                            vitae diam quis iaculis. Integer eget augue rutrum, vestibulum arcu vitae, porttitor augue. Phasellus
-                            non sodales quam, eu vestibulum tortor.
-                            <br>
+                        <p class="content">
+                                {!! $publication->contenu !!}
                         </p>
-                        <img class="img-responsive content-image" src="assets/img/image-left-sub.png">
                     </div>
                     <hr style="width:100%;">
                     <div style="text-align:center;margin-top:10px;margin-bottom:10px;">
@@ -281,6 +278,8 @@
                     </div>
                     <hr style="width:100%;">
                 </div>
+                @endforeach
+                @endforeach
             </div>
         </div>
     </div>
