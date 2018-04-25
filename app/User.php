@@ -10,6 +10,7 @@ use App\Formation;
 use App\Role;
 use App\Reclamation;
 use App\Like;
+use App\Publication;
 use App\Notifications\ResetPasswordNotification;
 class User extends Authenticatable
 {
@@ -35,6 +36,9 @@ class User extends Authenticatable
 
     public function profile() {
         return $this->hasOne(profile::class);
+    }
+    public function publications() {
+        return $this->hasMany(Publication::class);
     }
 
     public function formation() {

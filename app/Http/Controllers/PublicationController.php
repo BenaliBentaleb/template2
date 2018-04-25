@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Publication;
 use Illuminate\Http\Request;
+use App\PublicationFichier;
+use Auth;
 
 class PublicationController extends Controller
 {
@@ -35,17 +37,50 @@ class PublicationController extends Controller
      */
     public function store(Request $request)
     {
-     /* if($request->type) {
-          return $request->type;
+
+        $publication = new Publication;
+        $publication->titre = $request->titre;
+        
+        $publication->date_publication ='2018-04-23';
+        $publication->user_id = Auth::id();
+       
+
+      if($request->type) {
+        $publication->type =  $request->type; //blog
+        $publication->contenu = $request->blog;
+      }else{
+        $publication->type = 'status';
+        $publication->contenu = $request->status;
       }
-      return 'status';*/
+      if($request->status_module =='general') {
+        $publication->module_id = null;
+      }else {
+        $publication->module_id = $request->status_module;
+      }
 
-      $f =  $request->files ; 
-          foreach($f as $fil)
-            {
-               return $fil[0]->getClientOriginalName().''.$request->titre;
+      $publication->save();
 
-            }
+
+   //  return 'status';
+   if($request->hasfile('files'))
+   {
+    
+      foreach($request->file('files') as $file)
+      {
+        $publication_fichier= new PublicationFichier();
+        $publication_fichier->publication_id = $publication->id;
+          $name=time().$file->getClientOriginalName();
+          $file->move(public_path().'/files/', $name);  
+          $data[] = $name;  
+          $publication_fichier->chemin_fichier = "/files/".$name;
+          $publication_fichier->type_fichier = $file->getClientOriginalExtension();
+          $publication_fichier->save();
+      }
+      
+   }
+
+        return redirect()->back();
+
     }
 
     /**

@@ -11,7 +11,7 @@ use App\Departement;
 class Formation extends Model
 {
     protected $fillable = [
-        'nom'
+        'nom','id','departement_id'
     ];
 
 
@@ -25,5 +25,9 @@ class Formation extends Model
 
     public function departement() {
         return $this->belongsTo(Departement::class);
+    }
+
+    public function getSemestreModules($formation,$semestre) {
+       return   Module::where('formation_id',$formation)->where('semestre_id',$semestre)->get();
     }
 }

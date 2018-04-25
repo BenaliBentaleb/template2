@@ -11,7 +11,7 @@ class Semestre extends Model
         'nom'
     ];
 
-    public function module() {
+    public function modules() {
         return $this->hasMany(Module::class);
     }
 }

@@ -11,6 +11,7 @@ use App\Tag;
 use App\Commentaire;
 use App\Like;
 use App\Module;
+use App\User;
 class Publication extends Model
 {
     
@@ -43,5 +44,8 @@ class Publication extends Model
     }
     public function module() {
         return $this->belongsTo(Module::class);
+    }
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

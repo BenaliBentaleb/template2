@@ -18,11 +18,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', [
-    "uses" => "PublicationController@pub",
-    "as" => "admin.rr"]);
 
     Route::post('/statut/store',[
         'uses'=>'PublicationController@store',
@@ -39,4 +36,9 @@ Route::get('/admin', [
     Route::post('/sondage/store',[
         'uses'=>'SondageController@store',
         'as'=>'sondage.store'
+    ]);
+
+    Route::get('/formation/{nom}',[
+        'uses'=>'HomeController@modules',
+        'as'=>'formation'
     ]);
