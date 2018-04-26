@@ -31,6 +31,7 @@ return array(
     'App\\Http\\Controllers\\PublicationFichierController' => $baseDir . '/app/Http/Controllers/PublicationFichierController.php',
     'App\\Http\\Controllers\\ReclamationController' => $baseDir . '/app/Http/Controllers/ReclamationController.php',
     'App\\Http\\Controllers\\RoleController' => $baseDir . '/app/Http/Controllers/RoleController.php',
+    'App\\Http\\Controllers\\SemestreController' => $baseDir . '/app/Http/Controllers/SemestreController.php',
     'App\\Http\\Controllers\\SondageChoixController' => $baseDir . '/app/Http/Controllers/SondageChoixController.php',
     'App\\Http\\Controllers\\SondageController' => $baseDir . '/app/Http/Controllers/SondageController.php',
     'App\\Http\\Controllers\\TagController' => $baseDir . '/app/Http/Controllers/TagController.php',

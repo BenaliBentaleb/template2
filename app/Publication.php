@@ -16,7 +16,7 @@ class Publication extends Model
 {
     
     protected $fillable = [
-        'titre','contenu','date_publication','user_id','type','module_id'
+        'titre','contenu','user_id','type','module_id'
     ];
 
 
@@ -37,7 +37,7 @@ class Publication extends Model
         return $this->belongsToMany(Tag::class);
     }
     public function commentaires() {
-        return $this->hasMany(commentaires::class);
+        return $this->hasMany(Commentaire::class);
     }
     public function likes() {
         return $this->hasMany(Like::class);

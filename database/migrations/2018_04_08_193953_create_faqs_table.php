@@ -15,8 +15,10 @@ class CreateFaqsTable extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('publication_id');
+            $table->integer('publication_id')->unsigned();
             $table->boolean('meilleur_reponse');
+            
+      
             $table->timestamps();
         });
     }

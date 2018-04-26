@@ -42,3 +42,7 @@ Auth::routes();
         'uses'=>'HomeController@modules',
         'as'=>'formation'
     ]);
+    Route::get('/publication/{id}',[
+        'uses'=>'HomeController@destroy',
+        'as'=>'publication.destroy'
+    ]);

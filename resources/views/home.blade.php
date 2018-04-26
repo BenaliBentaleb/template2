@@ -199,7 +199,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{route('publication.destroy',['id'=>$publication->id])}}">
                                         <i class="icon-trash"></i>
                                         <span>&nbsp; Supprimer</span>
                                     </a>

@@ -7,6 +7,11 @@ use App\Departement;
 use App\Semestre;
 use App\Formation;
 use App\Publication;
+use App\Commentaire;
+use App\Like;
+use App\Sondage;
+use App\Faq;
+use App\PublicationFichier;
 class HomeController extends Controller
 {
     /**
@@ -54,5 +59,36 @@ class HomeController extends Controller
         return view('formation')->with('modules',$this->collection)
                                 ->with('departement',$departement)
                                 ->with('publications',$formation->modules);
+    }
+
+
+    public function destroy($id)
+    {
+        $publication = Publication::find($id);
+       /* $publication_fichier = $publication->publication_avec_fichier;
+        $publication_faq =$publication->faq;
+        $sondage = $publication->sondage;
+        $commentaires = $publication->commentaires;
+        $likes = $publication->likes;
+
+        if($publication_fichier) {
+            $publication_fichier->delete();
+        }
+        if($publication_faq) {
+            $publication_faq->delete();
+        }
+        if($sondage) {
+            $sondage->delete();
+        }
+        if($commentaires) {
+            $commentaires->delete();
+        }
+        if($likes) {
+            $likes->delete();
+        }
+       */
+        
+        $publication->delete();
+        return redirect()->back();
     }
 }

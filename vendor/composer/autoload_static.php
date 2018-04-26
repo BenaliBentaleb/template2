@@ -341,6 +341,7 @@ class ComposerStaticInit3be71f2ebf6052306afbaaef8590cc3f
         'App\\Http\\Controllers\\PublicationFichierController' => __DIR__ . '/../..' . '/app/Http/Controllers/PublicationFichierController.php',
         'App\\Http\\Controllers\\ReclamationController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReclamationController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
+        'App\\Http\\Controllers\\SemestreController' => __DIR__ . '/../..' . '/app/Http/Controllers/SemestreController.php',
         'App\\Http\\Controllers\\SondageChoixController' => __DIR__ . '/../..' . '/app/Http/Controllers/SondageChoixController.php',
         'App\\Http\\Controllers\\SondageController' => __DIR__ . '/../..' . '/app/Http/Controllers/SondageController.php',
         'App\\Http\\Controllers\\TagController' => __DIR__ . '/../..' . '/app/Http/Controllers/TagController.php',

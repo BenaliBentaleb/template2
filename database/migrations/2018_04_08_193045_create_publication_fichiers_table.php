@@ -15,9 +15,11 @@ class CreatePublicationFichiersTable extends Migration
     {
         Schema::create('publication_fichiers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('publication_id');
+            $table->integer('publication_id')->unsigned();
             $table->string('chemin_fichier');
             $table->string('type_fichier');
+
+          
             $table->timestamps();
         });
     }

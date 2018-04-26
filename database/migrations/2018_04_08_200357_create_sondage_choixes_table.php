@@ -15,9 +15,9 @@ class CreateSondageChoixesTable extends Migration
     {
         Schema::create('sondage_choixes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sondage_id');
+            $table->integer('sondage_id')->unsigned();
             $table->text('choix');
-            $table->integer('nombre_reponse');
+            $table->integer('nombre_reponse')->unsigned();
             $table->timestamps();
         });
     }

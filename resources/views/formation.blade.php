@@ -228,7 +228,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="">
                                     <i class="icon-trash"></i>
                                     <span>&nbsp; Supprimer</span>
                                 </a>
