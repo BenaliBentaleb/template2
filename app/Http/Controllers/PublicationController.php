@@ -41,7 +41,7 @@ class PublicationController extends Controller
         $publication = new Publication;
         $publication->titre = $request->titre;
         
-        $publication->date_publication ='2018-04-23';
+        
         $publication->user_id = Auth::id();
        
 

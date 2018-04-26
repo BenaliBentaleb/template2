@@ -99,10 +99,11 @@
 
             </div>
         </nav>
-
+       
         <div style="margin-top:20px;">
             <div class="container" style="margin-top:97px;">
                 <div class="row">
+                        @auth
                     <div class="col-md-3">
                         <ul class="list-group side-bar">
                             <li class="list-group-item" style="padding-top:10px;">
@@ -172,12 +173,14 @@
                             </li>
                         </ul>
                     </div>
+                    @endauth
                     @yield('content')
 
                 </div>
             </div>
            
         </div>
+       
        
       
 
