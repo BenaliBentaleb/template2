@@ -265,16 +265,13 @@
                     </div>
                     <hr style="width:100%;">
                     <div style="text-align:center;margin-top:10px;margin-bottom:10px;">
-                        <div class="like">
-                            <i class="icon-like"></i>
-                            <span>J'aime</span>
-                            <span class="likes-number">20</span>
-                        </div>
-                        <div class="comment">
-                            <i class="icon-bubble"></i>
-                            <span>Commenter</span>
-                            <span class="comments-number">20</span>
-                        </div>
+                            <jaime :publication="{{$publication->id}}"   :id="{{Auth::id()}}"></jaime>
+                     
+
+            
+                
+           
+                            <commentaire :publication="{{$publication->id}}"></commentaire>
                     </div>
                     <hr style="width:100%;">
                 </div>

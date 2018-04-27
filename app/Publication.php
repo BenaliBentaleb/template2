@@ -14,7 +14,7 @@ use App\Module;
 use App\User;
 class Publication extends Model
 {
-    
+  // public $with =['user','likes'];
     protected $fillable = [
         'titre','contenu','user_id','type','module_id'
     ];

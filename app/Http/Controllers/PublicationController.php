@@ -40,23 +40,29 @@ class PublicationController extends Controller
 
         $publication = new Publication;
         $publication->titre = $request->titre;
-        
-        
         $publication->user_id = Auth::id();
        
-
       if($request->type) {
         $publication->type =  $request->type; //blog
         $publication->contenu = $request->blog;
+
+        if($request->blog_module =='general' ) {
+            $publication->module_id = null;
+          }else {
+            $publication->module_id = $request->blog_module;
+          }
+
       }else{
         $publication->type = 'status';
         $publication->contenu = $request->status;
+
+        if($request->status_module =='general' ) {
+            $publication->module_id = null;
+          }else {
+            $publication->module_id = $request->status_module;
+          }
       }
-      if($request->status_module =='general') {
-        $publication->module_id = null;
-      }else {
-        $publication->module_id = $request->status_module;
-      }
+      
 
       $publication->save();
 
@@ -127,4 +133,21 @@ class PublicationController extends Controller
     {
     
     }
+
+    public function getAllPublication($id) {
+
+        $a = [];
+        $publication = Publication::find($id);
+        foreach($publication->likes as $like) {
+
+            array_push($a,$like);
+        }
+
+        return $a;
+       
+          
+       
+       
+            }
+    
 }

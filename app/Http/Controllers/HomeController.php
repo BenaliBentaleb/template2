@@ -34,10 +34,14 @@ class HomeController extends Controller
 
         $departement = Departement::all();
         $publications = Publication::orderBy('created_at', 'desc')->get();
+      
+      
+
         
         $semestre = Semestre::all();
         return view('home')->with('departement',$departement)
                            ->with('publications',$publications);
+                          
       
     }
 
@@ -65,29 +69,6 @@ class HomeController extends Controller
     public function destroy($id)
     {
         $publication = Publication::find($id);
-       /* $publication_fichier = $publication->publication_avec_fichier;
-        $publication_faq =$publication->faq;
-        $sondage = $publication->sondage;
-        $commentaires = $publication->commentaires;
-        $likes = $publication->likes;
-
-        if($publication_fichier) {
-            $publication_fichier->delete();
-        }
-        if($publication_faq) {
-            $publication_faq->delete();
-        }
-        if($sondage) {
-            $sondage->delete();
-        }
-        if($commentaires) {
-            $commentaires->delete();
-        }
-        if($likes) {
-            $likes->delete();
-        }
-       */
-        
         $publication->delete();
         return redirect()->back();
     }

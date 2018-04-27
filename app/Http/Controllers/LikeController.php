@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Like;
 use Illuminate\Http\Request;
+use App\Publication;
+use Auth ;
 
 class LikeController extends Controller
 {
@@ -81,5 +83,38 @@ class LikeController extends Controller
     public function destroy(Like $like)
     {
         //
+    }
+
+    public function jaime($id) {
+        $publication = Publication::find($id);
+
+        $jaime = new Like;
+        $jaime->user_id = Auth::id();
+        $jaime->publication_id = $publication->id;
+        $jaime->save();
+        $l = Like::find($jaime->id);
+        return $l;
+
+
+    }
+
+    public function unjaime($id) {
+        $publication = Publication::find($id);
+       /* foreach($publication->likes as  $like) {
+            foreach($like->user as $user ) {
+                if($user->id == Auth::id()) {
+                    $like->delete();
+                    break;
+                }
+            }
+        }*/
+
+        $like = Like::where('user_id',Auth::id())
+                ->where('publication_id',$publication->id)->first();
+        $like->delete();
+
+        return $like;
+
+
     }
 }

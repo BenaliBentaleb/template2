@@ -8,6 +8,7 @@ use App\Publication;
 
 class Like extends Model
 {
+    public $with =['user'];
     protected $fillable = [
         'user_id','publication_id'
     ];

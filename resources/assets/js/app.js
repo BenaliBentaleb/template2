@@ -16,11 +16,17 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('publier', require('./components/publier.vue'));
+Vue.component('jaime', require('./components/jaime.vue'));
+Vue.component('commentaire',require('./components/commentaire.vue'));
+
+import {store} from './store';
 
 const app = new Vue({
     el: '#app',
+    store,
+    
     data: {
         message: 'djamel'
+       
       }
 });

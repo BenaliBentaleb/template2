@@ -46,3 +46,16 @@ Auth::routes();
         'uses'=>'HomeController@destroy',
         'as'=>'publication.destroy'
     ]);
+
+   Route::post('/jaime/{id}',[
+        'uses'=>'LikeController@jaime'
+    ]);
+
+    Route::get('/unjaime/{id}',[
+        'uses'=>'LikeController@unjaime'
+    ]);
+
+    Route::get('/getAllPublication/{id}',[
+        'uses'=>'PublicationController@getAllPublication',
+        
+    ]);
