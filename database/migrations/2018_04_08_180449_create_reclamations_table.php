@@ -17,6 +17,7 @@ class CreateReclamationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('title');
+            $table->string('Type');
             $table->text('reclamation');
          
             $table->timestamps();

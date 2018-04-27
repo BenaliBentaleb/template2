@@ -168,7 +168,7 @@
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="#" class="list-anchor">
+                                <a href="{{route('reclamation.index')}}" class="list-anchor">
                                     <i class="icon-exclamation icon-sidebar"></i>
                                     <span style="font-size:15px;">Déposer réclamation</span>
                                 </a>
