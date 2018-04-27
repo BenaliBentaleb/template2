@@ -64,3 +64,12 @@ Auth::routes();
         'uses'=>'ReclamationController@index',
         'as'=>'reclamation.index'
     ]);
+
+    Route::post('/reclamation/store',[
+        'uses'=>'ReclamationController@store',
+        
+    ]);
+    Route::get('/profile/{id}',[
+        'uses'=>'ProfileController@profile',
+        
+    ]);

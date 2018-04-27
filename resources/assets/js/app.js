@@ -8,6 +8,30 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueNotifications from 'vue-notifications'
+import swal from 'sweetalert'
+import miniToastr from 'mini-toastr'
+const toastTypes = {
+    success: 'success',
+    error: 'error',
+    info: 'info',
+    warn: 'warn'
+  }
+  miniToastr.init({types: toastTypes})
+
+  function toast ({title, message, type, timeout, cb}) {
+   // return miniToastr[type](message, title, timeout, cb)
+   return swal(title, message, type)
+  }
+  const options = {
+    success: toast,
+    error: toast,
+    info: toast,
+    warn: toast
+  }
+    
+
+Vue.use(VueNotifications, options)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

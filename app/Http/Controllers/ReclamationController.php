@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Reclamation;
 use Illuminate\Http\Request;
 use App\Departement;
+use Auth ; 
 
 class ReclamationController extends Controller
 {
@@ -37,7 +38,16 @@ class ReclamationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $reclamation = new Reclamation;
+         $reclamation->user_id = Auth::id();
+         $reclamation->title = $request->title;
+         $reclamation->Type = $request->Type;
+         $reclamation->reclamation = $request->reclamation;
+
+         $reclamation->save();
+
+         return $reclamation;
+
     }
 
     /**

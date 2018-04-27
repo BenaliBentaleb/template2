@@ -18,7 +18,7 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('photo_profile');
-            $table->integer('formation_id')->unsigned();
+            $table->integer('formation_id')->unsigned()->nullable();
             $table->enum('sexe',['femele','homme']);
             $table->string('telephone');
             $table->date('date_naissance');
@@ -28,13 +28,6 @@ class CreateProfilesTable extends Migration
             
             $table->timestamps();
 
-          /*  $table->foreign('user_id')
-        ->references('id')->on('users')
-        ->onDelete('cascade')->onUpdate('cascade');
-
-        $table->foreign('formation_id')
-        ->references('id')->on('formations')
-        ->onDelete('cascade')->onUpdate('cascade');*/
           
         });
     }
