@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css">
     <link rel="stylesheet" href="{{ asset('assets/css/Login-Form-Clean.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/Navigation-with-Search.css') }}">
+    <link rel="stylesheet" href="assets/css/reclamation.css">
+
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 </head>
 

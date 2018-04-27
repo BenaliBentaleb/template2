@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reclamation;
 use Illuminate\Http\Request;
+use App\Departement;
 
 class ReclamationController extends Controller
 {
@@ -14,7 +15,8 @@ class ReclamationController extends Controller
      */
     public function index()
     {
-        //
+        $departement = Departement::all();
+        return view('reclamation') ->with('departement',$departement);
     }
 
     /**
@@ -24,7 +26,7 @@ class ReclamationController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**

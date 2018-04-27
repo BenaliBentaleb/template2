@@ -59,3 +59,8 @@ Auth::routes();
         'uses'=>'PublicationController@getAllPublication',
         
     ]);
+
+    Route::get('/reclamation',[
+        'uses'=>'ReclamationController@index',
+        'as'=>'reclamation.index'
+    ]);
