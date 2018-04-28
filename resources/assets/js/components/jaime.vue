@@ -1,10 +1,11 @@
 <template>
-  <div class="like">
-    
+  <span class="like " style="text-align:center;margin-top:10px;margin-bottom:10px;">
 
+    
+      
     <a class="jaime" v-if="!auth_user_likes" @click="jaime()">
       <i class="fa fa-thumbs-o-up"></i>
-      <span>J'aime</span>
+      <span class="jaimeText">J'aime</span>
     </a>
     <a v-else @click="unjaime()">
       <a class="jaime">
@@ -14,30 +15,31 @@
 
     </a>
     <span class="likes-number" v-if="getLikes" data-toggle="modal" :data-target="'.model'+ publication">
-      {{getLikes}} 
+      {{getLikes}}
     </span>
+   
 
-    <div class="modal fade" v-bind:class="'model'+ publication"  
-    tabindex="-1" role="dialog"
-     aria-labelledby="mySmallModalLabel">
+    <div class="modal fade" v-bind:class="'model'+ publication" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 
-        <div class="modal-dialog modal-sm" role="dialog"
-        >
-          <div class="modal-content">
-              <div class="modal-header modal-header-primary">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                 
-              </div>
-              <h4 class="center-block"><a  :href="'profile/'+p.id" v-for="p in likedBy ">{{p.nom}} {{p.prenom}} <br></a></h4>
+      <div class="modal-dialog modal-sm" role="dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-primary">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
           </div>
+          <h4 class="center-block">
+            <a :href="'profile/'+p.id" v-for="p in likedBy " :key="p.id" >{{p.nom}} {{p.prenom}}
+              <br>
+            </a>
+          </h4>
         </div>
       </div>
-    
-        <!--<div v-for="p in likedBy ">{{p}}</div>-->
-      </div>
-    
+    </div>
 
-  </div>
+  </span>
+
+
+ 
 </template>
 
 <script>
@@ -48,20 +50,20 @@
       return {
         likes: [],
         likedBy: [],
-        classActive:"model"+this.publication,
-        userId:'',
+        classActive: "model" + this.publication,
+        userId: '',
       };
     },
 
     mounted() {
       this.getAllPublication;
-     // this.classActive = "model"+this.publication;
+      // this.classActive = "model"+this.publication;
     },
 
     methods: {
       jaime() {
         axios.post(`/jaime/${this.publication}`).then(response => {
-          console.log(response);
+         // console.log(response);
           this.likedBy.push(response.data.user);
           this.likes.push(response.data.user_id);
         });
@@ -73,15 +75,13 @@
             if (response.data.user_id === val) {
               this.likes.splice(key, 1);
               this.likedBy.splice(key, 1);
-              console.log(key+'   '+val);
-              
+            //  console.log(key + '   ' + val);
+
             }
           });
         });
       },
-      getIdUser(id) {
-        return id ;
-      }
+    
     },
 
     computed: {
@@ -92,7 +92,7 @@
       getAllPublication() {
         axios.get(`/getAllPublication/${this.publication}`).then(response => {
           response.data.forEach(val => {
-            console.log(val);
+           // console.log(val);
             this.likedBy.push(val.user);
             this.likes.push(val.user_id);
             this.userId = val.user_id;
@@ -114,8 +114,9 @@
 <style scoped>
   .jaime {
     cursor: pointer;
+     
   }
-
+  
   .fa-thumbs-up {
     color: #7da7d9;
   }

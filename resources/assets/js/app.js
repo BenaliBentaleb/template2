@@ -41,8 +41,10 @@ Vue.use(VueNotifications, options)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('jaime', require('./components/jaime.vue'));
-Vue.component('commentaire',require('./components/commentaire.vue'));
+//Vue.component('commentaire',require('./components/commentaire.vue'));
 Vue.component('reclamation',require('./components/reclamation.vue'));
+
+Vue.component('jc',require('./components/jc.vue'));
 
 import {store} from './store';
 

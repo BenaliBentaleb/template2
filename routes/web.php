@@ -73,3 +73,11 @@ Auth::routes();
         'uses'=>'ProfileController@profile',
         
     ]);
+
+    Route::post('/commenter',[
+        'uses'=>'commentaireController@store'
+    ]);
+
+    Route::get("/allcomment/{id}",[
+        'uses'=>'commentaireController@allcomment'
+    ]);

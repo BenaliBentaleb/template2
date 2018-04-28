@@ -264,15 +264,7 @@
                         </p>
                     </div>
                     <hr style="width:100%;">
-                    <div style="text-align:center;margin-top:10px;margin-bottom:10px;">
-                            <jaime :publication="{{$publication->id}}"   :id="{{Auth::id()}}"></jaime>
-                     
-
-            
-                
-           
-                            <commentaire :publication="{{$publication->id}}"></commentaire>
-                    </div>
+                    <jc :publication="{{$publication->id}}" :id="{{Auth::id()}}"></js>
                     <hr style="width:100%;">
                 </div>
                 @endforeach

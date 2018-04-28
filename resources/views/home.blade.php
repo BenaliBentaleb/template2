@@ -233,17 +233,13 @@
             <!-- <img class="img-responsive content-image" src="assets/img/image-left-sub.png"> -->
         </div>
         <hr style="width:100%;">
-        <div style="text-align:center;margin-top:10px;margin-bottom:10px;">
-       
-              <jaime :publication="{{$publication->id}}"   :id="{{Auth::id()}}"></jaime>
-                     
-
+        
+       <!-- <jaime  :publication="{{$publication->id}}"   :id="{{Auth::id()}}"></jaime>  
             
-                
-           
-            <commentaire :publication="{{$publication->id}}"></commentaire>
-        </div>
-        <hr style="width:100%;">
+       <cc :publication="{{$publication->id}}"></cc>-->
+
+       <jc :publication="{{$publication->id}}" :id="{{Auth::id()}}"></js>
+        
     </div>
 
     @endforeach

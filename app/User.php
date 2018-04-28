@@ -11,6 +11,7 @@ use App\Role;
 use App\Reclamation;
 use App\Like;
 use App\Publication;
+use App\Commentaire;
 use App\Notifications\ResetPasswordNotification;
 class User extends Authenticatable
 {
@@ -54,6 +55,9 @@ class User extends Authenticatable
     }
     public function likes() {
         return $this->hasMany(Like::class);
+    }
+    public function commentaires() {
+        return $this->hasMany(Commentaire::class);
     }
 
 

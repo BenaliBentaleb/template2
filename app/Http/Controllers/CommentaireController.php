@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Commentaire;
 use Illuminate\Http\Request;
+use Auth;
+use App\Publication;
+
 
 class CommentaireController extends Controller
 {
@@ -35,7 +38,23 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $commentaire = new Commentaire;
+        $commentaire->publication_id = $request->publication_id;
+        $commentaire->user_id = Auth::id();
+        $commentaire->commentaire = $request->commentaire ;
+        $commentaire->save();
+        return Commentaire::find($commentaire->id);
+    }
+
+    public function allcomment($id) {
+        $publication = Publication::find($id);
+        $comments = [];
+         foreach($publication->commentaires as $c) {
+
+            array_push($comments,$c);
+        }
+
+        return $comments;
     }
 
     /**
