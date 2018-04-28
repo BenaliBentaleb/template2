@@ -238,7 +238,7 @@
             
        <cc :publication="{{$publication->id}}"></cc>-->
 
-       <jc :publication="{{$publication->id}}" :id="{{Auth::id()}}"></js>
+       <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{Auth::id()}}"></jaimecommentairecommenter>
         
     </div>
 

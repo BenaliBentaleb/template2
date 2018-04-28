@@ -14,8 +14,8 @@
                    </label>
                
                
-                <a href="#">
-                    <span class="comments-number">20</span>
+                <a v-if="getNumberOfComment">
+                    <span class="comments-number">{{getNumberOfComment }}</span>
                 </a>
             </span>
             <hr style="width:100%;margin-bottom:0;">
@@ -92,6 +92,7 @@ export default {
           //console.log(response.data);
         });
     }
+    
   },
   computed: {
     getcommentaire() {
@@ -102,6 +103,9 @@ export default {
              // console.log(value);
          })
       });
+    },
+    getNumberOfComment() {
+        return this.commentaires.length;
     }
   },
 

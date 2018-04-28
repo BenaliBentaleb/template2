@@ -264,7 +264,7 @@
                         </p>
                     </div>
                     <hr style="width:100%;">
-                    <jc :publication="{{$publication->id}}" :id="{{Auth::id()}}"></js>
+                    <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{Auth::id()}}"></jaimecommentairecommenter>
                     <hr style="width:100%;">
                 </div>
                 @endforeach
