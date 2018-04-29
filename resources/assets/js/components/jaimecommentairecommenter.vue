@@ -10,7 +10,7 @@
                    <label :for="'commentinput'+ publication" >
                        
                     <i class="icon-bubble"></i>
-                    <span>Commenter</span>
+                    <span class="commenter">Commenter</span>
                    </label>
                
                
@@ -70,49 +70,50 @@ export default {
   data() {
     return {
       commentaire: "",
-      commentaires:[]
+      commentaires: []
     };
   },
 
   mounted() {
-      this.getcommentaire;
+    this.getcommentaire;
   },
 
   methods: {
     commenter() {
-      axios
-        .post("/commenter", {
-          publication_id: this.publication,
-          user_id: this.id,
-          commentaire: this.commentaire
-        })
-        .then(response => {
+      if (this.commentaire) {
+        axios
+          .post("/commenter", {
+            publication_id: this.publication,
+            user_id: this.id,
+            commentaire: this.commentaire
+          })
+          .then(response => {
             this.commentaires.push(response.data);
-          this.commentaire = "";
-          //console.log(response.data);
-        });
+            this.commentaire = "";
+            //console.log(response.data);
+          });
+      }
     }
-    
   },
   computed: {
     getcommentaire() {
       axios.get(`/allcomment/${this.publication}`).then(response => {
         console.log(response.data);
-         response.data.forEach(value=> {
-             this.commentaires.push(value);
-             // console.log(value);
-         })
+        response.data.forEach(value => {
+          this.commentaires.push(value);
+          // console.log(value);
+        });
       });
     },
     getNumberOfComment() {
-        return this.commentaires.length;
+      return this.commentaires.length;
     }
-  },
-
-
+  }
 };
 </script>
 
-<style>
-
+<style scoped>
+.commenter {
+  cursor: pointer;
+}
 </style>

@@ -49749,7 +49749,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-75eb7396"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -49792,13 +49792,13 @@ var content = __webpack_require__(62);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("3fb6eb2a", content, false, {});
+var update = __webpack_require__(4)("f8d5f1fc", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-75eb7396\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./jaimecommentairecommenter.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-75eb7396\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./jaimecommentairecommenter.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-75eb7396\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./jaimecommentairecommenter.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-75eb7396\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./jaimecommentairecommenter.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -49816,7 +49816,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.commenter[data-v-75eb7396] {\r\n  cursor: pointer;\n}\r\n", ""]);
 
 // exports
 
@@ -49915,15 +49915,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     commenter: function commenter() {
       var _this = this;
 
-      axios.post("/commenter", {
-        publication_id: this.publication,
-        user_id: this.id,
-        commentaire: this.commentaire
-      }).then(function (response) {
-        _this.commentaires.push(response.data);
-        _this.commentaire = "";
-        //console.log(response.data);
-      });
+      if (this.commentaire) {
+        axios.post("/commenter", {
+          publication_id: this.publication,
+          user_id: this.id,
+          commentaire: this.commentaire
+        }).then(function (response) {
+          _this.commentaires.push(response.data);
+          _this.commentaire = "";
+          //console.log(response.data);
+        });
+      }
     }
   },
   computed: {
@@ -49942,7 +49944,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.commentaires.length;
     }
   }
-
 });
 
 /***/ }),
@@ -50116,7 +50117,7 @@ var render = function() {
             _c("label", { attrs: { for: "commentinput" + _vm.publication } }, [
               _c("i", { staticClass: "icon-bubble" }),
               _vm._v(" "),
-              _c("span", [_vm._v("Commenter")])
+              _c("span", { staticClass: "commenter" }, [_vm._v("Commenter")])
             ]),
             _vm._v(" "),
             _vm.getNumberOfComment
