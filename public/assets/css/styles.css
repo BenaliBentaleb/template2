@@ -398,7 +398,7 @@
 }
 
 .status .content {
-  margin:15px 8px 5px 8px;
+  margin:15px 20px 5px 20px;
   font-size:16px;
 }
 
@@ -738,5 +738,50 @@ a:hover {
   border-color:rgb(229, 236, 244);
   background-color:rgb(255, 255, 255);
   box-shadow:0px 2px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+.files-uploaded {
+  border:2px solid #7da7d9;
+  /*background-color:#ffbd31;*/
+  /*color:#fff;*/
+}
+
+.files-uploaded .download-icon {
+  font-size:17px;
+}
+
+.files-uploaded .single-file {
+  /*border-bottom:1px solid #eaeaea;*/
+  padding:5px;
+  overflow:hidden;
+}
+
+.files-uploaded .divider {
+  height:1px;
+  background-color:rgba(189,189,189,0.54);
+}
+
+.files-uploaded .files-uploaded-header {
+  background-color:#7da7d9;
+  margin:0;
+  padding-top:5px;
+  padding-bottom:5px;
+  color:rgb(255,255,255);
+  padding-left:26px;
+}
+
+.files-uploaded .files-list {
+  margin:0;
+  padding-right:20px;
+  padding-left:20px;
+}
+
+.files-uploaded .download-file-link {
+  color:#548ac9;
+  transition:all 0.2s ease-in-out;
+}
+
+.files-uploaded .download-file-link:active, .files-uploaded .download-file-link:hover {
+  color:#232323;
 }
 
