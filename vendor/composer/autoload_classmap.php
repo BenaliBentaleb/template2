@@ -41,6 +41,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\JaimeCommentaire' => $baseDir . '/app/JaimeCommentaire.php',
     'App\\Like' => $baseDir . '/app/Like.php',
     'App\\Module' => $baseDir . '/app/Module.php',
     'App\\Notifications\\ResetPasswordNotification' => $baseDir . '/app/Notifications/ResetPasswordNotification.php',

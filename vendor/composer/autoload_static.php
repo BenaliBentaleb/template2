@@ -351,6 +351,7 @@ class ComposerStaticInit3be71f2ebf6052306afbaaef8590cc3f
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\JaimeCommentaire' => __DIR__ . '/../..' . '/app/JaimeCommentaire.php',
         'App\\Like' => __DIR__ . '/../..' . '/app/Like.php',
         'App\\Module' => __DIR__ . '/../..' . '/app/Module.php',
         'App\\Notifications\\ResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/ResetPasswordNotification.php',

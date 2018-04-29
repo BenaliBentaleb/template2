@@ -17,14 +17,14 @@ class CreateProfilesTable extends Migration
             //$table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('photo_profile');
+            $table->string('photo_profile')->nullable();
             $table->integer('formation_id')->unsigned()->nullable();
-            $table->enum('sexe',['femele','homme']);
-            $table->string('telephone');
-            $table->date('date_naissance');
-            $table->text('information');
-            $table->string('facebook');
-            $table->string('twitter');
+            $table->enum('sexe',['femele','homme'])->nullable();
+            $table->string('telephone')->nullable();
+            $table->date('date_naissance')->nullable();
+            $table->text('information')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
             
             $table->timestamps();
 

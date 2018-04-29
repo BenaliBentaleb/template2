@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePublicationFichiersTable extends Migration
+class CreateJaimeCommentairesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreatePublicationFichiersTable extends Migration
      */
     public function up()
     {
-        Schema::create('publication_fichiers', function (Blueprint $table) {
+        Schema::create('jaime_commentaires', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('publication_id')->unsigned();
-            $table->string('nom_fichier');
-            $table->string('chemin_fichier');
-            $table->string('type_fichier');
-
-          
+            $table->integer('commentaire_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreatePublicationFichiersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publication_fichiers');
+        Schema::dropIfExists('jaime_commentaires');
     }
 }

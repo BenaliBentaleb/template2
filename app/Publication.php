@@ -25,7 +25,7 @@ class Publication extends Model
     }
 
     public function publication_avec_fichier() {
-        return $this->hasOne(PublicationFichier::class);
+        return $this->hasMany(PublicationFichier::class);
     }
     public function faq() {
         return $this->hasOne(Faq::class);

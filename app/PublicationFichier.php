@@ -8,7 +8,7 @@ use App\Publication;
 class PublicationFichier extends Model
 {
     protected $fillable = [
-        'publication_id','chemin_fichier','type_fichier'
+        'publication_id','chemin_fichier','type_fichier','nom_fichier'
     ];
 
     public function publication() {

@@ -111,6 +111,13 @@ class SetForeignKeys extends Migration
         ->onDelete('cascade')->onUpdate('cascade');
 
     });
+
+    Schema::table('jaime_commentaires', function(Blueprint $table) {
+        $table->foreign('commentaire_id')
+        ->references('id')->on('commentaires')
+        ->onDelete('cascade')->onUpdate('cascade');
+
+    });
     }
 
     /**

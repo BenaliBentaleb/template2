@@ -233,27 +233,32 @@
             <!-- <img class="img-responsive content-image" src="assets/img/image-left-sub.png"> -->
         </div>
 
+        @if($publication->publication_avec_fichier)
         <div class="files-uploaded">
             <h4 class="files-uploaded-header">Les fichiers Télécharger</h4>
             <ul class="list-unstyled files-list">
+                @foreach($publication->publication_avec_fichier as $fichier)
                 <li class="single-file">
-                    <span>Cours-algorithme-chapitre-1.pdf</span>
+                    <span>{{$fichier->chemin_fichier}}</span>
                     <a href="#" class="download-file-link" style="float:right;">
                         <i class="icon-arrow-down-circle download-icon"></i>
                         <span style="font-size:16px;">&nbsp;Télécharger</span>
                     </a>
                 </li>
                 <li class="clearfix divider"></li>
-                <li class="single-file">
+                @endforeach
+              <!--  <li class="single-file">
                     <span>Cours-algorithme-chapitre-2.pdf</span>
                     <a href="#" class="download-file-link" style="float:right;">
                         <i class="icon-arrow-down-circle download-icon"></i>
                         <span style="font-size:16px;">&nbsp;Télécharger</span>
                     </a>
-                </li>
+                </li>-->
+
             </ul>
         </div>
-        
+        @endif
+
         <hr style="width:100%;">
         
 
