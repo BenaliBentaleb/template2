@@ -72,4 +72,13 @@ class HomeController extends Controller
         $publication->delete();
         return redirect()->back();
     }
+
+    public function download($id) {
+        $fichier = PublicationFichier::find($id);
+        $headers = ['Content-Type: application/*'];
+
+        return response()->download($fichier->chemin_fichier, $fichier->nom_fichier, $headers);
+
+    }
+   
 }

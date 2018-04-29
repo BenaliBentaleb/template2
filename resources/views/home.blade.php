@@ -233,14 +233,14 @@
             <!-- <img class="img-responsive content-image" src="assets/img/image-left-sub.png"> -->
         </div>
 
-        @if($publication->publication_avec_fichier)
+        @if( count($publication->publication_avec_fichier))
         <div class="files-uploaded">
             <h4 class="files-uploaded-header">Les fichiers Télécharger</h4>
             <ul class="list-unstyled files-list">
                 @foreach($publication->publication_avec_fichier as $fichier)
                 <li class="single-file">
-                    <span>{{$fichier->chemin_fichier}}</span>
-                    <a href="#" class="download-file-link" style="float:right;">
+                    <span>{{$fichier->nom_fichier}}</span>
+                    <a href="{{route('file.download',['id'=>$fichier->id])}}" class="download-file-link" style="float:right;">
                         <i class="icon-arrow-down-circle download-icon"></i>
                         <span style="font-size:16px;">&nbsp;Télécharger</span>
                     </a>

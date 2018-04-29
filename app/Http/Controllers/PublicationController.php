@@ -75,10 +75,11 @@ class PublicationController extends Controller
       {
         $publication_fichier= new PublicationFichier();
         $publication_fichier->publication_id = $publication->id;
+        $publication_fichier->nom_fichier = $file->getClientOriginalName();
           $name=time().$file->getClientOriginalName();
           $file->move(public_path().'/files/', $name);  
           $data[] = $name;  
-          $publication_fichier->chemin_fichier = "/files/".$name;
+          $publication_fichier->chemin_fichier = "files/".$name;
           $publication_fichier->type_fichier = $file->getClientOriginalExtension();
           $publication_fichier->save();
       }

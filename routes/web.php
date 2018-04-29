@@ -81,3 +81,8 @@ Auth::routes();
     Route::get("/allcomment/{id}",[
         'uses'=>'commentaireController@allcomment'
     ]);
+
+    Route::get("/download/{id}",[
+        'uses'=>'HomeController@download',
+        'as'=>'file.download'
+    ]);
