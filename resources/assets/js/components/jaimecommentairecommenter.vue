@@ -5,7 +5,7 @@
             <jaime :publication="publication" :id="id"></jaime>
            <!-- <commentaire :publication="publication" :id="id"></commentaire>-->
            
-        <span class="comment" style="text-align:center;margin-top:10px;margin-bottom:10px;" >
+          <span class="comment" style="text-align:center;margin-top:10px;margin-bottom:10px;" >
        
                    <label :for="'commentinput'+ publication" >
                        
@@ -40,10 +40,9 @@
                         {{comment.commentaire}}
                         <br>
                     </p>
-                    <a href="#" style="font-size:17px;">
-                        <i class="fa fa-thumbs-o-up" style="font-size:20px;"></i>
-                    </a>
-                    <span class="comment-like-number">20</span>
+
+                  <jaimecomment :comment="comment.id" :id="id"></jaimecomment>
+
                 </div>
             </div>
             <hr style="width:100%;margin-bottom:0;margin-top:0;">
@@ -61,21 +60,27 @@
 <script>
 import commentaire from "./commentaire.vue";
 import jaime from "./jaime.vue";
+import jaimecomment from "./jaimecomment.vue"
 export default {
   props: ["publication", "id"],
   components: {
     commentaire: commentaire,
-    jaime: jaime
+    jaime: jaime,
+    jaimecomment:jaimecomment
   },
   data() {
     return {
       commentaire: "",
-      commentaires: []
+      commentaires: [],
+      likeComment: [],
+      comment: [], //,
+      idC: ""
     };
   },
 
   mounted() {
     this.getcommentaire;
+    this.getJaimeCommentaire;
   },
 
   methods: {
@@ -93,7 +98,23 @@ export default {
             //console.log(response.data);
           });
       }
-    }
+    },
+
+   /* jaimeCommentaire(idComment) {
+      axios.post(`/jaimeCommentaire/${idComment}`).then(response => {
+        console.log(response);
+       // this.idC = idComment;
+       // this.likeComment.push(response.data);
+        this.likeComment.push(response.data.user_id);
+        //  this.authUserLikeComment;
+      });
+    },
+    unjaimeCommentaire(idComment) {
+      /*  axios.get(`/unjaimeCommentaire/${idComment}`).then(response => {
+        console.log(response);
+    
+      });*/
+  
   },
   computed: {
     getcommentaire() {
@@ -101,13 +122,36 @@ export default {
         console.log(response.data);
         response.data.forEach(value => {
           this.commentaires.push(value);
-          // console.log(value);
+          //  if (this.likeComment.indexOf(this.id)  && response.data.id == idComment) {
+
+          //this.likeComment.push(value);
+
+          //  }
+          console.log(value);
         });
       });
     },
+
+   
+
     getNumberOfComment() {
       return this.commentaires.length;
-    }
+    },
+
+    
+/*
+    authUserLikeComment() {
+  //     this.comment.forEach(element => {
+      //    if(element.id != this.idC) {
+      let user = this.likeComment.indexOf(this.id)//find(value =>(value.id === this.idC) && (value.user_id === this.id));
+      if (user ) {
+        return true;
+      }
+      return false;
+
+      //   }
+       //});
+    }*/
   }
 };
 </script>

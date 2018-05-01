@@ -86,3 +86,15 @@ Auth::routes();
         'uses'=>'HomeController@download',
         'as'=>'file.download'
     ]);
+
+    Route::post('jaimeCommentaire/{id}',[
+        'uses'=>'JaimeCommentaireController@jaime'
+    ]);
+
+    Route::get('unjaimeCommentaire/{id}',[
+        'uses'=>'JaimeCommentaireController@unjaime'
+    ]);
+
+    Route::get('/allJaimeCommenataire/{id}',[
+        'uses'=>'JaimeCommentaireController@jaimeComment'
+    ]);

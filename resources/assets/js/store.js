@@ -10,9 +10,9 @@ export const store = new Vuex.Store({
 
                 state:{
 
-                       
-                        publications:[],
-                        auth_user:{},
+                    publications:[],   
+                    likes: [],
+                    likedBy: [],
                       
 
 
@@ -21,17 +21,36 @@ export const store = new Vuex.Store({
                 
                 getters:{
                    
-                    all_publications(state){
+                    allPublications(state){
                         return state.publications;
+                    },
+
+                    allLikes(state) {
+                        return state.likes;
+                    },
+
+                    likedBy(state) {
+                        return state.likedBy;
                     }
                    
                 },
 
                 
                 mutations:{
-                    add_publication(state,value) {
+                    addPublication(state,value) {
                         state.publications.push(value);
+                    },
+
+                    addLike(state,value) {
+                        state.likes.push(value);
+                    },
+                    
+                    addLiker(state,value) {
+                        state.likedBy.push(value);
                     }
+
+
+
                 }
 
 

@@ -116,6 +116,9 @@ class SetForeignKeys extends Migration
         $table->foreign('commentaire_id')
         ->references('id')->on('commentaires')
         ->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('user_id')
+        ->references('id')->on('users')
+        ->onDelete('cascade')->onUpdate('cascade');
 
     });
     }

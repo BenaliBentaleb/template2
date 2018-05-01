@@ -16,7 +16,7 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('module_id')->unsigned();
+            $table->integer('module_id')->unsigned()->nullable();
             $table->string('titre');
             $table->longText('contenu');
             $table->string('type');

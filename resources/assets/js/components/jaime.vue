@@ -50,8 +50,7 @@
       return {
         likes: [],
         likedBy: [],
-        classActive: "model" + this.publication,
-        userId: '',
+        
       };
     },
 
@@ -95,7 +94,7 @@
            // console.log(val);
             this.likedBy.push(val.user);
             this.likes.push(val.user_id);
-            this.userId = val.user_id;
+           
           });
         });
       },

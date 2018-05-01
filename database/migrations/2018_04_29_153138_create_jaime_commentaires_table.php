@@ -16,6 +16,7 @@ class CreateJaimeCommentairesTable extends Migration
         Schema::create('jaime_commentaires', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('commentaire_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
