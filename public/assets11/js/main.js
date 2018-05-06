@@ -15,11 +15,3 @@ placeholder: 'Enter le contenu du sondage ..',
 height: 100
 });
 
-
-$('#profile-picture').change(function() {
-  $('#profile-picture-form').submit();
-});
-
-$('#cover').change(function() {
-  $('#cover-form').submit();
-});

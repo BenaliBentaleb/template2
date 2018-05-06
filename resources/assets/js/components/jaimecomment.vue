@@ -17,10 +17,10 @@
       
                 </div>
                 <h4 class="center-block">
-                 <!-- <a :href="'profile/'+p.id" v-for="p in likedBy " :key="p.id" >{{p.nom}} {{p.prenom}}-->
+                 <!-- <a :href="'profile/'+p.id" v-for="p in likedBy " :key="p.id" >{{p.nom}} {{p.prenom}}
                     hello
                     <br>
-                  </a>
+                  </a>-->
                 </h4>
               </div>
             </div>
@@ -43,7 +43,7 @@
         methods: {
             jaimeCommentaire() {
                 axios.post(`/jaimeCommentaire/${this.comment}`).then(response => {
-                    console.log(response);
+                //    console.log(response);
                     // this.idC = idComment;
                     // this.likeComment.push(response.data);
                     this.likeComment.push(response.data.user_id);
@@ -58,7 +58,7 @@
                         }
 
                     })
-                    console.log(response);
+                   // console.log(response);
 
                 });
             }
@@ -72,7 +72,7 @@
             // update ui 
             getJaimeCommentaire() {
                 axios.get(`/allJaimeCommenataire/${this.comment}`).then(response => {
-                    console.log(response);
+                   // console.log(response);
                     response.data.forEach(val => {
                         this.likeComment.push(val.user_id);
                     });

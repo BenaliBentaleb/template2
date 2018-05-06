@@ -1,5 +1,5 @@
 <template>
-  <span class="like " style="text-align:center;margin-top:10px;margin-bottom:10px;">
+  <div class="like " style="margin-right:0px;"> <!-- style="text-align:center;margin-top:10px;margin-bottom:10px;"-->
 
     
       
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-  </span>
+  </div>
 
 
  
@@ -69,7 +69,7 @@
       },
       unjaime() {
         axios.get(`/unjaime/${this.publication}`).then(response => {
-          console.log(response);
+        //  console.log(response);
           this.likes.forEach((val, key) => {
             if (response.data.user_id === val) {
               this.likes.splice(key, 1);

@@ -49,7 +49,8 @@
 
 
                         <textarea class="form-control content" name="status" id="summernote-status"></textarea>
-                        <input type="file" name="file" multiple="" id="file_status" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
+                     <div style="padding-top:0;padding-bottom:11px;">
+                            <input type="file" name="file" multiple="" id="file_status" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                         <div class="box" style="margin-left:10px;display:  inline-block;">
                             <input type="file" name="files[]" id="file-status" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
                                 multiple="">
@@ -59,6 +60,7 @@
                             </label>
                         </div>
                         <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
+                     </div>
                     </form>
 
                 </div>
@@ -85,7 +87,7 @@
                         </div>
 
                         <textarea class="form-control content" name="blog" id="summernote-blog"></textarea>
-
+                        <div style="padding-top:0;padding-bottom:11px;">
                         <input type="file" name="file" multiple="" id="file_blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                         <div class="box" style="margin-left:10px;display:  inline-block;">
                             <input type="file" name="files[]" id="file-blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
@@ -97,7 +99,7 @@
                         </div>
                         <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
                         <input type="hidden" name="type" value="blog">
-
+                        </div>
                     </form>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="tab-3">
@@ -118,6 +120,7 @@
                         </div>
 
                         <textarea class="form-control content" name="faq" id="summernote-faq"></textarea>
+                        <div style="padding-top:0;padding-bottom:11px;">
                         <input type="file" name="file" multiple="" id="file_faq" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                         <div class="box" style="margin-left:10px;display:  inline-block;">
                             <input type="file" name="files[]" id="file-faq" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
@@ -128,7 +131,7 @@
                             </label>
                         </div>
                         <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
-
+                        </div>
                     </form>
                 </div>
                 <div class="tab-pane active" role="tabpanel" id="tab-4">
@@ -150,7 +153,7 @@
                         </div>
 
                         <textarea class="form-control content" name="sondage" id="summernote-sondage"></textarea>
-
+                        <div style="padding-top:0;padding-bottom:11px;">
                         <input type="file" name="file" multiple="" id="file_sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                         <div class="box" style="margin-left:10px;display:  inline-block;">
                             <input type="file" name="files[]" id="file-sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
@@ -161,7 +164,7 @@
                             </label>
                         </div>
                         <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
-
+                        </div>
                     </form>
 
                 </div>
@@ -173,23 +176,27 @@
     @foreach($publications as $publication)
     <div class="status">
         <div class="col-md-12">
-            <ul class="list-inline">
+            <ul class="list-inline" style="padding-top:10px;padding-left:10px;">
                 <li>
                     <img class="publisher-image" style="background-image:url(&quot;assets/img/customer.png&quot;);">
                 </li>
                 <li>
                     <ul class="list-unstyled publisher-info">
                         <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
-                        @foreach($publication->user->roles as $role)
-                        <li class="role-admin">{{$role->nom}}</li>
-                        @endforeach
+                        <li>
+                            <ul style="padding-left:0;" style="padding-left:0;">
+                                @foreach($publication->user->roles as $role)
+                                <li class="role-admin">{{$role->nom}}</li>
+                                @endforeach
+                            </ul>
+                        </li>
                         <li class="status-time">{{$publication->created_at->diffForHumans()}}</li>
                     </ul>
                 </li>
             </ul>
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="icon-options status-options"></i>
+                    <i class="icon-options status-options" style="padding:5px;"></i>
                 </a>
                 <ul class="list-unstyled dropdown-menu dropdown-menu-right" style="margin-top:20px;">
                     <li>
@@ -219,18 +226,19 @@
                     </li>
                 </ul>
             </div>
+
         </div>
-        <h3 class="status-title">{{$publication->titre}}</h3>
+        <h3 class="status-title"><br>{{$publication->titre}}<br><br></h3>
         <hr>
         <div style="text-align:center;">
             <span>Status Generale</span>
 
         </div>
         <div>
-            <p class="content">
+            <div class="content">
                 {!! $publication->contenu !!}
-            </p>
-            <!-- <img class="img-responsive content-image" src="assets/img/image-left-sub.png"> -->
+           
+            <br></div><img class="img-responsive content-image" src="assets/img/image-left-sub.png">
         </div>
 
         @if( count($publication->publication_avec_fichier))
@@ -247,20 +255,13 @@
                 </li>
                 <li class="clearfix divider"></li>
                 @endforeach
-              <!--  <li class="single-file">
-                    <span>Cours-algorithme-chapitre-2.pdf</span>
-                    <a href="#" class="download-file-link" style="float:right;">
-                        <i class="icon-arrow-down-circle download-icon"></i>
-                        <span style="font-size:16px;">&nbsp;Télécharger</span>
-                    </a>
-                </li>-->
 
             </ul>
         </div>
         @endif
 
         <hr style="width:100%;">
-        
+
 
 
         <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{Auth::id()}}"></jaimecommentairecommenter>

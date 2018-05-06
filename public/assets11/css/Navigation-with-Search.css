@@ -236,8 +236,3 @@
   border-bottom:1px solid #ccc;
 }
 
-.navigation-clean-search .dropdown-menu > li > a:focus, .navigation-clean-search .dropdown-menu > li > a:hover {
-  background:#eee;
-  color:#448ccb;
-}
-
