@@ -39,7 +39,7 @@
             <strong>{{comment.user.nom}} {{comment.user.prenom}}</strong>
           </li>
           <li>
-            <span>{{comment.created_at}} </span>
+            <span>{{moment(comment.created_at).fromNow()}} </span>
           </li>
         </ul>
         <div>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+let moment = require('moment');
   import commentaire from "./commentaire.vue";
   import jaime from "./jaime.vue";
   import jaimecomment from "./jaimecomment.vue";
@@ -82,7 +83,8 @@
         commentaires: [],
         likeComment: [],
         comment: [], //,
-        idC: ""
+        idC: "",
+        moment:moment
       };
     },
 
