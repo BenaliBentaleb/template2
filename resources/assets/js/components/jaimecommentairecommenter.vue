@@ -33,7 +33,7 @@
     <div class="comments">
 
       <div class="single-comment" v-for="comment in commentaires" :key="comment.id">
-        <img src="assets/img/customer.png" class="comment-pubisher-image">
+        <img :src="comment.user.profile.photo_profile" class="comment-pubisher-image">
         <ul class="list-unstyled">
           <li>
             <strong>{{comment.user.nom}} {{comment.user.prenom}}</strong>
@@ -55,7 +55,7 @@
       <hr style="width:100%;margin-bottom:0;margin-top:0;">
     </div>
     <div class="add-comment-section">
-      <img class="user-image" style="background-image:url(&quot;assets/img/customer.png&quot;);">
+      <img class="user-image" style="" :src="image">
       <form v-on:submit.prevent>
         <input :id="'commentinput'+publication" v-model="commentaire" @keyup.enter.prevent="commenter()" class="form-control" type="text"
           placeholder="Tapez votre commentaire .. ">
@@ -70,7 +70,7 @@
   import jaime from "./jaime.vue";
   import jaimecomment from "./jaimecomment.vue";
   export default {
-    props: ["publication", "id"],
+    props: ["publication", "id","image"],
     components: {
       commentaire: commentaire,
       jaime: jaime,
@@ -104,7 +104,7 @@
             .then(response => {
               this.commentaires.push(response.data);
               this.commentaire = "";
-              //console.log(response.data);
+           // console.log(response.data);
             });
         }
       },

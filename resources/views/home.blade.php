@@ -178,7 +178,7 @@
         <div class="col-md-12">
             <ul class="list-inline" style="padding-top:10px;padding-left:10px;">
                 <li>
-                    <img class="publisher-image" style="background-image:url(&quot;assets/img/customer.png&quot;);">
+                    <img class="publisher-image" style="background-image:url(&quot;{{asset($publication->user->profile->photo_profile)}}&quot;);">
                 </li>
                 <li>
                     <ul class="list-unstyled publisher-info">
@@ -283,7 +283,7 @@
 
 
 
-        <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{Auth::id()}}"></jaimecommentairecommenter>
+        <jaimecommentairecommenter :publication="{{$publication->id}}"  :id="{{Auth::id()}}" :image=`{{asset(Auth::user()->profile->photo_profile)}}`></jaimecommentairecommenter>
 
     </div>
 

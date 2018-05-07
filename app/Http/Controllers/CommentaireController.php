@@ -6,6 +6,7 @@ use App\Commentaire;
 use Illuminate\Http\Request;
 use Auth;
 use App\Publication;
+use Illuminate\Support\Carbon;
 
 
 class CommentaireController extends Controller
@@ -42,6 +43,7 @@ class CommentaireController extends Controller
         $commentaire->publication_id = $request->publication_id;
         $commentaire->user_id = Auth::id();
         $commentaire->commentaire = $request->commentaire ;
+        
         $commentaire->save();
         return Commentaire::find($commentaire->id);
     }

@@ -19,6 +19,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $with = ['profile'];
+
     /**
      * The attributes that are mass assignable.
      *

@@ -71,7 +71,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li role="presentation">
                             <a href="{{ route('user.profile',['id'=> Auth::id()]) }}" class="profile-link" style="padding:0;border:2px solid #448ccb;border-radius:50%;">
-                                <img class="img-rounded profile-img" src="{{asset('assets/img/customer.png')}}">
+                                <img class="img-rounded profile-img" src="{{asset(Auth::user()->profile->photo_profile)}}">
                             </a>
                         </li>
                         <li class="dropdown">
