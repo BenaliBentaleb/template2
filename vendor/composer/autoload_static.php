@@ -316,6 +316,7 @@ class ComposerStaticInit3be71f2ebf6052306afbaaef8590cc3f
     );
 
     public static $classMap = array (
+        'App\\Amies' => __DIR__ . '/../..' . '/app/Amies.php',
         'App\\Categories' => __DIR__ . '/../..' . '/app/Categories.php',
         'App\\Commentaire' => __DIR__ . '/../..' . '/app/Commentaire.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -334,6 +335,7 @@ class ComposerStaticInit3be71f2ebf6052306afbaaef8590cc3f
         'App\\Http\\Controllers\\FaqController' => __DIR__ . '/../..' . '/app/Http/Controllers/FaqController.php',
         'App\\Http\\Controllers\\FormationController' => __DIR__ . '/../..' . '/app/Http/Controllers/FormationController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\JaimeCommentaireController' => __DIR__ . '/../..' . '/app/Http/Controllers/JaimeCommentaireController.php',
         'App\\Http\\Controllers\\LikeController' => __DIR__ . '/../..' . '/app/Http/Controllers/LikeController.php',
         'App\\Http\\Controllers\\ModuleController' => __DIR__ . '/../..' . '/app/Http/Controllers/ModuleController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',

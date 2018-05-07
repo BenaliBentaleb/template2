@@ -71,6 +71,7 @@ Auth::routes();
     ]);
     Route::get('/profile/{id}',[
         'uses'=>'ProfileController@profile',
+        'as'=>'user.profile'
         
     ]);
 
@@ -97,4 +98,19 @@ Auth::routes();
 
     Route::get('/allJaimeCommenataire/{id}',[
         'uses'=>'JaimeCommentaireController@jaimeComment'
+    ]);
+
+    Route::get('/publication/user/{id}', [
+        'uses'=>'ProfileController@get_publication_user',
+        'as'=>'user.publication'
+    ]);
+
+    Route::post('/user/upload/picture/{id}',[
+        'uses'=>'ProfileController@upload_picture',
+        'as'=> 'user.profile.picture'
+    ]);
+
+    Route::post('/user/upload/coverture/{id}',[
+        'uses'=>'ProfileController@upload_coverture',
+        'as'=> 'user.profile.coverture'
     ]);

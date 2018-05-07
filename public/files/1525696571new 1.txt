@@ -1,0 +1,7 @@
+<!--       @foreach($semestre as $s)
+                                            <optgroup label="{{$s->nom}}">
+                                                @foreach($s->module as $module)
+                                                <option value="{{$module->id}}">{{$module->nom}}</option>
+                                                @endforeach
+                                            </optgroup>
+                                            @endforeach-->

@@ -9,7 +9,8 @@ class Profile extends Model
 {
    protected $fillable =  [
    'user_id', 'photo_profile','telephone','formation_id',
-   'sexe','date_naissance','information','facebook','twitter'
+   'sexe','date_naissance','information','facebook','email',
+   'twitter','addresse','youtube','instagram','coverture'
    ];
 
 

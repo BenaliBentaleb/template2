@@ -14,12 +14,12 @@
       </a>
 
     </a>
-    <span class="likes-number" v-if="getLikes" data-toggle="modal" :data-target="'.model'+ publication">
+    <span class="likes-number" v-if="getLikes" data-toggle="modal" :data-target="'.model-p'+ publication">
       {{getLikes}}
     </span>
    
 
-    <div class="modal fade" v-bind:class="'model'+ publication" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal fade" v-bind:class="'model-p'+ publication" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 
       <div class="modal-dialog modal-sm" role="dialog">
         <div class="modal-content">
@@ -28,7 +28,7 @@
 
           </div>
           <h4 class="center-block">
-            <a :href="'profile/'+p.id" v-for="p in likedBy " :key="p.id" >{{p.nom}} {{p.prenom}}
+            <a :href="'http://127.0.0.1:8000/profile/'+p.id" v-for="p in likedBy " :key="p.id" >{{p.nom}} {{p.prenom}}
               <br>
             </a>
           </h4>

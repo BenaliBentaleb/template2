@@ -13,6 +13,7 @@ use App\Like;
 use App\Publication;
 use App\Commentaire;
 use App\JaimeCommentaire;
+use App\Amies;
 use App\Notifications\ResetPasswordNotification;
 class User extends Authenticatable
 {
@@ -63,6 +64,10 @@ class User extends Authenticatable
 
     public function likeComment() {
         return $this->hasOne(JaimeCommentaire::class);
+    }
+
+    public function amies() {
+        return $this->hasMany(Amies::class);
     }
 
     public function sendPasswordResetNotification($token)

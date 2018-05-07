@@ -98,7 +98,7 @@
                             </label>
                         </div>
                         <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
-                        <input type="hidden" name="type" value="blog">
+                        <input type="hidden" name="type" value="Tutorial">
                         </div>
                     </form>
                 </div>
@@ -185,9 +185,20 @@
                         <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
                         <li>
                             <ul style="padding-left:0;" style="padding-left:0;">
-                                @foreach($publication->user->roles as $role)
-                                <li class="role-admin">{{$role->nom}}</li>
-                                @endforeach
+                            @foreach($publication->user->roles as $role)
+                                        @if($role->nom == "Administrateur")
+                                        <li class="role-admin">{{$role->nom}}</li>
+                                        @endif
+                                        @if($role->nom == "Enseignant")
+                                        <li class="role-prof">{{$role->nom}}</li>
+                                        @endif
+                                        @if($role->nom == "Gérant club")
+                                        <li class="role-club">{{$role->nom}}</li>
+                                        @endif
+                                        @if($role->nom == "Etudiant")
+                                        <li class="role-etud">{{$role->nom}}</li>
+                                        @endif
+                                    @endforeach
                             </ul>
                         </li>
                         <li class="status-time">{{$publication->created_at->diffForHumans()}}</li>
@@ -199,31 +210,39 @@
                     <i class="icon-options status-options" style="padding:5px;"></i>
                 </a>
                 <ul class="list-unstyled dropdown-menu dropdown-menu-right" style="margin-top:20px;">
-                    <li>
+                @if($publication->user->id == Auth::id())
+                <li>
                         <a href="#">
                             <i class="icon-pencil"></i>
                             <span>&nbsp; Modifier</span>
                         </a>
                     </li>
-                    <li>
+                    @endif
+                   @if($publication->user->id == Auth::id())
+                   <li>
                         <a href="{{route('publication.destroy',['id'=>$publication->id])}}">
                             <i class="icon-trash"></i>
                             <span>&nbsp; Supprimer</span>
                         </a>
                     </li>
+                   @endif
+                   @if($publication->user->id != Auth::id())
                     <li>
                         <a href="#">
                             <i class="icon-eyeglass"></i>
                             <span>&nbsp; Suivre</span>
                         </a>
                     </li>
-                    <li class="divider"></li>
+                    @endif
+                  
+                    @if($publication->user->id != Auth::id())
                     <li>
                         <a href="#">
                             <i class="icon-flag"></i>
                             <span>&nbsp; Signaler</span>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </div>
 

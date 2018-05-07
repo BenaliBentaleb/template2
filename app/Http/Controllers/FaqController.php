@@ -43,7 +43,7 @@ class FaqController extends Controller
         
       
         $publication->user_id = Auth::id();
-        $publication->type = 'faq'; 
+        $publication->type = 'FAQ'; 
         $publication->contenu = $request->faq;
 
         if($request->faq_module =='general') {

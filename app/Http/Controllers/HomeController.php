@@ -38,9 +38,10 @@ class HomeController extends Controller
       
 
         
-        $semestre = Semestre::all();
+       // $semestre = Semestre::all();
         return view('home')->with('departement',$departement)
                            ->with('publications',$publications);
+                         
                           
       
     }

@@ -18,13 +18,19 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('photo_profile')->nullable();
+            $table->string('coverture')->nullable();
             $table->integer('formation_id')->unsigned()->nullable();
             $table->enum('sexe',['femele','homme'])->nullable();
             $table->string('telephone')->nullable();
             $table->date('date_naissance')->nullable();
+            $table->string('addresse')->nullable();
+            $table->string('email')->nullable();
             $table->text('information')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('youtube')->nullable();
+           
             
             $table->timestamps();
 

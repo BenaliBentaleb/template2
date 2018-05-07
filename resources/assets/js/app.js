@@ -43,7 +43,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('jaime', require('./components/jaime.vue'));
 //Vue.component('commentaire',require('./components/commentaire.vue'));
 Vue.component('reclamation',require('./components/reclamation.vue'));
-
+//Vue.component('publicationPartagerParUtilisateur',require('./components/publicationPartagerParUtilisateur.vue'));
 Vue.component('jaimecommentairecommenter',require('./components/jaimecommentairecommenter.vue'));
 
 import {store} from './store';

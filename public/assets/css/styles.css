@@ -713,6 +713,16 @@ label strong {
   margin-right:5px;
   margin-bottom:5px;
 }
+.role-etud {
+  background-color:#e7705b;
+  color:#fff;
+  padding-left:8px;
+  padding-right:8px;
+  border-radius:13px;
+  display:inline-block;
+  margin-right:5px;
+  margin-bottom:5px;
+}
 
 .dropdown .dropdown-menu {
   -webkit-transition:all 0.3s;

@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+    <!--<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">-->
     <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/simple-line-icons.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="assets/css/reclamation.css">
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
 </head>
 
 <body style="font-family:'Nunito Sans', sans-serif;background-color:#edf2f6;">
@@ -33,7 +34,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                    <a class="navbar-brand navbar-image" href="index.html" style="margin-left:0px;"></a>
+                    <a class="navbar-brand navbar-image" href="{{route('home')}}" style="margin-left:0px;"></a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -65,35 +66,37 @@
                     <a class="navbar-link navbar-right inscrire-btn" href="{{ route('register') }}">S'inscrire</a>
 
                     @else
-                    <li class="dropdown  nav navbar-nav navbar-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                            {{ Auth::user()->nom.' '.Auth::user()->prenom }}
-                            <span class="caret"></span>
-                        </a>
+                   
 
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    Déconnexion
-                                </a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li role="presentation">
+                            <a href="{{ route('user.profile',['id'=> Auth::id()]) }}" class="profile-link" style="padding:0;border:2px solid #448ccb;border-radius:50%;">
+                                <img class="img-rounded profile-img" src="{{asset('assets/img/customer.png')}}">
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="padding-right:0;padding-left:15px;">{{ Auth::user()->nom.' '.Auth::user()->prenom }}&nbsp;
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" style="min-width:90%;">
+                                <li role="presentation">
+                                    <a href="{{ route('user.profile',['id'=> Auth::id()]) }} ">
+                                        <i class="fa fa-user-circle-o" style="padding-right:10px;font-size:16px;"></i>Profile</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"> 
+                                        <i class="fa fa-sign-out" style="padding-right:10px;font-size:16px;"></i>Déconnecter</a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('logout') }}">
-                                    Parametre
-                                </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
 
 
-                            </li>
-
-
-                        </ul>
-                    </li>
                     @endguest
 
                 </div>
@@ -101,92 +104,96 @@
 
             </div>
         </nav>
-       
+
         <div style="margin-top:20px;">
             <div class="container" style="margin-top:97px;">
                 <div class="row">
-                        @auth
+                    @auth
+                   @if($profile == null)
+                    
+                    
                     <div class="col-md-3">
-                        <ul class="list-group side-bar">
-                            <li class="list-group-item" style="padding-top:10px;">
-                                <a href="{{route('home')}}" class="list-anchor">
-                                    <span class="nticien-circle">
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>Acceuil - NTICien</span>
-                                </a>
-                            </li>
-                            @foreach($departement as $dep)
-                            <li class="list-group-item departement">
-                                <i class="icon-grid"></i>
-                                <span class="departement" style="font-weight:bold;">Dépratement :{{$dep->nom}}</span>
-                            </li>
-            
-            
-                            @foreach($dep->formation as $formation) @if(str_contains($formation->nom,'Tronc Commun'))
-            
-                            <li class="list-group-item">
-                                <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor ">
-                                    <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
-                                    <span>{{$formation->nom}}</span>
-                                </a>
-                            </li>
-                            @endif @if(str_contains($formation->nom,'Licence'))
-                            <li class="list-group-item">
-                                <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-l3">
-                                    <span class="licence-circle">L3</span>
-                                    <span>{{$formation->nom}}</span>
-                                </a>
-                            </li>
-                            @endif @if(str_contains($formation->nom,'Master 1'))
-                            <li class="list-group-item">
-                                <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master1">
-                                    <span class="master1-circle">M1</span>
-                                    <span>{{$formation->nom}}</span>
-                                </a>
-                            </li>
-                            @endif @if(str_contains($formation->nom,'Master 2'))
-                            <li class="list-group-item">
-                                <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master2">
-                                    <span class="master2-circle">M2</span>
-                                    <span>{{$formation->nom}}</span>
-                                </a>
-                            </li>
-                            @endif @endforeach @endforeach
-            
-            
-                            <li class="list-group-item border-top">
-                                <a href="#" class="list-anchor">
-                                    <i class="icon-bell icon-sidebar"></i>
-                                    <span style="font-size:15px;">Les évenements</span>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#" class="list-anchor">
-                                    <i class="icon-graduation icon-sidebar"></i>
-                                    <span style="font-size:15px;">Portail mémoires</span>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="{{route('reclamation.index')}}" class="list-anchor">
-                                    <i class="icon-exclamation icon-sidebar"></i>
-                                    <span style="font-size:15px;">Déposer réclamation</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                            <ul class="list-group side-bar">
+                                <li class="list-group-item" style="padding-top:10px;">
+                                    <a href="{{route('home')}}" class="list-anchor">
+                                        <span class="nticien-circle">
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                        <span>Acceuil - NTICien</span>
+                                    </a>
+                                </li>
+                                @foreach($departement as $dep)
+                                <li class="list-group-item departement">
+                                    <i class="icon-grid"></i>
+                                    <span class="departement" style="font-weight:bold;">Dépratement :{{$dep->nom}}</span>
+                                </li>
+    
+    
+                                @foreach($dep->formation as $formation) @if(str_contains($formation->nom,'Tronc Commun'))
+    
+                                <li class="list-group-item">
+                                    <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor ">
+                                        <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
+                                        <span>{{$formation->nom}}</span>
+                                    </a>
+                                </li>
+                                @endif @if(str_contains($formation->nom,'Licence'))
+                                <li class="list-group-item">
+                                    <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-l3">
+                                        <span class="licence-circle">L3</span>
+                                        <span>{{$formation->nom}}</span>
+                                    </a>
+                                </li>
+                                @endif @if(str_contains($formation->nom,'Master 1'))
+                                <li class="list-group-item">
+                                    <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master1">
+                                        <span class="master1-circle">M1</span>
+                                        <span>{{$formation->nom}}</span>
+                                    </a>
+                                </li>
+                                @endif @if(str_contains($formation->nom,'Master 2'))
+                                <li class="list-group-item">
+                                    <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master2">
+                                        <span class="master2-circle">M2</span>
+                                        <span>{{$formation->nom}}</span>
+                                    </a>
+                                </li>
+                                @endif @endforeach @endforeach
+    
+    
+                                <li class="list-group-item border-top">
+                                    <a href="#" class="list-anchor">
+                                        <i class="icon-bell icon-sidebar"></i>
+                                        <span style="font-size:15px;">Les évenements</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#" class="list-anchor">
+                                        <i class="icon-graduation icon-sidebar"></i>
+                                        <span style="font-size:15px;">Portail mémoires</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('reclamation.index')}}" class="list-anchor">
+                                        <i class="icon-exclamation icon-sidebar"></i>
+                                        <span style="font-size:15px;">Déposer réclamation</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                   @endif
                     @endauth
-                    @yield('content')
+                     @yield('content')
 
                 </div>
             </div>
-           
+
         </div>
-       
-       
-      
 
 
+
+        
+        @yield('ee')
 
 
     </div>

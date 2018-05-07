@@ -6,6 +6,7 @@ use App\Publication;
 use Illuminate\Http\Request;
 use App\PublicationFichier;
 use Auth;
+use App\User;
 
 class PublicationController extends Controller
 {
@@ -53,7 +54,7 @@ class PublicationController extends Controller
           }
 
       }else{
-        $publication->type = 'status';
+        $publication->type = 'Status';
         $publication->contenu = $request->status;
 
         if($request->status_module =='general' ) {
@@ -149,6 +150,8 @@ class PublicationController extends Controller
           
        
        
-            }
+    }
+
+    
     
 }

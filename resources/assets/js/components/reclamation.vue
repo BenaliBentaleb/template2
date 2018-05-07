@@ -51,6 +51,7 @@
 
 <script>
 export default {
+   
   data() {
     return {
       titre: "",

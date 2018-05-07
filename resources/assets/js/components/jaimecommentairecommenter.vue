@@ -89,6 +89,7 @@
     mounted() {
       this.getcommentaire;
       this.getJaimeCommentaire;
+      
     },
 
     methods: {
@@ -106,22 +107,11 @@
               //console.log(response.data);
             });
         }
-      }
-
-      /* jaimeCommentaire(idComment) {
-        axios.post(`/jaimeCommentaire/${idComment}`).then(response => {
-          console.log(response);
-         // this.idC = idComment;
-         // this.likeComment.push(response.data);
-          this.likeComment.push(response.data.user_id);
-          //  this.authUserLikeComment;
-        });
       },
-      unjaimeCommentaire(idComment) {
-        /*  axios.get(`/unjaimeCommentaire/${idComment}`).then(response => {
-          console.log(response);
-    
-        });*/
+
+      
+
+      
     },
     computed: {
       getcommentaire() {
@@ -142,20 +132,9 @@
       getNumberOfComment() {
         return this.commentaires.length;
       }
+       
 
-      /*
-    authUserLikeComment() {
-  //     this.comment.forEach(element => {
-      //    if(element.id != this.idC) {
-      let user = this.likeComment.indexOf(this.id)//find(value =>(value.id === this.idC) && (value.user_id === this.id));
-      if (user ) {
-        return true;
-      }
-      return false;
 
-      //   }
-       //});
-    }*/
     }
   };
 </script>
