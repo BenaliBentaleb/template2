@@ -12,6 +12,7 @@ use App\Like;
 use App\Sondage;
 use App\Faq;
 use App\PublicationFichier;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -80,6 +81,12 @@ class HomeController extends Controller
 
         return response()->download($fichier->chemin_fichier, $fichier->nom_fichier, $headers);
 
+    }
+
+    public function notifications()
+    {
+         Auth::user()->unreadNotifications->markAsRead();
+         return view('user.notification',['nots'=> Auth::user()->notifications]);
     }
    
 }

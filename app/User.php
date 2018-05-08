@@ -14,10 +14,12 @@ use App\Publication;
 use App\Commentaire;
 use App\JaimeCommentaire;
 use App\Amies;
+use App\Traits\friendable ; 
 use App\Notifications\ResetPasswordNotification;
 class User extends Authenticatable
 {
     use Notifiable;
+    use friendable;
 
     public $with = ['profile'];
 

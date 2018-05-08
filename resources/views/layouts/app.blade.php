@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css">
     <link rel="stylesheet" href="{{ asset('assets/css/Login-Form-Clean.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/Navigation-with-Search.css') }}">
-    <link rel="stylesheet" href="assets/css/reclamation.css">
+    <link rel="stylesheet" href="{{asset('assets/css/reclamation.css')}}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="{{asset('assets/css/Navigation-Clean.css')}}">
 </head>
 
 <body style="font-family:'Nunito Sans', sans-serif;background-color:#edf2f6;">
@@ -45,7 +45,11 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
                         <li class="active" role="presentation">
-                            <a href="#">Link 1 @{{message}}</a>
+                        <notification   :id_auth="'{{ Auth::id() }}'" ></notification>
+                        <unreadnot></unreadnot>
+                        <audio  id="noty">
+                            <source src="{{ asset('notification/definite.mp3') }}" type="">
+                        </audio>
                         </li>
                     </ul>
                     <form class="navbar-form navbar-left" target="_self">
@@ -59,6 +63,7 @@
                     <button class="btn btn-default navbar-btn chat-btn" type="button">
                         <i class="icon-bubbles"></i>
                     </button>
+                  
 
                     @guest
 

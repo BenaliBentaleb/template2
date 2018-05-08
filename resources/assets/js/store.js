@@ -8,54 +8,66 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
 
-                state:{
+    state: {
 
-                    publications:[],   
-                    likes: [],
-                    likedBy: [],
-                      
-
-
-                },
-                
-                
-                getters:{
-                   
-                    allPublications(state){
-                        return state.publications;
-                    },
-
-                    allLikes(state) {
-                        return state.likes;
-                    },
-
-                    likedBy(state) {
-                        return state.likedBy;
-                    }
-                   
-                },
-
-                
-                mutations:{
-                    addPublication(state,value) {
-                        state.publications.push(value);
-                    },
-
-                    addLike(state,value) {
-                        state.likes.push(value);
-                    },
-                    
-                    addLiker(state,value) {
-                        state.likedBy.push(value);
-                    }
+        publications: [],
+        likes: [],
+        likedBy: [],
+        nots: []
 
 
 
-                }
+    },
+
+
+    getters: {
+        all_nots(state) {
+
+            return state.nots;
+        },
+
+        all_nots_count(state) {
+
+            return state.nots.length;
+        },
+
+        
+
+        allPublications(state) {
+            return state.publications;
+        },
+
+        allLikes(state) {
+            return state.likes;
+        },
+
+        likedBy(state) {
+            return state.likedBy;
+        }
+
+    },
+
+
+    mutations: {
+
+        add_not(state, not) {
+            state.nots.push(not)
+        },
+        addPublication(state, value) {
+            state.publications.push(value);
+        },
+
+        addLike(state, value) {
+            state.likes.push(value);
+        },
+
+        addLiker(state, value) {
+            state.likedBy.push(value);
+        }
+
+
+
+    }
 
 
 });
-
-
-
-

@@ -45,6 +45,9 @@ Vue.component('jaime', require('./components/jaime.vue'));
 Vue.component('reclamation',require('./components/reclamation.vue'));
 //Vue.component('publicationPartagerParUtilisateur',require('./components/publicationPartagerParUtilisateur.vue'));
 Vue.component('jaimecommentairecommenter',require('./components/jaimecommentairecommenter.vue'));
+Vue.component('amie',require('./components/amie.vue'));
+Vue.component('notification',require('./components/notification.vue'));
+Vue.component('unreadnot',require('./components/unreadnot.vue'));
 
 import {store} from './store';
 

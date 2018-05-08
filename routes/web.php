@@ -114,3 +114,36 @@ Auth::routes();
         'uses'=>'ProfileController@upload_coverture',
         'as'=> 'user.profile.coverture'
     ]);
+
+    // check if the user is friend or somthing else !
+    Route::get('/check/{id}',[
+
+        'uses'=>'AmiesController@check',
+        'as'=>'friend.check'
+    ]);
+
+    Route::get('/add_friend/{id}',[
+
+        'uses'=>'AmiesController@add_friend',
+        'as'=>'add_friend'
+    ]);
+    
+    
+    Route::get('/accept_friend/{id}',[
+    
+        'uses'=>'AmiesController@accept_friend',
+        'as'=>'accept_friend'
+    ]);
+    
+
+    Route::get('/get_unreadnot',function(){
+
+        return Auth::user()->unreadNotifications;
+    
+    });
+
+    Route::get('/notifications',[
+
+        'uses'=>'HomeController@notifications',
+        'as'=>'notifications'
+    ]);

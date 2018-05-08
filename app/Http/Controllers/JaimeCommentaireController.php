@@ -9,6 +9,11 @@ use Auth;
 use App\Publication;
 class JaimeCommentaireController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
    
     
     public function jaime($id) {

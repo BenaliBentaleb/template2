@@ -56,10 +56,11 @@
                 </ul>
                 <button class="btn btn-primary btn-block modify-profile" type="button" style="width:75%;margin:0 auto;">
                     <i class="icon-pencil"></i>Modifier profile</button>
-                <button class="btn btn-success btn-block" type="button" style="width:75%;margin:5px auto;">
-                    <i class="icon-user-follow"></i>Envoyer invitation</button>
-                <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;">
-                    <i class="icon-user-unfollow"></i>Supprimer</button>
+             @if(Auth::id() != $user->id)
+                 <amie :profile_user_id="{{$user->id}}"></amie>
+             @endif
+
+                            <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;"> <i class="icon-user-unfollow"></i>Supprimer</button>
             </div>
         </div>
         <div class="col-sm-8">
