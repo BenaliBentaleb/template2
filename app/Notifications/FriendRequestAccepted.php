@@ -58,7 +58,7 @@ class FriendRequestAccepted extends Notification implements ShouldQueue
         return [
             'nom' => $this->user->nom.' '.$this->user->prenom,
             'message' => $this->user->nom.' '.'a accepter votre anvitation',
-            'profile'=> route('user.profile',['id'=>$this->user->id])
+            'profile'=>asset('profile/'.$this->user->id)
         ];
     }
 }

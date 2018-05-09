@@ -28,7 +28,7 @@ export default {
         //this.request = notification.profile// notification.nom +' '+notification.message;
         alert("new notitfication");
         document.getElementById('noty').play();
-        console.log(notification.nom);
+        console.log(notification);
 
         this.$store.commit('add_not',notification);
       });

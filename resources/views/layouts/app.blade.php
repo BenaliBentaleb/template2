@@ -45,11 +45,14 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
                         <li class="active" role="presentation">
-                        <notification   :id_auth="'{{ Auth::id() }}'" ></notification>
+                       @auth
+                       <notification   :id_auth="'{{ Auth::id() }}'" ></notification>
+                      
                         <unreadnot></unreadnot>
                         <audio  id="noty">
                             <source src="{{ asset('notification/definite.mp3') }}" type="">
                         </audio>
+                        @endauth
                         </li>
                     </ul>
                     <form class="navbar-form navbar-left" target="_self">

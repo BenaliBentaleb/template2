@@ -85,8 +85,20 @@ class HomeController extends Controller
 
     public function notifications()
     {
+        $noty = [];
          Auth::user()->unreadNotifications->markAsRead();
-         return view('user.notification',['nots'=> Auth::user()->notifications]);
+        // Auth::user()->notifications[0]->data['nom'];
+         foreach(Auth::user()->notifications as $not) {
+            array_push($noty,$not->data);
+         }
+
+         return view('user.notification')->with('nots',$noty);
+    }
+
+    
+    public function read(Request $request) {
+        Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
+    //    return redirect('/home');
     }
    
 }

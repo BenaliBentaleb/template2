@@ -28772,7 +28772,7 @@ Vue.component('reclamation', __webpack_require__(179));
 Vue.component('jaimecommentairecommenter', __webpack_require__(184));
 Vue.component('amie', __webpack_require__(200));
 Vue.component('notification', __webpack_require__(205));
-Vue.component('unreadnot', __webpack_require__(223));
+Vue.component('unreadnot', __webpack_require__(208));
 
 
 
@@ -67571,7 +67571,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //this.request = notification.profile// notification.nom +' '+notification.message;
         alert("new notitfication");
         document.getElementById('noty').play();
-        console.log(notification.nom);
+        console.log(notification);
 
         _this.$store.commit('add_not', notification);
       });
@@ -67600,9 +67600,199 @@ if (false) {
 }
 
 /***/ }),
-/* 208 */,
-/* 209 */,
-/* 210 */,
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(209)
+/* template */
+var __vue_template__ = __webpack_require__(210)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\unreadnot.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9adb2506", Component.options)
+  } else {
+    hotAPI.reload("data-v-9adb2506", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 209 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.get_unread();
+  },
+
+
+  methods: {
+    get_unread: function get_unread() {
+      var _this = this;
+
+      axios.get("/get_unreadnot").then(function (response) {
+        console.log(response);
+
+        response.data.forEach(function (not) {
+          console.log(not);
+          console.log(not.data);
+          // commit --- pour get a mutation data in store.js
+          _this.$store.commit("add_not", not.data);
+        });
+      });
+    },
+    markAsRead: function markAsRead(notification) {
+      var data = {
+        id: notification.id
+      };
+      axios.post("/notification/read", data).then(function (response) {
+        window.location.href = notification.profile;
+      });
+    }
+  },
+  computed: {
+    all_nots_count: function all_nots_count() {
+      return this.$store.getters.all_nots_count;
+    },
+    all_not: function all_not() {
+      return this.$store.getters.all_nots;
+    }
+  }
+});
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("li", { staticClass: "dropdown" }, [
+    _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: {
+          href: "#",
+          "data-toggle": "dropdown",
+          role: "button",
+          "aria-expanded": "false"
+        }
+      },
+      [
+        _c("span", { staticClass: "glyphicon glyphicon-globe" }),
+        _vm._v("\n             \n               Notifications "),
+        _c("span", { staticClass: "badge" }, [
+          _vm._v(_vm._s(_vm.all_nots_count))
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "caret" })
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "dropdown-menu", attrs: { role: "menu" } },
+      [
+        _vm._l(_vm.all_not, function(notification) {
+          return _c("li", { key: notification.id }, [
+            _c(
+              "a",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.markAsRead(notification)
+                  }
+                }
+              },
+              [_c("small", [_vm._v(_vm._s(notification.message))])]
+            )
+          ])
+        }),
+        _vm._v(" "),
+        _vm.all_nots_count == 0
+          ? _c("li", [_vm._v("\n           Accune notification \n        ")])
+          : _vm._e()
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9adb2506", module.exports)
+  }
+}
+
+/***/ }),
 /* 211 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -68614,136 +68804,6 @@ var index_esm = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(224)
-/* template */
-var __vue_template__ = __webpack_require__(225)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\unreadnot.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9adb2506", Component.options)
-  } else {
-    hotAPI.reload("data-v-9adb2506", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 224 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.get_unread();
-  },
-
-
-  methods: {
-    get_unread: function get_unread() {
-      var _this = this;
-
-      axios.get("/get_unreadnot").then(function (response) {
-        console.log(response);
-
-        response.data.forEach(function (not) {
-          // commit --- pour get a mutation data in store.js
-          _this.$store.commit("add_not", not);
-        });
-      });
-    }
-  },
-  computed: {
-    all_nots_count: function all_nots_count() {
-      return this.$store.getters.all_nots_count;
-    }
-  }
-});
-
-/***/ }),
-/* 225 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("li", [
-    _c("a", { attrs: { href: "/notifications" } }, [
-      _vm._v("\n        Unread notification\n        "),
-      _c("span", { staticClass: "badge" }, [
-        _vm._v(" " + _vm._s(_vm.all_nots_count) + " ")
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9adb2506", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
