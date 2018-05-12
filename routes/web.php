@@ -163,6 +163,12 @@ Route::get('/portail/memoire',[
 
 ]);
 
+Route::get('/ajouter/memoire',[
+    'uses'=>'PortailMemoireController@show',
+    'as'=>'ajouter.memoire'
+
+]);
+
 Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
 Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');

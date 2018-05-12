@@ -28775,6 +28775,7 @@ Vue.component('notification', __webpack_require__(205));
 Vue.component('unreadnot', __webpack_require__(208));
 //Vue.component('modifierprofile',require('./components/modifierprofile.vue'));
 Vue.component('chat', __webpack_require__(211));
+Vue.component('ajoutermemoire', __webpack_require__(237));
 Vue.component('onlineuser', __webpack_require__(219));
 //Vue.component('chat-composer', require('./components/ChatComposer.vue'));
 
@@ -69428,6 +69429,548 @@ var index_esm = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(238)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(240)
+/* template */
+var __vue_template__ = __webpack_require__(241)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\ajouterMemoire.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-49f6dda7", Component.options)
+  } else {
+    hotAPI.reload("data-v-49f6dda7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(239);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("4e9e17d8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-49f6dda7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ajouterMemoire.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-49f6dda7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ajouterMemoire.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 240 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        this.filtrer();
+    },
+
+    methods: {
+        filtrer: function filtrer() {
+            $(document).ready(function () {
+                $("#memoiretype").change(function () {
+                    var val = $(this).val();
+                    if (val == "licence") {
+                        $("#memoireannee").html("<option value='ti'>TI</option><option value='sci'>SCI</option><option value='si'>SI</option><option value='gl'>GL</option>");
+                    } else if (val == "master") {
+                        $("#memoireannee").html("<option value='stic'>STIC</option><option value='rsd'>RSD</option><option value='stiw'>STIW</option><option value='gl'>GL</option>");
+                    }
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-9 memoire-container" }, [
+      _c("div", { staticClass: "reclamation-container" }, [
+        _c("div", { staticClass: "row register-form" }, [
+          _c("div", { staticClass: "col-md-10 col-md-offset-1" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal custom-form",
+                attrs: { method: "post", enctype: "multipart/form-data" }
+              },
+              [
+                _c("h1", { staticClass: "text-capitalize" }, [
+                  _vm._v("Ajouter un mémoire")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-sm-4 label-column" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "control-label",
+                        attrs: { for: "name-input-field" }
+                      },
+                      [_vm._v("Titre du mémoire")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticStyle: { color: "rgb(248,0,0)" } }, [
+                      _vm._v(" *")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-6 input-column" }, [
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "text", required: "", autofocus: "" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-sm-4 label-column" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "control-label",
+                        attrs: { for: "dropdown-input-field" }
+                      },
+                      [_vm._v("Type du mémoire")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticStyle: { color: "rgb(248,0,0)" } }, [
+                      _vm._v(" *")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "col-sm-3 col-xs-12 input-column",
+                      staticStyle: { "margin-bottom": "15px" }
+                    },
+                    [
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-control reclamation-type",
+                          attrs: { required: "", id: "memoiretype" }
+                        },
+                        [
+                          _c("option", { attrs: { value: "", selected: "" } }, [
+                            _vm._v("Type")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "licence" } }, [
+                            _vm._v("Licence")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "master" } }, [
+                            _vm._v("Master")
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-3 col-xs-12 input-column" },
+                    [
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-control reclamation-type",
+                          attrs: { required: "", id: "memoireannee" }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Spécialité")
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-sm-4 label-column" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "control-label",
+                        attrs: { for: "dropdown-input-field" }
+                      },
+                      [_vm._v("L'encadreur")]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticStyle: { color: "rgb(248,0,0)" } }, [
+                      _vm._v(" *")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "col-sm-4 input-column",
+                      staticStyle: { "margin-bottom": "15px" }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", required: "" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "col-sm-2 input-column",
+                      staticStyle: { "padding-right": "10px" }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "form-control",
+                        staticStyle: { width: "80%", display: "inline-block" },
+                        attrs: {
+                          type: "text",
+                          required: "",
+                          placeholder: "Année",
+                          maxlength: "4",
+                          minlength: "4",
+                          pattern: "[0-9][0-9][0-9][0-9]"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticStyle: { color: "rgb(248,0,0)" } }, [
+                        _vm._v(" *")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("fieldset", [
+                  _c("legend"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-sm-4 label-column" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "control-label",
+                          attrs: { for: "dropdown-input-field" }
+                        },
+                        [_vm._v("L'étudiant 1")]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticStyle: { color: "rgb(248,0,0)" } }, [
+                        _vm._v(" *")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6 input-column" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", required: "" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-sm-4 label-column" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "control-label",
+                          attrs: { for: "dropdown-input-field" }
+                        },
+                        [_vm._v("L'étudiant 2")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6 input-column" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "/" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-sm-4 label-column" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "control-label",
+                          attrs: { for: "dropdown-input-field" }
+                        },
+                        [_vm._v("L'étudiant 3")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6 input-column" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "/" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-sm-4 label-column" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "control-label",
+                          attrs: { for: "dropdown-input-field" }
+                        },
+                        [_vm._v("L'étudiant 4")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6 input-column" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "/" }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-6 col-sm-offset-4 input-column" },
+                    [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "file", accept: ".pdf" }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-10 col-md-offset-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default submit-button",
+                        staticStyle: {
+                          "margin-bottom": "0",
+                          "margin-top": "30px"
+                        },
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Sauvgarder")]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-49f6dda7", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

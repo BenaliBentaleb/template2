@@ -12,7 +12,11 @@ class PortailMemoireController extends Controller
 
 
     public function index() {
-        $departement = Departement::all();
-        return view('portailMemoire')->with('departement',$departement);
+       // $departement = Departement::all();
+        return view('portailMemoire');//->with('departement',$departement);
+    }
+
+    public function show() {
+        return view ('addMemoire');
     }
 }

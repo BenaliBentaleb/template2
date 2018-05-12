@@ -50,6 +50,7 @@ Vue.component('notification',require('./components/notification.vue'));
 Vue.component('unreadnot',require('./components/unreadnot.vue'));
 //Vue.component('modifierprofile',require('./components/modifierprofile.vue'));
 Vue.component('chat',require('./components/chat.vue'));
+Vue.component('ajoutermemoire',require('./components/ajouterMemoire.vue'))
 Vue.component('onlineuser', require('./components/OnlineUser.vue'));
 //Vue.component('chat-composer', require('./components/ChatComposer.vue'));
 import {store} from './store';

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use App\Formation;
+use App\Departement;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         View::share('profile', null);
         View::share('chat', null);
+        $departement = Departement::all();
+        View::share('departement', $departement);
        
     }
 
