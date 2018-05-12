@@ -21,16 +21,7 @@ class SetForeignKeys extends Migration
             ->onDelete('cascade');
         });
      
-        Schema::table('publications', function(Blueprint $table) {
-
-        $table->foreign('user_id')
-        ->references('id')->on('users')
-        ->onDelete('cascade')->onUpdate('cascade');
-
-        $table->foreign('module_id')
-        ->references('id')->on('modules')
-        ->onDelete('cascade')->onUpdate('cascade');
-    });
+      
 
 
     Schema::table('likes', function(Blueprint $table) {
@@ -118,6 +109,49 @@ class SetForeignKeys extends Migration
         $table->foreign('formation_id')
         ->references('id')->on('formations')
         ->onDelete('cascade')->onUpdate('cascade');
+
+    });
+
+    Schema::table('jaime_commentaires', function(Blueprint $table) {
+        $table->foreign('commentaire_id')
+        ->references('id')->on('commentaires')
+        ->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('user_id')
+        ->references('id')->on('users')
+        ->onDelete('cascade')->onUpdate('cascade');
+
+    });
+
+    Schema::table('amies', function(Blueprint $table) {
+        $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('friend_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
+           
+
+    });
+
+    Schema::table('chats', function(Blueprint $table) {
+        $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('friend_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
+           
+
+    });
+
+    Schema::table('portail_memoires', function(Blueprint $table) {
+        $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('formation_id')
+            ->references('id')->on('formations')
+            ->onDelete('cascade')->onUpdate('cascade');
+           
 
     });
     }

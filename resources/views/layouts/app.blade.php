@@ -46,8 +46,8 @@
                     <ul class="nav navbar-nav">
                         <li class="active" role="presentation">
                        @auth
-                       <notification   :id_auth="'{{ Auth::id() }}'" ></notification>
-                      
+                       <notification   :id_auth="{{ Auth::id() }}" ></notification>
+
                         <unreadnot></unreadnot>
                         <audio  id="noty">
                             <source src="{{ asset('notification/definite.mp3') }}" type="">
@@ -63,10 +63,12 @@
                             <input class="form-control search-field" type="search" name="search" id="search-field">
                         </div>
                     </form>
-                    <button class="btn btn-default navbar-btn chat-btn" type="button">
+                    @auth 
+                    <a  href="/chat" class="btn btn-default navbar-btn chat-btn" type="button">
                         <i class="icon-bubbles"></i>
-                    </button>
-                  
+                     </a>
+                    @endauth
+
 
                     @guest
 
@@ -74,7 +76,7 @@
                     <a class="navbar-link navbar-right inscrire-btn" href="{{ route('register') }}">S'inscrire</a>
 
                     @else
-                   
+
 
                     <ul class="nav navbar-nav navbar-right">
                         <li role="presentation">
@@ -93,7 +95,7 @@
                                 </li>
                                 <li role="presentation">
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"> 
+                                    document.getElementById('logout-form').submit();">
                                         <i class="fa fa-sign-out" style="padding-right:10px;font-size:16px;"></i>Déconnecter</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -112,110 +114,172 @@
 
             </div>
         </nav>
-
+        @yield('chat')
         <div style="margin-top:20px;">
+         
+            @if($chat == null)
             <div class="container" style="margin-top:97px;">
-                <div class="row">
-                    @auth
-                   @if($profile == null)
-                    
-                    
-                    <div class="col-md-3">
-                            <ul class="list-group side-bar">
-                                <li class="list-group-item" style="padding-top:10px;">
-                                    <a href="{{route('home')}}" class="list-anchor">
-                                        <span class="nticien-circle">
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                        <span>Acceuil - NTICien</span>
-                                    </a>
-                                </li>
-                                @foreach($departement as $dep)
-                                <li class="list-group-item departement">
-                                    <i class="icon-grid"></i>
-                                    <span class="departement" style="font-weight:bold;">Dépratement :{{$dep->nom}}</span>
-                                </li>
+                    <div class="row">
+                        @auth
+                       @if($profile == null)
     
     
-                                @foreach($dep->formation as $formation) @if(str_contains($formation->nom,'Tronc Commun'))
-    
-                                <li class="list-group-item">
-                                    <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor ">
-                                        <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
-                                        <span>{{$formation->nom}}</span>
-                                    </a>
-                                </li>
-                                @endif @if(str_contains($formation->nom,'Licence'))
-                                <li class="list-group-item">
-                                    <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-l3">
-                                        <span class="licence-circle">L3</span>
-                                        <span>{{$formation->nom}}</span>
-                                    </a>
-                                </li>
-                                @endif @if(str_contains($formation->nom,'Master 1'))
-                                <li class="list-group-item">
-                                    <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master1">
-                                        <span class="master1-circle">M1</span>
-                                        <span>{{$formation->nom}}</span>
-                                    </a>
-                                </li>
-                                @endif @if(str_contains($formation->nom,'Master 2'))
-                                <li class="list-group-item">
-                                    <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master2">
-                                        <span class="master2-circle">M2</span>
-                                        <span>{{$formation->nom}}</span>
-                                    </a>
-                                </li>
-                                @endif @endforeach @endforeach
+                        <div class="col-md-3">
+                                <ul class="list-group side-bar">
+                                    <li class="list-group-item" style="padding-top:10px;">
+                                        <a href="{{route('home')}}" class="list-anchor">
+                                            <span class="nticien-circle">
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                            <span>Acceuil - NTICien</span>
+                                        </a>
+                                    </li>
+                                    @foreach($departement as $dep)
+                                    <li class="list-group-item departement">
+                                        <i class="icon-grid"></i>
+                                        <span class="departement" style="font-weight:bold;">Dépratement :{{$dep->nom}}</span>
+                                    </li>
     
     
-                                <li class="list-group-item border-top">
-                                    <a href="#" class="list-anchor">
-                                        <i class="icon-bell icon-sidebar"></i>
-                                        <span style="font-size:15px;">Les évenements</span>
-                                    </a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="#" class="list-anchor">
-                                        <i class="icon-graduation icon-sidebar"></i>
-                                        <span style="font-size:15px;">Portail mémoires</span>
-                                    </a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{route('reclamation.index')}}" class="list-anchor">
-                                        <i class="icon-exclamation icon-sidebar"></i>
-                                        <span style="font-size:15px;">Déposer réclamation</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                   @endif
-                    @endauth
-                     @yield('content')
-
+                                    @foreach($dep->formation as $formation) @if(str_contains($formation->nom,'Tronc Commun'))
+    
+                                    <li class="list-group-item">
+                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor ">
+                                            <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
+                                            <span>{{$formation->nom}}</span>
+                                        </a>
+                                    </li>
+                                    @endif @if(str_contains($formation->nom,'Licence'))
+                                    <li class="list-group-item">
+                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-l3">
+                                            <span class="licence-circle">L3</span>
+                                            <span>{{$formation->nom}}</span>
+                                        </a>
+                                    </li>
+                                    @endif @if(str_contains($formation->nom,'Master 1'))
+                                    <li class="list-group-item">
+                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master1">
+                                            <span class="master1-circle">M1</span>
+                                            <span>{{$formation->nom}}</span>
+                                        </a>
+                                    </li>
+                                    @endif @if(str_contains($formation->nom,'Master 2'))
+                                    <li class="list-group-item">
+                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master2">
+                                            <span class="master2-circle">M2</span>
+                                            <span>{{$formation->nom}}</span>
+                                        </a>
+                                    </li>
+                                    @endif @endforeach @endforeach
+    
+    
+                                    <li class="list-group-item border-top">
+                                        <a href="#" class="list-anchor">
+                                            <i class="icon-bell icon-sidebar"></i>
+                                            <span style="font-size:15px;">Les évenements</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="{{route('portail.memoire')}}" class="list-anchor">
+                                            <i class="icon-graduation icon-sidebar"></i>
+                                            <span style="font-size:15px;">Portail mémoires</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="{{route('reclamation.index')}}" class="list-anchor">
+                                            <i class="icon-exclamation icon-sidebar"></i>
+                                            <span style="font-size:15px;">Déposer réclamation</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                       @endif
+                        @endauth
+                         @yield('content')
+    
+                    </div>
                 </div>
-            </div>
+            @endif
 
         </div>
 
 
 
-        
-        @yield('ee')
+
+       
 
 
     </div>
 
     <!-- Scripts -->
 
+
     <script src="{{asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-
     <!--  <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>-->
     <script src="{{ asset('assets/js/custom-file-input.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+    
+
+    <script src="{{ asset('assets/js/mixitup.min.js')}}"></script>
+    <script src="{{ asset('assets/js/mixitup-multifilter.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
 
+<script type="text/javascript">
+    $('body').on('click', '#submitForm', function(){
+        var registerForm = $("#Register");
+        var formData = registerForm.serialize();
+        $( '#name-error' ).html( "" );
+        $( '#email-error' ).html( "" );
+        $( '#formation-error' ).html( "" );
+        $( '#date_naissance-error' ).html( "" );
+        $( '#addresse-error' ).html( "" );
+        $( '#numero_telephone-error' ).html( "" );
+      
+        $( '#informations-error' ).html( "" );
+        var id = $(this).data('id');
+
+
+        $.ajax({
+            url:'/user/profile/modifier/'+id,
+            type:'POST',
+            data:formData,
+            success:function(data) {
+                //console.log(data.errors.addresse[0]);
+                if(data.errors) {
+                    if(data.errors.addresse){
+                        $( '#addresse-error' ).text( data.errors.addresse[0] );
+                    }
+                   
+
+                    if(data.errors.date_naissance){
+                        $( '#date_naissance-error' ).html( data.errors.date_naissance[0] );
+                    }
+                    if(data.errors.numero_telephone){
+                        $( '#numero_telephone-error' ).html( data.errors.numero_telephone[0] );
+                    }
+                   
+                    if(data.errors.formation){
+                        $( '#formation-error' ).html( data.errors.formation[0] );
+                    }
+                    if(data.errors.informations){
+                        $( '#informations-error' ).html( data.errors.informations[0] );
+                    }
+                    console.log(data.errors);
+
+                }
+              if(data.success) {
+                  //  $('#success-msg').removeClass('hide');
+                   
+                        $('#modifierprofile').modal('hide');
+                       // $('#success-msg').addClass('hide');
+                       window.location.href = "http://127.0.0.1:8000/profile/"+id;
+                   
+                }
+            },
+        });
+    });
+</script>
 
 
 </body>

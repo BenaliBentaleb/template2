@@ -48,11 +48,15 @@ Vue.component('jaimecommentairecommenter',require('./components/jaimecommentaire
 Vue.component('amie',require('./components/amie.vue'));
 Vue.component('notification',require('./components/notification.vue'));
 Vue.component('unreadnot',require('./components/unreadnot.vue'));
-
+//Vue.component('modifierprofile',require('./components/modifierprofile.vue'));
+Vue.component('chat',require('./components/chat.vue'));
+Vue.component('onlineuser', require('./components/OnlineUser.vue'));
+//Vue.component('chat-composer', require('./components/ChatComposer.vue'));
 import {store} from './store';
 
 const app = new Vue({
     el: '#app',
+    
     store,
     
     data: {

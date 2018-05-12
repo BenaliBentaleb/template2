@@ -20,7 +20,6 @@ class CreateProfilesTable extends Migration
             $table->string('photo_profile')->nullable();
             $table->string('coverture')->nullable();
             $table->integer('formation_id')->unsigned()->nullable();
-            $table->enum('sexe',['femele','homme'])->nullable();
             $table->string('telephone')->nullable();
             $table->date('date_naissance')->nullable();
             $table->string('addresse')->nullable();

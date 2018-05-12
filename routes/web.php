@@ -98,8 +98,8 @@ Route::get('/allJaimeCommenataire/{id}', [
     'uses' => 'JaimeCommentaireController@jaimeComment',
 ]);
 
-Route::get('/publication/user/{id}', [
-    'uses' => 'ProfileController@get_publication_user',
+Route::get('/profile{id}', [
+    'uses' => 'ProfileController@profile',
     'as' => 'user.publication',
 ]);
 
@@ -111,6 +111,11 @@ Route::post('/user/upload/picture/{id}', [
 Route::post('/user/upload/coverture/{id}', [
     'uses' => 'ProfileController@upload_coverture',
     'as' => 'user.profile.coverture',
+]);
+
+Route::post('/user/profile/modifier/{id}', [
+    'uses' => 'ProfileController@update',
+    'as' => 'user.profile.update',
 ]);
 
 // check if the user is friend or somthing else !
@@ -137,11 +142,28 @@ Route::get('/get_unreadnot', function () {
     return Auth::user()->unreadNotifications;
 
 });
+/*
 
 Route::get('/notifications', [
 
     'uses' => 'HomeController@notifications',
     'as' => 'notifications',
+]);*/
+
+Route::post('/notification/read/{id}', 'HomeController@read');
+
+Route::get('/chat',[
+        'uses'=>'ChatController@getchat'
+
 ]);
 
-Route::post('/notification/read', 'HomeController@read');
+Route::get('/portail/memoire',[
+    'uses'=>'PortailMemoireController@index',
+    'as'=>'portail.memoire'
+
+]);
+
+Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
+Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
+Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
+Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');

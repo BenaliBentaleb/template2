@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Response;
 use App\User ; 
 use App\Publication;
 use App\Departement;
 use App\Profile;
 
+use App\Formation;
 class ProfileController extends Controller
 {
 
@@ -35,26 +38,70 @@ class ProfileController extends Controller
         //
     }
 
-    public function profile($id) {
-        $user = User::find($id);
-        $departement = Departement::all();
-        $user_publication=  $user->publications;
+    public function profile( Request $request,$id) {
 
-        return view('user.profile')->with('user',$user)->with('departement',$departement)
+        $user = User::find($id);
+        $user_publication;
+        $departements = Departement::all();
+        $formation = Formation::where('id',$user->profile->formation_id)->first();
+    
+       if($request->type && $request->type != "Tous" ) {
+            $user_publication = Publication::where('user_id',$id)->where('type',$request->type)->get();
+        } else {
+            $user_publication=  $user->publications;
+        }
+        
+        $this->collection = collect([]);
+            
+        foreach($departements as  $departement) {
+
+                if(!$this->collection->contains($departement->nom)) {
+
+                   $this->collection->put($departement->nom,$departement->formation);
+                
+                }
+        }
+
+        return view('user.profile')->with('user',$user)->with('departement',$departements)
        ->with('publications',$user_publication)
-       ->with('profile',$user->id);
+       ->with('profile',$user->id)
+       ->with('formation_user',$formation)
+       ->with('type',$request->type)
+       ->with('depfromation',$this->collection);
     }
 
-    public function get_publication_user(Request $request,$id) {
+   /* public function get_publication_user(Request $request,$id) {
        
         $user = User::find($id);
-        $departement = Departement::all();
-        $user_publication = Publication::where('user_id',$id)->where('type',$request->type)->get();
-       // dd($user_publication);
-        return view('user.profile')->with('user',$user)->with('departement',$departement)
+        $departements = Departement::all();
+        
+
+        if($request) {
+            $user_publication = Publication::where('user_id',$id)->where('type',$request->type)->get();
+        } else {
+            $user_publication=  $user->publications;
+        }
+      
+        
+        $formation = Formation::where('id',$user->profile->formation_id)->first();
+     
+        $this->collection = collect([]);
+            //dd($departements->formation);
+        foreach($departements as  $departement) {
+
+                if(!$this->collection->contains($departement->nom)) {
+
+                   $this->collection->put($departement->nom,$departement->formation);
+                
+                }
+        }
+
+        return view('user.profile')->with('user',$user)->with('departement',$departements)
         ->with('publications',$user_publication)
-        ->with('profile',$user->id);
-    }
+        ->with('formation_user',$formation->nom)
+        ->with('profile',$user->id)
+        ->with('depfromation',$this->collection);
+    }*/
 
     public function upload_picture($id,Request $request) {
         $user = User::find($id);
@@ -124,7 +171,47 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      
+
+        
+        
+
+        $validator = Validator::make($request->all(), Profile::rules(),Profile::messages());
+
+        if ($validator->passes()) {
+
+            $splitName = explode(' ', $request->nom_prenom, 2); 
+
+            $user = Profile::find($id);
+            $user->user->nom =  $splitName[0];
+            $user->user->prenom = !empty($splitName[1]) ? $splitName[1] : '';
+            $user->user->email = $request->email;
+            $user->formation_id = $request->formation;
+           
+            $user->telephone = $request->numero_telephone;
+            $user->date_naissance = $request->date_naissance;
+            $user->addresse = $request->addresse;
+            $user->information = $request->informations;
+            $user->facebook = $request->facebook;
+            $user->twitter = $request->twitter;
+            $user->instagram = $request->instagram;
+            $user->youtube = $request->youtube;
+     
+            $user->save();
+            $user->user->save();
+
+            return Response::json(['success' => '1']);
+
+        }
+        
+        return Response::json(['errors' => $validator->errors()]);
+
+         
+     
+         //   return redirect()->back();
+        
+
+     
     }
 
     /**

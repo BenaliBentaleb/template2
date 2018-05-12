@@ -13,7 +13,9 @@ export const store = new Vuex.Store({
         publications: [],
         likes: [],
         likedBy: [],
-        nots: []
+        nots: [],
+        chats:'',
+        onlineUsers: ""
 
 
 
@@ -43,6 +45,10 @@ export const store = new Vuex.Store({
 
         likedBy(state) {
             return state.likedBy;
+        },
+
+        getchats(state) {
+            return state.chats;
         }
 
     },

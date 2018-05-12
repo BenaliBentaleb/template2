@@ -15,7 +15,8 @@
                 <li v-for="notification in all_not" :key="notification.id">
                 <a  @click="markAsRead(notification)" >
                    
-                    <small>{{ notification.message }}</small>
+                    <small >{{ notification.message }}</small>
+                    
                 </a>
             </li>
             <li v-if="all_nots_count == 0">
@@ -36,25 +37,40 @@ export default {
 
   methods: {
     get_unread() {
+
+        
+
+
       axios.get("/get_unreadnot").then(response => {
-        console.log(response);
-       
-          response.data.forEach(not => {
-            console.log(not);
-            console.log(not.data);
-            // commit --- pour get a mutation data in store.js
-            this.$store.commit("add_not", not.data);
-          });
-       
+     //   console.log(response);
+
+        response.data.forEach(not => {
+        //  console.log(not);
+        //  console.log(not.data);
+          let notification = {
+            id:not.id,
+            message:not.data.message,
+            nom:not.data.nom,
+            profile:not.data.profile,
+            type:not.type
+        }
+       // console.log(notification)
+          this.$store.commit("add_not", notification);
+        });
       });
     },
     markAsRead(notification) {
-      let data = {
-        id: notification.id
-      };
-      axios.post("/notification/read", data).then(response => {
-        window.location.href = notification.profile;
-      });
+   
+       // console.log(notification);
+       
+      axios
+        .post("/notification/read/" + notification.id)
+        .then(response => {
+          window.location.href = notification.profile ;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   computed: {

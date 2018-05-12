@@ -75,19 +75,18 @@ class RegisterController extends Controller
            //     dd($user);
         Profile::create([
             'user_id' =>  $user->id,
-            'photo_profile'=> 'image.png',
-            'coverture' => 'image.png',
-            'information' => 'On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L\'avantage du Lorem Ipsum sur un texte générique comme \'Du texte. Du texte. Du texte.\' est qu\'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français ',
+            'photo_profile'=> '/uploads/avatars/1526153957mal.png',
+            'coverture' => '',
+            'information' => 'votre information',
             'formation_id'=>null,
-            'sexe'=>'Homme',
-            'email' =>'email@gmail.com',
-            'telephone'=>'0779758510',
-            'date_naissance'=>'1996-04-11',
-            'addresse' => 'Abdelrazek nacer Sougueur',
-            'facebook' => 'www.facebook.com',
-            'twitter' => 'www.twitter.com',
-            'instagram' => 'www.instagram.com',
-            'youtube' => 'www.youtube.com',
+            'email' =>'votreEmail@gmail.com',
+            'telephone'=>'',
+            'date_naissance'=>'',
+            'addresse' => '',
+            'facebook' => '',
+            'twitter' => '',
+            'instagram' => '',
+            'youtube' => '',
             
        ]);
        return $user;

@@ -21,7 +21,7 @@ class User extends Authenticatable
     use Notifiable;
     use friendable;
 
-    public $with = ['profile'];
+    public $with = ['profile','formation'];
 
     /**
      * The attributes that are mass assignable.
@@ -73,6 +73,19 @@ class User extends Authenticatable
     public function amies() {
         return $this->hasMany(Amies::class);
     }
+//* chat methods */
+    public function friendsOfMine() {
+        return $this->belongsToMany('App\User', 'amies', 'user_id', 'friend_id');
+    }
+    public function friendOf() {
+        return $this->belongsToMany('App\User', 'amies', 'friend_id', 'user_id');
+    }
+    public function friendss() {
+        return $this->friendsOfMine->merge($this->friendOf);
+    }
+
+
+
 
     public function sendPasswordResetNotification($token)
     {

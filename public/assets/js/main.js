@@ -23,3 +23,12 @@ $('#profile-picture').change(function() {
 $('#cover').change(function() {
   $('#cover-form').submit();
 });
+var mixer = mixitup('.memoires',{
+  multifilter: {
+      enable: true // enable the multifilter extension for the mixer
+  }
+});
+
+$('.shuffle li').click(function(){
+      $(this).addClass('selected').siblings().removeClass('selected');
+  })

@@ -13,6 +13,7 @@ use App\Sondage;
 use App\Faq;
 use App\PublicationFichier;
 use Auth;
+//use Illuminate\Notifications\DatabaseNotification;
 class HomeController extends Controller
 {
     /**
@@ -83,7 +84,7 @@ class HomeController extends Controller
 
     }
 
-    public function notifications()
+   /* public function notifications()
     {
         $noty = [];
          Auth::user()->unreadNotifications->markAsRead();
@@ -93,11 +94,13 @@ class HomeController extends Controller
          }
 
          return view('user.notification')->with('nots',$noty);
-    }
+    }*/
 
     
     public function read(Request $request) {
-        Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
+      //  dd($request);
+        
+      return  Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
     //    return redirect('/home');
     }
    

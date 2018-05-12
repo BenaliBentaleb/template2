@@ -25,11 +25,10 @@ export default {
     listen() {
       Echo.private("App.User." + this.id_auth)
       .notification(notification => {
-        //this.request = notification.profile// notification.nom +' '+notification.message;
-        alert("new notitfication");
+          console.log(notification);
+     
+      //  alert("new notitfication");
         document.getElementById('noty').play();
-        console.log(notification);
-
         this.$store.commit('add_not',notification);
       });
     }

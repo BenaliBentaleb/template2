@@ -2,8 +2,8 @@
 
 
 <div class="col-md-12" style="padding:0;">
-    <form id="cover-form" method="POST" action="{{route('user.profile.coverture',['id'=>$user->id])}}"  enctype="multipart/form-data">
-            {{ csrf_field() }}
+    <form id="cover-form" method="POST" action="{{route('user.profile.coverture',['id'=>$user->id])}}" enctype="multipart/form-data">
+        {{ csrf_field() }}
         <input type="file" accept="image/*" name="cover" id="cover" style="display:none;">
         <div class="profile-cover" style="background:url({{asset($user->profile->coverture)}});background-size:cover;background-repeat:no-repeat;background-position:center center;background-attachment:fixed;">
             <div class="mask text-center">
@@ -19,8 +19,8 @@
     <div class="row">
         <div class="col-sm-4 text-center">
             <div>
-                <form id="profile-picture-form" method="POST" action="{{route('user.profile.picture',['id'=>$user->id])}}"  enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                <form id="profile-picture-form" method="POST" action="{{route('user.profile.picture',['id'=>$user->id])}}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
                     <input type="file" accept="image/*" name="profilepicture" id="profile-picture" style="display:none;">
                     <label for="profile-picture"></label>
                     <div class="profile-img" style="background-image:url({{asset($user->profile->photo_profile)}});background-size:cover;background-repeat:no-repeat;">
@@ -54,19 +54,35 @@
                         </a>
                     </li>
                 </ul>
-                <button class="btn btn-primary btn-block modify-profile" type="button" style="width:75%;margin:0 auto;">
-                    <i class="icon-pencil"></i>Modifier profile</button>
-             @if(Auth::id() != $user->id)
-                 <amie :profile_user_id="{{$user->id}}"></amie>
-             @endif
 
-                            <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;"> <i class="icon-user-unfollow"></i>Supprimer</button>
+                     @if(Auth::id() == $user->id)
+                   <button class="btn btn-primary btn-block modify-profile" type="button" style="width:75%;margin:0 auto;" data-toggle="modal"
+                    data-target=".modify-profile-modal">
+                    <i class="icon-pencil">
+                        Modifier profile
+                    </i>
+
+                  
+                    </button>   
+                    @endif    
+                
+                <!-- <modifierprofile :user_id="{{$user->id}}"></modifierprofile>-->
+                @if(Auth::id() != $user->id)
+               
+                <amie :profile_user_id="{{$user->id}}"></amie>
+                @endif
+              
+
+                <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;">
+                    <i class="icon-user-unfollow"></i>Supprimer</button>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="user-info">
                 <h2>{{$user->nom.' '. $user->prenom}}</h2>
-                <h5>Licence TI</h5>
+                @if($formation_user)
+                <h5>{{ $formation_user->nom}}</h5>
+                @endif
                 <ul style="padding-left:0;">
                     @foreach($user->roles as $role) @if($role->nom == "Administrateur")
                     <li class="role-admin">{{$role->nom}}</li>
@@ -123,11 +139,11 @@
 
             <select class="pub-select form-control" name="type" onchange="event.preventDefault();
             document.getElementById('user').submit();">
-                <option value="Tous">Tous</option>
-                <option value="Status">Status</option>
-                <option value="Tutoriel">Tutoriel</option>
-                <option value="FAQ">FAQ</option>
-                <option value="Sondage">Sondage</option>
+                <option value="Tous" @if($type == "Tous") selected @endif >Tous</option>
+                <option value="Status" @if($type == "Status") selected @endif>Status</option>
+                <option value="Tutoriel" @if($type == "Tutoriel") selected @endif>Tutoriel</option>
+                <option value="FAQ" @if($type == "FAQ") selected @endif>FAQ</option>
+                <option value="Sondage" @if($type == "Sondage") selected @endif>Sondage</option>
             </select>
 
         </form>
@@ -185,15 +201,15 @@
                                     <span>&nbsp; Modifier</span>
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{route('publication.destroy',['id'=>$publication->id])}}">
                                     <i class="icon-trash"></i>
                                     <span>&nbsp; Supprimer</span>
                                 </a>
                             </li>
-                           
-                          <!--  <li>
+
+                            <!--  <li>
                                 <a href="#">
                                     <i class="icon-eyeglass"></i>
                                     <span>&nbsp; Suivre</span>
@@ -216,10 +232,10 @@
             </h3>
             <hr>
             <div style="text-align:center;">
-                    
-                
-                        <span>Status Generale</span>
-                 
+
+
+                <span>Status Generale</span>
+
             </div>
             <div>
                 <div class="content">{!! $publication->contenu !!}
@@ -248,7 +264,7 @@
 
             @endif
             <hr style="width:100%;">
-            <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{$user->id}}"></jaimecommentairecommenter>
+            <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{$user->id}}" :image=`{{asset(Auth::user()->profile->photo_profile)}}`></jaimecommentairecommenter>
 
 
 
@@ -260,11 +276,154 @@
     @endif
 </div>
 
+<!-- action="{{route('user.profile.update',['id'=>Auth::id()])}}"-->
+ <form   id="Register" method="post" >
+    {{ csrf_field() }}
 
+    <div  id="modifierprofile" class="modal fade modify-profile-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4>Modifie profile</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="nom">Nom et prenom :</label>
+                                <div class="form-group ">
+                                    <input type="text" value ="{{$user->nom.' '.$user->prenom}}" value="{{ old('nom_prenom') }}" name="nom_prenom" placeholder="Nom et prenom" id="nom" class="form-control">
+                                    
+                                    <span class="text-danger">
+                                        <strong id="name-error" ></strong>
+                                    </span>
+                                  
+                                </div>
+                                <label>Email :</label>
+                                <div class="form-group ">
+                                    <input type="email" name="email" value ="{{$user->email}}" placeholder="Votre email" id="email" class="form-control">
+                                   
+                                    <span class="text-danger">
+                                        <strong id="email-error"></strong>
+                                    </span>
+                                  
+                               
+                                </div>
+                                <label style="margin-top:7px;">Formation :</label>
+                                <div class="form-group  formation-select">
+                                    <select class="form-control" name="formation" value="{{ old('formation') }}">
+                                            
+                                            @foreach($depfromation as $key=> $formation)
+                                        <optgroup label="Departement {{$key}}">
+                                           
+                                            @foreach($formation as $f) 
+                                            <option value="{{$f->id}}">{{$f->nom}}</option>
+                                            @endforeach
+                                        </optgroup>
+                                        @endforeach
+                                    <!--    <optgroup label="Departement IFA">
+                                            <option value=1>Licence - TI</option>
+                                            <option value=1>Licence - SCI</option>
+                                            <option value=1>Master 1 - STIC </option>
+                                            <option value=1>Master 1 - RSD</option>
+                                            <option value=1>Master 2 - STIC</option>
+                                            <option value=1>Master 2 - RSD</option>
+                                        </optgroup>
+                                        <optgroup label="Departement TLSI">
+                                            <option value=1>Licence - GL</option>
+                                            <option value=1>Licence SI</option>
+                                            <option value=1>Master 1 - STIW</option>
+                                            <option value="1">Master 1 GL</option>
+                                            <option value=1>Master 2 - STIW</option>
+                                            <option value=1>Master 2 - GL</option>
+                                        </optgroup>-->
+                                    </select>
+                                   
+                                    <span class="text-danger">
+                                        <strong id="formation-error"></strong>
+                                    </span>
+                               
+                                </div>
+                                <div class="clearfix"></div>
+                                <label for="nom">Date de naissance :</label>
+                                <div class="form-group ">
+                                    <input type="date" name="date_naissance"  value ="{{$user->profile->date_naissance}}" value="{{ old('date_naissance') }}" class="form-control">
+                               
+                                    <span class="text-danger">
+                                        <strong id="date_naissance-error"></strong>
+                                    </span>
+                             
+                                </div>
+                                <label for="nom">Adresse :</label>
+                                <div class="form-group ">
+                                    <textarea placeholder="Adresse" name="addresse"  class="form-control" style="resize:none;">{{ $user->profile->addresse }}</textarea>
+                                    
+                                   
+                                    <span class="text-danger">
+                                        <strong id="addresse-error"></strong>
+                                    </span>
+                                  
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nom">Numéro de téléphone :</label>
+                                <div class="form-group ">
+                                    <input type="text" name="numero_telephone" value ="{{$user->profile->telephone}}" value="{{ old('numero_telephone') }}" placeholder="Numéro de téléphone" id="nom" class="form-control">
+                                  
+                                    <span class="text-danger">
+                                        <strong id="numero_telephone-error"></strong>
+                                    </span>
+                                  
+                                </div>
+                                <label for="nom">A propos :</label>
+                                <div class="form-group">
+                                    <textarea rows="3" name="informations" placeholder="A propos" class="form-control" style="resize:none;">{{$user->profile->information}}</textarea>
+                                    
+                                    <span class="text-danger">
+                                        <strong id="informations-error"></strong>
+                                    </span>
+                              
+                                </div>
+                                <div class="input-group form-group ">
+                                    <span id="facebook-input" class="input-group-addon">&nbsp;
+                                        <i class="fa fa-facebook-f"></i>
+                                    </span>
+                                    <input type="url" name="facebook" placeholder="Lien de votre profile Facebook" value="{{$user->profile->facebook}}" class="form-control" aria-describedby="facebook-input">
+                                </div>
+                                <div class="input-group form-group ">
+                                    <span id="twitter-input" class="input-group-addon">
+                                        <i class="fa fa-twitter"></i>
+                                    </span>
+                                    <input type="url" name="twitter" placeholder="Lien de votre profile Twitter "  value="{{$user->profile->twitter}}" class="form-control" aria-describedby="facebook-input">
+                                </div>
+                                <div class="input-group form-group ">
+                                    <span id="insta-input" class="input-group-addon">
+                                        <i class="fa fa-instagram"></i>
+                                    </span>
+                                    <input type="url" name="instagram" placeholder="Lien de votre profile Instagram"  value="{{$user->profile->instagram}}" class="form-control" aria-describedby="facebook-input">
+                                </div>
+                                <div class="input-group form-group ">
+                                    <span id="youtube-input" class="input-group-addon">
+                                        <i class="fa fa-youtube"></i>
+                                    </span>
+                                    <input type="url" name="youtube" value="{{$user->profile->youtube}}" placeholder="Lien de votre chaine Youtube" class="form-control" aria-describedby="facebook-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
 
-
-
-
-
+                    <button type="button" id ="submitForm"class="btn btn-success" data-id="{{Auth::id()}}">Enregistrer</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </form> 
+</div>
+</div>
+</div>
+</div>
+ 
 
 @endsection

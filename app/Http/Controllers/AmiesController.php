@@ -7,6 +7,7 @@ use Auth ;
 use App\User ; 
 use App\Notifications\NewFriendRequest ;
 use App\Notifications\FriendRequestAccepted;
+//use Illuminate\Notifications\DatabaseNotification;
 
 class AmiesController extends Controller 
 {
