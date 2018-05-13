@@ -76,17 +76,17 @@ class RegisterController extends Controller
         Profile::create([
             'user_id' =>  $user->id,
             'photo_profile'=> '/uploads/avatars/1526153957mal.png',
-            'coverture' => '',
-            'information' => 'votre information',
+            'coverture' => null,
+            'information' => null,
             'formation_id'=>null,
-            'email' =>'votreEmail@gmail.com',
-            'telephone'=>'',
-            'date_naissance'=>'',
-            'addresse' => '',
-            'facebook' => '',
-            'twitter' => '',
-            'instagram' => '',
-            'youtube' => '',
+            'email' =>$user->email,
+            'telephone'=>null,
+            'date_naissance'=>null,
+            'addresse' => null,
+            'facebook' => null,
+            'twitter' => null,
+            'instagram' => null,
+            'youtube' => null,
             
        ]);
        return $user;

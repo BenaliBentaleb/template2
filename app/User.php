@@ -2,26 +2,26 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use App\profile;
-use App\Formation;
-use App\Role;
-use App\Reclamation;
-use App\Like;
-use App\Publication;
-use App\Commentaire;
-use App\JaimeCommentaire;
 use App\Amies;
-use App\Traits\friendable ; 
+use App\Commentaire;
+use App\Formation;
+use App\JaimeCommentaire;
+use App\Like;
 use App\Notifications\ResetPasswordNotification;
+use App\profile;
+use App\Publication;
+use App\Reclamation;
+use App\Role;
+use App\Traits\friendable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
 class User extends Authenticatable
 {
     use Notifiable;
     use friendable;
 
-    public $with = ['profile','formation'];
+    public $with = ['profile', 'formation'];
 
     /**
      * The attributes that are mass assignable.
@@ -29,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id','nom', 'prenom', 'email', 'password',
+        'id', 'nom', 'prenom', 'email', 'password',
     ];
 
     /**
@@ -41,51 +41,64 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function profile() {
+    public function profile()
+    {
         return $this->hasOne(profile::class);
     }
-    public function publications() {
+    public function publications()
+    {
         return $this->hasMany(Publication::class);
     }
 
-    public function formation() {
+    public function formation()
+    {
         return $this->belongsTo(Formation::class);
     }
 
-    public function roles() {
+    public function roles()
+    {
         return $this->hasMany(Role::class);
     }
 
-    public function reclamations() {
+    public function reclamations()
+    {
         return $this->hasMany(Reclamation::class);
     }
-    public function likes() {
+    public function likes()
+    {
         return $this->hasMany(Like::class);
     }
-    public function commentaires() {
+    public function commentaires()
+    {
         return $this->hasMany(Commentaire::class);
-    }   
+    }
 
-    public function likeComment() {
+    public function likeComment()
+    {
         return $this->hasOne(JaimeCommentaire::class);
     }
 
-    public function amies() {
+    public function amies()
+    {
         return $this->hasMany(Amies::class);
     }
 //* chat methods */
-    public function friendsOfMine() {
+    public function friendsOfMine()
+    {
         return $this->belongsToMany('App\User', 'amies', 'user_id', 'friend_id');
     }
-    public function friendOf() {
+    public function friendOf()
+    {
         return $this->belongsToMany('App\User', 'amies', 'friend_id', 'user_id');
     }
-    public function friendss() {
+    public function friendss()
+    {
         return $this->friendsOfMine->merge($this->friendOf);
     }
-
-
-
+    public function portailmemoires()
+    {
+        return $this->hasMany(PortailMemoire::class);
+    }
 
     public function sendPasswordResetNotification($token)
     {

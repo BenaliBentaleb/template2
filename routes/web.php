@@ -157,6 +157,11 @@ Route::get('/chat',[
 
 ]);
 
+Route::get('/getformation/{type}', [
+    'uses'=>'PortailMemoireController@getformation',
+    'as'=>'getformation.memoire'
+]);
+
 Route::get('/portail/memoire',[
     'uses'=>'PortailMemoireController@index',
     'as'=>'portail.memoire'
@@ -166,6 +171,12 @@ Route::get('/portail/memoire',[
 Route::get('/ajouter/memoire',[
     'uses'=>'PortailMemoireController@show',
     'as'=>'ajouter.memoire'
+
+]);
+
+Route::post('/memoire/saveFile',[
+    'uses'=>'PortailMemoireController@saveFile',
+    'as'=>'store.memoire'
 
 ]);
 

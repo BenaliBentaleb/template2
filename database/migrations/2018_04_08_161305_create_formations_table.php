@@ -17,6 +17,7 @@ class CreateFormationsTable extends Migration
             $table->increments('id');
             $table->integer('departement_id')->unsigned();
             $table->string('nom');
+            $table->string('type');
             
            
             $table->timestamps();
