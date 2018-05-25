@@ -9,11 +9,17 @@
                         <div class="col-sm-4 label-column">
                             <label class="control-label" for="name-input-field">Titre du mémoire</label>
                             <span style="color:rgb(248,0,0);">&nbsp;*</span>
+
+                            
                         </div>
                         <div class="col-sm-6 input-column">
                             <input class="form-control" type="text" v-model="memoire.titre" required="" autofocus="">
                         </div>
+                        
                     </div>
+                     <span class="text-danger" v-if="errors.titre">
+                               <strong >{{errors.titre[0]}}</strong>
+                     </span>
                     <div class="form-group">
                         <div class="col-sm-4 label-column">
                             <label class="control-label" for="dropdown-input-field">Type du mémoire</label>
@@ -114,7 +120,8 @@ export default {
         etudiant3: "",
         etudiant4: "",
         fichier: ""
-      }
+      },
+      errors: {}
     };
   },
 
@@ -173,12 +180,9 @@ export default {
     },
 
     uploadMemoire() {
-      axios
-        .post("/memoire/saveFile", this.memoire)
-        .then(response => {
-          console.log(response);
-        })
-        .catch(errors => {});
+      axios.post("/memoire/saveFile", this.memoire).then(response => {
+        this.errors = response.data.errors;
+      });
     }
   }
 };
