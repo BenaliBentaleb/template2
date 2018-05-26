@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Formation;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,7 +32,6 @@ class PortailMemoire extends Model
             'encadreur' => 'required',
             'etudiant1' => 'required',
             'fichier' => 'required',
-           
 
         ];
     }
@@ -48,5 +48,11 @@ class PortailMemoire extends Model
             'fichier.required' => 'Le champ Document est vide !',
 
         ];
+    }
+    // get formation name  ex: 1 => Ti
+    public function getFormation($id)
+    {
+        return Formation::find($id)->nom;
+
     }
 }

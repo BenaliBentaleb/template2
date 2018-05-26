@@ -180,6 +180,12 @@ Route::post('/memoire/saveFile',[
 
 ]);
 
+Route::get('/memoire/download/{id}',[
+    'uses'=>'PortailMemoireController@download',
+    'as'=>'download.memoire'
+
+]);
+
 Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
 Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');

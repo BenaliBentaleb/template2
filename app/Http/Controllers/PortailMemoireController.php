@@ -14,8 +14,17 @@ class PortailMemoireController extends Controller
 
     public function index()
     {
-        // $departement = Departement::all();
-        return view('portailMemoire'); //->with('departement',$departement);
+        
+        $memoire = PortailMemoire::all();
+
+        return view('portailMemoire')->with('memoire',$memoire); 
+    }
+
+    public function download($id) {
+        $fichier = PortailMemoire::find($id);
+        $headers = ['Content-Type: application/*'];
+
+        return response()->download($fichier->fichier, $fichier->titre, $headers);
     }
 
     public function show()
@@ -63,7 +72,7 @@ class PortailMemoireController extends Controller
             }
             // decode
             $decode = base64_decode($exploded[1]);
-            $filename = time() . "." . $ext;
+            $filename = time() . str_random(10). "." . $ext;
             //path of your local folder
             $path = public_path() . "/files/" . $filename;
             //upload image to your path
