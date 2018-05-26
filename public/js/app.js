@@ -68363,7 +68363,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -68514,7 +68514,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-
+              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
               response.data.forEach(function (val) {
                 $("#memoireannee").html(option += "<option value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
@@ -68524,9 +68524,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-
+              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
               response.data.forEach(function (val) {
-                $("#memoireannee").html(option += "<option value='" + val.id + "'>" + val.nom + "</option>");
+                $("#memoireannee").html(option += "<option  value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
               });
             });
@@ -68550,9 +68550,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     uploadMemoire: function uploadMemoire() {
       var _this = this;
 
-      axios.post("/memoire/saveFile", this.memoire).then(function (response) {
-        _this.errors = response.data.errors;
-      });
+      if (!(parseInt(this.memoire.annee) < 2010) && typeof parseInt(this.memoire.annee) === "number") {
+        axios.post("/memoire/saveFile", this.memoire).then(function (response) {
+          //
+
+          _this.errors = response.data.errors ? response.data.errors : null;
+          _this.errors ? _this.errorMemoire() : _this.ajouterMemoire();
+
+          response.data.success ? _this.clearAllInput() : '';
+        });
+      } else {
+
+        this.errorDate();
+      }
+    },
+    clearAllInput: function clearAllInput() {
+
+      this.memoire.titre = "", this.memoire.niveau = "", this.memoire.formation = "", this.memoire.encadreur = "", this.memoire.annee = "", this.memoire.etudiant1 = "", this.memoire.etudiant2 = "", this.memoire.etudiant3 = "", this.memoire.etudiant4 = "", this.memoire.fichier = "";
+    }
+  },
+  notifications: {
+    ajouterMemoire: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Ajouter!",
+      message: "Votre memoire est ajouté avec success",
+      type: "success" // You also can use 'VueNotifications.types.error' instead of 'error'
+    },
+    errorMemoire: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Les champs est vide!",
+      message: "Svp remplie tous les champs",
+      type: "error" // You also can use 'VueNotifications.types.error' instead of 'error'
+    },
+    errorDate: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Date invalide !",
+      message: "Entrer une date superieur 2009",
+      type: "error" // You also can use 'VueNotifications.types.error' instead of 'error'
     }
   }
 });
@@ -68608,12 +68642,6 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.errors.titre
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _c("strong", [_vm._v(_vm._s(_vm.errors.titre[0]))])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _vm._m(1),
                 _vm._v(" "),
@@ -68658,9 +68686,11 @@ var render = function() {
                         }
                       },
                       [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("Type")
-                        ]),
+                        _c(
+                          "option",
+                          { attrs: { value: "", selected: "", disabled: "" } },
+                          [_vm._v("Type")]
+                        ),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "licence" } }, [
                           _vm._v("Licence")
@@ -68774,7 +68804,7 @@ var render = function() {
                       staticClass: "form-control",
                       staticStyle: { width: "80%", display: "inline-block" },
                       attrs: {
-                        type: "text",
+                        type: "number",
                         required: "",
                         placeholder: "Année",
                         maxlength: "4",

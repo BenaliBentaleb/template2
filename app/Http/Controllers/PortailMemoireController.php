@@ -36,9 +36,10 @@ class PortailMemoireController extends Controller
 
     public function saveFile(Request $request)
     {
+        
 
         $validator = Validator::make($request->all(), PortailMemoire::rules(), PortailMemoire::messages());
-
+       
         if ($validator->passes()) {
             $memoire = new PortailMemoire;
             $memoire->user_id = Auth::id();
@@ -68,7 +69,7 @@ class PortailMemoireController extends Controller
             //upload image to your path
             if (file_put_contents($path, $decode)) {
                 $memoire->fichier = "files/" . $filename;
-
+               // dd($memoire->fichier) ;
                 $memoire->save();
                 //return $memoire;
                 return Response::json(['success' => '1']);

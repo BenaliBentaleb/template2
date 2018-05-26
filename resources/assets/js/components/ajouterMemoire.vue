@@ -17,17 +17,17 @@
                         </div>
                         
                     </div>
-                     <span class="text-danger" v-if="errors.titre">
+                    <!-- <span class="text-danger" v-if="errors.titre">
                                <strong >{{errors.titre[0]}}</strong>
-                     </span>
+                     </span>-->
                     <div class="form-group">
                         <div class="col-sm-4 label-column">
                             <label class="control-label" for="dropdown-input-field">Type du mémoire</label>
                             <span style="color:rgb(248,0,0);">&nbsp;*</span>
                         </div>
                         <div class="col-sm-3 col-xs-12 input-column" style="margin-bottom:15px;">
-                            <select class="form-control reclamation-type" required="" v-model="memoire.niveau"  id="memoiretype">
-                                <option selected="">Type</option>
+                            <select class="form-control reclamation-type" required="" v-model="memoire.niveau"   id="memoiretype">
+                                <option  value="" selected disabled>Type</option>
                                 <option value="licence">Licence</option>
                                 <option value="master">Master</option>
                             </select>
@@ -47,7 +47,7 @@
                             <input class="form-control" type="text" v-model="memoire.encadreur"  required="">
                         </div>
                         <div class="col-sm-2 input-column" style="padding-right:10px;">
-                            <input class="form-control" type="text" required="" v-model="memoire.annee" placeholder="Année" maxlength="4" minlength="4"
+                            <input class="form-control" type="number" required="" v-model="memoire.annee" placeholder="Année" maxlength="4" minlength="4"
                                 pattern="[0-9][0-9][0-9][0-9]" style="width:80%;      display: inline-block;">
                             <span style="color:rgb(248,0,0);">&nbsp;*</span>
                         </div>
@@ -138,7 +138,7 @@ export default {
             axios.get("/getformation/" + val).then(response => {
               let option = "";
               console.log(response);
-
+               option =  "<option selected disabled value=''>" +"Spécialité"+ "</option>"
               response.data.forEach(val => {
                 $("#memoireannee").html(
                   (option +=
@@ -151,11 +151,11 @@ export default {
             axios.get("/getformation/" + val).then(response => {
               let option = "";
               console.log(response);
-
+                option =  "<option selected disabled value=''>" +"Spécialité"+ "</option>"
               response.data.forEach(val => {
                 $("#memoireannee").html(
                   (option +=
-                    "<option value='" + val.id + "'>" + val.nom + "</option>")
+                    "<option  value='" + val.id + "'>" + val.nom + "</option>")
                 );
                 console.log(val);
               });
@@ -180,14 +180,60 @@ export default {
     },
 
     uploadMemoire() {
-      axios.post("/memoire/saveFile", this.memoire).then(response => {
-        this.errors = response.data.errors;
-      });
+      if (!(parseInt(this.memoire.annee) < 2010) && typeof parseInt(this.memoire.annee) === "number" ) {
+        axios.post("/memoire/saveFile", this.memoire).then(response => {
+          //
+
+          this.errors = response.data.errors ? response.data.errors : null;
+          this.errors ? this.errorMemoire() : this.ajouterMemoire();
+       
+         response.data.success ?    this.clearAllInput() : '';
+        });
+      } else {
+          
+          this.errorDate();
+      }
+    }
+    ,
+
+
+    clearAllInput() {
+        
+        this.memoire.titre= "",
+        this.memoire.niveau= "",
+        this.memoire.formation= "",
+        this.memoire.encadreur= "",
+        this.memoire.annee= "",
+        this.memoire.etudiant1= "",
+        this.memoire.etudiant2="",
+        this.memoire.etudiant3= "",
+        this.memoire.etudiant4= "",
+        this.memoire.fichier= "";
+        
+    }
+  },
+  notifications: {
+    ajouterMemoire: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Ajouter!",
+      message: "Votre memoire est ajouté avec success",
+      type: "success" // You also can use 'VueNotifications.types.error' instead of 'error'
+    },
+    errorMemoire: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Les champs est vide!",
+      message: "Svp remplie tous les champs",
+      type: "error" // You also can use 'VueNotifications.types.error' instead of 'error'
+    },
+    errorDate: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Date invalide !",
+      message: "Entrer une date superieur 2009",
+      type: "error" // You also can use 'VueNotifications.types.error' instead of 'error'
     }
   }
 };
 </script>
 
 <style>
-
 </style>

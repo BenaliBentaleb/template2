@@ -1,0 +1,6 @@
+<br />
+<b>Warning</b>:  filesize(): stat failed for uploads/Chapitre1-Introductionetrappel.pdf in <b>D:\wamp64\www\Mini\etudiant\download_cour.php</b> on line <b>10</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: filepath in <b>D:\wamp64\www\Mini\etudiant\download_cour.php</b> on line <b>12</b><br />
+<br />
+<b>Warning</b>:  readfile(): Filename cannot be empty in <b>D:\wamp64\www\Mini\etudiant\download_cour.php</b> on line <b>12</b><br />
