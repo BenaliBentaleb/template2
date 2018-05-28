@@ -154,6 +154,14 @@ class SetForeignKeys extends Migration
            
 
     });
+
+    Schema::table('events', function(Blueprint $table) {
+        $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
+    });
+
+    
     }
 
     /**

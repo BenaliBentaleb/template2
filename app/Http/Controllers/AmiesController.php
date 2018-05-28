@@ -7,6 +7,7 @@ use Auth ;
 use App\User ; 
 use App\Notifications\NewFriendRequest ;
 use App\Notifications\FriendRequestAccepted;
+use App\Amies;
 //use Illuminate\Notifications\DatabaseNotification;
 
 class AmiesController extends Controller 
@@ -51,6 +52,23 @@ public function accept_friend($id)
     $response =  Auth::user()->accept_friend($id);
     User::find($id)->notify( new FriendRequestAccepted(Auth::user()));
     return $response ;
+}
+
+public function delete_invitation($id) {
+
+    $invitation = Amies::where('user_id',$id)->where('friend_id',Auth::id())->first();
+    $invitation->delete();
+    return 'invitation deleted';
+
+}
+
+public function delete_friend($id) {
+
+    $invitation = Amies::where('user_id',$id)->where('friend_id',Auth::id())->first();
+    $invitation->delete();
+    $friend = User::find($invitation->friend_id);
+    return   $friend->nom .'  '. $friend->prenom .'deleted';
+
 }
 
 

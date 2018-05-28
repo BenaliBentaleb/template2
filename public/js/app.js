@@ -67353,7 +67353,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67364,6 +67364,18 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -67431,6 +67443,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this3.status = "friend";
         }
       });
+    },
+
+    delete_invitation: function delete_invitation() {
+      var _this4 = this;
+
+      axios.get("/delete_invitation/" + this.profile_user_id).then(function (response) {
+        if (response) {
+          _this4.status = 0;
+        }
+      });
+    },
+    delete_friend: function delete_friend() {
+      var _this5 = this;
+
+      axios.get("/delete_friend/" + this.profile_user_id).then(function (response) {
+        console.log(response);
+        if (response) {
+          _this5.status = 0;
+        }
+      });
     }
   }
 });
@@ -67476,6 +67508,22 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
+    _vm.status == "pending"
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-danger btn-block",
+            staticStyle: { width: "75%", margin: "5px auto" },
+            attrs: { type: "button" },
+            on: { click: _vm.delete_invitation }
+          },
+          [
+            _c("i", { staticClass: "icon-user-unfollow" }),
+            _vm._v("Supprimer invitation\n            ")
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _vm.status == "waiting"
       ? _c(
           "span",
@@ -67500,6 +67548,22 @@ var render = function() {
             attrs: { type: "button" }
           },
           [_c("i", { staticClass: "icon-user-follow" }), _vm._v("Amies\n    ")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.status == "friend"
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-danger btn-block",
+            staticStyle: { width: "75%", margin: "5px auto" },
+            attrs: { type: "button" },
+            on: { click: _vm.delete_friend }
+          },
+          [
+            _c("i", { staticClass: "icon-user-unfollow" }),
+            _vm._v("Supprimer \n            ")
+          ]
         )
       : _vm._e()
   ])

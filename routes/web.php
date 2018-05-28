@@ -137,6 +137,14 @@ Route::get('/accept_friend/{id}', [
     'as' => 'accept_friend',
 ]);
 
+Route::get('/delete_invitation/{id}' , [
+    'uses' => 'AmiesController@delete_invitation'
+]);
+
+Route::get('/delete_friend/{id}' , [
+    'uses' => 'AmiesController@delete_friend'
+]);
+
 Route::get('/get_unreadnot', function () {
 
     return Auth::user()->unreadNotifications;

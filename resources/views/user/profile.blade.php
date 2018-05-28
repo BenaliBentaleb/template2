@@ -73,8 +73,10 @@
                 @endif
               
 
-                <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;">
-                    <i class="icon-user-unfollow"></i>Supprimer</button>
+               <!-- <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;">
+                    <i class="icon-user-unfollow"></i>Supprimer
+                </button>-->
+
             </div>
         </div>
         <div class="col-sm-8">
@@ -377,9 +379,9 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="nom">Numéro de téléphone :</label>
+                                <label for="numero_telephone">Numéro de téléphone :</label>
                                 <div class="form-group ">
-                                    <input type="text" name="numero_telephone" value ="{{$user->profile->telephone}}" value="{{ old('numero_telephone') }}" placeholder="Numéro de téléphone" id="nom" class="form-control">
+                                    <input type="text" name="numero_telephone" value ="{{$user->profile->telephone}}" value="{{ old('numero_telephone') }}" placeholder="Numéro de téléphone" id="numero_telephone" class="form-control">
                                   
                                     <span class="text-danger">
                                         <strong id="numero_telephone-error"></strong>
