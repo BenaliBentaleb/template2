@@ -54,12 +54,8 @@ class ProfileController extends Controller
         $this->collection = collect([]);
             
         foreach($departements as  $departement) {
+            $this->collection->put($departement->nom,$departement->formation);
 
-                if(!$this->collection->contains($departement->nom)) {
-
-                   $this->collection->put($departement->nom,$departement->formation);
-                
-                }
         }
 
         return view('user.profile')->with('user',$user)->with('departement',$departements)
@@ -186,6 +182,9 @@ class ProfileController extends Controller
             $user->user->nom =  $splitName[0];
             $user->user->prenom = !empty($splitName[1]) ? $splitName[1] : '';
             $user->user->email = $request->email;
+            if($request->has('password')) {
+                $user->user->password =  bcrypt($request->password);
+            }
             $user->formation_id = $request->formation;
            
             $user->telephone = $request->numero_telephone;

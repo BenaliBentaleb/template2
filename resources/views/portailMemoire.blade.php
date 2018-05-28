@@ -67,6 +67,8 @@
                             <p>Dr. {{$m->encadreur}}
                                 <br>
                             </p>
+                            <h4 style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{$m->counter}}</h4>
+
                             <a  href="{{route('download.memoire',['id'=>$m->id])}}"  class="btn btn-link btn-block" type="button" style="font-size:16px;">
                                 <i class="icon-arrow-down-circle" style="font-size:16px;padding-right:10px;"></i>Télécharger</a>
                         </div>
@@ -116,6 +118,7 @@
                             <p>Dr. {{$m->encadreur}}
                                 <br>
                             </p>
+                            <h4 style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{$m->counter}}</h4>
                             <a  href="{{route('download.memoire',['id'=>$m->id])}}" class="btn btn-link btn-block" type="button" style="font-size:16px;">
                                 <i class="icon-arrow-down-circle" style="font-size:16px;padding-right:10px;"></i>Télécharger</a>
                         </div>

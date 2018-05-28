@@ -312,6 +312,14 @@
                                   
                                
                                 </div>
+                                <label>Mot de Passe :</label>
+                                <div class="form-group ">
+                                    <input type="password" name="password"   placeholder="Votre mot de pass" id="password" class="form-control">
+                                   
+                                   
+                               
+                                </div>
+
                                 <label style="margin-top:7px;">Formation :</label>
                                 <div class="form-group  formation-select">
                                     <select class="form-control" name="formation" value="{{ old('formation') }}">

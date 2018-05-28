@@ -12,6 +12,13 @@ use Response;
 class PortailMemoireController extends Controller
 {
 
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         
@@ -21,7 +28,14 @@ class PortailMemoireController extends Controller
     }
 
     public function download($id) {
+        
         $fichier = PortailMemoire::find($id);
+       
+         $fichier->counter++;
+        
+        
+        $fichier->save();
+       // dd($fichier);
         $headers = ['Content-Type: application/*'];
 
         return response()->download($fichier->fichier, $fichier->titre, $headers);
@@ -72,7 +86,7 @@ class PortailMemoireController extends Controller
             }
             // decode
             $decode = base64_decode($exploded[1]);
-            $filename = time() . str_random(10). "." . $ext;
+            $filename = time() . str_random(7). "." . $ext;
             //path of your local folder
             $path = public_path() . "/files/" . $filename;
             //upload image to your path
