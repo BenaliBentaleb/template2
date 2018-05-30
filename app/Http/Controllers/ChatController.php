@@ -10,9 +10,11 @@ use App\Notifications\NewMessageNotification ;
 
 class ChatController extends Controller
 {
- /* public function getchat() {
-      return view('chat');
-  }*/
+ 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
   public function index()
   {

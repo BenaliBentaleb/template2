@@ -136,7 +136,7 @@
         <h4 style="display:inline-block;margin-top:0px;">{{$user->nom.' '.$user->prenom }}</h4>
     </div>
     <div class="col-sm-4" style="margin-top:13px;margin-bottom:10px;">
-        <form id="user" action="{{route('user.publication',['id'=>$user->id])}}" class="form-group" method="get">
+        <form id="user" action="{{route('user.profile',['id'=>$user->id])}}" class="form-group" method="get">
             <span style="font-size:16px;">Afficher les publications :&nbsp;</span>
 
             <select class="pub-select form-control" name="type" onchange="event.preventDefault();

@@ -232,7 +232,7 @@ export default {
       type: "error" // You also can use 'VueNotifications.types.error' instead of 'error'
     }
   }
-};
+}; 
 </script>
 
 <style>

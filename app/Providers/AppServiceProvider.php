@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         View::share('profile', null);
         View::share('chat', null);
+        View::share('admin', null);
         $departement = Departement::all();
         View::share('departement', $departement);
        

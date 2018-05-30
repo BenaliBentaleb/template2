@@ -98,9 +98,9 @@ Route::get('/allJaimeCommenataire/{id}', [
     'uses' => 'JaimeCommentaireController@jaimeComment',
 ]);
 
-Route::get('/profile{id}', [
+Route::get('/profile/{id}', [
     'uses' => 'ProfileController@profile',
-    'as' => 'user.publication',
+    'as' => 'user.profile',
 ]);
 
 Route::post('/user/upload/picture/{id}', [
@@ -198,3 +198,21 @@ Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.inde
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
 Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
 Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
+
+
+
+
+Route::get('/admin/index', [
+    'uses'=>'AdminController@index',
+    'as'=>'admin.index'
+])->middleware('admin');
+
+Route::get('/admin/utilisateur', [
+    'uses'=>'AdminController@utilisateur',
+    'as'=>'admin.utilisateur'
+])->middleware('admin');
+
+Route::get('/admin/delete/user/{id}', [
+    'uses'=>'AdminController@delete',
+    'as'=>'admin.utilisateur.delete'
+])->middleware('admin');
