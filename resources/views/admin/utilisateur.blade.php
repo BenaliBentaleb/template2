@@ -16,7 +16,7 @@
     <title>NTICien - Admin Panel</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
     <!-- Dashboard Core -->
@@ -241,10 +241,12 @@
                                                 </a>
                                             </td>
                                             <td class="w-0">
+                                               @if($user->id != Auth::id())
                                                 <a class="icon" id="delete-btn" href="{{route('admin.utilisateur.delete',['id'=>$user->id])}}">
                                                     <i class="fe fe-trash text-danger" id="delete"></i>
                                                 </a>
-                                                <input type="hidden" name="id" id="id" value="{{$user->id}}">
+                                                @endif
+                                                
                                             </td>
                                         </tr>
 
@@ -273,9 +275,9 @@
                                     <a class="page-link" href="#">Next</a>
                                 </li>
                             </ul>-->
-                            {{$users->links()}}
+                            
                         </nav>
-
+                        {{$users->links('vendor.pagination.bootstrap-4')}}
 
                     </div>
 

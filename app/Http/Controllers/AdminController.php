@@ -39,7 +39,7 @@ class AdminController extends Controller
     public function utilisateur() {
         
 
-        return view('admin.utilisateur')->with('users',User::paginate(1));
+        return view('admin.utilisateur')->with('users',User::paginate(6));
     }
 
     public function delete($id) {
