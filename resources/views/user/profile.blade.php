@@ -73,8 +73,10 @@
                 @endif
               
 
-                <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;">
-                    <i class="icon-user-unfollow"></i>Supprimer</button>
+               <!-- <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;">
+                    <i class="icon-user-unfollow"></i>Supprimer
+                </button>-->
+
             </div>
         </div>
         <div class="col-sm-8">
@@ -134,7 +136,7 @@
         <h4 style="display:inline-block;margin-top:0px;">{{$user->nom.' '.$user->prenom }}</h4>
     </div>
     <div class="col-sm-4" style="margin-top:13px;margin-bottom:10px;">
-        <form id="user" action="{{route('user.publication',['id'=>$user->id])}}" class="form-group" method="get">
+        <form id="user" action="{{route('user.profile',['id'=>$user->id])}}" class="form-group" method="get">
             <span style="font-size:16px;">Afficher les publications :&nbsp;</span>
 
             <select class="pub-select form-control" name="type" onchange="event.preventDefault();
@@ -312,6 +314,14 @@
                                   
                                
                                 </div>
+                                <label>Mot de Passe :</label>
+                                <div class="form-group ">
+                                    <input type="password" name="password"   placeholder="Votre mot de pass" id="password" class="form-control">
+                                   
+                                   
+                               
+                                </div>
+
                                 <label style="margin-top:7px;">Formation :</label>
                                 <div class="form-group  formation-select">
                                     <select class="form-control" name="formation" value="{{ old('formation') }}">
@@ -369,9 +379,9 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="nom">Numéro de téléphone :</label>
+                                <label for="numero_telephone">Numéro de téléphone :</label>
                                 <div class="form-group ">
-                                    <input type="text" name="numero_telephone" value ="{{$user->profile->telephone}}" value="{{ old('numero_telephone') }}" placeholder="Numéro de téléphone" id="nom" class="form-control">
+                                    <input type="text" name="numero_telephone" value ="{{$user->profile->telephone}}" value="{{ old('numero_telephone') }}" placeholder="Numéro de téléphone" id="numero_telephone" class="form-control">
                                   
                                     <span class="text-danger">
                                         <strong id="numero_telephone-error"></strong>

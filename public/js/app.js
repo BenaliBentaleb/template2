@@ -50265,7 +50265,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50276,6 +50276,18 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50343,6 +50355,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this3.status = "friend";
         }
       });
+    },
+
+    delete_invitation: function delete_invitation() {
+      var _this4 = this;
+
+      axios.get("/delete_invitation/" + this.profile_user_id).then(function (response) {
+        if (response) {
+          _this4.status = 0;
+        }
+      });
+    },
+    delete_friend: function delete_friend() {
+      var _this5 = this;
+
+      axios.get("/delete_friend/" + this.profile_user_id).then(function (response) {
+        console.log(response);
+        if (response) {
+          _this5.status = 0;
+        }
+      });
     }
   }
 });
@@ -50388,6 +50420,22 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
+    _vm.status == "pending"
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-danger btn-block",
+            staticStyle: { width: "75%", margin: "5px auto" },
+            attrs: { type: "button" },
+            on: { click: _vm.delete_invitation }
+          },
+          [
+            _c("i", { staticClass: "icon-user-unfollow" }),
+            _vm._v("Supprimer invitation\n            ")
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _vm.status == "waiting"
       ? _c(
           "span",
@@ -50412,6 +50460,22 @@ var render = function() {
             attrs: { type: "button" }
           },
           [_c("i", { staticClass: "icon-user-follow" }), _vm._v("Amies\n    ")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.status == "friend"
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-danger btn-block",
+            staticStyle: { width: "75%", margin: "5px auto" },
+            attrs: { type: "button" },
+            on: { click: _vm.delete_friend }
+          },
+          [
+            _c("i", { staticClass: "icon-user-unfollow" }),
+            _vm._v("Supprimer \n            ")
+          ]
         )
       : _vm._e()
   ])
@@ -51275,7 +51339,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51426,7 +51490,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-
+              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
               response.data.forEach(function (val) {
                 $("#memoireannee").html(option += "<option value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
@@ -51436,9 +51500,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-
+              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
               response.data.forEach(function (val) {
-                $("#memoireannee").html(option += "<option value='" + val.id + "'>" + val.nom + "</option>");
+                $("#memoireannee").html(option += "<option  value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
               });
             });
@@ -51462,9 +51526,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     uploadMemoire: function uploadMemoire() {
       var _this = this;
 
-      axios.post("/memoire/saveFile", this.memoire).then(function (response) {
-        _this.errors = response.data.errors;
-      });
+      if (!(parseInt(this.memoire.annee) < 2010) && typeof parseInt(this.memoire.annee) === "number") {
+        axios.post("/memoire/saveFile", this.memoire).then(function (response) {
+          //
+
+          _this.errors = response.data.errors ? response.data.errors : null;
+          _this.errors ? _this.errorMemoire() : _this.ajouterMemoire();
+
+          response.data.success ? _this.clearAllInput() : '';
+        });
+      } else {
+
+        this.errorDate();
+      }
+    },
+    clearAllInput: function clearAllInput() {
+
+      this.memoire.titre = "", this.memoire.niveau = "", this.memoire.formation = "", this.memoire.encadreur = "", this.memoire.annee = "", this.memoire.etudiant1 = "", this.memoire.etudiant2 = "", this.memoire.etudiant3 = "", this.memoire.etudiant4 = "", this.memoire.fichier = "";
+    }
+  },
+  notifications: {
+    ajouterMemoire: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Ajouter!",
+      message: "Votre memoire est ajouté avec success",
+      type: "success" // You also can use 'VueNotifications.types.error' instead of 'error'
+    },
+    errorMemoire: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Les champs est vide!",
+      message: "Svp remplie tous les champs",
+      type: "error" // You also can use 'VueNotifications.types.error' instead of 'error'
+    },
+    errorDate: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Date invalide !",
+      message: "Entrer une date superieur 2009",
+      type: "error" // You also can use 'VueNotifications.types.error' instead of 'error'
     }
   }
 });
@@ -51520,12 +51618,6 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.errors.titre
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _c("strong", [_vm._v(_vm._s(_vm.errors.titre[0]))])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _vm._m(1),
                 _vm._v(" "),
@@ -51570,9 +51662,11 @@ var render = function() {
                         }
                       },
                       [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("Type")
-                        ]),
+                        _c(
+                          "option",
+                          { attrs: { value: "", selected: "", disabled: "" } },
+                          [_vm._v("Type")]
+                        ),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "licence" } }, [
                           _vm._v("Licence")
@@ -51686,7 +51780,7 @@ var render = function() {
                       staticClass: "form-control",
                       staticStyle: { width: "80%", display: "inline-block" },
                       attrs: {
-                        type: "text",
+                        type: "number",
                         required: "",
                         placeholder: "Année",
                         maxlength: "4",

@@ -13,6 +13,7 @@ use App\Publication;
 use App\Reclamation;
 use App\Role;
 use App\Traits\friendable;
+use App\Event;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -98,6 +99,10 @@ class User extends Authenticatable
     public function portailmemoires()
     {
         return $this->hasMany(PortailMemoire::class);
+    }
+
+    public function events() {
+        return $this->hasMany(Event::class);
     }
 
     public function sendPasswordResetNotification($token)

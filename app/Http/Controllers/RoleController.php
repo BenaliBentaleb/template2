@@ -10,7 +10,7 @@ class RoleController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -40,7 +40,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = new Role;
+        $role->user_id = $request->user_id;
+        $role->nom = $request->nom;
+        $role->save();
+        return redirect()->back();
     }
 
     /**
@@ -72,9 +76,13 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        //
+        $role =  Role::find($id);
+        $role->user_id = $request->user_id;
+        $role->nom = $request->nom;
+        $role->save();
+        return redirect()->back();
     }
 
     /**
@@ -83,8 +91,10 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        //
+        $role =  Role::find($id);
+        $role->delete();
+        return redirect()->back();
     }
 }

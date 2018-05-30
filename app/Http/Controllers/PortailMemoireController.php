@@ -12,10 +12,33 @@ use Response;
 class PortailMemoireController extends Controller
 {
 
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        // $departement = Departement::all();
-        return view('portailMemoire'); //->with('departement',$departement);
+        
+        $memoire = PortailMemoire::all();
+
+        return view('portailMemoire')->with('memoire',$memoire); 
+    }
+
+    public function download($id) {
+        
+        $fichier = PortailMemoire::find($id);
+       
+         $fichier->counter++;
+        
+        
+        $fichier->save();
+       // dd($fichier);
+        $headers = ['Content-Type: application/*'];
+
+        return response()->download($fichier->fichier, $fichier->titre, $headers);
     }
 
     public function show()
@@ -36,9 +59,10 @@ class PortailMemoireController extends Controller
 
     public function saveFile(Request $request)
     {
+        
 
         $validator = Validator::make($request->all(), PortailMemoire::rules(), PortailMemoire::messages());
-
+       
         if ($validator->passes()) {
             $memoire = new PortailMemoire;
             $memoire->user_id = Auth::id();
@@ -62,13 +86,13 @@ class PortailMemoireController extends Controller
             }
             // decode
             $decode = base64_decode($exploded[1]);
-            $filename = time() . "." . $ext;
+            $filename = time() . str_random(7). "." . $ext;
             //path of your local folder
             $path = public_path() . "/files/" . $filename;
             //upload image to your path
             if (file_put_contents($path, $decode)) {
                 $memoire->fichier = "files/" . $filename;
-
+               // dd($memoire->fichier) ;
                 $memoire->save();
                 //return $memoire;
                 return Response::json(['success' => '1']);

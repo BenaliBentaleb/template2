@@ -30,6 +30,7 @@
 <body style="font-family:'Nunito Sans', sans-serif;background-color:#edf2f6;">
     <div id="app">
 
+      
         <nav class="navbar navbar-default navigation-clean-search navbar-fixed-top">
             <div class="container">
 
@@ -114,6 +115,9 @@
 
             </div>
         </nav>
+       
+
+       
         @yield('chat')
         <div style="margin-top:20px;">
          
@@ -288,5 +292,6 @@
 
 
 </body>
+
 
 </html>

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class FormationController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,12 +35,20 @@ class FormationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * 
+     * 
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+       $formation = new Formation;
+       $formation->departement_id = $request->departement;
+       $formation->nom = $request->nom;
+       $formation->type = $request->type;
+       $formation->save();
+       return redirect()->back();
     }
 
     /**
@@ -44,9 +57,10 @@ class FormationController extends Controller
      * @param  \App\Formation  $formation
      * @return \Illuminate\Http\Response
      */
-    public function show(Formation $formation)
+    public function show($id)
     {
-        //
+        $formation = Formation::find($id);
+        return $formation;
     }
 
     /**
@@ -55,9 +69,9 @@ class FormationController extends Controller
      * @param  \App\Formation  $formation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Formation $formation)
+    public function edit(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -67,9 +81,14 @@ class FormationController extends Controller
      * @param  \App\Formation  $formation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Formation $formation)
+    public function update(Request $request, $id)
     {
-        //
+        $formation = Formation::find($id);
+        $formation->departement_id = $request->departement;
+        $formation->nom = $request->nom;
+        $formation->type = $request->type;
+        $formation->save();
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +97,10 @@ class FormationController extends Controller
      * @param  \App\Formation  $formation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Formation $formation)
+    public function destroy($id)
     {
-        //
+        $formation = Formation::find($id);
+        $formation->delete();
+        return redirect()->back();
     }
 }

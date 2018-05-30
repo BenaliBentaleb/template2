@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Formation;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,29 +25,34 @@ class PortailMemoire extends Model
     {
         return [
 
-            'formation_id' => 'required',
+            'formation' => 'required',
             'titre' => 'required',
-            'type' => 'required',
-            'date' => 'required',
+            'niveau' => 'required',
+            'annee' => 'required',
             'encadreur' => 'required',
             'etudiant1' => 'required',
             'fichier' => 'required',
-           
 
         ];
     }
     public static function messages()
     {
         return [
-            'formation_id.required' => 'Le champ Specialité est vide !',
+            'formation.required' => 'Le champ Specialité est vide !',
             'titre.required' => 'Le champ titre est vide !',
 
-            'type.required' => 'Le champ Niveau est vide !',
-            'date.required' => 'Le champ Date  est vide !',
+            'niveau.required' => 'Le champ Niveau est vide !',
+            'annee.required' => 'Le champ Date  est vide !',
             'encadreur.required' => 'Le champ Encadreur est vide !',
             'etudiant1.required' => 'Le champ Etudiant est vide !',
             'fichier.required' => 'Le champ Document est vide !',
 
         ];
+    }
+    // get formation name  ex: 1 => Ti
+    public function getFormation($id)
+    {
+        return Formation::find($id)->nom;
+
     }
 }

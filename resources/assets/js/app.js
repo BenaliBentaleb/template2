@@ -89,6 +89,7 @@ const app = new Vue({
                 );
                 //  this.$toaster.success(user.name+' is offline');
               });
+              
         
           }
 });

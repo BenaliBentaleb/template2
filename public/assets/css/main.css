@@ -1,0 +1,41 @@
+.mb-4,
+.my-4 {
+    margin-bottom: 0 !important;
+}
+
+.role-admin,
+.role-etudiant,
+.role-prof,
+.role-club {
+    font-size: 12px;
+    color: #fff;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 13px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.role-admin {
+    background-color: #ff5858;
+}
+
+.role-prof {
+    background-color: #9364e0;
+}
+
+.role-club {
+    background-color: #6ee064;
+}
+
+.role-etudiant {
+    background-color: #45aaf2;
+}
+.users-table.card-table tr td:last-child, .card-table tr th:last-child{
+    padding-right: 1rem !important;
+}
+.card{
+    margin-bottom: 1rem !important;
+}

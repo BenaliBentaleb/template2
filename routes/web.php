@@ -98,9 +98,9 @@ Route::get('/allJaimeCommenataire/{id}', [
     'uses' => 'JaimeCommentaireController@jaimeComment',
 ]);
 
-Route::get('/profile{id}', [
+Route::get('/profile/{id}', [
     'uses' => 'ProfileController@profile',
-    'as' => 'user.publication',
+    'as' => 'user.profile',
 ]);
 
 Route::post('/user/upload/picture/{id}', [
@@ -135,6 +135,14 @@ Route::get('/accept_friend/{id}', [
 
     'uses' => 'AmiesController@accept_friend',
     'as' => 'accept_friend',
+]);
+
+Route::get('/delete_invitation/{id}' , [
+    'uses' => 'AmiesController@delete_invitation'
+]);
+
+Route::get('/delete_friend/{id}' , [
+    'uses' => 'AmiesController@delete_friend'
 ]);
 
 Route::get('/get_unreadnot', function () {
@@ -180,10 +188,35 @@ Route::post('/memoire/saveFile',[
 
 ]);
 
+Route::get('/memoire/download/{id}',[
+    'uses'=>'PortailMemoireController@download',
+    'as'=>'download.memoire'
+
+]);
+
 Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
 Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
 Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
 
 
+<<<<<<< HEAD
 //php artisan migrate:fresh
+=======
+
+
+Route::get('/admin/index', [
+    'uses'=>'AdminController@index',
+    'as'=>'admin.index'
+])->middleware('admin');
+
+Route::get('/admin/utilisateur', [
+    'uses'=>'AdminController@utilisateur',
+    'as'=>'admin.utilisateur'
+])->middleware('admin');
+
+Route::get('/admin/delete/user/{id}', [
+    'uses'=>'AdminController@delete',
+    'as'=>'admin.utilisateur.delete'
+])->middleware('admin');
+>>>>>>> daacbcc7969fb75e19941f347325af26dee4b4a8

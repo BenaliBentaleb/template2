@@ -9,7 +9,7 @@ class ModuleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -39,7 +39,12 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $module = new Module;
+        $module->formation_id = $request->formation;
+        $module->semestre_id = $request->semestre;
+        $module->nom = $request->nom;
+        $module->save();
+        return redrect()->back();
     }
 
     /**
@@ -71,9 +76,14 @@ class ModuleController extends Controller
      * @param  \App\Module  $module
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Module $module)
+    public function update(Request $request,$id)
     {
-        //
+        $module =  Module::find($id);
+        $module->formation_id = $request->formation;
+        $module->semestre_id = $request->semestre;
+        $module->nom = $request->nom;
+        $module->save();
+        return redrect()->back();
     }
 
     /**
@@ -82,8 +92,10 @@ class ModuleController extends Controller
      * @param  \App\Module  $module
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Module $module)
+    public function destroy($id)
     {
-        //
+        $module =  Module::find($id);
+        $module->delete();
+        return redrect()->back();
     }
 }
