@@ -200,9 +200,6 @@ Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
 Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
 
 
-<<<<<<< HEAD
-//php artisan migrate:fresh
-=======
 
 
 Route::get('/admin/index', [
@@ -219,4 +216,3 @@ Route::get('/admin/delete/user/{id}', [
     'uses'=>'AdminController@delete',
     'as'=>'admin.utilisateur.delete'
 ])->middleware('admin');
->>>>>>> daacbcc7969fb75e19941f347325af26dee4b4a8

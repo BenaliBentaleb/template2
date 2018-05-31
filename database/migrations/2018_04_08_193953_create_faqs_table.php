@@ -17,8 +17,6 @@ class CreateFaqsTable extends Migration
             $table->increments('id');
             $table->integer('publication_id')->unsigned();
             $table->boolean('meilleur_reponse');
-            
-      
             $table->timestamps();
         });
     }

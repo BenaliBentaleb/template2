@@ -257,7 +257,8 @@
             <div class="content">
                 {!! $publication->contenu !!}
            
-            <br></div><img class="img-responsive content-image" src="assets/img/image-left-sub.png">
+            <br>
+            </div>
         </div>
 
         @if( count($publication->publication_avec_fichier))
