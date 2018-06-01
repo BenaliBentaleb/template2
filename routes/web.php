@@ -280,3 +280,35 @@ Route::get('/admin/formation/delete/{id}', [
     'as'=>'admin.formation.delete'
 ])->middleware('admin');
 /* END SECTION FORMATION */
+
+/* START SECTION MODULES */
+Route::get('/admin/module', [
+    'uses'=>'AdminController@module',
+    'as'=>'admin.module'
+])->middleware('admin');
+
+Route::get('/admin/module/ajout', [
+    'uses'=>'AdminController@ajoutModule',
+    'as'=>'admin.module.ajout'
+])->middleware('admin');
+
+Route::post('/admin/module/store', [
+    'uses'=>'AdminController@storeModule',
+    'as'=>'admin.module.store'
+])->middleware('admin');
+
+Route::post('/admin/module/edit/{id}', [
+    'uses'=>'AdminController@editModule',
+    'as'=>'admin.module.edit'
+])->middleware('admin');
+
+Route::get('/admin/modifie/module/{id}', [
+    'uses'=>'AdminController@modifieModule',
+    'as'=>'admin.module.modifie'
+])->middleware('admin');
+
+Route::get('/admin/module/delete/{id}', [
+    'uses'=>'AdminController@deleteModule',
+    'as'=>'admin.module.delete'
+])->middleware('admin');
+/* END SECTION MODULES */

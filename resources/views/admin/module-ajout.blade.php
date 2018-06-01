@@ -27,10 +27,14 @@
     <link href="{{asset('assets/css/dashboard.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/main.css')}}" rel="stylesheet" />
 
+
     <script src="{{asset('assets/js/vendors/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+
+    <script src="{{asset('assets/js/core.js')}}"></script>
+    <script src="{{asset('assets/js/summernote-bs4.min.js')}}"></script>
 
 </head>
 
@@ -119,14 +123,7 @@
             <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-2 ml-auto">
-                            <form class="input-icon my-3 my-lg-0">
-                                <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
-                                <div class="input-icon-addon">
-                                    <i class="fe fe-search"></i>
-                                </div>
-                            </form>
-                        </div>
+                        
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                                 <li class="nav-item">
@@ -142,7 +139,7 @@
                                         <i class="fe fe-box"></i> Départements</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.formation')}}" class="nav-link active">
+                                    <a href="{{route('admin.formation')}}" class="nav-link ">
                                         <i class="fe fe-briefcase"></i> Formations</a>
                                 </li>
                                 <li class="nav-item">
@@ -158,8 +155,13 @@
                                         <i class="fe fe-alert-triangle"></i> Réclamations</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./memoires.html" class="nav-link">
+                                    <a href="" class="nav-link">
                                         <i class="fe fe-book"></i> Mémoires</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.module') }}" class="nav-link active">
+                                        <i class="fe fe-book-open"></i> Modules</a>
                                 </li>
                             </ul>
                         </div>
@@ -169,87 +171,68 @@
 
             <div class="my-3 my-md-4">
                 <div class="container">
-                    <div class="col-9 mx-auto">
+                    <div class="col-6 mx-auto">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Formations</h3>
+                                <h3 class="card-title">Ajouter module</h3>
 
-                                <a href="{{route('admin.formation.ajout')}}" class="btn btn-azure ml-auto">Ajouter formation</a>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table card-table table-vcenter users-table text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="w-1">Id</th>
-                                            <th>Nom</th>
-                                            <th>Type</th>
-                                            <th>Departement</th>
-                                            <th>Créer à</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($formations as $formation)
-                                        <tr>
-                                            <td>
-                                                <span>{{$formation->id}}</span>
-                                            </td>
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('admin.module.store')}}">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <label class="form-label">Nom</label>
+                                        <input type="text" class="form-control" name="nom" required >
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Formation</label>
+                                        <select name="formation_id" class="form-control custom-select" required>
+                                            
+                                            @foreach($departements as $departement)
+                                                <optgroup label="Déprartement : {{ $departement->nom }}">
+                                                    @foreach($departement->formation as $formation)
+                                                        <option value="{{ $formation->id }}" >{{ $formation->nom }}</option>
+                                                    @endforeach                                            
+                                                </optgroup>
+                                            @endforeach
+                                        </select>
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Semestre</label>
+                                        <select name="semestre_id" class="form-control custom-select" required>
+                                            
+                                            @foreach($semestres as $semestre)
+                                                <option value="{{ $semestre->id }}" >
+                                                    {{ $semestre->nom }}   
+                                                    @if($semestre->id == 1 || $semestre->id == 2)
+                                                        <span class="text-muted"> ( 1er année )</span>
+                                                    @elseif($semestre->id == 3 || $semestre->id == 4)
+                                                        <span class="text-muted">( 2eme année )</span>
+                                                    @elseif($semestre->id == 5 ||  $semestre->id == 6) 
+                                                        <span class="text-muted">( Licence ) </span>
+                                                    @elseif($semestre->id == 7 || $semestre->id == 8)
+                                                        <span class="text-muted">( Master 1 ) </span>
+                                                    @elseif($semestre->id == 9 || $semestre->id == 10)
+                                                        <span class="text-muted">( Master 2 ) </span>
+                                                    @endif
+                                                
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-                                            <td>
-                                                <span>{{$formation->nom}}</span>
-                                            </td>
 
-                                            <td>
-                                                <span>{{$formation->type}}</span>
-                                            </td>
-                                            <td>
-                                                <span>{{ $formation->departement->nom}}</span>
-                                            </td>
-                                            <td>
-                                                {{$formation->created_at->toFormattedDateString()}}
-                                            </td>
-
-                                            <td class="text-right">
-                                                <a class="icon" href="{{route('admin.formation.modifie',['id'=>$formation->id])}}">
-                                                    <i class="fe fe-edit"></i>
-                                                </a>
-                                            </td>
-                                            <td class="w-0">
-                                                <a class="icon" id="delete-formation" href="{{route('admin.formation.delete',['id'=>$formation->id])}}">
-                                                    <i class="fe fe-trash text-danger" id="delete"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
                             </div>
+                            <div class="card-footer">
+                                <div class="btn-list text-right">
+                                    <button type="submit" class="btn btn-primary">Sauvgarder</button>
+                                    <a href="#" class="btn btn-secondary" onclick="window.history.back(); return false;">Annuler</a>
+                                </div>
+                            </div>
+                            </form>
                         </div>
 
-                        <nav aria-label="Page navigation ">
-                            <!-- <ul class="pagination justify-content-center">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Previous</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">1</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">3</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>-->
-
-                        </nav>
-                        {{$formations->links('vendor.pagination.bootstrap-4')}}
 
                     </div>
 
@@ -257,46 +240,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        var deleter = {
-
-            linkSelector: "a#delete-formation",
-
-            init: function () {
-                $(this.linkSelector).on('click', {
-                    self: this
-                }, this.handleClick);
-            },
-
-            handleClick: function (event) {
-                event.preventDefault();
-
-                var self = event.data.self;
-                var link = $(this);
-
-                swal({
-                        title: "Etes-Vous sur ?",
-                        text: "Apres la suppression, TOUS le données relative à cette formation seront perdu !",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            /*  swal("Poof! Your imaginary file has been deleted!", {
-                                  icon: "success",
-                              });*/
-                            window.location = link.attr('href');
-                        } else {
-                            swal("votre donneé est protegé!");
-                        }
-                    });
-
-            },
-        };
-
-        deleter.init();
-    </script>
 </body>
 
 </html>

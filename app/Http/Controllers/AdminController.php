@@ -11,6 +11,8 @@ use App\Reclamation;
 use App\Event;
 use App\Departement;
 use App\Formation;
+use App\Module;
+use App\Semestre;
 class AdminController extends Controller
 {
    
@@ -89,49 +91,96 @@ class AdminController extends Controller
     } 
     /*END SECTION DEPARTEMENT */
 
-        /*START SECTION FORMATION */
+    /*START SECTION FORMATION */
 
-        public function formation() {
-            return view('admin.formation')->with('formations',Formation::paginate(7));
-        }
+    public function formation() {
+        return view('admin.formation')->with('formations',Formation::paginate(7));
+    }
     
-        public function ajoutFormation() {
-            return view('admin.formation-ajout')->with('departements',Departement::all());
-        }
+    public function ajoutFormation() {
+        return view('admin.formation-ajout')->with('departements',Departement::all());
+    }
     
-        public function modifieFormation($id) {
-            return view('admin.formation-modifie')->with('formation',Formation::find($id))
+    public function modifieFormation($id) {
+        return view('admin.formation-modifie')->with('formation',Formation::find($id))
                                                     ->with('departements',Departement::all());
-        }
+    }
     
-        public function storeFormation(Request $request) {
+    public function storeFormation(Request $request) {
             
-           $formation = new Formation;
-           $formation->nom = $request->nom;
-           $formation->departement_id = $request->departement;
-           $formation->type = $request->type;
-           $formation->save();
+        $formation = new Formation;
+        $formation->nom = $request->nom;
+        $formation->departement_id = $request->departement;
+        $formation->type = $request->type;
+        $formation->save();
     
-           return redirect()->route('admin.formation');
-        } 
+        return redirect()->route('admin.formation');
+    } 
     
-        public function editFormation(Request $request, $id) {
+    public function editFormation(Request $request, $id) {
             
-            $formation = Formation::find($id);
-            $formation->nom = $request->nom;
-            $formation->departement_id = $request->departement;
-            $formation->type = $request->type;
-            $formation->save();
+        $formation = Formation::find($id);
+        $formation->nom = $request->nom;
+        $formation->departement_id = $request->departement;
+        $formation->type = $request->type;
+        $formation->save();
      
-            return redirect()->route('admin.formation');
-         } 
+        return redirect()->route('admin.formation');
+    } 
     
-         public function deleteFormation($id) {
+    public function deleteFormation($id) {
             
-            $formation = Formation::find($id);
-            $formation->delete();
-           return redirect()->back();
-        } 
-        /*END SECTION FORMATION */
+        $formation = Formation::find($id);
+        $formation->delete();
+        return redirect()->back();
+    } 
+    /*END SECTION FORMATION */
 
+    /*START SECTION MODULES */
+
+    public function module() {
+        return view('admin.module')->with('modules',Module::paginate(7));
+    }
+        
+    public function ajoutModule() {
+        return view('admin.module-ajout')->with('departements',Departement::all())
+                                         ->with('semestres', Semestre::all());
+    }
+        
+    public function modifieModule($id) {
+        return view('admin.module-modifie')->with('module',Module::find($id))
+                                            ->with('formations',Formation::all())
+                                            ->with('semestres', Semestre::all());
+    }
+        
+    public function storeModule(Request $request) {
+                
+        $module = new Module;
+        $module->nom = $request->nom;
+        $module->formation_id = $request->formation_id;
+        $module->semestre_id = $request->semestre_id;
+        $module->save();
+        
+        return redirect()->route('admin.module');
+    } 
+        
+    public function editModule(Request $request, $id) {
+                
+        $module = Module::find($id);
+        $module->nom = $request->nom;
+        $module->formation_id = $request->formation_id;
+        $module->semestre_id = $request->semestre_id;
+        $module->save();
+         
+        return redirect()->route('admin.module');
+    } 
+        
+    public function deleteModule($id) {
+                
+        $module = Module::find($id);
+        $module->delete();
+        return redirect()->back();
+    } 
+    /*END SECTION MODULES */
+    
 }

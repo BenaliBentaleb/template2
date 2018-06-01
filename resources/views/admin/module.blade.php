@@ -31,7 +31,6 @@
     <script src="{{asset('assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
 </head>
 
 <body class="">
@@ -119,14 +118,7 @@
             <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-2 ml-auto">
-                            <form class="input-icon my-3 my-lg-0">
-                                <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
-                                <div class="input-icon-addon">
-                                    <i class="fe fe-search"></i>
-                                </div>
-                            </form>
-                        </div>
+                        
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                                 <li class="nav-item">
@@ -138,11 +130,11 @@
                                         <i class="fe fe-users"></i> Utilisateurs</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.departement')}}" class="nav-link ">
+                                    <a href="{{route('admin.departement')}}" class="nav-link">
                                         <i class="fe fe-box"></i> Départements</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.formation')}}" class="nav-link active">
+                                    <a href="{{route('admin.formation')}}" class="nav-link ">
                                         <i class="fe fe-briefcase"></i> Formations</a>
                                 </li>
                                 <li class="nav-item">
@@ -161,6 +153,10 @@
                                     <a href="./memoires.html" class="nav-link">
                                         <i class="fe fe-book"></i> Mémoires</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.module') }}" class="nav-link active">
+                                        <i class="fe fe-book-open"></i> Modules</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -172,9 +168,9 @@
                     <div class="col-9 mx-auto">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Formations</h3>
+                                <h3 class="card-title">Modules</h3>
 
-                                <a href="{{route('admin.formation.ajout')}}" class="btn btn-azure ml-auto">Ajouter formation</a>
+                                <a href="{{route('admin.module.ajout')}}" class="btn btn-azure ml-auto">Ajouter module</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table card-table table-vcenter users-table text-nowrap">
@@ -182,41 +178,41 @@
                                         <tr>
                                             <th class="w-1">Id</th>
                                             <th>Nom</th>
-                                            <th>Type</th>
-                                            <th>Departement</th>
+                                            <th>Formation</th>
+                                            <th>Semestre</th>
                                             <th>Créer à</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($formations as $formation)
+                                        @foreach($modules as $module)
                                         <tr>
                                             <td>
-                                                <span>{{$formation->id}}</span>
+                                                <span>{{$module->id}}</span>
                                             </td>
 
                                             <td>
-                                                <span>{{$formation->nom}}</span>
+                                                <span>{{$module->nom}}</span>
                                             </td>
 
                                             <td>
-                                                <span>{{$formation->type}}</span>
+                                                <span>{{$module->formation->nom}}</span>
                                             </td>
                                             <td>
-                                                <span>{{ $formation->departement->nom}}</span>
+                                                <span>{{ $module->semestre->nom}}</span>
                                             </td>
                                             <td>
-                                                {{$formation->created_at->toFormattedDateString()}}
+                                                {{$module->created_at->toFormattedDateString()}}
                                             </td>
 
                                             <td class="text-right">
-                                                <a class="icon" href="{{route('admin.formation.modifie',['id'=>$formation->id])}}">
+                                                <a class="icon" href="{{route('admin.module.modifie',['id'=>$module->id])}}">
                                                     <i class="fe fe-edit"></i>
                                                 </a>
                                             </td>
                                             <td class="w-0">
-                                                <a class="icon" id="delete-formation" href="{{route('admin.formation.delete',['id'=>$formation->id])}}">
+                                                <a class="icon" id="delete-module" href="{{route('admin.module.delete',['id'=>$module->id])}}">
                                                     <i class="fe fe-trash text-danger" id="delete"></i>
                                                 </a>
                                             </td>
@@ -249,7 +245,7 @@
                                     </ul>-->
 
                         </nav>
-                        {{$formations->links('vendor.pagination.bootstrap-4')}}
+                        {{$modules->links('vendor.pagination.bootstrap-4')}}
 
                     </div>
 
@@ -257,10 +253,11 @@
             </div>
         </div>
     </div>
+
     <script type="text/javascript">
         var deleter = {
 
-            linkSelector: "a#delete-formation",
+            linkSelector: "a#delete-module",
 
             init: function () {
                 $(this.linkSelector).on('click', {
@@ -276,7 +273,7 @@
 
                 swal({
                         title: "Etes-Vous sur ?",
-                        text: "Apres la suppression, TOUS le données relative à cette formation seront perdu !",
+                        text: "Apres la suppression, TOUS le données relative à ce module seront perdu !",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
