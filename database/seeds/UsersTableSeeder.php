@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('123456')
         ]);
 
-        App\Profile::create([
+       App\Profile::create([
             'user_id' => $user->id,
             'photo_profile'=> 'assets/img/team-1-copyright-485x598.jpg',
             'telephone' => '066666666',
@@ -73,7 +73,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('123456')
         ]);
 
-        App\Profile::create([
+       App\Profile::create([
             'user_id' => $user->id,
             'photo_profile'=> 'assets/img/team-1-copyright-485x598.jpg',
             'telephone' => '066666666',
@@ -84,7 +84,7 @@ class UsersTableSeeder extends Seeder
             'youtube' =>'youtube.com',
             'instagram' =>'instagram.com',
             'twitter' =>'twitter.com',
-        ]);
+        ]); 
         App\Role::create([
             'user_id'=> $user->id,
             'nom' =>'Gérant club'

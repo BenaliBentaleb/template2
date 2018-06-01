@@ -13,7 +13,7 @@ class PublicationsTableSeeder extends Seeder
     {
        
         App\Publication::create([
-            'user_id' => 1,
+            'user_id' => 9,
             'module_id' => 1,
             'titre' => 'Use any of the available button classes to quickly create a styled button.',
             'contenu' => '<p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies elit vel placerat pellentesque.
@@ -31,7 +31,7 @@ class PublicationsTableSeeder extends Seeder
         ]);
 
         App\Publication::create([
-            'user_id' => 2,
+            'user_id' => 8,
             'module_id' => 1,
             'titre' => 'FAQ blablablaa.',
             'contenu' => '<p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies elit vel placerat pellentesque.
@@ -43,7 +43,7 @@ class PublicationsTableSeeder extends Seeder
 
         
         App\Publication::create([
-            'user_id' => 3,
+            'user_id' => 10,
             'module_id' => 1,
             'titre' => 'Sondage blablablaa.',
             'contenu' => '<p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies elit vel placerat pellentesque.

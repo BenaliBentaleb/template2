@@ -14,12 +14,14 @@ class FormationsTableSeeder extends Seeder
      
        App\Formation::create([
             'departement_id' => 1,
-            'nom' =>'L1 - Tronc Commun'
+            'nom' =>'L1 - Tronc Commun',
+            'type' => 'tronc cummun'
        ]);
 
        App\Formation::create([
         'departement_id' => 1,
-        'nom' =>'L2 - Tronc Commun'
+        'nom' =>'L2 - Tronc Commun',
+        'type' => 'tronc cummun'
         ]);
 
         App\Formation::create([
@@ -92,6 +94,7 @@ class FormationsTableSeeder extends Seeder
         App\Formation::create([
             'departement_id' => 3,
             'nom' =>'Master 2 - STIW',
+            'type' => 'master'
         ]);
     }
 }

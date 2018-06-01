@@ -16,22 +16,29 @@
     <title>NTICien - Admin Panel</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
+    <!--  <script src="./assets/js/require.min.js"></script>
+    <script>
+        requirejs.config({
+            baseUrl: '.'
+        });
+    </script> -->
     <!-- Dashboard Core -->
     <link href="{{asset('assets/css/dashboard.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/main.css')}}" rel="stylesheet" />
 
+
     <script src="{{asset('assets/js/vendors/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+
+    <script src="{{asset('assets/js/core.js')}}"></script>
+    <script src="{{asset('assets/js/summernote-bs4.min.js')}}"></script>
 
 </head>
 
-<body>
-
+<body class="">
     <div class="page">
         <div class="page-main">
             <div class="header py-4">
@@ -131,15 +138,15 @@
                                         <i class="fe fe-home"></i> Acceuil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.utilisateur')}}" class="nav-link active">
+                                    <a href="{{route('admin.utilisateur')}}" class="nav-link">
                                         <i class="fe fe-users"></i> Utilisateurs</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.departement')}}" class="nav-link">
+                                    <a href="{{route('admin.departement')}}" class="nav-link ">
                                         <i class="fe fe-box"></i> Départements</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.formation')}}" class="nav-link">
+                                    <a href="{{route('admin.formation')}}" class="nav-link active">
                                         <i class="fe fe-briefcase"></i> Formations</a>
                                 </li>
                                 <li class="nav-item">
@@ -166,118 +173,58 @@
 
             <div class="my-3 my-md-4">
                 <div class="container">
-                    <div class="col-12">
+                    <div class="col-6 mx-auto">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Utilisateurs</h3>
+                                <h3 class="card-title">Ajouter formation</h3>
 
-                                <a href="./ajouter-utilisateur.html" class="btn btn-azure ml-auto">Ajouter utilisateur</a>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table card-table table-vcenter users-table text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="w-1">Id</th>
-                                            <th class="w-1"></th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Email</th>
-                                            <th>Créer à</th>
-                                            <th>Rôles</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($users as $user)
-                                        <tr>
-                                            <td>
-                                                <span class="text-muted">{{$user->id}}</span>
-                                            </td>
-                                            <td>
-                                                <span class="avatar" style="background-image: url({{$user->profile->photo_profile}})"></span>
-                                            </td>
-                                            <td>
-                                                <a href="invoice.html" class="text-inherit">{{$user->nom}}</a>
-                                            </td>
-                                            <td>
-                                                {{$user->prenom}}
-                                            </td>
-                                            <td>
-                                                {{$user->email}}
-                                            </td>
-                                            <td>
-                                                {{$user->created_at->toFormattedDateString()}}
-                                            </td>
-                                            <td>
-                                                @foreach($user->roles as $role) @if($role->nom =="Administrateur")
-                                                <span class="role-admin">Administrateur</span>
-                                                @endif @if($role->nom =="Enseignant")
-                                                <span class="role-prof">Enseignant</span>
-                                                @endif @if($role->nom =="Gérant Club")
-                                                <span class="role-club">Gérant Club</span>
-                                                @endif @if($role->nom =="Etudiant")
-                                                <span class="role-etudiant">Etudiant</span>
-                                                @endif @endforeach
-                                            </td>
-
-                                            <td class="text-right">
-
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="javascript:void(0)" class="dropdown-item">
-                                                            <i class="dropdown-icon fe fe-edit-3"></i> Modifie rôles </a>
-                                                        <a href="{{route('user.profile',['id'=>$user->id])}}" class="dropdown-item">
-                                                            <i class="dropdown-icon fe fe-user"></i> Voire profile </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a class="icon" href="javascript:void(0)">
-                                                    <i class="fe fe-edit"></i>
-                                                </a>
-                                            </td>
-                                            <td class="w-0">
-                                               @if($user->id != Auth::id())
-                                                <a class="icon" id="delete-btn" href="{{route('admin.utilisateur.delete',['id'=>$user->id])}}">
-                                                    <i class="fe fe-trash text-danger" id="delete"></i>
-                                                </a>
-                                                @endif
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('admin.formation.store')}}">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <label class="form-label">Nom</label>
+                                        <input type="text" class="form-control" name="nom" required>
+                                    </div>
+                                    <div class="form-group">
+                                            <label class="form-label">Departement</label>
+                                            <select name="departement" class="form-control custom-select">
                                                 
-                                            </td>
-                                        </tr>
+                                                @foreach($departements as $departement)
+                                                    <option value="{{ $departement->id }}">{{ $departement->nom }}</option>
+                                                @endforeach
+                                            </select>
+                                            
+                                        </div>
+                                    <div class="form-group">
+                                        <div class="form-label">Type de formation</div>
+                                        <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" name="type" value="tronc-commun" checked>
+                                                <span class="custom-control-label">Tronc commun</span>
+                                            </label>
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" name="type" value="licence">
+                                                <span class="custom-control-label">Licence</span>
+                                            </label>
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" name="type" value="master">
+                                                <span class="custom-control-label">Master</span>
+                                            </label>
+                                        </div>
+                                    </div>
 
-                                        @endforeach
 
-                                    </tbody>
-                                </table>
                             </div>
+                            <div class="card-footer">
+                                <div class="btn-list text-right">
+                                    <button type="submit" class="btn btn-primary">Sauvgarder</button>
+                                    <a href="#" class="btn btn-secondary" onclick="window.history.back(); return false;">Annuler</a>
+                                </div>
+                            </div>
+                            </form>
                         </div>
 
-                        <nav aria-label="Page navigation ">
-                           <!-- <ul class="pagination justify-content-center">
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Previous</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>-->
-                            
-                        </nav>
-                        {{$users->links('vendor.pagination.bootstrap-4')}}
 
                     </div>
 
@@ -285,45 +232,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        var deleter = {
-
-            linkSelector: "a#delete-btn",
-
-            init: function () {
-                $(this.linkSelector).on('click', {
-                    self: this
-                }, this.handleClick);
-            },
-
-            handleClick: function (event) {
-                event.preventDefault();
-
-                var self = event.data.self;
-                var link = $(this);
-
-                swal({
-                        title: "Etes-Vous sur ?",
-                        text: "Apres la suppression, you will not be able to recover this imaginary file!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                          /*  swal("Poof! Your imaginary file has been deleted!", {
-                                icon: "success",
-                            });*/ window.location = link.attr('href');
-                        } else {
-                            swal("votre donneé est protegé!");
-                        }
-                    });
-
-            },
-        };
-
-        deleter.init();
-    </script>
 </body>
 
 </html>

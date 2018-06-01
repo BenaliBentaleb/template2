@@ -162,7 +162,7 @@
             <div class="row">
                 <div class="col-xs-10" style="padding-right:0;">
                     <a href="profile.html">
-                        <img class="publisher-image" style="background-image:url(&quot;{{asset('assets/img/customer.png')}}&quot;);width:55px;height:55px;margin-top:15px;margin-left:10px;">
+                        <img class="publisher-image" style="background-image:url(&quot;{{asset($publication->user->profile->photo_profile)}}&quot;);width:55px;height:55px;margin-top:15px;margin-left:10px;">
                     </a>
                     <ul class="list-inline" style="padding-top:10px;padding-left:10px;width:74%;">
                         <li>
@@ -243,7 +243,7 @@
                 <div class="content">{!! $publication->contenu !!}
                     <br>
                 </div>
-                <img class="img-responsive content-image" src="{{asset('assets/img/image-left-sub.png')}}">
+                
             </div>
 
             @if( count($publication->publication_avec_fichier))

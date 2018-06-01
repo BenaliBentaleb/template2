@@ -128,7 +128,7 @@ let moment = require('moment');
             //  }
         //    console.log(value);
           });
-        });
+        }).catch(err=> console.log(err));
       },
 
       getNumberOfComment() {

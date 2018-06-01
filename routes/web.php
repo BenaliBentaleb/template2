@@ -213,6 +213,70 @@ Route::get('/admin/utilisateur', [
 ])->middleware('admin');
 
 Route::get('/admin/delete/user/{id}', [
-    'uses'=>'AdminController@delete',
+    'uses'=>'AdminController@deleteUser',
     'as'=>'admin.utilisateur.delete'
 ])->middleware('admin');
+
+/* START SECTION DEPARTEMENT */
+Route::get('/admin/departement', [
+    'uses'=>'AdminController@departement',
+    'as'=>'admin.departement'
+])->middleware('admin');
+
+Route::get('/admin/departement/ajout', [
+    'uses'=>'AdminController@ajoutDepartement',
+    'as'=>'admin.departement.ajout'
+])->middleware('admin');
+
+Route::post('/admin/departement/store', [
+    'uses'=>'AdminController@storeDepartement',
+    'as'=>'admin.departement.store'
+])->middleware('admin');
+
+Route::post('/admin/departement/edit/{id}', [
+    'uses'=>'AdminController@editDepartement',
+    'as'=>'admin.departement.edit'
+])->middleware('admin');
+
+Route::get('/admin/modifie/departement/{id}', [
+    'uses'=>'AdminController@modifieDepartement',
+    'as'=>'admin.departement.modifie'
+])->middleware('admin');
+
+Route::get('/admin/departement/delete/{id}', [
+    'uses'=>'AdminController@deleteDepartement',
+    'as'=>'admin.departement.delete'
+])->middleware('admin');
+/* END SECTION DEPARTEMENT */
+
+/* START SECTION FORMATION */
+Route::get('/admin/formation', [
+    'uses'=>'AdminController@formation',
+    'as'=>'admin.formation'
+])->middleware('admin');
+
+Route::get('/admin/formation/ajout', [
+    'uses'=>'AdminController@ajoutFormation',
+    'as'=>'admin.formation.ajout'
+])->middleware('admin');
+
+Route::post('/admin/formation/store', [
+    'uses'=>'AdminController@storeFormation',
+    'as'=>'admin.formation.store'
+])->middleware('admin');
+
+Route::post('/admin/formation/edit/{id}', [
+    'uses'=>'AdminController@editFormation',
+    'as'=>'admin.formation.edit'
+])->middleware('admin');
+
+Route::get('/admin/modifie/formation/{id}', [
+    'uses'=>'AdminController@modifieFormation',
+    'as'=>'admin.formation.modifie'
+])->middleware('admin');
+
+Route::get('/admin/formation/delete/{id}', [
+    'uses'=>'AdminController@deleteFormation',
+    'as'=>'admin.formation.delete'
+])->middleware('admin');
+/* END SECTION FORMATION */

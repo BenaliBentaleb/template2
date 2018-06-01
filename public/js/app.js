@@ -66343,6 +66343,8 @@ var moment = __webpack_require__(0);
           //  }
           //    console.log(value);
         });
+      }).catch(function (err) {
+        return console.log(err);
       });
     },
     getNumberOfComment: function getNumberOfComment() {

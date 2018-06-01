@@ -142,11 +142,11 @@
                     <i class="fe fe-users"></i> Utilisateurs</a>
                 </li>
                 <li class="nav-item">
-                  <a href="./departements.html" class="nav-link">
+                  <a href="{{route('admin.departement')}}" class="nav-link">
                     <i class="fe fe-box"></i> Départements</a>
                 </li>
                 <li class="nav-item">
-                  <a href="./formations.html" class="nav-link">
+                  <a href="{{route('admin.formation')}}" class="nav-link">
                     <i class="fe fe-briefcase"></i> Formations</a>
                 </li>
                 <li class="nav-item">
