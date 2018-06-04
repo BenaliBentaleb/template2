@@ -22,7 +22,7 @@ class CreatePortailMemoiresTable extends Migration
            // $table->string('specialite');
             $table->string('date');
             $table->integer('counter')->default(0);
-            $table->string('encadreur');
+            $table->string('encadreur')->nullable();
             $table->string('etudiant1');
             $table->string('etudiant2')->nullable();
             $table->string('etudiant3')->nullable();

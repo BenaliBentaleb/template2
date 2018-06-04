@@ -68580,7 +68580,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
+
               response.data.forEach(function (val) {
                 $("#memoireannee").html(option += "<option value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
@@ -68590,7 +68590,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
+
               response.data.forEach(function (val) {
                 $("#memoireannee").html(option += "<option  value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);

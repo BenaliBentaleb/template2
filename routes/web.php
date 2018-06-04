@@ -312,3 +312,35 @@ Route::get('/admin/module/delete/{id}', [
     'as'=>'admin.module.delete'
 ])->middleware('admin');
 /* END SECTION MODULES */
+
+/* START SECTION MEMOIRE */
+Route::get('/admin/memoire', [
+    'uses'=>'AdminController@memoire',
+    'as'=>'admin.memoire'
+])->middleware('admin');
+
+Route::get('/admin/memoire/ajout', [
+    'uses'=>'AdminController@ajoutMemoire',
+    'as'=>'admin.memoire.ajout'
+])->middleware('admin');
+
+Route::post('/admin/memoire/store', [
+    'uses'=>'AdminController@storeMemoire',
+    'as'=>'admin.memoire.store'
+])->middleware('admin');
+
+Route::post('/admin/memoire/edit/{id}', [
+    'uses'=>'AdminController@editMemoire',
+    'as'=>'admin.memoire.edit'
+])->middleware('admin');
+
+Route::get('/admin/modifie/memoire/{id}', [
+    'uses'=>'AdminController@modifieMemoire',
+    'as'=>'admin.memoire.modifie'
+])->middleware('admin');
+
+Route::get('/admin/memoire/delete/{id}', [
+    'uses'=>'AdminController@deleteMemoire',
+    'as'=>'admin.memoire.delete'
+])->middleware('admin');
+/* END SECTION MEMOIRE */

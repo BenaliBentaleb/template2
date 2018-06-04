@@ -155,7 +155,7 @@
                     <i class="fe fe-alert-triangle"></i> Réclamations</a>
                 </li>
                 <li class="nav-item">
-                  <a href="./memoires.html" class="nav-link">
+                  <a href="{{ route('admin.memoire') }}" class="nav-link">
                     <i class="fe fe-book"></i> Mémoires</a>
                 </li>
 

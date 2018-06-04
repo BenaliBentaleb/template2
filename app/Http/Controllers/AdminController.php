@@ -13,6 +13,9 @@ use App\Departement;
 use App\Formation;
 use App\Module;
 use App\Semestre;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+
 class AdminController extends Controller
 {
    
@@ -182,5 +185,194 @@ class AdminController extends Controller
         return redirect()->back();
     } 
     /*END SECTION MODULES */
+
+    /*START SECTION MEMOIRE */
+
+    public function memoire() {
+        return view('admin.memoire')->with('memoires',PortailMemoire::paginate(9));
+    }
+        
+    public function ajoutMemoire() {
+        return view('admin.memoire-ajout')->with('formations_licence',Formation::where('type','licence')->get())
+                                            ->with('formations_master',Formation::where([
+                                                ['type', '=', 'master'],
+                                                ['nom', 'like', '%2%']])->get());
+                                         
+    }
+        
+    public function modifieMemoire($id) {
+        return view('admin.memoire-modifie')->with('memoire',PortailMemoire::find($id))
+                                            ->with('formations_licence',Formation::where('type','licence')->get())
+                                            ->with('formations_master',Formation::where([
+                                                ['type', '=', 'master'],
+                                                ['nom', 'like', '%2%']])->get());
+                                            
+    }
+
+    
+    /* public function saveFile(Request $request)
+    {
+        
+
+        $validator = Validator::make($request->all(), PortailMemoire::rules(), PortailMemoire::messages());
+       
+        if ($validator->passes()) {
+            $memoire = new PortailMemoire;
+            $memoire->user_id = Auth::id();
+            $memoire->formation_id = $request->formation;
+            $memoire->titre = $request->titre;
+            $memoire->type = $request->niveau;
+            $memoire->date = $request->annee;
+            $memoire->encadreur = $request->encadreur;
+            $memoire->etudiant1 = $request->etudiant1;
+            $memoire->etudiant2 = $request->etudiant2;
+            $memoire->etudiant3 = $request->etudiant3;
+            $memoire->etudiant4 = $request->etudiant4;
+
+            $file = $request->fichier;
+
+            // remove extra parts
+            $exploded = explode(",", $file);
+            // extention
+            if (str_contains($exploded[0], 'pdf')) {
+                $ext = 'pdf';
+            }
+            // decode
+            $decode = base64_decode($exploded[1]);
+            $filename = time() . str_random(7). "." . $ext;
+            //path of your local folder
+            $path = public_path() . "/files/" . $filename;
+            //upload image to your path
+            if (file_put_contents($path, $decode)) {
+                $memoire->fichier = "files/" . $filename;
+               // dd($memoire->fichier) ;
+                $memoire->save();
+                //return $memoire;
+                return Response::json(['success' => '1']);
+            }
+
+           
+        }
+        return Response::json(['errors'=> $validator->errors()]);
+
+    } */
+
+        
+    public function storeMemoire(Request $request) {
+                
+        $validator = Validator::make($request->all(), PortailMemoire::rules(), PortailMemoire::messages());
+       
+        $memoire = new PortailMemoire;
+        $memoire->user_id = Auth::id();
+        $memoire->formation_id = $request->formation_id;
+        $memoire->titre = $request->titre;
+        $memoire->type = $request->type;
+        $memoire->date = $request->date;
+        
+        $memoire->encadreur = $request->encadreur;
+        $memoire->etudiant1 = $request->etudiant1;
+        $memoire->etudiant2 = $request->etudiant2;
+        $memoire->etudiant3 = $request->etudiant3;
+        $memoire->etudiant4 = $request->etudiant4;
+        
+        /* $file =$request->fichier;
+        $memoireFileNewName= time() . $file->getClientOriginalName();
+        $file->move('files',$memoireFileNewName);
+        $memoire->fichier='files/' . $memoireFileNewName; */
+        //dd($request->fichier);
+        
+       
+           
+            $file =Input::file('fichier');
+            //dd($file);
+            $memoireFileNewName= time() . $file->getClientOriginalName();
+            $file->move('files',$memoireFileNewName);
+            $memoire->fichier='files/' . $memoireFileNewName; 
+                        
+
+                         /* $fichier = $request->fichier;
+                        // remove extra parts
+                        $exploded = explode(",", $fichier);
+                        // extention
+                        if (str_contains($exploded[0], 'pdf')) {
+                            $ext = 'pdf';
+                        }
+                        // decode
+                        $decode = base64_decode($exploded[1]);
+                        $filename = time() . str_random(7). "." . $ext;
+                        //path of your local folder
+                        $path = public_path() . "/files/" . $filename;
+                        //upload image to your path
+                        if (file_put_contents($path, $decode)) {
+                            $memoire->fichier = "files/" . $filename;
+                           // dd($memoire->fichier) ;
+                            $memoire->save();
+                            //return $memoire;
+                            return Response::json(['success' => '1']);
+                        }  */
+    
+
+
+      
+        $memoire->save();
+        return redirect()->route('admin.memoire');
+}
+        
+    public function editMemoire(Request $request, $id) {
+                
+        $memoire = PortailMemoire::find($id);
+        $memoire->formation_id = $request->formation_id;
+        $memoire->titre = $request->titre;
+        $memoire->type = $request->type;
+        $memoire->date = $request->date;
+        
+        $memoire->encadreur = $request->encadreur;
+        $memoire->etudiant1 = $request->etudiant1;
+        $memoire->etudiant2 = $request->etudiant2;
+        $memoire->etudiant3 = $request->etudiant3;
+        $memoire->etudiant4 = $request->etudiant4;
+        
+        if ($request->hasFile('fichier')){
+            $file =Input::file('fichier');
+            $memoireFileNewName= time() . $file->getClientOriginalName();
+            $file->move('files',$memoireFileNewName);
+            $memoire->fichier='files/' . $memoireFileNewName; 
+            /*
+            $fichier = $request->fichier;
+            // remove extra parts
+            $exploded = explode(",", $fichier);
+            // extention
+            if (str_contains($exploded[0], 'pdf')) {
+                $ext = 'pdf';
+            }
+            // decode
+            $decode = base64_decode($exploded[1]);
+            $filename = time() . str_random(7). "." . $ext;
+            //path of your local folder
+            $path = public_path() . "/files/" . $filename;
+            //upload image to your path
+            if (file_put_contents($path, $decode)) {
+                $memoire->fichier = "files/" . $filename;
+               // dd($memoire->fichier) ;
+                $memoire->save();
+                //return $memoire;
+                return Response::json(['success' => '1']);
+            }*/
+        }
+
+
+       
+        $memoire->save();
+         
+        return redirect()->route('admin.memoire');
+    } 
+        
+    public function deleteMemoire($id) {
+                
+        $memoire = PortailMemoire::find($id);
+        $memoire->delete();
+        return redirect()->back();
+    } 
+    /*END SECTION MEMOIRE */
     
 }

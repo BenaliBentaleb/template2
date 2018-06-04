@@ -2,18 +2,28 @@
 
 <div class="col-md-9 memoire-container">
 
-    <div class="row pub-header" style="margin-bottom:20px;margin-right:-10px;margin-left:-10px;padding-top:7px;padding-bottom:4px;">
-        <div class="col-sm-3" style="margin-top:6px;">
-            <h4 style="display:inline-block;margin-bottom:0px;margin-top:6px;">Portail mémoires&nbsp;</h4>
+    <div class="row " style="margin-bottom:5px;">
+        <div class="col-md-9" style="padding:6px;">
+            <h3 style="display:inline-block;margin-bottom:0px;margin-top:6px;">Portail mémoires&nbsp;</h3>
         </div>
-        <div class="col-sm-4 text-center" style="margin-top:6px;">
-            <span style="font-size:16px;">Année :&nbsp;</span>
+        
+        @if(Auth::id())
+        <div class="col-md-3 text-right" style="padding:6px;">
+            <a href="{{route('ajouter.memoire')}}" class="btn btn-azure">Ajouter mémoire</a>
+        </div>
+        @endif
+
+    </div>
+    <div class="row pub-header text-center" style="margin-bottom:20px;margin-right:-10px;margin-left:-10px;padding-top:7px;padding-bottom:4px;">
+
+        <div class="col-sm-6 text-center" style="margin-top:6px;">
+            <span style="font-size:16px;">Triér les années par ordre :&nbsp;</span>
             <ul class="list-inline" style="display:inline-block">
                 <li class="order-btn" data-sort="order:asc">ASC</li>
                 <li class="order-btn" data-sort="order:descending">DSC</li>
             </ul>
         </div>
-        <div class="col-md-5 text-center">
+        <div class="col-md-6 text-center">
             <ul class="list-inline shuffle text-center" style="margin-bottom:0;margin-top:6px;">
                 <li class="filter all mixitup-control-active selected" data-filter="all">Tous</li>
                 <li class="filter licence-title" data-filter=".licence">Licence</li>
@@ -40,8 +50,8 @@
                     </div>
                     <div class="col-lg-6 col-md-5 col-sm-8 col-xs-12" style="padding-left:0;">
                         <div class="memoire-contenu">
-                            <h3 style="margin-top:5px;">Mémoire de {{ucfirst($m->type)}} {{$m->getFormation($m->formation_id)}} {{$m->date}}</h3>
-                            <h4 style="margin-top:20px;margin-bottom:0;">Réaliser par :</h4>
+                            <h4 style="margin-top:5px;">Mémoire de {{ucfirst($m->type)}} {{$m->getFormation($m->formation_id)}} {{$m->date}}</h4>
+                            <h5 style="margin-top:20px;margin-bottom:0;">Réaliser par :</h5>
                             <ul style="padding-left:16px;">
                                 <li>{{$m->etudiant1}}&nbsp;
                                     <br>
@@ -50,26 +60,24 @@
                                 <li>{{$m->etudiant2}}&nbsp;
                                     <br>
                                 </li>
-                                @endif
-                                @if($m->etudiant3)
+                                @endif @if($m->etudiant3)
                                 <li>{{$m->etudiant3}}&nbsp;
                                     <br>
                                 </li>
-                                @endif
-                                @if($m->etudiant4)
+                                @endif @if($m->etudiant4)
                                 <li>{{$m->etudiant4}}&nbsp;
                                     <br>
                                 </li>
                                 @endif
-                               
+
                             </ul>
                             <h4 style="margin-top:10px;margin-bottom:0;">Encadré par :</h4>
                             <p>Dr. {{$m->encadreur}}
                                 <br>
                             </p>
-                            <h4 style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{$m->counter}}</h4>
+                            <p style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{$m->counter}}</p>
 
-                            <a  href="{{route('download.memoire',['id'=>$m->id])}}"  class="btn btn-link btn-block" type="button" style="font-size:16px;">
+                            <a href="{{route('download.memoire',['id'=>$m->id])}}" class="btn btn-link btn-block" type="button" style="font-size:16px;">
                                 <i class="icon-arrow-down-circle" style="font-size:16px;padding-right:10px;"></i>Télécharger</a>
                         </div>
                     </div>
@@ -84,16 +92,15 @@
                         <div class="memoire-thumb" style="background-image:url(&quot;{{asset('assets/img/memoire-master.png')}}&quot;);">
                             <div class="text-center memoire-titre">
                                 <h3>{{$m->titre}}
-                                    <br>
-                                    <br>
+
                                 </h3>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5 col-sm-8 col-xs-12" style="padding-left:0;">
                         <div class="memoire-contenu">
-                            <h3 style="margin-top:5px;">Mémoire de {{ucfirst($m->type)}} {{$m->getFormation($m->formation_id)}} {{$m->date}}</h3>
-                            <h4 style="margin-top:20px;margin-bottom:0;">Réaliser par :</h4>
+                            <h4 style="margin-top:5px;">Mémoire de {{ucfirst($m->type)}} {{$m->getFormation($m->formation_id)}} {{$m->date}}</h4>
+                            <h5 style="margin-top:20px;margin-bottom:0;">Réaliser par :</h5>
                             <ul style="padding-left:16px;">
                                 <li>{{$m->etudiant1}}&nbsp;
                                     <br>
@@ -102,13 +109,11 @@
                                 <li>{{$m->etudiant2}}&nbsp;
                                     <br>
                                 </li>
-                                @endif
-                                @if($m->etudiant3)
+                                @endif @if($m->etudiant3)
                                 <li>{{$m->etudiant3}}&nbsp;
                                     <br>
                                 </li>
-                                @endif
-                                @if($m->etudiant4)
+                                @endif @if($m->etudiant4)
                                 <li>{{$m->etudiant4}}&nbsp;
                                     <br>
                                 </li>
@@ -118,8 +123,8 @@
                             <p>Dr. {{$m->encadreur}}
                                 <br>
                             </p>
-                            <h4 style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{$m->counter}}</h4>
-                            <a  href="{{route('download.memoire',['id'=>$m->id])}}" class="btn btn-link btn-block" type="button" style="font-size:16px;">
+                            <p style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{$m->counter}}</p>
+                            <a href="{{route('download.memoire',['id'=>$m->id])}}" class="btn btn-link btn-block" type="button" style="font-size:16px;">
                                 <i class="icon-arrow-down-circle" style="font-size:16px;padding-right:10px;"></i>Télécharger</a>
                         </div>
                     </div>

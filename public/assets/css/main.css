@@ -39,3 +39,56 @@
 .card{
     margin-bottom: 1rem !important;
 }
+
+
+.mixitup-control-active{
+    background-color: #467fcf;
+    color: #fff;
+}
+.mixitup-control-active:hover{
+    background-color: #316cbe;
+    border-color: #2f66b3;
+    color: #fff;
+}
+
+.files-uploaded {
+    border: 2px solid #7da7d9;
+}
+.files-uploaded .files-uploaded-header {
+    background-color: #7da7d9;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: rgb(255,255,255);
+    padding-left: 26px;
+}
+.files-uploaded .files-list {
+    margin: 0;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.files-uploaded .divider {
+    height: 1px;
+    background-color: rgba(189,189,189,0.54);
+}
+.clearfix{
+    clear: both;
+}
+
+.files-uploaded .single-file {
+    padding: 5px;
+    overflow: hidden;
+}
+.note-popover .note-popover-content, .note-toolbar {
+    padding: 0 0 5px 5px;
+    margin: 0;
+    background-color: #f1f1f1;
+}
+
+.bg-licence{
+    background-color: #7376f0 !important;
+}
+
+.bg-master{
+    background-color: #00b06c !important;
+}

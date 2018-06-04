@@ -21,6 +21,10 @@ class PortailMemoire extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function formation(){
+        return $this->belongsTo(Formation::class);
+    }
+    
     public static function rules()
     {
         return [
