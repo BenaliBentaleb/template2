@@ -379,6 +379,7 @@ class ComposerStaticInit3be71f2ebf6052306afbaaef8590cc3f
         'App\\Publication' => __DIR__ . '/../..' . '/app/Publication.php',
         'App\\PublicationFichier' => __DIR__ . '/../..' . '/app/PublicationFichier.php',
         'App\\Reclamation' => __DIR__ . '/../..' . '/app/Reclamation.php',
+        'App\\ReclamationChat' => __DIR__ . '/../..' . '/app/ReclamationChat.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\Semestre' => __DIR__ . '/../..' . '/app/Semestre.php',
         'App\\Sondage' => __DIR__ . '/../..' . '/app/Sondage.php',

@@ -82,10 +82,10 @@
               </div>
               <div class="dropdown">
                 <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                  <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
+                  <span class="avatar" style="background-image: url({{ asset(Auth::user()->profile->photo_profile)}})"></span>
                   <span class="ml-2 d-none d-lg-block">
-                    <span class="text-default">Jane Pearson</span>
-                    <small class="text-muted d-block mt-1">Administrator</small>
+                    <span class="text-default">{{ Auth::user()->nom . ' ' . Auth::user()->prenom }}</span>
+                    <small class="text-muted d-block mt-1">Administrateur</small>
                   </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -122,52 +122,51 @@
       </div>
       <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
         <div class="container">
-          <div class="row align-items-center">
-            
-            <div class="col-lg order-lg-first">
-              <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                <li class="nav-item">
-                  <a href="{{route('admin.index')}}" class="nav-link active">
-                    <i class="fe fe-home"></i> Home</a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('admin.utilisateur')}}" class="nav-link">
-                    <i class="fe fe-users"></i> Utilisateurs</a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('admin.departement')}}" class="nav-link">
-                    <i class="fe fe-box"></i> Départements</a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('admin.formation')}}" class="nav-link">
-                    <i class="fe fe-briefcase"></i> Formations</a>
-                </li>
-                <li class="nav-item">
-                  <a href="./publications.html" class="nav-link">
-                    <i class="fe fe-check-square"></i> Publications</a>
-                </li>
-                <li class="nav-item">
-                  <a href="./evenements.html" class="nav-link">
-                    <i class="fe fe-calendar"></i> Événements</a>
-                </li>
-                <li class="nav-item">
-                  <a href="./reclamations.html" class="nav-link">
-                    <i class="fe fe-alert-triangle"></i> Réclamations</a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.memoire') }}" class="nav-link">
-                    <i class="fe fe-book"></i> Mémoires</a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="{{ route('admin.module') }}" class="nav-link">
-                      <i class="fe fe-book-open"></i> Modules</a>
-              </li>
-              </ul>
+            <div class="row align-items-center">
+                
+                <div class="col-lg order-lg-first">
+                    <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                        <li class="nav-item">
+                            <a href="{{route('admin.index')}}" class="nav-link ">
+                                <i class="fe fe-home"></i> Acceuil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.utilisateur')}}" class="nav-link">
+                                <i class="fe fe-users"></i> Utilisateurs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.departement')}}" class="nav-link">
+                                <i class="fe fe-box"></i> Départements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.formation')}}" class="nav-link ">
+                                <i class="fe fe-briefcase"></i> Formations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./publications.html" class="nav-link">
+                                <i class="fe fe-check-square"></i> Publications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./evenements.html" class="nav-link">
+                                <i class="fe fe-calendar"></i> Événements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.reclamation') }}" class="nav-link">
+                                <i class="fe fe-alert-triangle"></i> Réclamations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.memoire') }}" class="nav-link">
+                                <i class="fe fe-book"></i> Mémoires</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.module') }}" class="nav-link active">
+                                <i class="fe fe-book-open"></i> Modules</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
       <div class="my-3 my-md-5">
         <div class="container">
           <div class="page-header">
@@ -263,6 +262,15 @@
                 <div class="card-body p-5 text-center">
                   <div class="h1 m-0">{{$formation}}</div>
                   <div class="text-muted mb-4">Formations</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+              <div class="card">
+                  <div class="card-status card-status-left bg-orange"></div>
+                <div class="card-body p-5 text-center">
+                  <div class="h1 m-0">{{$module}}</div>
+                  <div class="text-muted mb-4">Modules</div>
                 </div>
               </div>
             </div>

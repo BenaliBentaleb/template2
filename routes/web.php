@@ -344,3 +344,40 @@ Route::get('/admin/memoire/delete/{id}', [
     'as'=>'admin.memoire.delete'
 ])->middleware('admin');
 /* END SECTION MEMOIRE */
+
+/* START SECTION RECLAMATION */
+Route::get('/admin/reclamation', [
+    'uses'=>'AdminController@reclamation',
+    'as'=>'admin.reclamation'
+])->middleware('admin');
+
+Route::get('/admin/reclamation/delete/{id}', [
+    'uses'=>'AdminController@deleteReclamation',
+    'as'=>'admin.reclamation.delete'
+])->middleware('admin');
+
+/* Route::get('/admin/reclamation/delete/{id}', [
+    'uses'=>'AdminController@deleteReclamation',
+    'as'=>'admin.reclamation.delete'
+])->middleware('admin'); */
+
+Route::get('/admin/reclamation/repondre/{id}', [
+    'uses'=>'AdminController@repondreReclamation',
+    'as'=>'admin.reclamation.repondre'
+])->middleware('admin');
+
+Route::get('/admin/reclamation/terminer/{id}', [
+    'uses'=>'AdminController@terminerReclamation',
+    'as'=>'admin.reclamation.terminer'
+])->middleware('admin');
+
+Route::get('/admin/reclamation/rejeter/{id}', [
+    'uses'=>'AdminController@rejeterReclamation',
+    'as'=>'admin.reclamation.rejeter'
+])->middleware('admin');
+
+Route::post('/admin/reclamation/sendmsg/{id}', [
+    'uses'=>'AdminController@sendMessageReclamation',
+    'as'=>'admin.reclamation.oo'
+])->middleware('admin');
+/* END SECTION RECLAMATION */

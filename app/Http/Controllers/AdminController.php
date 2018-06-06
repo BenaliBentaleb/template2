@@ -8,6 +8,7 @@ use App\User;
 use App\Publication;
 use App\PortailMemoire;
 use App\Reclamation;
+use App\ReclamationChat;
 use App\Event;
 use App\Departement;
 use App\Formation;
@@ -38,6 +39,7 @@ class AdminController extends Controller
         ->with('reclamation',Reclamation::all()->count())
         ->with('evenement',Event::all()->count())
         ->with('departement',Departement::all()->count())
+        ->with('module',Module::all()->count())
         ->with('formation',Formation::all()->count());
     }
 
@@ -209,54 +211,6 @@ class AdminController extends Controller
                                             
     }
 
-    
-    /* public function saveFile(Request $request)
-    {
-        
-
-        $validator = Validator::make($request->all(), PortailMemoire::rules(), PortailMemoire::messages());
-       
-        if ($validator->passes()) {
-            $memoire = new PortailMemoire;
-            $memoire->user_id = Auth::id();
-            $memoire->formation_id = $request->formation;
-            $memoire->titre = $request->titre;
-            $memoire->type = $request->niveau;
-            $memoire->date = $request->annee;
-            $memoire->encadreur = $request->encadreur;
-            $memoire->etudiant1 = $request->etudiant1;
-            $memoire->etudiant2 = $request->etudiant2;
-            $memoire->etudiant3 = $request->etudiant3;
-            $memoire->etudiant4 = $request->etudiant4;
-
-            $file = $request->fichier;
-
-            // remove extra parts
-            $exploded = explode(",", $file);
-            // extention
-            if (str_contains($exploded[0], 'pdf')) {
-                $ext = 'pdf';
-            }
-            // decode
-            $decode = base64_decode($exploded[1]);
-            $filename = time() . str_random(7). "." . $ext;
-            //path of your local folder
-            $path = public_path() . "/files/" . $filename;
-            //upload image to your path
-            if (file_put_contents($path, $decode)) {
-                $memoire->fichier = "files/" . $filename;
-               // dd($memoire->fichier) ;
-                $memoire->save();
-                //return $memoire;
-                return Response::json(['success' => '1']);
-            }
-
-           
-        }
-        return Response::json(['errors'=> $validator->errors()]);
-
-    } */
-
         
     public function storeMemoire(Request $request) {
                 
@@ -275,44 +229,13 @@ class AdminController extends Controller
         $memoire->etudiant3 = $request->etudiant3;
         $memoire->etudiant4 = $request->etudiant4;
         
-        /* $file =$request->fichier;
-        $memoireFileNewName= time() . $file->getClientOriginalName();
-        $file->move('files',$memoireFileNewName);
-        $memoire->fichier='files/' . $memoireFileNewName; */
-        //dd($request->fichier);
-        
        
            
-            $file =Input::file('fichier');
-            //dd($file);
-            $memoireFileNewName= time() . $file->getClientOriginalName();
-            $file->move('files',$memoireFileNewName);
-            $memoire->fichier='files/' . $memoireFileNewName; 
-                        
-
-                         /* $fichier = $request->fichier;
-                        // remove extra parts
-                        $exploded = explode(",", $fichier);
-                        // extention
-                        if (str_contains($exploded[0], 'pdf')) {
-                            $ext = 'pdf';
-                        }
-                        // decode
-                        $decode = base64_decode($exploded[1]);
-                        $filename = time() . str_random(7). "." . $ext;
-                        //path of your local folder
-                        $path = public_path() . "/files/" . $filename;
-                        //upload image to your path
-                        if (file_put_contents($path, $decode)) {
-                            $memoire->fichier = "files/" . $filename;
-                           // dd($memoire->fichier) ;
-                            $memoire->save();
-                            //return $memoire;
-                            return Response::json(['success' => '1']);
-                        }  */
-    
-
-
+        $file =Input::file('fichier');
+        //dd($file);
+        $memoireFileNewName= time() . $file->getClientOriginalName();
+        $file->move('files',$memoireFileNewName);
+        $memoire->fichier='files/' . $memoireFileNewName; 
       
         $memoire->save();
         return redirect()->route('admin.memoire');
@@ -337,31 +260,8 @@ class AdminController extends Controller
             $memoireFileNewName= time() . $file->getClientOriginalName();
             $file->move('files',$memoireFileNewName);
             $memoire->fichier='files/' . $memoireFileNewName; 
-            /*
-            $fichier = $request->fichier;
-            // remove extra parts
-            $exploded = explode(",", $fichier);
-            // extention
-            if (str_contains($exploded[0], 'pdf')) {
-                $ext = 'pdf';
-            }
-            // decode
-            $decode = base64_decode($exploded[1]);
-            $filename = time() . str_random(7). "." . $ext;
-            //path of your local folder
-            $path = public_path() . "/files/" . $filename;
-            //upload image to your path
-            if (file_put_contents($path, $decode)) {
-                $memoire->fichier = "files/" . $filename;
-               // dd($memoire->fichier) ;
-                $memoire->save();
-                //return $memoire;
-                return Response::json(['success' => '1']);
-            }*/
         }
-
-
-       
+  
         $memoire->save();
          
         return redirect()->route('admin.memoire');
@@ -374,5 +274,53 @@ class AdminController extends Controller
         return redirect()->back();
     } 
     /*END SECTION MEMOIRE */
+
+    /*START SECTION RECLAMATION */
+    public function reclamation() {
+        return view('admin.reclamation')->with('reclamations',Reclamation::paginate(9));
+    }
+
+    public function deleteReclamation($id) {
+                
+        $reclamation = Reclamation::find($id);
+        $reclamation->delete();
+        return redirect()->back();
+    } 
+
+    public function repondreReclamation($id) {
+        return view('admin.reclamation-repondre')->with('reclamation',Reclamation::find($id))
+                                                ->with('chat',ReclamationChat::where('reclamation_id',$id)->get());
+    } 
+
+    public function terminerReclamation($id) {
+                
+        // status 0 = en attent 
+        // status 1 = terminé
+        // status 2 = rejecté
+        $reclamation = Reclamation::find($id);
+        $reclamation->status = 1;
+        $reclamation->save();
+        return redirect()->back();
+    } 
+    public function rejeterReclamation($id) {
+                
+        $reclamation = Reclamation::find($id);
+        $reclamation->status = 2;
+        $reclamation->save();
+        return redirect()->back();
+    }
+
+    public function sendMessageReclamation(Request $request, $id) {
+                
+        //dd($request);
+        //$r = Reclamation::find($id);
+        $rChat  = new ReclamationChat;
+        $rChat->reclamation_id = $id;
+        $rChat->sender_id = Auth::id();
+        $rChat->chat = $request->msg;
+        $rChat->save();
+        return redirect()->back();
+    }
+    /*END SECTION RECLAMATION */
     
 }

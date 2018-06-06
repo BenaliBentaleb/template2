@@ -69,6 +69,7 @@ return array(
     'App\\Publication' => $baseDir . '/app/Publication.php',
     'App\\PublicationFichier' => $baseDir . '/app/PublicationFichier.php',
     'App\\Reclamation' => $baseDir . '/app/Reclamation.php',
+    'App\\ReclamationChat' => $baseDir . '/app/ReclamationChat.php',
     'App\\Role' => $baseDir . '/app/Role.php',
     'App\\Semestre' => $baseDir . '/app/Semestre.php',
     'App\\Sondage' => $baseDir . '/app/Sondage.php',

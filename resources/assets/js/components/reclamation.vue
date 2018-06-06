@@ -24,7 +24,7 @@
                             </div>
                             <div class="col-sm-6 input-column">
                                 <select class="form-control reclamation-type" v-model="type" required="">
-                                    <option value="Réclamation générale" selected="">Réclamation générale</option>
+                                    <option value="Reclamation generale" selected="">Réclamation générale</option>
                                     <option value="Faute de calcule">Faute de calcule</option>
                                     <option value="Suggestion">Suggestion</option>
                                 </select>

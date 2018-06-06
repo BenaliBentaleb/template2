@@ -7,27 +7,27 @@
             <h3 style="display:inline-block;margin-bottom:0px;margin-top:6px;">Portail mémoires&nbsp;</h3>
         </div>
         
-        @if(Auth::id())
+        @auth
         <div class="col-md-3 text-right" style="padding:6px;">
             <a href="{{route('ajouter.memoire')}}" class="btn btn-azure">Ajouter mémoire</a>
         </div>
-        @endif
+        @endauth
 
     </div>
     <div class="row pub-header text-center" style="margin-bottom:20px;margin-right:-10px;margin-left:-10px;padding-top:7px;padding-bottom:4px;">
 
         <div class="col-sm-6 text-center" style="margin-top:6px;">
             <span style="font-size:16px;">Triér les années par ordre :&nbsp;</span>
-            <ul class="list-inline" style="display:inline-block">
-                <li class="order-btn" data-sort="order:asc">ASC</li>
-                <li class="order-btn" data-sort="order:descending">DSC</li>
+            <ul class="list-inline" data-mixitup-control style="display:inline-block">
+                <li class="order-btn" data-mixitup-control data-sort="order:asc">ASC</li>
+                <li class="order-btn"  data-mixitup-control data-sort="order:descending">DSC</li>
             </ul>
         </div>
         <div class="col-md-6 text-center">
             <ul class="list-inline shuffle text-center" style="margin-bottom:0;margin-top:6px;">
-                <li class="filter all mixitup-control-active selected" data-filter="all">Tous</li>
-                <li class="filter licence-title" data-filter=".licence">Licence</li>
-                <li class="filter master-title" data-filter=".master">Master</li>
+                <li class="filter all mixitup-control-active selected" data-mixitup-control data-filter="all">Tous</li>
+                <li class="filter licence-title" data-mixitup-control data-filter=".licence">Licence</li>
+                <li class="filter master-title" data-mixitup-control data-filter=".master">Master</li>
             </ul>
         </div>
     </div>

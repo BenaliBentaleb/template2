@@ -92,3 +92,39 @@
 .bg-master{
     background-color: #00b06c !important;
 }
+
+.chat-content .msg-sent {
+    max-width: 70%;
+    float: left;
+}
+.chat-content .msg-sent .msg-time {
+    line-height: 36px;
+    color: #898989;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.chat-content .msg-sent p {
+    margin-top: 7px;
+    background-color: #f1f0f0;
+    padding: 5px 10px;
+    border-radius: 0px 10px 10px 10px;
+}
+.chat-content .msg-recieved .msg-time {
+    float: right;
+    color: #898989;
+}
+.chat-content .msg-recieved p {
+    margin-top: 7px;
+    background-color: #448ccb;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px 0px 10px 10px;
+}
+.chat-content .messages{
+    overflow: hidden;
+}
+.reclamation-chat-content{
+    height: -webkit-calc(50vh);
+    overflow-x: auto;
+    border: 1px solid #dddfe0;
+}

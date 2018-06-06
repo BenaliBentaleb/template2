@@ -26,6 +26,9 @@ $('#cover').change(function() {
 var mixer = mixitup('.memoires',{
   multifilter: {
       enable: true // enable the multifilter extension for the mixer
+  },
+  selectors: {
+    control: '[data-mixitup-control]'
   }
 });
 
