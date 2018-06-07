@@ -19,7 +19,10 @@ class CreateReclamationsTable extends Migration
             $table->string('title');
             $table->string('Type');
             $table->text('reclamation');
-         
+            $table->integer('status')->unsigned()->default(0);
+            // status 0 = en attent 
+            // status 1 = terminé
+            // status 2 = rejecté
             $table->timestamps();
         });
     }

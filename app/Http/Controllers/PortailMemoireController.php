@@ -31,7 +31,7 @@ class PortailMemoireController extends Controller
         
         $fichier = PortailMemoire::find($id);
        
-         $fichier->counter++;
+        $fichier->counter++;
         
         
         $fichier->save();
@@ -48,6 +48,11 @@ class PortailMemoireController extends Controller
 
     public function getformation(Request $request)
     {
+        if($request->type == "master"){
+            $formation = Formation::where([['type', '=', 'master'],
+                                         ['nom', 'like', '%2%']])->get();
+            return $formation;
+        }
         $formation = Formation::where('type', $request->type)->get();
         return $formation;
     }

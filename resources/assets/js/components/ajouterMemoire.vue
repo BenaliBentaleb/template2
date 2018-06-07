@@ -138,7 +138,7 @@ export default {
             axios.get("/getformation/" + val).then(response => {
               let option = "";
               console.log(response);
-               option =  "<option selected disabled value=''>" +"Spécialité"+ "</option>"
+               
               response.data.forEach(val => {
                 $("#memoireannee").html(
                   (option +=
@@ -151,7 +151,7 @@ export default {
             axios.get("/getformation/" + val).then(response => {
               let option = "";
               console.log(response);
-                option =  "<option selected disabled value=''>" +"Spécialité"+ "</option>"
+                
               response.data.forEach(val => {
                 $("#memoireannee").html(
                   (option +=

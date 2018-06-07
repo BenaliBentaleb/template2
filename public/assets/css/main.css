@@ -43,6 +43,10 @@
     margin-bottom: 1rem !important;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724
 .mixitup-control-active{
     background-color: #467fcf;
     color: #fff;
@@ -85,4 +89,52 @@
     padding: 0 0 5px 5px;
     margin: 0;
     background-color: #f1f1f1;
+<<<<<<< HEAD
 }
+=======
+}
+
+.bg-licence{
+    background-color: #7376f0 !important;
+}
+
+.bg-master{
+    background-color: #00b06c !important;
+}
+
+.chat-content .msg-sent {
+    max-width: 70%;
+    float: left;
+}
+.chat-content .msg-sent .msg-time {
+    line-height: 36px;
+    color: #898989;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.chat-content .msg-sent p {
+    margin-top: 7px;
+    background-color: #f1f0f0;
+    padding: 5px 10px;
+    border-radius: 0px 10px 10px 10px;
+}
+.chat-content .msg-recieved .msg-time {
+    float: right;
+    color: #898989;
+}
+.chat-content .msg-recieved p {
+    margin-top: 7px;
+    background-color: #448ccb;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px 0px 10px 10px;
+}
+.chat-content .messages{
+    overflow: hidden;
+}
+.reclamation-chat-content{
+    height: -webkit-calc(50vh);
+    overflow-x: auto;
+    border: 1px solid #dddfe0;
+}
+>>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724

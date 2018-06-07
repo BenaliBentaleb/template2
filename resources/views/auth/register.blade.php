@@ -3,7 +3,7 @@
 
 
 <div class="login-clean">
-    <form style="margin-top:50px;padding-top:10px;" method="POST" action="{{ route('register') }}">
+    <form style="margin-top:10px;" method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
         <h2 class="sr-only">Login Form</h2>
         <h2 class="text-uppercase" style="text-align:center;font-size:18px;font-weight:bold;">Inscription</h2>

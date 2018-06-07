@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFormationsTable extends Migration
+class CreateReclamationChatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateFormationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('formations', function (Blueprint $table) {
+        Schema::create('reclamation_chats', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('departement_id')->unsigned();
-            $table->string('nom');
-            $table->string('type')->nullable();
-            
-           
+            $table->integer('reclamation_id')->unsigned();
+            $table->integer('sender_id')->unsigned();
+            $table->text('chat');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateFormationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formations');
+        Schema::dropIfExists('reclamation_chats');
     }
 }

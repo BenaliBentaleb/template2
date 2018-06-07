@@ -13,13 +13,16 @@ class Profile extends Model
    ];
 
 
-   public function user() {
-       return $this->belongsTo(User::class);
-   }
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function formation() {
+        return $this->belongsTo(Formation::class);
+    }
 
 
-   public static  function rules()
-{
+   public static  function rules(){
     return [
         'formation' => 'required',
        

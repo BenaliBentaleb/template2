@@ -65980,7 +65980,7 @@ var render = function() {
                     _c(
                       "option",
                       {
-                        attrs: { value: "Réclamation générale", selected: "" }
+                        attrs: { value: "Reclamation generale", selected: "" }
                       },
                       [_vm._v("Réclamation générale")]
                     ),
@@ -66372,6 +66372,8 @@ var moment = __webpack_require__(0);
           //  }
           //    console.log(value);
         });
+      }).catch(function (err) {
+        return console.log(err);
       });
     },
     getNumberOfComment: function getNumberOfComment() {
@@ -68529,7 +68531,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
+
               response.data.forEach(function (val) {
                 $("#memoireannee").html(option += "<option value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
@@ -68539,7 +68541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
+
               response.data.forEach(function (val) {
                 $("#memoireannee").html(option += "<option  value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
