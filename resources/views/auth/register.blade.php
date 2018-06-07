@@ -11,7 +11,8 @@
         <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
 
 
-            <input id="nom" type="text" class="form-control" placeholder="Nom" name="nom" value="{{ old('nom') }}" required autofocus> @if ($errors->has('nom'))
+            <input id="nom" type="text" class="form-control" placeholder="Nom" name="nom" value="{{ old('nom') }}" required autofocus>
+             @if ($errors->has('nom'))
             <span class="help-block">
                 <strong>{{ $errors->first('nom') }}</strong>
             </span>
@@ -24,7 +25,8 @@
 
 
             <input id="prenom" type="text" placeholder="Prenom" class="form-control" name="prenom" value="{{ old('prenom') }}" required
-                autofocus> @if ($errors->has('prenom'))
+                autofocus>
+                 @if ($errors->has('prenom'))
             <span class="help-block">
                 <strong>{{ $errors->first('prenom') }}</strong>
             </span>
@@ -35,7 +37,8 @@
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
 
-            <input id="email" type="email" placeholder="Email" class="form-control" name="email" value="{{ old('email') }}" required> @if ($errors->has('email'))
+            <input id="email" type="email" placeholder="Email" class="form-control" name="email" value="{{ old('email') }}" required> 
+            @if ($errors->has('email'))
             <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>
             </span>
@@ -46,7 +49,8 @@
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
 
-            <input id="password" type="password" placeholder="Mot de passe" class="form-control" name="password" required> @if ($errors->has('password'))
+            <input id="password" type="password" placeholder="Mot de passe" class="form-control" name="password" required>
+             @if ($errors->has('password'))
             <span class="help-block">
                 <strong>{{ $errors->first('password') }}</strong>
             </span>

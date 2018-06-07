@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
 
         $departement = Departement::all();
-        $publications = Publication::orderBy('created_at', 'desc')->get();
+        $publications = Publication::where('signaler',0)->orderBy('created_at', 'desc')->simplePaginate(2);
       
       
 
@@ -73,7 +73,7 @@ class HomeController extends Controller
     {
         $publication = Publication::find($id);
         $publication->delete();
-        return redirect()->back();
+        return redirect('/home');
     }
 
     public function download($id) {
@@ -97,11 +97,17 @@ class HomeController extends Controller
     }*/
 
     
-    public function read(Request $request) {
-      //  dd($request);
-        
+    public function read(Request $request) {  
       return  Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
-    //    return redirect('/home');
     }
+    public function admin_read(Request $request) {  
+        return  Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
+      }
+
+      public function remove($id) {
+        $fichier = PublicationFichier::find($id);
+        $fichier->delete();
+        return redirect()->back();
+      }
    
 }

@@ -7,6 +7,8 @@ use App\User;
 
 class Reclamation extends Model
 {
+
+    public $with= ['user'];
     protected $fillable =  [
         'user_id','title','reclamation'
     ];

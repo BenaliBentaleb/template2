@@ -16,7 +16,6 @@ class CreateSondagesTable extends Migration
         Schema::create('sondages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('publication_id')->unsigned();
-            $table->text('question');
            
             $table->timestamps();
            

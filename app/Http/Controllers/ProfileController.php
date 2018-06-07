@@ -41,6 +41,9 @@ class ProfileController extends Controller
     public function profile( Request $request,$id) {
 
         $user = User::find($id);
+        if(!$user) {
+            return view('errorPage');
+        }
         $user_publication;
         $departements = Departement::all();
         $formation = Formation::where('id',$user->profile->formation_id)->first();

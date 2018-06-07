@@ -23,34 +23,108 @@ Route::post('/statut/store', [
     'uses' => 'PublicationController@store',
     'as' => 'status.store',
 ]);
+
+Route::get('/signaler/publication/{id}', [
+    'uses' => 'PublicationController@signaler',
+    'as' => 'publication.signaler',
+]);
+
+
+Route::get('/unsignaler/publication/{id}', [
+    'uses' => 'PublicationController@unsignaler',
+    'as' => 'publication.unsignaler',
+]);
+
+Route::post('/suivie/publication/{id}', [
+    'uses' => 'SuiviController@suivie',
+    'as' => 'publication.suivie',
+]);
+
+Route::post('/unsuivie/publication/{id}', [
+    'uses' => 'SuiviController@unsuivie',
+    'as' => 'publication.unsuivie',
+]);
+
+Route::get('/single/publication/{slug}', [
+    'uses' => 'PublicationController@single_publication',
+    'as' => 'publication.single',
+]);
+
+
+Route::get('/filtrer/publication/module/{id}', [
+    'uses' => 'PublicationController@filtrer_publication_par_module',
+    'as' => 'publication.filtrer.module',
+]);
+
+
+Route::get('/check/user/suivie/publication/{user}/{id}', [
+    'uses' => 'SuiviController@check_user_if_follow_publication',
+    'as' => 'publication.check.user.follow.pub',
+]);
+
+
 Route::post('/blog/store', [
     'uses' => 'PublicationController@store',
-    'as' => 'blog.store',
+    'as' => 'blog.store'
 ]);
 Route::post('/faq/store', [
     'uses' => 'FaqController@store',
-    'as' => 'faq.store',
+    'as' => 'faq.store'
 ]);
 Route::post('/sondage/store', [
-    'uses' => 'SondageController@store',
-    'as' => 'sondage.store',
+    'uses' => 'SondageChoixController@store',
+    'as' => 'sondagechoix.store'
+]);
+
+Route::get('/getPublicationOfSondage/{id}', [
+    'uses' => 'SondageController@get_publication_of_sondage'
+    
+]);
+
+
+Route::get('/sondage', [
+    'uses' => 'SondageController@show',
+    'as' => 'sondage.show'
+]);
+
+Route::post('/sondage/choix/{id}', [
+    'uses' => 'SondageChoixUserController@store',
+    'as' => 'sondage.choix.store'
+]);
+
+Route::get('/sondage/choix/getpercentage/{id}', [
+    'uses' => 'SondageChoixUserController@get_votes_percentage_users',
+    'as' => 'sondage.choix.percentage'
 ]);
 
 Route::get('/formation/{nom}', [
     'uses' => 'HomeController@modules',
     'as' => 'formation',
 ]);
+
+
+
 Route::get('/publication/{id}', [
     'uses' => 'HomeController@destroy',
-    'as' => 'publication.destroy',
+    'as' => 'publication.destroy'
+]);
+
+Route::get('/modifier/publication/{id}', [
+    'uses' => 'PublicationController@edit',
+    'as' => 'publication.modifier'
+]);
+
+Route::post('/update/publication/{id}', [
+    'uses' => 'PublicationController@update',
+    'as' => 'publication.update'
 ]);
 
 Route::post('/jaime/{id}', [
-    'uses' => 'LikeController@jaime',
+    'uses' => 'LikeController@jaime'
 ]);
 
 Route::get('/unjaime/{id}', [
-    'uses' => 'LikeController@unjaime',
+    'uses' => 'LikeController@unjaime'
 ]);
 
 Route::get('/getAllPublication/{id}', [
@@ -77,6 +151,9 @@ Route::post('/commenter', [
     'uses' => 'commentaireController@store',
 ]);
 
+Route::get('/commentaire/delete/{id}',[
+    'uses'=>'commentaireController@delete'
+]);
 Route::get("/allcomment/{id}", [
     'uses' => 'commentaireController@allcomment',
 ]);
@@ -84,6 +161,11 @@ Route::get("/allcomment/{id}", [
 Route::get("/download/{id}", [
     'uses' => 'HomeController@download',
     'as' => 'file.download',
+]);
+
+Route::get("/remove/file/{id}", [
+    'uses' => 'HomeController@remove',
+    'as' => 'file.remove',
 ]);
 
 Route::post('jaimeCommentaire/{id}', [
@@ -147,9 +229,16 @@ Route::get('/delete_friend/{id}' , [
 
 Route::get('/get_unreadnot', function () {
 
-    return Auth::user()->unreadNotifications;
+    return Auth::user()->unreadNotifications->whereNotIn('type',['App\Notifications\ReclamationNotification','App\\Notifications\\SignalerNotification']);
 
 });
+
+Route::get('/get_unreadAdminNot', function () {
+
+    return Auth::user()->unreadNotifications->whereIn('type',['App\Notifications\ReclamationNotification','App\\Notifications\\SignalerNotification']);
+
+});
+
 /*
 
 Route::get('/notifications', [
@@ -159,6 +248,7 @@ Route::get('/notifications', [
 ]);*/
 
 Route::post('/notification/read/{id}', 'HomeController@read');
+Route::post('/admin/notification/read/{id}', 'HomeController@admin_read');
 
 Route::get('/chat',[
         'uses'=>'ChatController@getchat'
@@ -215,4 +305,29 @@ Route::get('/admin/utilisateur', [
 Route::get('/admin/delete/user/{id}', [
     'uses'=>'AdminController@delete',
     'as'=>'admin.utilisateur.delete'
+])->middleware('admin');
+
+Route::get('/admin/publications', [
+    'uses'=>'AdminController@publications',
+    'as'=>'admin.utilisateur.publications'
+])->middleware('admin');
+
+Route::get('/admin/ajouter/utitlisateur/form', [
+    'uses'=>'AdminController@ajouter_utilisateur_form',
+    'as'=>'admin.form.ajouter.utilisateur'
+])->middleware('admin');
+
+Route::get('/admin/modifier/utitlisateur/form/{id}', [
+    'uses'=>'AdminController@modifier_utilisateur_form',
+    'as'=>'admin.form.modifier.utilisateur'
+])->middleware('admin');
+
+Route::post('/admin/ajouter/utitlisateur', [
+    'uses'=>'AdminController@ajouter_utilisateur',
+    'as'=>'admin.ajouter.utilisateur'
+])->middleware('admin');
+
+Route::post('/admin/modifier/utitlisateur/{id}', [
+    'uses'=>'AdminController@modifier_utilisateur',
+    'as'=>'admin.modifier.utilisateur'
 ])->middleware('admin');

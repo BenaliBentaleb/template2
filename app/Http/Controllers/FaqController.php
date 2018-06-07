@@ -45,6 +45,7 @@ class FaqController extends Controller
     {
         $publication = new Publication;
         $publication->titre = $request->titre;
+        $publication->slug = str_slug($request->titre);
         
       
         $publication->user_id = Auth::id();

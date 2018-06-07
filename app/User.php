@@ -109,4 +109,32 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function isAdmin() {
+
+        foreach($this->roles as $role) {
+            if($role->nom == "Administrateur"){
+                return  true;
+                
+            }
+           
+        }
+        return false;
+
+    }
+
+    
+    public function check_if_user_have_this_role($r) {
+ 
+         foreach($this->roles as $role) {
+             if($role->nom == $r){
+                 return  true;
+              }
+           
+         }
+
+         return false;
+ 
+     }
+   
 }

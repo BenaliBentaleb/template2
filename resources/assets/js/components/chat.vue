@@ -75,7 +75,7 @@ export default {
     Echo.private("Chat." + this.friendid + "." + this.userid).listen(
       "BroadcastChat",
       e => {
-        document.getElementById("ChatAudio").play();
+       // document.getElementById("ChatAudio").play();
         this.chats.push(e.chat);
         alert(this.friendid +'send a message')
       }

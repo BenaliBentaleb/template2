@@ -9,7 +9,7 @@ use App\JaimeCommentaire;
 
 class Commentaire extends Model
 {
-    public $with =['user','likes'];
+    public $with =['user','likes','publication'];
     protected $fillable = [
         'publication_id','commentaire','user_id'
     ];

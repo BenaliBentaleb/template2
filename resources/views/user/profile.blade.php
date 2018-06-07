@@ -198,32 +198,19 @@
                         </a>
                         <ul class="list-unstyled dropdown-menu dropdown-menu-right">
                             <li>
-                                <a href="#">
+                                <a href="{{route('publication.modifier',['id'=>$publication->id])}}">
                                     <i class="icon-pencil"></i>
                                     <span>&nbsp; Modifier</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{route('publication.destroy',['id'=>$publication->id])}}">
-                                    <i class="icon-trash"></i>
+                                <a  id="supprimer-btn"  href="{{route('publication.destroy',['id'=>$publication->id])}}">
+                                    <i   class="icon-trash"></i>
                                     <span>&nbsp; Supprimer</span>
                                 </a>
                             </li>
 
-                            <!--  <li>
-                                <a href="#">
-                                    <i class="icon-eyeglass"></i>
-                                    <span>&nbsp; Suivre</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-flag"></i>
-                                    <span>&nbsp; Signaler</span>
-                                </a>
-                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -243,7 +230,6 @@
                 <div class="content">{!! $publication->contenu !!}
                     <br>
                 </div>
-                <img class="img-responsive content-image" src="{{asset('assets/img/image-left-sub.png')}}">
             </div>
 
             @if( count($publication->publication_avec_fichier))

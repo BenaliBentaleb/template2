@@ -1,6 +1,6 @@
 @extends('layouts.app') @section('content')
-<div style="">
-    <div class="container" style="">
+<div >
+    <div class="container" >
         <div class="row">
             <div class="col-md-6">
                 <div class="share-zone">
@@ -33,7 +33,7 @@
                                     <div id="border-bottom">
                                         <span class="status-title">Titre :&nbsp;</span>
 
-                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;">
+                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;" required>
 
                                         <select class="module-options" name="status_module" style="margin-right:0;">
                                                
@@ -56,7 +56,7 @@
 
 
 
-                                    <textarea class="form-control content" name="status" id="summernote-status"></textarea>
+                                    <textarea class="form-control content" name="status" id="summernote-status" required></textarea>
                                     <input type="file" name="file" multiple="" id="file_status" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                                     <div class="box" style="margin-left:10px;display:  inline-block;">
                                         <input type="file" name="files[]" id="file-status" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
@@ -77,7 +77,7 @@
                                     <div id="border-bottom">
                                         <span class="status-title">Titre :&nbsp;</span>
 
-                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;">
+                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;" required>
 
                                         <select class="module-options" name="blog_module" style="margin-right:0;">
 
@@ -96,7 +96,7 @@
 
                                     </div>
 
-                                    <textarea class="form-control content" name="blog" id="summernote-blog"></textarea>
+                                    <textarea class="form-control content" name="blog" id="summernote-blog" required></textarea>
 
                                     <input type="file" name="file" multiple="" id="file_blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                                     <div class="box" style="margin-left:10px;display:  inline-block;">
@@ -119,7 +119,7 @@
                                     <div id="border-bottom">
                                         <span class="status-title">Titre :&nbsp;</span>
 
-                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;">
+                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;" required>
 
                                         <select class="module-options" name="faq_module" style="margin-right:0;">
 
@@ -138,7 +138,7 @@
 
                                     </div>
 
-                                    <textarea class="form-control content" name="faq" id="summernote-faq"></textarea>
+                                    <textarea class="form-control content" name="faq" id="summernote-faq" required></textarea>
                                     <input type="file" name="file" multiple="" id="file_faq" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                                     <div class="box" style="margin-left:10px;display:  inline-block;">
                                         <input type="file" name="files[]" id="file-faq" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
@@ -159,7 +159,7 @@
                                     <div id="border-bottom">
                                         <span class="status-title">Titre :&nbsp;</span>
 
-                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;">
+                                        <input type="text" id="titre" class="title" name="titre" style="font-size:16px;" required>
 
                                         <select class="module-options" name="sondage_module" style="margin-right:0;">
 
@@ -178,8 +178,22 @@
 
                                     </div>
 
-                                    <textarea class="form-control content" name="sondage" id="summernote-sondage"></textarea>
-
+                                    <textarea class="form-control content" name="sondage" id="summernote-sondage" required></textarea>
+                                    <div class="sondage-list">
+                                        <ul class="sondage-form form-group  list-unstyled">
+                                            <li>
+                                                <label class="form-label">Choix 1 :</label>
+                                                <input class="form-control" type="text" name="choix1">
+                                            </li>
+                                            <li>
+                                                <label class="form-label">Choix 2 :</label>
+                                                <input class="form-control" type="text" name="choix2">
+                                            </li>
+            
+                                        </ul>
+            
+                                        <button id="add-choix" class="btn btn-outline-primary btn-sm" type="button">Ajouter Choix</button>
+                                    </div>
                                     <input type="file" name="file" multiple="" id="file_sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                                     <div class="box" style="margin-left:10px;display:  inline-block;">
                                         <input type="file" name="files[]" id="file-sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
@@ -200,6 +214,7 @@
                 </div>
                @foreach($publications as $module)
                 @foreach($module->publications as $publication)
+                @if($publication->signaler == 0)
                 <div class="status">
                         <div class="col-md-12">
                     <ul class="list-inline">
@@ -208,10 +223,25 @@
                         </li>
                         <li>
                             <ul class="list-unstyled publisher-info">
-                                <li class="publisher-name">{{ $publication->user->nom }} {{ $publication->user->prenom }}</li>
-                                @foreach($publication->user->roles as $role)
-                                <li class="role-admin">{{$role->nom}}</li>
-                                @endforeach
+                                <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
+                                <li>
+                                    <ul style="padding-left:0;" style="padding-left:0;">
+                                        @foreach($publication->user->roles as $role)
+                                                    @if($role->nom == "Administrateur")
+                                                    <li class="role-admin">{{$role->nom}}</li>
+                                                    @endif
+                                                    @if($role->nom == "Enseignant")
+                                                    <li class="role-prof">{{$role->nom}}</li>
+                                                    @endif
+                                                    @if($role->nom == "Gérant club")
+                                                    <li class="role-club">{{$role->nom}}</li>
+                                                    @endif
+                                                    @if($role->nom == "Etudiant")
+                                                    <li class="role-etud">{{$role->nom}}</li>
+                                                    @endif
+                                                @endforeach
+                                        </ul>
+                                </li>
                                 <li class="status-time">{{$publication->created_at->diffForHumans()}}</li>
                             </ul>
                         </li>
@@ -221,31 +251,34 @@
                             <i class="icon-options status-options"></i>
                         </a>
                         <ul class="list-unstyled dropdown-menu dropdown-menu-right" style="margin-top:20px;">
+                            @if($publication->user->id == Auth::id())
                             <li>
-                                <a href="#">
-                                    <i class="icon-pencil"></i>
-                                    <span>&nbsp; Modifier</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="icon-trash"></i>
-                                    <span>&nbsp; Supprimer</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-eyeglass"></i>
-                                    <span>&nbsp; Suivre</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-flag"></i>
-                                    <span>&nbsp; Signaler</span>
-                                </a>
-                            </li>
+                                    <a href="{{route('publication.modifier',['id'=>$publication->id])}}">
+                                        <i class="icon-pencil"></i>
+                                        <span>&nbsp; Modifier</span>
+                                    </a>
+                                </li>
+                                @endif
+                               @if($publication->user->id == Auth::id() || Auth::user()->isAdmin())
+                               <li>
+                                    <a  id="supprimer-btn" href="{{route('publication.destroy',['id'=>$publication->id])}}">
+                                        <i class="icon-trash"></i>
+                                        <span>&nbsp; Supprimer</span>
+                                    </a>
+                                </li>
+                               @endif
+                               @if($publication->user->id != Auth::id())
+                               <suivie :publication="{{$publication->id}}" ></suivie>
+                                @endif
+                              
+                                @if($publication->user->id != Auth::id())
+                                <li>
+                                    <a  id="signaler-btn" href="{{route('publication.signaler',['id'=>$publication->id])}}">
+                                        <i class="icon-flag"></i>
+                                        <span>&nbsp; Signaler</span>
+                                    </a>
+                                </li>
+                                @endif
                         </ul>
                     </div>
                 </div>
@@ -254,7 +287,7 @@
                     <div style="text-align:center;">
                         <span>Status de module :&nbsp;</span>
                         <span class="module">
-                            <a href="index.html">{{$module->nom}}</a>
+                            <a href="{{route('publication.filtrer.module',['id'=>$publication->module_id])}}">{{$module->nom}}</a>
                             <br>
                         </span>
                     </div>
@@ -267,6 +300,7 @@
                     <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{Auth::id()}}"></jaimecommentairecommenter>
                     <hr style="width:100%;">
                 </div>
+                @endif
                 @endforeach
                 @endforeach
             </div>

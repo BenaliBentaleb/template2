@@ -4,9 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Sondage;
 use Illuminate\Http\Request;
+use App\Publication;
+use Auth;
 
 class SondageController extends Controller
 {
+
+
+    public function get_publication_of_sondage($id) {
+
+        $publication = Sondage::where('publication_id',$id)->first();
+        $sondage = $publication->sondage_choix;
+
+        return $sondage;
+
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -35,12 +50,17 @@ class SondageController extends Controller
      */
     public function store(Request $request)
     {
-          $f =  $request->files ; 
+
+
+
+         /* $f =  $request->files ; 
           foreach($f as $fil)
             {
                return $fil[0]->getClientOriginalName();
 
-            }
+            }*/
+
+           // dd($request);
 
     }
    
@@ -50,9 +70,9 @@ class SondageController extends Controller
      * @param  \App\Sondage  $sondage
      * @return \Illuminate\Http\Response
      */
-    public function show(Sondage $sondage)
+    public function show()
     {
-        //
+       return view('sondage');
     }
 
     /**

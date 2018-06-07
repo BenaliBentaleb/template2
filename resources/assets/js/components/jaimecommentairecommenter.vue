@@ -39,16 +39,16 @@
             <strong>{{comment.user.nom}} {{comment.user.prenom}}</strong>
           </li>
           <li>
-            <span>{{moment(comment.created_at).fromNow()}} </span>
+            <span>{{moment(comment.created_at).fromNow()}} </span> 
           </li>
         </ul>
         <div>
           <p class="comment-text">
-            {{comment.commentaire}}
+            {{comment.commentaire}} 
             <br>
-          </p>
+          </p><span class="btn btn-blue" v-if="comment.user.id === id" @click="deleteComment(comment.id)">Supprimer</span>
 
-          <jaimecomment :comment="comment.id" :id="id"></jaimecomment>
+          <jaimecomment :comment="comment.id" :id_user="id" ></jaimecomment>
 
         </div>
       </div>
@@ -87,6 +87,16 @@ let moment = require('moment');
         moment:moment
       };
     },
+      notifications: {
+    delete: {
+      // You can have any name you want instead of 'showLoginError'
+      title: "Supprimer votre commentaire",
+      message: "Vous voulez supprimer votre commentaire",
+      type: "success" // You also can use 'VueNotifications.types.error' instead of 'error'
+    },
+   
+   
+  },
 
     mounted() {
       this.getcommentaire;
@@ -106,10 +116,22 @@ let moment = require('moment');
             .then(response => {
               this.commentaires.push(response.data);
               this.commentaire = "";
-           // console.log(response.data);
-            });
+            console.log(response.data);
+            }).catch(err => console.log(err));
         }
       },
+
+      deleteComment(id) {
+        axios.get(`/commentaire/delete/${id}`)
+        .then(response => {
+          console.log(response);
+          this.commentaires.forEach((value, key ) => {
+            if(value.id === id) {
+              this.commentaires.splice(key,1);
+            }
+          })
+        }).catch(err => console.log(err));
+      }
 
       
 

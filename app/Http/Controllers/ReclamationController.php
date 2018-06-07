@@ -6,6 +6,8 @@ use App\Reclamation;
 use Illuminate\Http\Request;
 use App\Departement;
 use Auth ; 
+use App\User;
+use App\Notifications\ReclamationNotification ;
 
 class ReclamationController extends Controller
 {
@@ -50,7 +52,15 @@ class ReclamationController extends Controller
 
          $reclamation->save();
 
+         foreach(User::all() as $user ) {
+            if($user->isAdmin()) {
+                $user->notify(new  ReclamationNotification(Reclamation::find($reclamation->id)));
+ 
+            }
+         }
          return $reclamation;
+       
+
 
     }
 

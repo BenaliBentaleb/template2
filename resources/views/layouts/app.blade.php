@@ -11,9 +11,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>NTICien</title>
     <!-- Styles -->
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!--<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/simple-line-icons.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
@@ -23,14 +27,22 @@
     <link rel="stylesheet" href="{{ asset('assets/css/Navigation-with-Search.css') }}">
     <link rel="stylesheet" href="{{asset('assets/css/reclamation.css')}}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    
     <link rel="stylesheet" href="{{asset('assets/css/Navigation-Clean.css')}}">
+  
+   
+    <link href="{{asset('assets/css/main.css')}}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+ 
+  
+    
 </head>
 
 <body style="font-family:'Nunito Sans', sans-serif;background-color:#edf2f6;">
     <div id="app">
 
-      
+
         <nav class="navbar navbar-default navigation-clean-search navbar-fixed-top">
             <div class="container">
 
@@ -48,8 +60,13 @@
                         <li class="active" role="presentation">
                        @auth
                        <notification   :id_auth="{{ Auth::id() }}" ></notification>
-
+                      
                         <unreadnot></unreadnot>
+                        @if(Auth::user()->isAdmin())
+                        <unreadnotadmin></unreadnotadmin>
+                        @endif
+                    
+                       
                         <audio  id="noty">
                             <source src="{{ asset('notification/definite.mp3') }}" type="">
                         </audio>
@@ -64,7 +81,7 @@
                             <input class="form-control search-field" type="search" name="search" id="search-field">
                         </div>
                     </form>
-                    @auth 
+                    @auth
                     <a  href="/chat" class="btn btn-default navbar-btn chat-btn" type="button">
                         <i class="icon-bubbles"></i>
                      </a>
@@ -115,19 +132,19 @@
 
             </div>
         </nav>
-       
 
-       
+
+
         @yield('chat')
         <div style="margin-top:20px;">
-         
+
             @if($chat == null)
             <div class="container" style="margin-top:97px;">
                     <div class="row">
                         @auth
                        @if($profile == null)
-    
-    
+
+
                         <div class="col-md-3">
                                 <ul class="list-group side-bar">
                                     <li class="list-group-item" style="padding-top:10px;">
@@ -143,10 +160,10 @@
                                         <i class="icon-grid"></i>
                                         <span class="departement" style="font-weight:bold;">Dépratement :{{$dep->nom}}</span>
                                     </li>
-    
-    
+
+
                                     @foreach($dep->formation as $formation) @if(str_contains($formation->nom,'Tronc Commun'))
-    
+
                                     <li class="list-group-item">
                                         <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor ">
                                             <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
@@ -175,8 +192,8 @@
                                         </a>
                                     </li>
                                     @endif @endforeach @endforeach
-    
-    
+
+
                                     <li class="list-group-item border-top">
                                         <a href="#" class="list-anchor">
                                             <i class="icon-bell icon-sidebar"></i>
@@ -200,7 +217,7 @@
                        @endif
                         @endauth
                          @yield('content')
-    
+
                     </div>
                 </div>
             @endif
@@ -210,7 +227,7 @@
 
 
 
-       
+
 
 
     </div>
@@ -219,15 +236,21 @@
 
 
     <script src="{{asset('assets/js/jquery.min.js') }}"></script>
+    
+    
     <script src="{{ asset('js/app.js') }}"></script>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--  <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>-->
     <script src="{{ asset('assets/js/custom-file-input.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-    
+    <script src="{{asset('assets/js/custom-file-input.js')}}"></script>
+
 
     <script src="{{ asset('assets/js/mixitup.min.js')}}"></script>
     <script src="{{ asset('assets/js/mixitup-multifilter.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
+  
 
 <script type="text/javascript">
     $('body').on('click', '#submitForm', function(){
@@ -239,7 +262,7 @@
         $( '#date_naissance-error' ).html( "" );
         $( '#addresse-error' ).html( "" );
         $( '#numero_telephone-error' ).html( "" );
-      
+
         $( '#informations-error' ).html( "" );
         var id = $(this).data('id');
 
@@ -254,7 +277,7 @@
                     if(data.errors.addresse){
                         $( '#addresse-error' ).text( data.errors.addresse[0] );
                     }
-                   
+
 
                     if(data.errors.date_naissance){
                         $( '#date_naissance-error' ).html( data.errors.date_naissance[0] );
@@ -262,7 +285,7 @@
                     if(data.errors.numero_telephone){
                         $( '#numero_telephone-error' ).html( data.errors.numero_telephone[0] );
                     }
-                   
+
                     if(data.errors.formation){
                         $( '#formation-error' ).html( data.errors.formation[0] );
                     }
@@ -274,20 +297,143 @@
                 }
               if(data.success) {
                   //  $('#success-msg').removeClass('hide');
-                   
+
                         $('#modifierprofile').modal('hide');
                        // $('#success-msg').addClass('hide');
                        window.location.href = "http://127.0.0.1:8000/profile/"+id;
-                   
+
                 }
             },
         });
     });
 
 
-    
-       
-    
+
+    /*    $('body').on('click', '#submitsondageform', function(e){
+            e.preventDefault();
+        var registerForm = $("#sondage-form");
+        var formData = registerForm.serialize();
+        console.log(formData);
+     
+        
+
+
+        $.ajax({
+            url:'/sondage/store',
+            type:'POST',
+            data:formData,
+            success:function(data) {
+                //console.log(data.errors.addresse[0]);
+                if(data.errors) {
+                  
+                    console.log(data.errors);
+
+                }
+              if(data.success) {
+            
+                console.log(data.errors);
+
+                }
+            },
+        });
+    });*/
+
+
+
+  /*$(function () {
+                        //$('.sondage-resultat').hide();
+                        $("#show-result").click(function (e) {
+                            //e.preventDefault();
+                            //$('.sondage-result').replaceWith('Hellooo');
+                            $('#sondage-options').hide(600);
+                            //$('#show-result').hide(600);
+                            $('#sondage-result').show(600);
+
+                            
+                        });
+
+                    });*/
+
+
+        var signaler = {
+
+            linkSelector: "a#signaler-btn",
+
+            init: function () {
+                $(this.linkSelector).on('click', {
+                    self: this
+                }, this.handleClick);
+            },
+
+            handleClick: function (event) {
+                event.preventDefault();
+
+                var self = event.data.self;
+                var link = $(this);
+
+                swal({
+                        title: "Etes-Vous sur ?",
+                        text: "Apres la signaler, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                          /*  swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });*/ window.location = link.attr('href');
+                        }/* else {
+                            swal("votre donneé est protegé!");
+                        }*/
+                    });
+
+            },
+        };
+
+        signaler.init();
+
+
+     var supprimer = {
+
+linkSelector: "a#supprimer-btn",
+
+init: function () {
+    $(this.linkSelector).on('click', {
+        self: this
+    }, this.handleClick);
+},
+
+handleClick: function (event) {
+    event.preventDefault();
+
+    var self = event.data.self;
+    var link = $(this);
+
+    swal({
+            title: "Etes-Vous sur ?",
+            text: "Apres la suppression, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+              /*  swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                });*/ window.location = link.attr('href');
+            }/* else {
+                swal("votre donneé est protegé!");
+            }*/
+        });
+
+},
+};
+
+supprimer.init();
+
+
+
 </script>
 
 

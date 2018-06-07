@@ -180,7 +180,7 @@ export default {
     },
 
     uploadMemoire() {
-      if (!(parseInt(this.memoire.annee) < 2010) && typeof parseInt(this.memoire.annee) === "number" ) {
+      if (!(parseInt(this.memoire.annee) < 1980) && typeof parseInt(this.memoire.annee) === "number" ) {
         axios.post("/memoire/saveFile", this.memoire).then(response => {
           //
 

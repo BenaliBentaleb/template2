@@ -72,7 +72,7 @@ class RegisterController extends Controller
            
              
         ]);
-           //     dd($user);
+        
         Profile::create([
             'user_id' =>  $user->id,
             'photo_profile'=> '/uploads/avatars/1526153957mal.png',

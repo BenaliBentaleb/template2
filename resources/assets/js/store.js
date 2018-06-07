@@ -15,7 +15,9 @@ export const store = new Vuex.Store({
         likedBy: [],
         nots: [],
         chats:'',
-        onlineUsers: ""
+        onlineUsers: "",
+        adminNots:[]
+
 
 
 
@@ -31,6 +33,15 @@ export const store = new Vuex.Store({
         all_nots_count(state) {
 
             return state.nots.length;
+        },
+
+        all_admin_nots(state) {
+            return state.adminNots;
+        },
+
+        all_admin_nots_count(state) {
+
+            return state.adminNots.length;
         },
 
         
@@ -59,6 +70,11 @@ export const store = new Vuex.Store({
         add_not(state, not) {
             state.nots.push(not)
         },
+
+        add_admin_not(state, not) {
+            state.adminNots.push(not)
+        },
+        
         addPublication(state, value) {
             state.publications.push(value);
         },

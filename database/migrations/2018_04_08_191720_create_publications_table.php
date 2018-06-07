@@ -18,7 +18,9 @@ class CreatePublicationsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('module_id')->unsigned()->nullable();
             $table->string('titre');
+            $table->string('slug');
             $table->longText('contenu');
+            $table->integer('signaler')->default(0);
             $table->string('type');
 
             $table->timestamps();

@@ -52,7 +52,9 @@ Vue.component('unreadnot',require('./components/unreadnot.vue'));
 Vue.component('chat',require('./components/chat.vue'));
 Vue.component('ajoutermemoire',require('./components/ajouterMemoire.vue'))
 Vue.component('onlineuser', require('./components/OnlineUser.vue'));
-//Vue.component('chat-composer', require('./components/ChatComposer.vue'));
+Vue.component('sondage', require('./components/sondage.vue'));
+Vue.component('suivie', require('./components/suivie.vue'));
+Vue.component('unreadnotadmin', require('./components/unreadnotadmin.vue'));
 import {store} from './store';
 
 const app = new Vue({
