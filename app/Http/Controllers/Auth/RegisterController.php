@@ -72,13 +72,8 @@ class RegisterController extends Controller
            
              
         ]);
-<<<<<<< HEAD
         
         Profile::create([
-=======
-           //     dd($user);
-       Profile::create([
->>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724
             'user_id' =>  $user->id,
             'photo_profile'=> '/uploads/avatars/1526153957mal.png',
             'coverture' => null,

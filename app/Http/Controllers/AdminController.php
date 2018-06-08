@@ -15,17 +15,14 @@ use App\ReclamationChat;
 use App\Event;
 use App\Departement;
 use App\Formation;
-<<<<<<< HEAD
 use App\Sondage;
 use App\Role;
 use App\Profile;
-=======
 use App\Module;
 use App\Semestre;
-use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\Facades\Input;
 
->>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724
 class AdminController extends Controller
 {
    
@@ -48,14 +45,11 @@ class AdminController extends Controller
         ->with('reclamation',Reclamation::all()->count())
         ->with('evenement',Event::all()->count())
         ->with('departement',Departement::all()->count())
-<<<<<<< HEAD
         ->with('formation',Formation::all()->count())
         ->with('chat',Auth::id())
-        ->with('profile',Auth::id());
-=======
+        ->with('profile',Auth::id())
         ->with('module',Module::all()->count())
         ->with('formation',Formation::all()->count());
->>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724
     }
 
     public function utilisateur() {
@@ -429,4 +423,68 @@ class AdminController extends Controller
     }
     /*END SECTION RECLAMATION */
     
+        /*START SECTION EVENTS */
+
+        public function event() {
+            return view('admin.event')->with('events',Event::orderBy('is_archived','ASC')->paginate(9));
+    }
+            
+    public function ajoutEvent() {
+        return view('admin.event-ajout');
+    }
+            
+    public function modifieEvent($id) {
+        return view('admin.event-modifie')->with('event',Event::find($id));                                    
+    }
+            
+    public function storeEvent(Request $request) {
+                    
+        //dd($request->all());
+        $event = new Event;
+        $event->titre = $request->titre;
+        $event->user_id = Auth::id();
+        $event->event_role = $request->event_role;
+        $event->description = $request->description;
+        $event->contenu = $request->contenu;
+        $event->debut = $request->debut;
+        $event->fin = $request->fin;
+        $event->save();
+            
+        return redirect()->route('admin.event');
+    } 
+            
+    public function editEvent(Request $request, $id) {
+                    
+        $event = Event::find($id);
+        $event->titre = $request->titre;
+        $event->event_role = $request->event_role;
+        $event->description = $request->description;
+        $event->contenu = $request->contenu;
+        $event->debut = $request->debut;
+        $event->fin = $request->fin;
+        $event->save();
+             
+        return redirect()->route('admin.event');
+    } 
+            
+    public function archiverEvent($id) {      
+        $event = Event::find($id);
+        $event->is_archived = 1;
+        $event->save();
+        return redirect()->back();
+    } 
+
+    public function unarchiveEvent($id) {      
+        $event = Event::find($id);
+        $event->is_archived = 0;
+        $event->save();
+        return redirect()->back();
+    } 
+
+    public function deleteEvent($id) {
+        $event = Event::find($id);
+        $event->delete();
+        return redirect()->back();
+    } 
+    /*END SECTION EVENTS */
 }

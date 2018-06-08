@@ -206,12 +206,15 @@
                                             <span style="font-size:15px;">Portail mémoires</span>
                                         </a>
                                     </li>
+
+                                    @if(!Auth::user()->isAdmin())
                                     <li class="list-group-item">
                                         <a href="{{route('reclamation.index')}}" class="list-anchor">
                                             <i class="icon-exclamation icon-sidebar"></i>
                                             <span style="font-size:15px;">Déposer réclamation</span>
                                         </a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                        @endif

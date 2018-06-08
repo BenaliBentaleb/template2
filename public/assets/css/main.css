@@ -18,35 +18,29 @@
     margin-bottom: 5px;
 }
 
-.role-admin {
+.role-admin,.bg-admin {
     background-color: #ff5858;
 }
 
-.role-prof {
+.role-prof,.bg-prof {
     background-color: #9364e0;
 }
 
-.role-club {
+.role-club,.bg-club {
     background-color: #6ee064;
 }
 
 .role-etudiant {
     background-color: #45aaf2;
 }
-
-.users-table.card-table tr td:last-child,
-.card-table tr th:last-child {
+.users-table.card-table tr td:last-child, .card-table tr th:last-child{
     padding-right: 1rem !important;
 }
-
-.card {
+.card{
     margin-bottom: 1rem !important;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724
 .mixitup-control-active{
     background-color: #467fcf;
     color: #fff;
@@ -89,9 +83,6 @@
     padding: 0 0 5px 5px;
     margin: 0;
     background-color: #f1f1f1;
-<<<<<<< HEAD
-}
-=======
 }
 
 .bg-licence{
@@ -106,6 +97,11 @@
     max-width: 70%;
     float: left;
 }
+.chat-content .msg-recieved {
+    float: right;
+    max-width: 70%;
+}
+
 .chat-content .msg-sent .msg-time {
     line-height: 36px;
     color: #898989;
@@ -137,4 +133,3 @@
     overflow-x: auto;
     border: 1px solid #dddfe0;
 }
->>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724

@@ -381,12 +381,7 @@
             <div class="content">
                 {!! $publication->contenu !!}
            
-<<<<<<< HEAD
           <br></div>
-=======
-            <br>
-            </div>
->>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724
         </div>
 
         @if( count($publication->publication_avec_fichier))

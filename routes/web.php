@@ -307,7 +307,6 @@ Route::get('/admin/delete/user/{id}', [
     'as'=>'admin.utilisateur.delete'
 ])->middleware('admin');
 
-<<<<<<< HEAD
 Route::get('/admin/publications', [
     'uses'=>'AdminController@publications',
     'as'=>'admin.utilisateur.publications'
@@ -332,7 +331,6 @@ Route::post('/admin/modifier/utitlisateur/{id}', [
     'uses'=>'AdminController@modifier_utilisateur',
     'as'=>'admin.modifier.utilisateur'
 ])->middleware('admin');
-=======
 /* START SECTION DEPARTEMENT */
 Route::get('/admin/departement', [
     'uses'=>'AdminController@departement',
@@ -497,4 +495,44 @@ Route::post('/admin/reclamation/sendmsg/{id}', [
     'as'=>'admin.reclamation.oo'
 ])->middleware('admin');
 /* END SECTION RECLAMATION */
->>>>>>> 9a6ff1e456b9b54e6915787ce4ba13cfe8a87724
+
+/* START SECTION EVENT */
+Route::get('/admin/event', [
+    'uses'=>'AdminController@event',
+    'as'=>'admin.event'
+])->middleware('admin');
+
+Route::get('/admin/event/ajout', [
+    'uses'=>'AdminController@ajoutEvent',
+    'as'=>'admin.event.ajout'
+])->middleware('admin');
+
+Route::post('/admin/event/store', [
+    'uses'=>'AdminController@storeEvent',
+    'as'=>'admin.event.store'
+])->middleware('admin');
+
+Route::post('/admin/event/edit/{id}', [
+    'uses'=>'AdminController@editEvent',
+    'as'=>'admin.event.edit'
+])->middleware('admin');
+
+Route::get('/admin/modifie/event/{id}', [
+    'uses'=>'AdminController@modifieEvent',
+    'as'=>'admin.event.modifie'
+])->middleware('admin');
+
+Route::get('/admin/archiver/event/{id}', [
+    'uses'=>'AdminController@archiverEvent',
+    'as'=>'admin.event.archiver'
+])->middleware('admin');
+Route::get('/admin/unarchive/event/{id}', [
+    'uses'=>'AdminController@unarchiveEvent',
+    'as'=>'admin.event.unarchive'
+])->middleware('admin');
+
+Route::get('/admin/event/delete/{id}', [
+    'uses'=>'AdminController@deleteEvent',
+    'as'=>'admin.event.delete'
+])->middleware('admin');
+/* END SECTION EVENT */

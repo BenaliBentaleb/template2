@@ -159,6 +159,12 @@ class SetForeignKeys extends Migration
         $table->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('formation_id')
+            ->references('id')->on('formations')
+            ->onDelete('cascade')->onUpdate('cascade');
+            //cbn ana nrou7 dork
+            //wach ndir ndir push
+            //wah dir push ok 
     });
     Schema::table('sondage_choixes', function(Blueprint $table) {
         $table->foreign('sondage_id')
@@ -176,6 +182,9 @@ class SetForeignKeys extends Migration
             ->onDelete('cascade')->onUpdate('cascade');
     });
 
+//nta dir l forieegn key, normalement hada wach mdofitmin tkamal dir push
+//ta3ech forign key?
+//te3formation_id li zednaha dork fel event table
 
     Schema::table('suivis', function(Blueprint $table) {
         $table->foreign('user_id')

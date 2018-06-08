@@ -122,11 +122,11 @@
                                         <i class="fe fe-users"></i> Utilisateurs</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./departements.html" class="nav-link">
+                                    <a href="{{route('admin.departement')}}" class="nav-link">
                                         <i class="fe fe-box"></i> Départements</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./formations.html" class="nav-link">
+                                    <a href="{{route('admin.formation')}}" class="nav-link">
                                         <i class="fe fe-briefcase"></i> Formations</a>
                                 </li>
                                 <li class="nav-item">
@@ -138,11 +138,11 @@
                                         <i class="fe fe-calendar"></i> Événements</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./reclamations.html" class="nav-link">
+                                    <a href="{{route('admin.reclamation')}}" class="nav-link">
                                         <i class="fe fe-alert-triangle"></i> Réclamations</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./memoires.html" class="nav-link">
+                                    <a href="{{route('admin.memoire')}}" class="nav-link">
                                         <i class="fe fe-book"></i> Mémoires </a>
                                 </li>
                             </ul>
@@ -291,6 +291,46 @@
         deleterPublication.init();
 
 
+        var deleterMemoire = {
+
+            linkSelector: "a#delete-memoire",
+
+            init: function () {
+                $(this.linkSelector).on('click', {
+                    self: this
+                }, this.handleClick);
+            },
+
+            handleClick: function (event) {
+                event.preventDefault();
+
+                var self = event.data.self;
+                var link = $(this);
+
+                swal({
+                        title: "Etes-Vous sur ?",
+                        text: "Apres la suppression, le mémoire sera supprimé définitivement !",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            /*  swal("Poof! Your imaginary file has been deleted!", {
+                                  icon: "success",
+                              });*/
+                            window.location = link.attr('href');
+                        } else {
+                            swal("votre donneé est protegé!");
+                        }
+                    });
+
+            },
+        };
+
+        deleterMemoire.init();
+
+
         $(document).ready(function () {
 
             // initialize summernote
@@ -299,6 +339,21 @@
             });
             // and set code
             $('#summernote').summernote('code', contents);
+
+
+
+
+
+            var mixer = mixitup("#memoires", {
+                selectors: {
+                    control: '[data-mixitup-control]'
+                }
+            });
+
+            $('.shuffle button').click(function () {
+                $(this).addClass('selected').siblings().removeClass('selected');
+            });
+
         });
         /*   var notification = Vue.component('notification', {
                data: function () {
