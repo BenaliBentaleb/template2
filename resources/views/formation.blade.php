@@ -154,7 +154,7 @@
                             </div>
                             <div class="tab-pane active" role="tabpanel" id="tab-4">
 
-                                <form action="{{route('sondage.store')}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{route('sondagechoix.store')}}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div id="border-bottom">
                                         <span class="status-title">Titre :&nbsp;</span>
@@ -219,7 +219,7 @@
                         <div class="col-md-12">
                     <ul class="list-inline">
                         <li>
-                            <img class="publisher-image" style="background-image:url(&quot;assets/img/customer.png&quot;);">
+                            <img class="publisher-image" style="background-image:url({{$publication->user->profile->photo_profile}});">
                         </li>
                         <li>
                             <ul class="list-unstyled publisher-info">
@@ -292,13 +292,32 @@
                         </span>
                     </div>
                     <div>
-                        <p class="content">
+                        <div class="content">
                                 {!! $publication->contenu !!}
-                        </p>
+                                <br> </div>
                     </div>
+
+                    @if( count($publication->publication_avec_fichier))
+                    <div class="files-uploaded">
+                        <h4 class="files-uploaded-header">Les fichiers Télécharger</h4>
+                        <ul class="list-unstyled files-list">
+                            @foreach($publication->publication_avec_fichier as $fichier)
+                            <li class="single-file">
+                                <span>{{$fichier->nom_fichier}}</span>
+                                <a href="{{route('file.download',['id'=>$fichier->id])}}" class="download-file-link" style="float:right;">
+                                    <i class="icon-arrow-down-circle download-icon"></i>
+                                    <span style="font-size:16px;">&nbsp;Télécharger</span>
+                                </a>
+                            </li>
+                            <li class="clearfix divider"></li>
+                            @endforeach
+            
+                        </ul>
+                    </div>
+                    @endif
                     <hr style="width:100%;">
-                    <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{Auth::id()}}"></jaimecommentairecommenter>
-                    <hr style="width:100%;">
+                    <jaimecommentairecommenter :publication="{{$publication->id}}" :id="{{Auth::id()}}" :image=`{{asset(Auth::user()->profile->photo_profile)}}`></jaimecommentairecommenter>
+                   
                 </div>
                 @endif
                 @endforeach

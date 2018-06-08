@@ -74,11 +74,54 @@ class ModulesTableSeeder extends Seeder
             'formation_id' => 2,
             'semestre_id' => 4,
         ]);
-
+        // ti 
         App\Module::create([
             'nom' => 'BD',
             'formation_id' => 2,
             'semestre_id' => 4,
         ]);
+        
+
+        App\Module::create([
+            'nom' => 'ACS',
+            'formation_id' => 3,
+            'semestre_id' => 5,
+        ]);
+
+        App\Module::create([
+            'nom' => 'OTAM',
+            'formation_id' => 3,
+            'semestre_id' => 5,
+        ]);
+
+        App\Module::create([
+            'nom' => 'IHM',
+            'formation_id' => 3,
+            'semestre_id' => 5,
+        ]);
+
+        
+        App\Module::create([
+            'nom' => 'SSR',
+            'formation_id' => 3,
+            'semestre_id' => 6,
+        ]);
+
+        App\Module::create([
+            'nom' => 'DAM',
+            'formation_id' => 3,
+            'semestre_id' => 6,
+        ]);
+
+        App\Module::create([
+            'nom' => 'STO',
+            'formation_id' => 3,
+            'semestre_id' => 6,
+        ]);
+
+        
+
+
+
     }
 }
