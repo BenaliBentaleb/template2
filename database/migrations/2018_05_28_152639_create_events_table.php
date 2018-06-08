@@ -17,7 +17,11 @@ class CreateEventsTable extends Migration
            
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+<<<<<<< HEAD
             $table->integer('formation_id')->nullable()->unsigned();
+=======
+            $table->integer('formation_id')->unsigned()->nullable();
+>>>>>>> 1eeccd62e72e8b26e2dedacb8d22957b7ac03707
             $table->string('event_role');
             $table->string('titre');
             $table->string('description');
