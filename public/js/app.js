@@ -68703,7 +68703,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-
+              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
               response.data.forEach(function (val) {
                 $("#memoireannee").html(option += "<option value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
@@ -68713,7 +68713,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get("/getformation/" + val).then(function (response) {
               var option = "";
               console.log(response);
-
+              option = "<option selected disabled value=''>" + "Spécialité" + "</option>";
               response.data.forEach(function (val) {
                 $("#memoireannee").html(option += "<option  value='" + val.id + "'>" + val.nom + "</option>");
                 console.log(val);
@@ -68739,7 +68739,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     uploadMemoire: function uploadMemoire() {
       var _this = this;
 
-      if (!(parseInt(this.memoire.annee) < 1980) && typeof parseInt(this.memoire.annee) === "number") {
+      if (!(parseInt(this.memoire.annee) < 1990) && typeof parseInt(this.memoire.annee) === "number") {
         axios.post("/memoire/saveFile", this.memoire).then(function (response) {
           //
 

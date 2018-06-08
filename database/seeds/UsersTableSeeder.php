@@ -22,13 +22,13 @@ class UsersTableSeeder extends Seeder
             'user_id' => $user->id,
             'photo_profile'=> 'assets/img/team-1-copyright-485x598.jpg',
             'telephone' => '066666666',
-            'formation_id' => '1',
+            'formation_id' =>1,
             'coverture' =>'assets/img/header.png',
-            'information' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, et repellat inventore iusto exercitationem voluptatum doloremque molestiae quod velit quo aut aperiam iste, officia dolorem veniam odit doloribus modi? Dolore.',
+            'information' => 'Lorem ipsum dolor sit amet consecteturae quod velit quo aut aperiam iste',
             'facebook' => 'facebook.com',
             'youtube' =>'youtube.com',
             'instagram' =>'instagram.com',
-            'twitter' =>'twitter.com',
+            'twitter' =>'twitter.com'
         ]);
 
 
@@ -43,10 +43,34 @@ class UsersTableSeeder extends Seeder
             'nom' =>'Enseignant'
         ]);
 
+
+        $user3 = App\User::create([
+            'nom' => 'Benali',
+            'prenom' =>'Djamel',
+            'email' => 'd@gmail.com',
+            'password' => bcrypt('123456')
+        ]);
+
+       App\Profile::create([
+            'user_id' => $user3->id,
+            'photo_profile'=> 'assets/img/team-1-copyright-485x598.jpg',
+            'telephone' => '066666666',
+            'formation_id' =>1,
+            'coverture' =>'assets/img/header.png',
+            'information' => 'Lorem ipsum dolor sit amet consecteturae quod velit quo aut aperiam iste',
+            'facebook' => 'facebook.com',
+            'youtube' =>'youtube.com',
+            'instagram' =>'instagram.com',
+            'twitter' =>'twitter.com'
+        ]);
+
+
         App\Role::create([
-            'user_id'=> $user->id,
+            'user_id'=> $user3->id,
             'nom' =>'Administrateur'
         ]);
+
+      
 
         $user2 = App\User::create([
             'nom' => 'Aymen',
@@ -59,17 +83,17 @@ class UsersTableSeeder extends Seeder
             'user_id' => $user2->id,
             'photo_profile'=> 'assets/img/team-1-copyright-485x598.jpg',
             'telephone' => '066666666',
-            'formation_id' => '1',
+            'formation_id' =>null,
             'coverture' =>'assets/img/header.png',
-            'information' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, et repellat inventore iusto exercitationem voluptatum doloremque molestiae quod velit quo aut aperiam iste, officia dolorem veniam odit doloribus modi? Dolore.',
+            'information' => 'et repellat inventore iusto exercitatione quod ribu',
             'facebook' => 'facebook.com',
             'youtube' =>'youtube.com',
             'instagram' =>'instagram.com',
-            'twitter' =>'twitter.com',
+            'twitter' =>'twitter.com'
         ]); 
         App\Role::create([
             'user_id'=> $user2->id,
-            'nom' =>'Gérant club'
+            'nom' =>'Gerant Club'
         ]);
     }
 }

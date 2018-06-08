@@ -138,7 +138,7 @@ export default {
             axios.get("/getformation/" + val).then(response => {
               let option = "";
               console.log(response);
-               
+               option =  "<option selected disabled value=''>" +"Spécialité"+ "</option>"
               response.data.forEach(val => {
                 $("#memoireannee").html(
                   (option +=
@@ -151,7 +151,7 @@ export default {
             axios.get("/getformation/" + val).then(response => {
               let option = "";
               console.log(response);
-                
+                option =  "<option selected disabled value=''>" +"Spécialité"+ "</option>"
               response.data.forEach(val => {
                 $("#memoireannee").html(
                   (option +=
@@ -180,7 +180,7 @@ export default {
     },
 
     uploadMemoire() {
-      if (!(parseInt(this.memoire.annee) < 1980) && typeof parseInt(this.memoire.annee) === "number" ) {
+      if (!(parseInt(this.memoire.annee) < 1990) && typeof parseInt(this.memoire.annee) === "number" ) {
         axios.post("/memoire/saveFile", this.memoire).then(response => {
           //
 
