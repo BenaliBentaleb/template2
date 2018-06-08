@@ -205,63 +205,29 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-6 form-group ">
-                                        {{-- <div class="form-group">
-                                            <label class="form-label">Date début</label>
-                                            <div class="row gutters-xs">
-                                                <div class="col-3">
-                                                    <select name="event_debut[day]" class="form-control custom-select">
-                                                        <option value="">Jour</option>
-                                                        @for ($i = 0; $i <= 31; $i++)
-                                                            <option value="0{{$i}}" 
-                                                            @if($event->debut->year == $i )
-                                                            selected
-                                                            @endif
-                                                            >{{ $i }}</option>
-                                                        @endfor
-
-                                                        
-                                                    </select>
-                                                </div>
-                                                <div class="col-5">
-                                                    <select name="event_debut[month]" class="form-control custom-select">
-                                                        <option value="">Mois</option>
-                                                        <option value="01">Janvier</option>
-                                                        <option value="02">Février</option>
-                                                        <option value="03">Mars</option>
-                                                        <option value="04">Avril</option>
-                                                        <option value="05">Mai</option>
-                                                        <option selected="selected" value="06">Juin</option>
-                                                        <option value="07">Juillet</option>
-                                                        <option value="08">Août</option>
-                                                        <option value="09">Septembre</option>
-                                                        <option value="10">Octobre</option>
-                                                        <option value="11">Novembre</option>
-                                                        <option value="12">Décembre</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-4">
-                                                    <select name="event_debut[year]" class="form-control custom-select">
-                                                        <option value="">Année</option>
-                                                        <option value="2020">2020</option>
-                                                        <option value="2019">2019</option>
-                                                        <option value="2018" selected="selected">2018</option>
-                                                        <option value="2017">2017</option>
-                                                        <option value="2016">2016</option>
-                                                        <option value="2015">2015</option>
-                                                        <option value="2014">2014</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div> --}}
+                                    <div class="col-md-4 form-group ">
                                         <label class="form-label">Date debut</label>
                                         <input type="date" name="debut" value="{{$event->debut}}" class="form-control">
                                     </div>
 
-                                    <div class="col-md-6 form-group ">
+                                    <div class="col-md-4 form-group ">
                                         <label class="form-label">Date fin</label>
                                         <input type="date" name="fin" value="{{$event->fin}}" class="form-control">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="form-label">Formation</label>
+                                        <select name="formation_id" class="form-control custom-select" required>
+                                            <optgroup label="NTICien">
+                                                <option value="" @if($event->formation_id == "") selected @endif >Général - NTICien</option>
+                                            </optgroup>
+                                            @foreach($departements as $departement)
+                                                <optgroup label="Déprartement : {{ $departement->nom }}">
+                                                    @foreach($departement->formation as $formation)
+                                                        <option value="{{ $formation->id }}" @if($event->formation_id == $formation->id ) selected @endif>{{ $formation->nom }}</option>
+                                                    @endforeach                                            
+                                                </optgroup>
+                                            @endforeach
+                                        </select>      
                                     </div>
 
                                     <div class=" col-md-12 form-group">

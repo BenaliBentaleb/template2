@@ -204,16 +204,30 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-6 form-group ">
+                                    <div class="col-md-4 form-group ">
                                         <label class="form-label">Date debut</label>
-                                        <input type="date" name="debut"  class="form-control">
+                                        <input type="date" name="debut"  class="form-control" required>
                                     </div>
 
-                                    <div class="col-md-6 form-group ">
+                                    <div class="col-md-4 form-group ">
                                         <label class="form-label">Date fin</label>
-                                        <input type="date" name="fin" class="form-control">
+                                        <input type="date" name="fin" class="form-control" required>
                                     </div>
-
+                                    <div class="col-md-4 form-group">
+                                        <label class="form-label">Formation</label>
+                                        <select name="formation_id" class="form-control custom-select" required>
+                                            <optgroup label="NTICien">
+                                                <option value="" selected >Général - NTICien</option>
+                                            </optgroup>
+                                            @foreach($departements as $departement)
+                                                <optgroup label="Déprartement : {{ $departement->nom }}">
+                                                    @foreach($departement->formation as $formation)
+                                                        <option value="{{ $formation->id }}" >{{ $formation->nom }}</option>
+                                                    @endforeach                                            
+                                                </optgroup>
+                                            @endforeach
+                                        </select>      
+                                    </div>
                                     <div class=" col-md-12 form-group">
                                         <label class="form-label">Brève description
                                             <span class="form-label-small">

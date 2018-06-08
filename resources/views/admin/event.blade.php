@@ -203,7 +203,7 @@
                                 @else
                                     @if($e->event_role == "Administrateur") 
                                     bg-admin 
-                                    @elseif($e->event_role == "Enseignant ")
+                                    @elseif($e->event_role == "Enseignant")
                                     bg-prof
                                     @else
                                     bg-club
@@ -255,7 +255,15 @@
                                         <span class="text-muted">Date fin :</span>&nbsp;
                                         <span>{{ $e->fin }}</span>
                                     </div>
-                                    
+                                    <div>
+                                        <span class="text-muted">Formation :</span>&nbsp;
+                                        @if($e->formation_id=='')
+                                            <span>NTICien</span>
+                                        @else
+                                            <span>{{$e->formation->nom}}</span>
+                                        @endif
+                                    </div>
+
                                     @if($e->is_archived == 1)
                                     <div>
                                         <span class="badge bg-gray text-white">Événement archivé</span>&nbsp;

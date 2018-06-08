@@ -430,11 +430,12 @@ class AdminController extends Controller
     }
             
     public function ajoutEvent() {
-        return view('admin.event-ajout');
+        return view('admin.event-ajout')->with('departements',Departement::all());
     }
             
     public function modifieEvent($id) {
-        return view('admin.event-modifie')->with('event',Event::find($id));                                    
+        return view('admin.event-modifie')->with('event',Event::find($id))                                   
+                                          ->with('departements',Departement::all());                                    
     }
             
     public function storeEvent(Request $request) {
@@ -444,6 +445,7 @@ class AdminController extends Controller
         $event->titre = $request->titre;
         $event->user_id = Auth::id();
         $event->event_role = $request->event_role;
+        $event->formation_id = $request->formation_id;
         $event->description = $request->description;
         $event->contenu = $request->contenu;
         $event->debut = $request->debut;
@@ -458,6 +460,7 @@ class AdminController extends Controller
         $event = Event::find($id);
         $event->titre = $request->titre;
         $event->event_role = $request->event_role;
+        $event->formation_id = $request->formation_id;
         $event->description = $request->description;
         $event->contenu = $request->contenu;
         $event->debut = $request->debut;
