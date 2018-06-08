@@ -134,7 +134,7 @@
                                         <i class="fe fe-check-square"></i> Publications</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./evenements.html" class="nav-link">
+                                    <a href="{{route('admin.event')}}" class="nav-link">
                                         <i class="fe fe-calendar"></i> Événements</a>
                                 </li>
                                 <li class="nav-item">
@@ -173,7 +173,35 @@
             document.form1.submit();
         }
 
-
+ var deleterEvent = {
+            linkSelector: "a#delete-event",
+            init: function () {
+                $(this.linkSelector).on('click', {
+                    self: this
+                }, this.handleClick);
+            },
+            handleClick: function (event) {
+                event.preventDefault();
+                var self = event.data.self;
+                var link = $(this);
+                swal({
+                        title: "Etes-Vous sur ?",
+                        text: "Cet évènement sera supprimé d'une manière définitive",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            /*  swal("Poof! Your imaginary file has been deleted!", {
+                                  icon: "success",
+                              });*/
+                            window.location = link.attr('href');
+                        } 
+                    });
+            },
+        };
+        deleterEvent.init();
 
 
 
@@ -320,9 +348,7 @@
                                   icon: "success",
                               });*/
                             window.location = link.attr('href');
-                        } else {
-                            swal("votre donneé est protegé!");
-                        }
+                        } 
                     });
 
             },
