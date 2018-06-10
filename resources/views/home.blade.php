@@ -332,6 +332,7 @@
                         </a>
                     </li>
                     @endif
+                  
                    @if($publication->user->id == Auth::id() || Auth::user()->isAdmin())
                    <li>
                         <a  id="supprimer-btn" href="{{route('publication.destroy',['id'=>$publication->id])}}">
@@ -339,7 +340,10 @@
                             <span>&nbsp; Supprimer</span>
                         </a>
                     </li>
-                   @endif
+                    @endif
+                  
+
+                  
                    @if($publication->user->id != Auth::id())
                     <suivie :publication="{{$publication->id}}" :user="{{Auth::id()}}" ></suivie>
                     @endif
@@ -406,9 +410,9 @@
         <hr style="width:100%;">
 
 
-
+        @auth
         <jaimecommentairecommenter :publication="{{$publication->id}}"  :id="{{Auth::id()}}" :image=`{{asset(Auth::user()->profile->photo_profile)}}`></jaimecommentairecommenter>
-
+        @endauth
     </div>
     @endif
 

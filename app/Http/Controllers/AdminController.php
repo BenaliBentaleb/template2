@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\EventRequest;
 
 use Auth;
 use App\User;
@@ -438,7 +439,7 @@ class AdminController extends Controller
                                           ->with('departements',Departement::all());                                    
     }
             
-    public function storeEvent(Request $request) {
+    public function storeEvent(EventRequest $request) {
                     
         //dd($request->all());
         $event = new Event;

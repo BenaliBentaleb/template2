@@ -14,10 +14,10 @@ class PortailMemoireController extends Controller
 
 
 
-    public function __construct()
+   /* public function __construct()
     {
-        $this->middleware('auth');
-    }
+        $this->middleware('auth')->except('portailmemoire');
+    }*/
 
     public function index()
     {
@@ -25,6 +25,12 @@ class PortailMemoireController extends Controller
         $memoire = PortailMemoire::all();
 
         return view('portailMemoire')->with('memoire',$memoire); 
+    }
+
+    public function portail_memoire_unregestred() {
+        $memoire = PortailMemoire::all();
+
+        return view('portialMemoirNoAuth')->with('memoire',$memoire); 
     }
 
     public function download($id) {

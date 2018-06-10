@@ -4,6 +4,7 @@ namespace App;
 
 use App\Amies;
 use App\Commentaire;
+use App\Event;
 use App\Formation;
 use App\JaimeCommentaire;
 use App\Like;
@@ -13,7 +14,6 @@ use App\Publication;
 use App\Reclamation;
 use App\Role;
 use App\Traits\friendable;
-use App\Event;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -101,7 +101,8 @@ class User extends Authenticatable
         return $this->hasMany(PortailMemoire::class);
     }
 
-    public function events() {
+    public function events()
+    {
         return $this->hasMany(Event::class);
     }
 
@@ -110,31 +111,35 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    public function isAdmin() {
+    public function isAdmin()
+    {
 
-        foreach($this->roles as $role) {
-            if($role->nom == "Administrateur"){
-                return  true;
-                
+      
+
+            foreach ($this->roles as $role) {
+                if ($role->nom == "Administrateur") {
+                    return true;
+
+                }
+
             }
-           
-        }
+       
         return false;
 
     }
 
-    
-    public function check_if_user_have_this_role($r) {
- 
-         foreach($this->roles as $role) {
-             if($role->nom == $r){
-                 return  true;
-              }
-           
-         }
+    public function check_if_user_have_this_role($r)
+    {
 
-         return false;
- 
-     }
-   
+        foreach ($this->roles as $role) {
+            if ($role->nom == $r) {
+                return true;
+            }
+
+        }
+
+        return false;
+
+    }
+
 }
