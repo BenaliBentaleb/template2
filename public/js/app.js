@@ -67857,7 +67857,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67868,6 +67868,23 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -67922,13 +67939,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             nom: not.data.nom,
             profile: not.data.profile,
             type: not.type
-            // console.log(notification)
-          };_this.$store.commit("add_not", notification);
+          };
+          // console.log(notification)
+          _this.$store.commit("add_not", notification);
         });
       });
     },
     markAsRead: function markAsRead(notification) {
-
       // console.log(notification);
 
       axios.post("/notification/read/" + notification.id).then(function (response) {
@@ -67956,56 +67973,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "dropdown" }, [
-    _c(
-      "a",
-      {
-        staticClass: "dropdown-toggle",
-        attrs: {
-          href: "#",
-          "data-toggle": "dropdown",
-          role: "button",
-          "aria-expanded": "false"
-        }
-      },
-      [
-        _c("span", { staticClass: "glyphicon glyphicon-globe" }),
-        _vm._v("\n             \n               Notifications "),
-        _c("span", { staticClass: "badge" }, [
-          _vm._v(_vm._s(_vm.all_nots_count))
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "caret" })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "dropdown-menu", attrs: { role: "menu" } },
-      [
-        _vm._l(_vm.all_not, function(notification) {
-          return _c("li", { key: notification.id }, [
-            _c(
+  return _c(
+    "li",
+    {
+      staticClass: "notification dropdown",
+      staticStyle: { "margin-top": "5px" }
+    },
+    [
+      _c(
+        "a",
+        { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
+        [
+          _c("i", {
+            staticClass: "fe fe-bell",
+            staticStyle: { "font-size": "16px" }
+          }),
+          _vm._v(" "),
+          _vm.all_nots_count > 0
+            ? _c("span", { staticClass: "nav-unread" }, [
+                _vm._v(_vm._s(_vm.all_nots_count))
+              ])
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "notification dropdown-menu dropdown-menu-right dropdown-menu-arrow",
+          staticStyle: { width: "280px" }
+        },
+        [
+          _vm._l(_vm.all_not, function(notification) {
+            return _c(
               "a",
               {
+                key: notification.id,
+                staticClass: "dropdown-item d-flex",
                 on: {
                   click: function($event) {
                     _vm.markAsRead(notification)
                   }
                 }
               },
-              [_c("small", [_vm._v(_vm._s(notification.message))])]
+              [
+                _c("span", {
+                  staticClass: "avatar mr-3 align-self-center",
+                  staticStyle: {
+                    "background-image": "url(demo/faces/female/18.jpg)"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", [
+                  _c("strong", [_vm._v("User name")]),
+                  _vm._v(" " + _vm._s(notification.message) + "\n       \n    ")
+                ])
+              ]
             )
-          ])
-        }),
-        _vm._v(" "),
-        _vm.all_nots_count == 0
-          ? _c("li", [_vm._v("\n           Accune notification \n        ")])
-          : _vm._e()
-      ],
-      2
-    )
-  ])
+          }),
+          _vm._v(" "),
+          _vm.all_nots_count == 0
+            ? _c("div", { staticClass: "dropdown-divider" })
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dropdown-item text-center text-muted-dark",
+              staticStyle: { padding: "10px" },
+              attrs: { href: "#" }
+            },
+            [_vm._v("Accune notification")]
+          )
+        ],
+        2
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -70114,7 +70159,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70125,6 +70170,22 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -70212,58 +70273,80 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "dropdown" }, [
-    _c(
-      "a",
-      {
-        staticClass: "dropdown-toggle",
-        attrs: {
-          href: "#",
-          "data-toggle": "dropdown",
-          role: "button",
-          "aria-expanded": "false"
-        }
-      },
-      [
-        _c("span", { staticClass: "glyphicon glyphicon-globe" }),
-        _vm._v("\n                \n                  admin "),
-        _c("span", { staticClass: "badge" }, [
-          _vm._v(_vm._s(_vm.all_nots_count))
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "caret" })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "dropdown-menu", attrs: { role: "menu" } },
-      [
-        _vm._l(_vm.all_not, function(notification) {
-          return _c("li", { key: notification.id }, [
-            _c(
+  return _c(
+    "li",
+    { staticClass: "dropdown", staticStyle: { "margin-top": "5px" } },
+    [
+      _c(
+        "a",
+        { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
+        [
+          _c("i", {
+            staticClass: "fe fe-alert-octagon",
+            staticStyle: { "font-size": "16px" }
+          }),
+          _vm._v(" "),
+          _vm.all_nots_count > 0
+            ? _c("span", { staticClass: "nav-unread" }, [
+                _vm._v(_vm._s(_vm.all_nots_count))
+              ])
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-menu dropdown-menu-right dropdown-menu-arrow",
+          staticStyle: { width: "280px" }
+        },
+        [
+          _vm._l(_vm.all_not, function(notification) {
+            return _c(
               "a",
               {
+                key: notification.id,
+                staticClass: "dropdown-item d-flex",
                 on: {
                   click: function($event) {
                     _vm.markAsRead(notification)
                   }
                 }
               },
-              [_c("small", [_vm._v(_vm._s(notification.message))])]
+              [
+                _c("span", {
+                  staticClass: "avatar mr-3 align-self-center",
+                  staticStyle: {
+                    "background-image": "url(demo/faces/female/18.jpg)"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", [
+                  _c("strong", [_vm._v("User name")]),
+                  _vm._v(" " + _vm._s(notification.message) + "\n       ")
+                ])
+              ]
             )
-          ])
-        }),
-        _vm._v(" "),
-        _vm.all_nots_count == 0
-          ? _c("li", [
-              _vm._v("\n              Accune notification \n           ")
-            ])
-          : _vm._e()
-      ],
-      2
-    )
-  ])
+          }),
+          _vm._v(" "),
+          _vm.all_nots_count == 0
+            ? _c("div", { staticClass: "dropdown-divider" })
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dropdown-item text-center text-muted-dark",
+              staticStyle: { padding: "10px" },
+              attrs: { href: "#" }
+            },
+            [_vm._v("Accune notification")]
+          )
+        ],
+        2
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

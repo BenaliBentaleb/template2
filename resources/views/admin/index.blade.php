@@ -61,7 +61,7 @@
 
                             <div class="dropdown">
                                 <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                                    <span class="avatar" style="background-image: url({{Auth::user()->profile->photo_profile}})"></span>
+                                    <span class="avatar" style="background-image: url({{asset(Auth::user()->profile->photo_profile)}})"></span>
                                     <span class="ml-2 d-none d-lg-block">
                                         <span class="text-default">{{Auth::user()->nom}} {{Auth::user()->prenom}}</span>
                                         <small class="text-muted d-block mt-1">Administrateurr</small>
@@ -103,14 +103,14 @@
             <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-2 ml-auto">
+                        {{-- <div class="col-lg-2 ml-auto">
                             <form class="input-icon my-3 my-lg-0">
                                 <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
                                 <div class="input-icon-addon">
                                     <i class="fe fe-search"></i>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                                 <li class="nav-item">

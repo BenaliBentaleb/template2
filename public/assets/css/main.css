@@ -133,3 +133,22 @@
     overflow-x: auto;
     border: 1px solid #dddfe0;
 }
+
+
+
+/* @media (min-width: 768px){
+    .d-md-flex {
+        display: -ms-flexbox !important;
+        display: flex !important;
+    }
+} */
+
+.nav-unread {
+    position: absolute;
+    top: .25rem;
+    right: .25rem;
+    background: #cd201f;
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+}
