@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Departement;
-use App\Semestre;
 use App\Formation;
 use App\Publication;
-use App\Commentaire;
-use App\Like;
-use App\Sondage;
-use App\Faq;
 use App\PublicationFichier;
+use App\Semestre;
 use Auth;
+use Illuminate\Http\Request;
+
 //use Illuminate\Notifications\DatabaseNotification;
 class HomeController extends Controller
 {
@@ -21,10 +18,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+  /*  public function __construct()
     {
-        $this->middleware('auth');
-    }
+        $this->middleware('auth');//except('WithoutAuth')->except('formationWithoutAuth');
+    }*/
 
     /**
      * Show the application dashboard.
@@ -35,39 +32,59 @@ class HomeController extends Controller
     {
 
         $departement = Departement::all();
-        $publications = Publication::where('signaler',0)->orderBy('created_at', 'desc')->simplePaginate(2);
-      
-      
+        $publications = Publication::where('signaler', 0)->orderBy('created_at', 'desc')->simplePaginate(2);
 
-        
-       // $semestre = Semestre::all();
-        return view('home')->with('departement',$departement)
-                           ->with('publications',$publications);
-                         
-                          
-      
+        // $semestre = Semestre::all();
+        return view('home')->with('departement', $departement)
+            ->with('publications', $publications);
+
     }
 
-    public function modules($nom) {
-        
-           $departement = Departement::all();
-           $formation = Formation::where('nom','=',$nom)->first();
-           $this->collection = collect([]);
-       foreach($formation->modules as $m )
-        {
-            $s=  Semestre::find($m->semestre->id);
-            if(!$this->collection->contains($s->nom)) {
-                $this->collection->put($s->nom,$s->modules);
+    public function WithoutAuth()
+    {
+        $publications = Publication::where('signaler', 0)->orderBy('created_at', 'desc')->simplePaginate(2);
+
+        // $semestre = Semestre::all();
+        return view('homeAnauth')->with('publications', $publications);
+
+    }
+
+    public function modules($nom)
+    {
+
+        $departement = Departement::all();
+        $formation = Formation::where('nom', '=', $nom)->first();
+        $this->collection = collect([]);
+        foreach ($formation->modules as $m) {
+            $s = Semestre::find($m->semestre->id);
+            if (!$this->collection->contains($s->nom)) {
+                $this->collection->put($s->nom, $s->modules);
             }
         }
 
-
-       
-        return view('formation')->with('modules',$this->collection)
-                                ->with('departement',$departement)
-                                ->with('publications',$formation->modules);
+        return view('formation')->with('modules', $this->collection)
+            ->with('departement', $departement)
+            ->with('publications', $formation->modules);
     }
 
+    public function without_auth_modules($nom)
+    {
+
+        $departement = Departement::all();
+        $formation = Formation::where('nom', '=', $nom)->first();
+        $this->collection = collect([]);
+        foreach ($formation->modules as $m) {
+            $s = Semestre::find($m->semestre->id);
+            if (!$this->collection->contains($s->nom)) {
+                $this->collection->put($s->nom, $s->modules);
+            }
+        }
+
+        return view('formationAnauth')->with('modules', $this->collection)
+            ->with('departement', $departement)
+            ->with('publications', $formation->modules);
+
+    }
 
     public function destroy($id)
     {
@@ -76,7 +93,8 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-    public function download($id) {
+    public function download($id)
+    {
         $fichier = PublicationFichier::find($id);
         $headers = ['Content-Type: application/*'];
 
@@ -84,30 +102,32 @@ class HomeController extends Controller
 
     }
 
-   /* public function notifications()
+    /* public function notifications()
     {
-        $noty = [];
-         Auth::user()->unreadNotifications->markAsRead();
-        // Auth::user()->notifications[0]->data['nom'];
-         foreach(Auth::user()->notifications as $not) {
-            array_push($noty,$not->data);
-         }
+    $noty = [];
+    Auth::user()->unreadNotifications->markAsRead();
+    // Auth::user()->notifications[0]->data['nom'];
+    foreach(Auth::user()->notifications as $not) {
+    array_push($noty,$not->data);
+    }
 
-         return view('user.notification')->with('nots',$noty);
+    return view('user.notification')->with('nots',$noty);
     }*/
 
-    
-    public function read(Request $request) {  
-      return  Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
+    public function read(Request $request)
+    {
+        return Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
     }
-    public function admin_read(Request $request) {  
-        return  Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
-      }
+    public function admin_read(Request $request)
+    {
+        return Auth::user()->unreadNotifications()->find($request->id)->markAsRead();
+    }
 
-      public function remove($id) {
+    public function remove($id)
+    {
         $fichier = PublicationFichier::find($id);
         $fichier->delete();
         return redirect()->back();
-      }
-   
+    }
+
 }

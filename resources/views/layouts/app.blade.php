@@ -265,11 +265,8 @@
         $( '#date_naissance-error' ).html( "" );
         $( '#addresse-error' ).html( "" );
         $( '#numero_telephone-error' ).html( "" );
-
         $( '#informations-error' ).html( "" );
         var id = $(this).data('id');
-
-
         $.ajax({
             url:'/user/profile/modifier/'+id,
             type:'POST',
@@ -280,15 +277,12 @@
                     if(data.errors.addresse){
                         $( '#addresse-error' ).text( data.errors.addresse[0] );
                     }
-
-
                     if(data.errors.date_naissance){
                         $( '#date_naissance-error' ).html( data.errors.date_naissance[0] );
                     }
                     if(data.errors.numero_telephone){
                         $( '#numero_telephone-error' ).html( data.errors.numero_telephone[0] );
                     }
-
                     if(data.errors.formation){
                         $( '#formation-error' ).html( data.errors.formation[0] );
                     }
@@ -296,22 +290,16 @@
                         $( '#informations-error' ).html( data.errors.informations[0] );
                     }
                     console.log(data.errors);
-
                 }
               if(data.success) {
                   //  $('#success-msg').removeClass('hide');
-
                         $('#modifierprofile').modal('hide');
                        // $('#success-msg').addClass('hide');
                        window.location.href = "http://127.0.0.1:8000/profile/"+id;
-
                 }
             },
         });
     });
-
-
-
     /*    $('body').on('click', '#submitsondageform', function(e){
             e.preventDefault();
         var registerForm = $("#sondage-form");
@@ -319,8 +307,6 @@
         console.log(formData);
      
         
-
-
         $.ajax({
             url:'/sondage/store',
             type:'POST',
@@ -330,19 +316,14 @@
                 if(data.errors) {
                   
                     console.log(data.errors);
-
                 }
               if(data.success) {
             
                 console.log(data.errors);
-
                 }
             },
         });
     });*/
-
-
-
   /*$(function () {
                         //$('.sondage-resultat').hide();
                         $("#show-result").click(function (e) {
@@ -351,29 +332,20 @@
                             $('#sondage-options').hide(600);
                             //$('#show-result').hide(600);
                             $('#sondage-result').show(600);
-
                             
                         });
-
                     });*/
-
-
         var signaler = {
-
             linkSelector: "a#signaler-btn",
-
             init: function () {
                 $(this.linkSelector).on('click', {
                     self: this
                 }, this.handleClick);
             },
-
             handleClick: function (event) {
                 event.preventDefault();
-
                 var self = event.data.self;
                 var link = $(this);
-
                 swal({
                         title: "Etes-Vous sur ?",
                         text: "Apres la signaler, you will not be able to recover this imaginary file!",
@@ -390,29 +362,20 @@
                             swal("votre donneé est protegé!");
                         }*/
                     });
-
             },
         };
-
         signaler.init();
-
-
      var supprimer = {
-
 linkSelector: "a#supprimer-btn",
-
 init: function () {
     $(this.linkSelector).on('click', {
         self: this
     }, this.handleClick);
 },
-
 handleClick: function (event) {
     event.preventDefault();
-
     var self = event.data.self;
     var link = $(this);
-
     swal({
             title: "Etes-Vous sur ?",
             text: "Apres la suppression, you will not be able to recover this imaginary file!",
@@ -429,14 +392,9 @@ handleClick: function (event) {
                 swal("votre donneé est protegé!");
             }*/
         });
-
 },
 };
-
 supprimer.init();
-
-
-
 </script>
 
 

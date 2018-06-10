@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/WithoutAuth', 'HomeController@WithoutAuth')->name('WithoutAuth');
 
 Route::post('/statut/store', [
     'uses' => 'PublicationController@store',
@@ -100,14 +101,18 @@ Route::get('/sondage/choix/getpercentage/{id}', [
 Route::get('/formation/{nom}', [
     'uses' => 'HomeController@modules',
     'as' => 'formation',
-]);
+])->middleware('auth');
 
+Route::get('/withoutAuthformation/{nom}', [
+    'uses' => 'HomeController@without_auth_modules',
+    'as' => 'formationWithoutAuth',
+]);
 
 
 Route::get('/publication/{id}', [
     'uses' => 'HomeController@destroy',
     'as' => 'publication.destroy'
-]);
+])->middleware('auth');
 
 Route::get('/modifier/publication/{id}', [
     'uses' => 'PublicationController@edit',
@@ -161,12 +166,12 @@ Route::get("/allcomment/{id}", [
 Route::get("/download/{id}", [
     'uses' => 'HomeController@download',
     'as' => 'file.download',
-]);
+])->middleware('auth');
 
 Route::get("/remove/file/{id}", [
     'uses' => 'HomeController@remove',
     'as' => 'file.remove',
-]);
+])->middleware('auth');
 
 Route::post('jaimeCommentaire/{id}', [
     'uses' => 'JaimeCommentaireController@jaime',
@@ -258,11 +263,16 @@ Route::get('/chat',[
 Route::get('/getformation/{type}', [
     'uses'=>'PortailMemoireController@getformation',
     'as'=>'getformation.memoire'
-]);
+])->middleware('auth');
 
 Route::get('/portail/memoire',[
     'uses'=>'PortailMemoireController@index',
     'as'=>'portail.memoire'
+
+])->middleware('auth');
+Route::get('/portail/memoire/unregestred',[
+    'uses'=>'PortailMemoireController@portail_memoire_unregestred',
+    'as'=>'portail.memoire.withoutAuth'
 
 ]);
 
@@ -270,19 +280,19 @@ Route::get('/ajouter/memoire',[
     'uses'=>'PortailMemoireController@show',
     'as'=>'ajouter.memoire'
 
-]);
+])->middleware('auth');
 
 Route::post('/memoire/saveFile',[
     'uses'=>'PortailMemoireController@saveFile',
     'as'=>'store.memoire'
 
-]);
+])->middleware('auth');
 
 Route::get('/memoire/download/{id}',[
     'uses'=>'PortailMemoireController@download',
     'as'=>'download.memoire'
 
-]);
+])->middleware('auth');
 
 Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
