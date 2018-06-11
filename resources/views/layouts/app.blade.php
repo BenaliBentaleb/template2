@@ -89,7 +89,7 @@
                     <ul class="nav navbar-nav navbar-right">
                             @auth
                             <notification   :id_auth="{{ Auth::id() }}" ></notification>  
-                            <unreadnot></unreadnot>
+                           <unreadnot></unreadnot>
                             @if(Auth::user()->isAdmin())
                             <unreadnotadmin></unreadnotadmin>
                             @endif

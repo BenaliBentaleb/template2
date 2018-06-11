@@ -3,7 +3,7 @@
     <li class="notification dropdown" style="margin-top: 5px;">
       <a class="nav-link icon" data-toggle="dropdown">
         <i class="fe fe-bell" style="font-size:16px;"></i>
-        <span class="nav-unread" v-if="all_nots_count > 0">{{ all_nots_count }}</span>
+        <span class="nav-unread" v-if="all_nots_count > 0 ">{{ all_nots_count }}</span>
       </a>
       <div class="notification dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="width: 280px;">
       <a @click="markAsRead(notification)" class="dropdown-item d-flex" v-for="notification in all_not" :key="notification.id">
@@ -17,33 +17,9 @@
       <span href="#" class="dropdown-item text-center text-muted-dark" style="padding: 10px;">Accune notification</span>
       </div>
     </li>
-    <!-- <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >
-            <span class="glyphicon glyphicon-globe"></span>
-                 
-                   Notifications <span class="badge">{{ all_nots_count }}</span> <span class="caret"></span>
-                                   
-             </a>
-
-            <ul class="dropdown-menu" role="menu">
-
-                 
-              
-                <li v-for="notification in all_not" :key="notification.id">
-                <a  @click="markAsRead(notification)" >
-                   
-                    <small >{{ notification.message }}</small>
-                    
-                </a>
-            </li>
-            <li v-if="all_nots_count == 0">
-               Accune notification 
-            </li>
-           </ul>
-    </li> -->
-
+ 
 </template>
-
+  
 
 
 <script>

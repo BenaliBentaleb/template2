@@ -17,13 +17,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 
-    <!--  <script src="./assets/js/require.min.js"></script>
-    <script>
-        requirejs.config({
-            baseUrl: '.'
-        });
-    </script> -->
-    <!-- Dashboard Core -->
     <link href="{{asset('assets/css/dashboard.css')}}" rel="stylesheet" />
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
     <link href="{{asset('assets/css/main.css')}}" rel="stylesheet" />
@@ -381,107 +374,6 @@
             });
 
         });
-        /*   var notification = Vue.component('notification', {
-               data: function () {
-                   return {
-                       count: 0
-                   }
-               },
-               template: ` <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"> <
-                   a href = "#"
-               class = "dropdown-item d-flex" >
-               <
-               span class = "avatar mr-3 align-self-center"
-               style = "background-image: url(demo/faces/male/41.jpg)" > < /span> <
-               div >
-               <
-               strong > Nathan < /strong> pushed new commit: Fix page load performance issue. <
-               div class = "small text-muted" > 10 minutes ago < /div> <
-               /div> <
-               /a> <
-               a href = "#"
-               class = "dropdown-item d-flex" >
-               <
-               span class = "avatar mr-3 align-self-center"
-               style = "background-image: url(demo/faces/female/1.jpg)" > < /span> <
-               div >
-               <
-               strong > Alice < /strong> started new task: Tabler UI design. <
-               div class = "small text-muted" > 1 hour ago < /div> <
-               /div> <
-               /a> <
-               a href = "#"
-               class = "dropdown-item d-flex" >
-               <
-               span class = "avatar mr-3 align-self-center"
-               style = "background-image: url(demo/faces/female/18.jpg)" > < /span> <
-               div >
-               <
-               strong > Rose < /strong> deployed new version of NodeJS REST Api V3 <
-               div class = "small text-muted" > 2 hours ago < /div> <
-               /div> <
-               /a> <
-               div class = "dropdown-divider" > < /div> <
-               a href = "#"
-               class = "dropdown-item text-center text-muted-dark" > Mark all as read < /a>
-               </div>`,
-           })
-
-           new Vue({
-               el: '#app1',
-
-               components: {
-                   notification: notification
-               },
-
-               data: {
-                   message: 'djamel',
-                   mounted() {
-                       this.get_unread();
-                   },
-                   computed: {
-                       all_nots_count() {
-                           return this.$store.getters.all_nots_count;
-                       },
-                       all_not() {
-                           return this.$store.getters.all_nots;
-                       }
-                   },
-                   methods: {
-                       get_unread() {
-
-
-
-
-                           axios.get("/get_unreadnot").then(response => {
-                               //   console.log(response);
-
-                               response.data.forEach(not => {
-                                   //  console.log(not);
-                                   //  console.log(not.data);
-                                   let notification = {
-                                       id: not.id,
-                                       message: not.data.message,
-                                       nom: not.data.nom,
-                                       profile: not.data.profile,
-                                       type: not.type
-                                   }
-                                   // console.log(notification)
-                                   this.$store.commit("add_not", notification);
-                               });
-                           });
-                       }
-                   }
-
-               },
-               created() {
-
-
-               }
-           });*/
     </script>
-
-
 </body>
-
 </html>

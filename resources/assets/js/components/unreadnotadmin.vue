@@ -15,6 +15,8 @@
       <span href="#" class="dropdown-item text-center text-muted-dark" style="padding: 10px;">Accune notification</span>
       </div>
     </li>
+
+</template>
  <!-- <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >
             <span class="glyphicon glyphicon-globe"></span>
@@ -39,8 +41,6 @@
             </li>
            </ul>
     </li> -->
-
-</template>
 
 <script>
 export default {

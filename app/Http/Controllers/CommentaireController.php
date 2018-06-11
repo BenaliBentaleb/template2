@@ -43,6 +43,7 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $commentaire = new Commentaire;
         $commentaire->publication_id = $request->publication_id;
         $commentaire->user_id = Auth::id();
