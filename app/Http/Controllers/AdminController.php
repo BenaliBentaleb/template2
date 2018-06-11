@@ -110,7 +110,7 @@ class AdminController extends Controller
            ]);
         
            // roles array binded with input form
-        $roles = ['administrateur','enseignant','etudiant','gclub'];
+        $roles = ['Administrateur','Enseignant','Etudiant','Gérant-club'];
 
         foreach($roles as $r ) {
             if($request->$r) {
@@ -137,7 +137,7 @@ class AdminController extends Controller
         $user->roles()->delete();
 
              // roles array binded with input form
-             $roles = ['administrateur','enseignant','etudiant','gclub'];
+             $roles = ['Administrateur','Enseignant','Etudiant','Gérant-club'];
 
              foreach($roles as $r ) {
                  if($request->$r) {

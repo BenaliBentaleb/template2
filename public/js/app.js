@@ -67951,10 +67951,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "li",
-    {
-      staticClass: "notification dropdown",
-      staticStyle: { "margin-top": "5px" }
-    },
+    { staticClass: " dropdown", staticStyle: { "margin-top": "5px" } },
     [
       _c(
         "a",
@@ -67976,8 +67973,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass:
-            "notification dropdown-menu dropdown-menu-right dropdown-menu-arrow",
+          staticClass: " dropdown-menu dropdown-menu-right dropdown-menu-arrow",
           staticStyle: { width: "280px" }
         },
         [

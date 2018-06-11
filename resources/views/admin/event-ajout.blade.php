@@ -192,7 +192,7 @@
                                         </select>      
                                     </div>
                                     <div class=" col-md-12 form-group">
-                                        <label class="form-label">Brève description
+                                        <label class="form-label">Description brève
                                             <span class="form-label-small">
                                                 <span id="short-content-size">0</span>/150</span>
                                         </label>

@@ -186,19 +186,19 @@
                                 <div class="form-label">Rôles </div>
                                 <div>
                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" name="administrateur" value="Administrateur">
+                                        <input type="checkbox" class="custom-control-input" name="Administrateur" value="Administrateur">
                                         <span class="custom-control-label">Administrateur</span>
                                     </label>
                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                        <input id="ens" type="checkbox"  class="custom-control-input " name="enseignant" value="Enseignant" onClick="uncheck(1);">
+                                        <input id="ens" type="checkbox"  class="custom-control-input " name="Enseignant" value="Enseignant" onClick="uncheck(1);">
                                         <span class="custom-control-label">Enseignant</span>
                                     </label>
                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                        <input id="etud" type="checkbox" class="custom-control-input " name="etudiant" value="Etudiant" onClick="uncheck(2);">
+                                        <input id="etud" type="checkbox" class="custom-control-input " name="Etudiant" value="Etudiant" onClick="uncheck(2);">
                                         <span class="custom-control-label">Étudiant</span>
                                     </label>
                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" name="gclub" value="Gerant Club">
+                                        <input type="checkbox" class="custom-control-input" name="Gérant-club" value="Gérant club">
                                         <span class="custom-control-label">Gérant club</span>
                                     </label>
                                     

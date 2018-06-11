@@ -7,6 +7,7 @@ use App\Formation;
 use App\Publication;
 use App\PublicationFichier;
 use App\Semestre;
+use App\Event;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -33,9 +34,12 @@ class HomeController extends Controller
 
         $departement = Departement::all();
         $publications = Publication::where('signaler', 0)->orderBy('created_at', 'desc')->simplePaginate(2);
-
+        $events = Event::whereNull('formation_id')->get();
+        //dd($events->all());
+        //dd($events);
         // $semestre = Semestre::all();
         return view('home')->with('departement', $departement)
+            ->with('events', $events)
             ->with('publications', $publications);
 
     }
@@ -53,7 +57,9 @@ class HomeController extends Controller
     {
 
         $departement = Departement::all();
-        $formation = Formation::where('nom', '=', $nom)->first();
+        $formation = Formation::where('nom', '=', $nom)->first(); 
+        $events = Event::where('formation_id' , '=', $formation->id)->get();
+        //dd($events->all());
         $this->collection = collect([]);
         foreach ($formation->modules as $m) {
             $s = Semestre::find($m->semestre->id);
@@ -64,7 +70,9 @@ class HomeController extends Controller
 
         return view('formation')->with('modules', $this->collection)
             ->with('departement', $departement)
-            ->with('publications', $formation->modules);
+            ->with('publications', $formation->modules)
+            ->with('formation_nom',$nom)
+            ->with('events',$events);
     }
 
     public function without_auth_modules($nom)
