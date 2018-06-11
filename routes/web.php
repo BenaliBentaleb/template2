@@ -164,11 +164,16 @@ Route::get('/profile/{id}', [
     'uses' => 'ProfileController@profile',
     'as' => 'user.profile',
 
-]);
+])->middleware('auth');;
 
 Route::post('/commenter', [
     'uses' => 'commentaireController@store',
 ]);
+
+Route::post('/commentaire/update/{id}/{comment}', [
+    'uses' => 'commentaireController@update',
+]);
+
 
 Route::get('/commentaire/delete/{id}',[
     'uses'=>'commentaireController@delete'
@@ -199,25 +204,28 @@ Route::get('/allJaimeCommenataire/{id}', [
     'uses' => 'JaimeCommentaireController@jaimeComment',
 ]);
 
-Route::get('/profile/{id}', [
-    'uses' => 'ProfileController@profile',
-    'as' => 'user.profile',
+
+
+Route::get('/profile/unregistred/{id}', [
+    'uses' => 'ProfileController@profile_uregistred',
+    'as' => 'user.profile.unregistred',
 ]);
+
 
 Route::post('/user/upload/picture/{id}', [
     'uses' => 'ProfileController@upload_picture',
     'as' => 'user.profile.picture',
-]);
+])->middleware('auth');;
 
 Route::post('/user/upload/coverture/{id}', [
     'uses' => 'ProfileController@upload_coverture',
     'as' => 'user.profile.coverture',
-]);
+])->middleware('auth');;
 
 Route::post('/user/profile/modifier/{id}', [
     'uses' => 'ProfileController@update',
     'as' => 'user.profile.update',
-]);
+])->middleware('auth');;
 
 // check if the user is friend or somthing else !
 Route::get('/check/{id}', [

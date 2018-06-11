@@ -128,6 +128,7 @@
         </div>
     </div>
 </div>
+
 </div>
 
 <div class="row pub-header" style="margin-top:20px;">
@@ -168,7 +169,7 @@
                         <li>
                             <ul class="list-unstyled publisher-info">
                                 <li class="publisher-name">
-                                    <a href="profile.html">
+                                    <a href="{{route('user.profile',['id'=>$user->id])}}">
                                         <strong>{{$user->nom}} {{$user->prenom}}</strong>
                                         <br>
                                     </a>

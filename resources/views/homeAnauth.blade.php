@@ -122,7 +122,7 @@
                                 </li>
                                 <li>
                                     <ul class="list-unstyled publisher-info">
-                                        <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
+                                        <li class="publisher-name"><a href="{{route('user.profile.unregistred',['id'=>$publication->user->id])}}">{{$publication->user->nom}} {{$publication->user->prenom}}</a></li>
                                         <li>
                                             <ul style="padding-left:0;" style="padding-left:0;">
                                                 @foreach($publication->user->roles as $role) @if($role->nom == "Administrateur")
@@ -296,7 +296,7 @@
                                 </li>
                                 <li>
                                     <ul class="list-unstyled publisher-info">
-                                        <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
+                                        <li class="publisher-name"><a href="{{route('user.profile.unregistred',['id'=>$publication->user->id])}}">{{$publication->user->nom}} {{$publication->user->prenom}}</a></li>
                                         <li>
                                             <ul style="padding-left:0;" style="padding-left:0;">
                                                 @foreach($publication->user->roles as $role) @if($role->nom == "Administrateur")
@@ -360,7 +360,8 @@
                             <br>
                             <br>
                         </h3>
-                        <hr> @if($publication->module_id)
+                        <hr>
+                         @if($publication->module_id)
                         <div style="text-align:center;">
                             <span>Status de module :&nbsp;</span>
                             <span class="module">

@@ -67,7 +67,7 @@
                     <div class="col-md-3">
                         <ul class="list-group side-bar">
                             <li class="list-group-item" style="padding-top:10px;">
-                                <a href="{{route('home')}}" class="list-anchor">
+                                <a href="{{route('WithoutAuth')}}" class="list-anchor">
                                     <span class="nticien-circle">
                                         <i class="fa fa-star"></i>
                                     </span>
@@ -120,7 +120,7 @@
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="{{route('portail.memoire')}}" class="list-anchor">
+                                <a href="{{route('portail.memoire.withoutAuth')}}" class="list-anchor">
                                     <i class="icon-graduation icon-sidebar"></i>
                                     <span style="font-size:15px;">Portail mémoires</span>
                                 </a>
@@ -144,7 +144,7 @@
                                     </li>
                                     <li>
                                         <ul class="list-unstyled publisher-info">
-                                            <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
+                                            <li class="publisher-name"><a href="{{route('user.profile.unregistred',['id'=>$publication->user->id])}}">{{$publication->user->nom}} {{$publication->user->prenom}}</a></li>
                                             <li>
                                                 <ul style="padding-left:0;" style="padding-left:0;">
                                                     @foreach($publication->user->roles as $role) @if($role->nom == "Administrateur")

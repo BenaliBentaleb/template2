@@ -66285,6 +66285,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var moment = __webpack_require__(0);
 
@@ -66304,7 +66315,10 @@ var moment = __webpack_require__(0);
       likeComment: [],
       comment: [], //,
       idC: "",
-      moment: moment
+      moment: moment,
+      isNewComment: true,
+      editedComment: '',
+      idEditComment: ''
     };
   },
 
@@ -66342,14 +66356,32 @@ var moment = __webpack_require__(0);
         });
       }
     },
-    deleteComment: function deleteComment(id) {
+    updateComment: function updateComment() {
       var _this2 = this;
+
+      axios.post("/commentaire/update/" + this.idEditComment + "/" + this.commentaire).then(function (response) {
+        var comment = _this2.commentaires.find(function (value) {
+          return value.id === _this2.idEditComment;
+        });
+        comment.commentaire = _this2.commentaire;
+        _this2.isNewComment = true;
+        _this2.commentaire = "";
+      });
+    },
+    EditComment: function EditComment(id, comment) {
+      this.isNewComment = false;
+      this.idEditComment = id;
+      this.editedComment = comment;
+      this.commentaire = comment;
+    },
+    deleteComment: function deleteComment(id) {
+      var _this3 = this;
 
       axios.get("/commentaire/delete/" + id).then(function (response) {
         console.log(response);
-        _this2.commentaires.forEach(function (value, key) {
+        _this3.commentaires.forEach(function (value, key) {
           if (value.id === id) {
-            _this2.commentaires.splice(key, 1);
+            _this3.commentaires.splice(key, 1);
           }
         });
       }).catch(function (err) {
@@ -66359,12 +66391,12 @@ var moment = __webpack_require__(0);
   },
   computed: {
     getcommentaire: function getcommentaire() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get("/allcomment/" + this.publication).then(function (response) {
         // console.log(response.data);
         response.data.forEach(function (value) {
-          _this3.commentaires.push(value);
+          _this4.commentaires.push(value);
           //  if (this.likeComment.indexOf(this.id)  && response.data.id == idComment) {
 
           //this.likeComment.push(value);
@@ -67255,6 +67287,21 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
+                comment.user.id === _vm.id
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "btn btn-blue",
+                        on: {
+                          click: function($event) {
+                            _vm.EditComment(comment.id, comment.commentaire)
+                          }
+                        }
+                      },
+                      [_vm._v("Edite")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("jaimecomment", {
                   attrs: { comment: comment.id, id_user: _vm.id }
                 })
@@ -67275,57 +67322,109 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "add-comment-section" }, [
-      _c("img", { staticClass: "user-image", attrs: { src: _vm.image } }),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-            }
-          }
-        },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.commentaire,
-                expression: "commentaire"
+    _vm.isNewComment
+      ? _c("div", { staticClass: "add-comment-section" }, [
+          _c("img", { staticClass: "user-image", attrs: { src: _vm.image } }),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                }
               }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              id: "commentinput" + _vm.publication,
-              type: "text",
-              placeholder: "Tapez votre commentaire .. "
             },
-            domProps: { value: _vm.commentaire },
-            on: {
-              keyup: function($event) {
-                if (
-                  !("button" in $event) &&
-                  _vm._k($event.keyCode, "enter", 13, $event.key)
-                ) {
-                  return null
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.commentaire,
+                    expression: "commentaire"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "commentinput" + _vm.publication,
+                  type: "text",
+                  placeholder: "Tapez votre commentaire .. "
+                },
+                domProps: { value: _vm.commentaire },
+                on: {
+                  keyup: function($event) {
+                    if (
+                      !("button" in $event) &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key)
+                    ) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    _vm.commenter()
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.commentaire = $event.target.value
+                  }
                 }
-                $event.preventDefault()
-                _vm.commenter()
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              })
+            ]
+          )
+        ])
+      : _c("div", { staticClass: "add-comment-section" }, [
+          _c("img", { staticClass: "user-image", attrs: { src: _vm.image } }),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
                 }
-                _vm.commentaire = $event.target.value
               }
-            }
-          })
-        ]
-      )
-    ])
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.commentaire,
+                    expression: "commentaire"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "commentinput" + _vm.publication,
+                  type: "text",
+                  placeholder: "editer votre commentaire .. "
+                },
+                domProps: { value: _vm.commentaire },
+                on: {
+                  keyup: function($event) {
+                    if (
+                      !("button" in $event) &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key)
+                    ) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    _vm.updateComment()
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.commentaire = $event.target.value
+                  }
+                }
+              })
+            ]
+          )
+        ])
   ])
 }
 var staticRenderFns = []
