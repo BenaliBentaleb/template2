@@ -144,7 +144,7 @@
                                     </li>
                                     <li>
                                         <ul class="list-unstyled publisher-info">
-                                            <li class="publisher-name">{{$publication->user->nom}} {{$publication->user->prenom}}</li>
+                                            <li class="publisher-name"><a href="{{route('user.profile.unregistred',['id'=>$publication->user->id])}}">{{$publication->user->nom}} {{$publication->user->prenom}}</a></li>
                                             <li>
                                                 <ul style="padding-left:0;" style="padding-left:0;">
                                                     @foreach($publication->user->roles as $role) @if($role->nom == "Administrateur")

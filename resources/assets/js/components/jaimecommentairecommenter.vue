@@ -47,6 +47,7 @@
             {{comment.commentaire}} 
             <br>
           </p><span class="btn btn-blue" v-if="comment.user.id === id" @click="deleteComment(comment.id)">Supprimer</span>
+          <span class="btn btn-blue" v-if="comment.user.id === id" @click="EditComment(comment.id,comment.commentaire)">Edite</span>
 
           <jaimecomment :comment="comment.id" :id_user="id" ></jaimecomment>
 
@@ -54,13 +55,23 @@
       </div>
       <hr style="width:100%;margin-bottom:0;margin-top:0;">
     </div>
-    <div class="add-comment-section">
+
+    <div class="add-comment-section" v-if= " isNewComment ">
       <img class="user-image" style="" :src="image">
       <form v-on:submit.prevent>
         <input :id="'commentinput'+publication" v-model="commentaire" @keyup.enter.prevent="commenter()" class="form-control" type="text"
           placeholder="Tapez votre commentaire .. ">
       </form>
     </div>
+
+    <div class="add-comment-section" v-else>
+      <img class="user-image" style="" :src="image">
+      <form v-on:submit.prevent>
+        <input :id="'commentinput'+publication" v-model="commentaire" @keyup.enter.prevent="updateComment()" class="form-control" type="text"
+          placeholder="editer votre commentaire .. ">
+      </form>
+    </div>
+
   </div>
 
 </template>
@@ -84,7 +95,10 @@ let moment = require('moment');
         likeComment: [],
         comment: [], //,
         idC: "",
-        moment:moment
+        moment:moment,
+        isNewComment: true,
+        editedComment : '',
+        idEditComment : ''
       };
     },
       notifications: {
@@ -119,6 +133,28 @@ let moment = require('moment');
             console.log(response.data);
             }).catch(err => console.log(err));
         }
+      },
+
+      updateComment() {
+         axios.post(`/commentaire/update/${this.idEditComment}/${this.commentaire}`)
+         .then(response => {
+            let comment =  this.commentaires.find(value => value.id === this.idEditComment);
+            comment.commentaire =  this.commentaire;
+            this.isNewComment = true;
+              this.commentaire = "";
+             
+            
+         })
+         
+      },
+
+      EditComment(id,comment) {
+        this.isNewComment = false;
+        this.idEditComment = id;
+        this.editedComment = comment;
+         this.commentaire = comment;
+        
+
       },
 
       deleteComment(id) {

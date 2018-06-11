@@ -14,10 +14,6 @@ use App\Formation;
 class ProfileController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -69,38 +65,19 @@ class ProfileController extends Controller
        ->with('depfromation',$this->collection);
     }
 
-   /* public function get_publication_user(Request $request,$id) {
-       
+
+
+    public function profile_uregistred($id) {
         $user = User::find($id);
-        $departements = Departement::all();
-        
-
-        if($request) {
-            $user_publication = Publication::where('user_id',$id)->where('type',$request->type)->get();
-        } else {
-            $user_publication=  $user->publications;
-        }
-      
-        
+        $user_publication=  $user->publications;
         $formation = Formation::where('id',$user->profile->formation_id)->first();
-     
-        $this->collection = collect([]);
-            //dd($departements->formation);
-        foreach($departements as  $departement) {
-
-                if(!$this->collection->contains($departement->nom)) {
-
-                   $this->collection->put($departement->nom,$departement->formation);
-                
-                }
-        }
-
-        return view('user.profile')->with('user',$user)->with('departement',$departements)
+        return view('profileNoAuth')->with('user',$user)
         ->with('publications',$user_publication)
-        ->with('formation_user',$formation->nom)
         ->with('profile',$user->id)
-        ->with('depfromation',$this->collection);
-    }*/
+        ->with('formation_user',$formation);
+       
+    }
+
 
     public function upload_picture($id,Request $request) {
         $user = User::find($id);

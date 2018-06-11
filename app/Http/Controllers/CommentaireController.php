@@ -117,9 +117,13 @@ class CommentaireController extends Controller
      * @param  \App\Commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentaire $commentaire)
+    public function update($id ,$content)
     {
-        //
+        
+       $comment = Commentaire::find($id);
+       $comment->commentaire = $content;
+       $comment->save();
+       return $comment;
     }
 
     /**
