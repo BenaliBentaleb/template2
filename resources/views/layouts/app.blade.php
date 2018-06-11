@@ -56,23 +56,7 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active" role="presentation">
-                       @auth
-                       <notification   :id_auth="{{ Auth::id() }}" ></notification>
-                      
-                        <unreadnot></unreadnot>
-                        @if(Auth::user()->isAdmin())
-                        <unreadnotadmin></unreadnotadmin>
-                        @endif
                     
-                       
-                        <audio  id="noty">
-                            <source src="{{ asset('notification/definite.mp3') }}" type="">
-                        </audio>
-                        @endauth
-                        </li>
-                    </ul>
                     <form class="navbar-form navbar-left" target="_self">
                         <div class="form-group">
                             <label class="control-label" for="search-field">
@@ -81,12 +65,18 @@
                             <input class="form-control search-field" type="search" name="search" id="search-field">
                         </div>
                     </form>
+                    
                     @auth
-                    <a  href="/chat" class="btn btn-default navbar-btn chat-btn" type="button">
+                    <a href="/chat" class="btn btn-default navbar-btn chat-btn" type="button">
                         <i class="icon-bubbles"></i>
-                     </a>
+                    </a>
                     @endauth
-
+                    <ul class="nav navbar-nav navbar-right">
+                       
+                        
+                            
+                            
+                        </ul>
 
                     @guest
 
@@ -97,6 +87,18 @@
 
 
                     <ul class="nav navbar-nav navbar-right">
+                            @auth
+                            <notification   :id_auth="{{ Auth::id() }}" ></notification>  
+                           <unreadnot></unreadnot>
+                            @if(Auth::user()->isAdmin())
+                            <unreadnotadmin></unreadnotadmin>
+                            @endif
+                        
+                           
+                            <audio  id="noty">
+                                <source src="{{ asset('notification/definite.mp3') }}" type="">
+                            </audio>
+                        @endauth
                         <li role="presentation">
                             <a href="{{ route('user.profile',['id'=> Auth::id()]) }}" class="profile-link" style="padding:0;border:2px solid #448ccb;border-radius:50%;">
                                 <img class="img-rounded profile-img" src="{{asset(Auth::user()->profile->photo_profile)}}">

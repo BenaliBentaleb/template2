@@ -67,7 +67,7 @@ class AdminController extends Controller
 
     public function publications() {
 
-        $publications = Publication::where('signaler',0)->paginate(3);
+        $publications = Publication::where('signaler',0)->paginate(12);
         $publications_signaler = Publication::where('signaler',1)->get();
 
 
@@ -255,7 +255,7 @@ class AdminController extends Controller
         
     public function modifieModule($id) {
         return view('admin.module-modifie')->with('module',Module::find($id))
-                                            ->with('formations',Formation::all())
+                                            ->with('departements',Departement::all())
                                             ->with('semestres', Semestre::all());
     }
         
@@ -439,7 +439,7 @@ class AdminController extends Controller
                                           ->with('departements',Departement::all());                                    
     }
             
-    public function storeEvent(EventRequest $request) {
+    public function storeEvent(Request $request) {
                     
         //dd($request->all());
         $event = new Event;

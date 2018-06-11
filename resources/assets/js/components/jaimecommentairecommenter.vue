@@ -121,8 +121,7 @@ let moment = require('moment');
     methods: {
       commenter() {
         if (this.commentaire) {
-          axios
-            .post("/commenter", {
+          axios.post("/commenter", {
               publication_id: this.publication,
               user_id: this.id,
               commentaire: this.commentaire
@@ -131,7 +130,8 @@ let moment = require('moment');
               this.commentaires.push(response.data);
               this.commentaire = "";
             console.log(response.data);
-            }).catch(err => console.log(err));
+            }).catch(err => {
+              console.log(err)});
         }
       },
 
