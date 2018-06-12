@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\EventRequest;
+use App\Http\Requests\DepartementRequest;
+use App\Http\Requests\FormationRequest;
+use App\Http\Requests\MemoireRequest;
+use App\Http\Requests\ModuleRequest;
 
 use Auth;
 use App\User;
@@ -21,6 +25,7 @@ use App\Role;
 use App\Profile;
 use App\Module;
 use App\Semestre;
+use Carbon;
 
 use Illuminate\Support\Facades\Input;
 
@@ -111,6 +116,12 @@ class AdminController extends Controller
         
            // roles array binded with input form
         $roles = ['administrateur','enseignant','etudiant','gclub'];
+        if($request->etudiant == null &&  !$request->enseignant ) {
+            $role = new Role;
+            $role->user_id = $user->id;
+            $role->nom = 'Etudiant';
+            $role->save();
+         }
 
         foreach($roles as $r ) {
             if($request->$r) {
@@ -138,8 +149,17 @@ class AdminController extends Controller
 
              // roles array binded with input form
              $roles = ['administrateur','enseignant','etudiant','gclub'];
+            // dd($request);
+            
+             if($request->etudiant == null &&  !$request->enseignant ) {
+                $role = new Role;
+                $role->user_id = $user->id;
+                $role->nom = 'Etudiant';
+                $role->save();
+             }
 
              foreach($roles as $r ) {
+                
                  if($request->$r) {
                      $role = new Role;
                      $role->user_id = $user->id;
@@ -171,8 +191,9 @@ class AdminController extends Controller
         return view('admin.departement-modifie')->with('departement',Departement::find($id));
     }
 
-    public function storeDepartement(Request $request) {
-        
+    public function storeDepartement(DepartementRequest $request) {
+
+      
        $departement = new Departement;
        $departement->nom = $request->nom;
        $departement->save();
@@ -180,7 +201,7 @@ class AdminController extends Controller
        return redirect()->route('admin.departement');
     } 
 
-    public function editDepartement(Request $request, $id) {
+    public function editDepartement(DepartementRequest $request, $id) {
         
         $departement = Departement::find($id);
         $departement->nom = $request->nom;
@@ -212,10 +233,10 @@ class AdminController extends Controller
                                                     ->with('departements',Departement::all());
     }
     
-    public function storeFormation(Request $request) {
+    public function storeFormation(FormationRequest $request) {
             
         $formation = new Formation;
-        $formation->nom = $request->nom;
+        $formation->nom = ucfirst($request->nom);
         $formation->departement_id = $request->departement;
         $formation->type = $request->type;
         $formation->save();
@@ -223,10 +244,10 @@ class AdminController extends Controller
         return redirect()->route('admin.formation');
     } 
     
-    public function editFormation(Request $request, $id) {
+    public function editFormation(FormationRequest $request, $id) {
             
         $formation = Formation::find($id);
-        $formation->nom = $request->nom;
+        $formation->nom = ucfirst($request->nom);
         $formation->departement_id = $request->departement;
         $formation->type = $request->type;
         $formation->save();
@@ -259,7 +280,7 @@ class AdminController extends Controller
                                             ->with('semestres', Semestre::all());
     }
         
-    public function storeModule(Request $request) {
+    public function storeModule(ModuleRequest $request) {
                 
         $module = new Module;
         $module->nom = $request->nom;
@@ -270,7 +291,7 @@ class AdminController extends Controller
         return redirect()->route('admin.module');
     } 
         
-    public function editModule(Request $request, $id) {
+    public function editModule(ModuleRequest $request, $id) {
                 
         $module = Module::find($id);
         $module->nom = $request->nom;
@@ -313,9 +334,9 @@ class AdminController extends Controller
     }
 
         
-    public function storeMemoire(Request $request) {
+    public function storeMemoire(MemoireRequest $request) {
                 
-        $validator = Validator::make($request->all(), PortailMemoire::rules(), PortailMemoire::messages());
+      //  $validator = Validator::make($request->all(), PortailMemoire::rules(), PortailMemoire::messages());
        
         $memoire = new PortailMemoire;
         $memoire->user_id = Auth::id();
@@ -342,7 +363,7 @@ class AdminController extends Controller
         return redirect()->route('admin.memoire');
 }
         
-    public function editMemoire(Request $request, $id) {
+    public function editMemoire(MemoireRequest $request, $id) {
                 
         $memoire = PortailMemoire::find($id);
         $memoire->formation_id = $request->formation_id;
@@ -439,24 +460,30 @@ class AdminController extends Controller
                                           ->with('departements',Departement::all());                                    
     }
             
-    public function storeEvent(Request $request) {
+    public function storeEvent(EventRequest $request) {
                     
-        //dd($request->all());
-        $event = new Event;
-        $event->titre = $request->titre;
-        $event->user_id = Auth::id();
-        $event->event_role = $request->event_role;
-        $event->formation_id = $request->formation_id;
-        $event->description = $request->description;
-        $event->contenu = $request->contenu;
-        $event->debut = $request->debut;
-        $event->fin = $request->fin;
-        $event->save();
-            
+        
+
+        
+            $event = new Event;
+            $event->titre = $request->titre;
+            $event->user_id = Auth::id();
+            $event->event_role = $request->event_role;
+            $event->formation_id = $request->formation_id;
+            $event->description = $request->description;
+            $event->contenu = $request->contenu;
+            $event->debut = $request->debut;
+            $event->fin = $request->fin;
+            $event->save();
+           
+       
         return redirect()->route('admin.event');
+        
+            
+        
     } 
             
-    public function editEvent(Request $request, $id) {
+    public function editEvent(EventRequest $request, $id) {
                     
         $event = Event::find($id);
         $event->titre = $request->titre;

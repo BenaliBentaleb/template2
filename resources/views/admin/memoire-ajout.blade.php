@@ -147,7 +147,12 @@
 
                                         <label class="form-label">Titre de mémoire<span class="form-required">*</span> </label>
                                         
-                                        <input type="text" class="form-control" name="titre" required>
+                                        <input type="text" class="form-control" name="titre"  value="{{old('titre')}}" required>
+                                              @if ($errors->has('titre'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('titre') }}</strong>
+                                                </span>
+                                                @endif
                                     </div>
 
                                     <div class="form-group">
@@ -185,19 +190,34 @@
                                         <div class="row glutters-xs">
                                             <div class="col-md-8">
                                                 <label class="form-label">L'encadreur</label>
-                                                <input type="text" class="form-control" name="encadreur" placeholder="Nom de l'encadreur">
+                                                <input type="text" class="form-control" name="encadreur" value="{{old('encadreur')}}"  placeholder="Nom de l'encadreur">
+                                                @if ($errors->has('encadreur'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('encadreur') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
 
                                             <div class="col-md-4">
                                                 <label class="form-label">Année <span class="form-required">*</span></label>
-                                                <input name="date" class="form-control" type="text" required placeholder="Année" maxlength="4" minlength="4" pattern="[0-2][0-9][0-9][0-9]">
+                                                <input name="date" class="form-control" value="{{old('date')}}" type="text" required placeholder="Année" maxlength="4" minlength="4" pattern="[0-2][0-9][0-9][0-9]">
+                                                @if ($errors->has('date'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('date') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                             
                                         <label class="form-label">L'étudiant 1 <span class="form-required">*</span></label>
-                                        <input type="text" class="form-control" name="etudiant1" required>
+                                        <input type="text" class="form-control" value="{{old('etudiant1')}}" name="etudiant1" required>
+                                        @if ($errors->has('etudiant1'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('etudiant1') }}</strong>
+                                                </span>
+                                                @endif
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">L'étudiant 2</label>
@@ -214,9 +234,9 @@
                                     <div class="form-group">
                                         <div class="form-label">Uploader un fichier <span class="form-required">*</span></div>
                                        
-                                            <input type="file" class="btn btn-secondary btn-block"  name="fichier" accept=".pdf" required>
+                                            <input type="file" class="btn btn-secondary btn-block" value="{{old('fichier')}}"  name="fichier" accept=".pdf" required>
                                             {{-- <label class="custom-file-label">Choose file</label> --}}
-                                        
+                                          
                                     </div>
 
                             </div>

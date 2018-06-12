@@ -2,17 +2,19 @@
     <li class="dropdown" style="margin-top: 5px;">
       <a class="nav-link icon" data-toggle="dropdown">
         <i class="fe fe-alert-octagon" style="font-size:16px;"></i>
-        <span class="nav-unread" v-if="all_nots_count > 0">{{ all_nots_count }}</span>
+        <span class="nav-unread" >{{ all_nots_count }}</span>
       </a>
-      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="width: 280px;">
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="width: 280px;" v-if="all_nots_count > 0">
       <a @click="markAsRead(notification)" class="dropdown-item d-flex" v-for="notification in all_not" :key="notification.id">
-        <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
-        <div>
-          <strong>User name</strong> {{ notification.message }}
-        </div>
+        <span class="avatar mr-3 align-self-center" v-bind:style="{backgroundImage: 'url('+ notification.user.profile.photo_profile +')'}"></span>
+         <span>
+          {{ notification.message }}
+
+        </span>
+        <br>
+        
       </a>
-      <div class="dropdown-divider"  v-if="all_nots_count == 0"></div>
-      <span href="#" class="dropdown-item text-center text-muted-dark" style="padding: 10px;">Accune notification</span>
+      
       </div>
     </li>
 
@@ -57,19 +59,34 @@ export default {
       axios.get("/get_unreadAdminNot").then(response => {
      //   console.log(response);
 
-        response.data.forEach(not => {
+     /*   response.data.forEach(not => {
         //  console.log(not);
         //  console.log(not.data);
           let notification = {
             id:not.id,
             message:not.data.message,
-            nom:not.data.nom,
+            user:not.data.user,
             url:not.data.url,
             type:not.type
         }
         console.log(notification)
           this.$store.commit("add_admin_not", notification);
-        });
+        });*/
+        for (const key in response.data) {
+          console.log(key);
+            console.log(response.data[key]);
+           let notification = {
+              id: response.data[key].id,
+              message: response.data[key].data.message,
+              user: response.data[key].data.user,
+              url: response.data[key].data.url,
+              type: response.data[key].type
+            };
+            // console.log(notification)
+            this.$store.commit("add_admin_not", notification);
+        }
+
+        
       });
     },
     markAsRead(notification) {

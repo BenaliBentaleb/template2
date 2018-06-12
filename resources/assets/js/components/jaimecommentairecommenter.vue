@@ -120,7 +120,7 @@ let moment = require('moment');
 
     methods: {
       commenter() {
-        if (this.commentaire) {
+        if (this.commentaire.trim()) {
           axios.post("/commenter", {
               publication_id: this.publication,
               user_id: this.id,
@@ -136,6 +136,7 @@ let moment = require('moment');
       },
 
       updateComment() {
+         if (this.commentaire.trim()) {
          axios.post(`/commentaire/update/${this.idEditComment}/${this.commentaire}`)
          .then(response => {
             let comment =  this.commentaires.find(value => value.id === this.idEditComment);
@@ -145,7 +146,7 @@ let moment = require('moment');
              
             
          })
-         
+         }
       },
 
       EditComment(id,comment) {

@@ -66342,7 +66342,7 @@ var moment = __webpack_require__(0);
     commenter: function commenter() {
       var _this = this;
 
-      if (this.commentaire) {
+      if (this.commentaire.trim()) {
         axios.post("/commenter", {
           publication_id: this.publication,
           user_id: this.id,
@@ -66359,14 +66359,16 @@ var moment = __webpack_require__(0);
     updateComment: function updateComment() {
       var _this2 = this;
 
-      axios.post("/commentaire/update/" + this.idEditComment + "/" + this.commentaire).then(function (response) {
-        var comment = _this2.commentaires.find(function (value) {
-          return value.id === _this2.idEditComment;
+      if (this.commentaire.trim()) {
+        axios.post("/commentaire/update/" + this.idEditComment + "/" + this.commentaire).then(function (response) {
+          var comment = _this2.commentaires.find(function (value) {
+            return value.id === _this2.idEditComment;
+          });
+          comment.commentaire = _this2.commentaire;
+          _this2.isNewComment = true;
+          _this2.commentaire = "";
         });
-        comment.commentaire = _this2.commentaire;
-        _this2.isNewComment = true;
-        _this2.commentaire = "";
-      });
+      }
     },
     EditComment: function EditComment(id, comment) {
       this.isNewComment = false;
@@ -67830,7 +67832,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       Echo.private("App.User." + this.id_auth).notification(function (notification) {
-        // console.log(notification);
+        console.log(notification);
 
         //  alert("new notitfication");
         document.getElementById('noty').play();
@@ -67956,7 +67958,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67967,6 +67969,15 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -67993,6 +68004,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
   mounted: function mounted() {
     this.get_unread();
   },
@@ -68003,21 +68017,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       axios.get("/get_unreadnot").then(function (response) {
-        //   console.log(response);
+        console.log(response.data);
+        console.log(_typeof(response.data));
 
-        response.data.forEach(function (not) {
-          //  console.log(not);
-          //  console.log(not.data);
+        /*  response.data.forEach(not => {
+            //  console.log(not);
+            //  console.log(not.data);
+            let notification = {
+              id: not.id,
+              message: not.data.message,
+              user: not.data.user,
+              profile: not.data.profile,
+              type: not.type
+            };
+            // console.log(notification)
+            this.$store.commit("add_not", notification);
+          });
+        */
+        for (var key in response.data) {
+          console.log(key);
+          console.log(response.data[key]);
           var notification = {
-            id: not.id,
-            message: not.data.message,
-            nom: not.data.nom,
-            profile: not.data.profile,
-            type: not.type
+            id: response.data[key].id,
+            message: response.data[key].data.message,
+            user: response.data[key].data.user,
+            profile: response.data[key].data.profile,
+            type: response.data[key].type
           };
           // console.log(notification)
           _this.$store.commit("add_not", notification);
-        });
+        }
       });
     },
     markAsRead: function markAsRead(notification) {
@@ -68050,10 +68079,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "li",
-    {
-      staticClass: "notification dropdown",
-      staticStyle: { "margin-top": "5px" }
-    },
+    { staticClass: " dropdown", staticStyle: { "margin-top": "5px" } },
     [
       _c(
         "a",
@@ -68064,66 +68090,53 @@ var render = function() {
             staticStyle: { "font-size": "16px" }
           }),
           _vm._v(" "),
-          _vm.all_nots_count > 0
-            ? _c("span", { staticClass: "nav-unread" }, [
-                _vm._v(_vm._s(_vm.all_nots_count))
-              ])
-            : _vm._e()
+          _c("span", { staticClass: "nav-unread" }, [
+            _vm._v(_vm._s(_vm.all_nots_count))
+          ])
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "notification dropdown-menu dropdown-menu-right dropdown-menu-arrow",
-          staticStyle: { width: "280px" }
-        },
-        [
-          _vm._l(_vm.all_not, function(notification) {
-            return _c(
-              "a",
-              {
-                key: notification.id,
-                staticClass: "dropdown-item d-flex",
-                on: {
-                  click: function($event) {
-                    _vm.markAsRead(notification)
-                  }
-                }
-              },
-              [
-                _c("span", {
-                  staticClass: "avatar mr-3 align-self-center",
-                  staticStyle: {
-                    "background-image": "url(demo/faces/female/18.jpg)"
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", [
-                  _c("strong", [_vm._v("User name")]),
-                  _vm._v(" " + _vm._s(notification.message) + "\n       \n    ")
-                ])
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _vm.all_nots_count == 0
-            ? _c("div", { staticClass: "dropdown-divider" })
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "span",
+      _vm.all_nots_count > 0
+        ? _c(
+            "div",
             {
-              staticClass: "dropdown-item text-center text-muted-dark",
-              staticStyle: { padding: "10px" },
-              attrs: { href: "#" }
+              staticClass:
+                " dropdown-menu dropdown-menu-right dropdown-menu-arrow",
+              staticStyle: { width: "280px" }
             },
-            [_vm._v("Accune notification")]
+            _vm._l(_vm.all_not, function(notification) {
+              return _c(
+                "a",
+                {
+                  key: notification.id,
+                  staticClass: "dropdown-item d-flex",
+                  on: {
+                    click: function($event) {
+                      _vm.markAsRead(notification)
+                    }
+                  }
+                },
+                [
+                  _c("span", {
+                    staticClass: "avatar mr-3 align-self-center",
+                    style: {
+                      backgroundImage:
+                        "url(" + notification.user.profile.photo_profile + ")"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [
+                    _vm._v(
+                      "\n        " + _vm._s(notification.message) + "\n\n      "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("br")
+                ]
+              )
+            })
           )
-        ],
-        2
-      )
+        : _vm._e()
     ]
   )
 }
@@ -70234,7 +70247,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70245,6 +70258,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -70303,19 +70318,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.get("/get_unreadAdminNot").then(function (response) {
         //   console.log(response);
 
-        response.data.forEach(function (not) {
-          //  console.log(not);
-          //  console.log(not.data);
+        /*   response.data.forEach(not => {
+           //  console.log(not);
+           //  console.log(not.data);
+             let notification = {
+               id:not.id,
+               message:not.data.message,
+               user:not.data.user,
+               url:not.data.url,
+               type:not.type
+           }
+           console.log(notification)
+             this.$store.commit("add_admin_not", notification);
+           });*/
+        for (var key in response.data) {
+          console.log(key);
+          console.log(response.data[key]);
           var notification = {
-            id: not.id,
-            message: not.data.message,
-            nom: not.data.nom,
-            url: not.data.url,
-            type: not.type
+            id: response.data[key].id,
+            message: response.data[key].data.message,
+            user: response.data[key].data.user,
+            url: response.data[key].data.url,
+            type: response.data[key].type
           };
-          console.log(notification);
+          // console.log(notification)
           _this.$store.commit("add_admin_not", notification);
-        });
+        }
       });
     },
     markAsRead: function markAsRead(notification) {
@@ -70361,65 +70389,53 @@ var render = function() {
             staticStyle: { "font-size": "16px" }
           }),
           _vm._v(" "),
-          _vm.all_nots_count > 0
-            ? _c("span", { staticClass: "nav-unread" }, [
-                _vm._v(_vm._s(_vm.all_nots_count))
-              ])
-            : _vm._e()
+          _c("span", { staticClass: "nav-unread" }, [
+            _vm._v(_vm._s(_vm.all_nots_count))
+          ])
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "dropdown-menu dropdown-menu-right dropdown-menu-arrow",
-          staticStyle: { width: "280px" }
-        },
-        [
-          _vm._l(_vm.all_not, function(notification) {
-            return _c(
-              "a",
-              {
-                key: notification.id,
-                staticClass: "dropdown-item d-flex",
-                on: {
-                  click: function($event) {
-                    _vm.markAsRead(notification)
-                  }
-                }
-              },
-              [
-                _c("span", {
-                  staticClass: "avatar mr-3 align-self-center",
-                  staticStyle: {
-                    "background-image": "url(demo/faces/female/18.jpg)"
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", [
-                  _c("strong", [_vm._v("User name")]),
-                  _vm._v(" " + _vm._s(notification.message) + "\n    ")
-                ])
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _vm.all_nots_count == 0
-            ? _c("div", { staticClass: "dropdown-divider" })
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "span",
+      _vm.all_nots_count > 0
+        ? _c(
+            "div",
             {
-              staticClass: "dropdown-item text-center text-muted-dark",
-              staticStyle: { padding: "10px" },
-              attrs: { href: "#" }
+              staticClass:
+                "dropdown-menu dropdown-menu-right dropdown-menu-arrow",
+              staticStyle: { width: "280px" }
             },
-            [_vm._v("Accune notification")]
+            _vm._l(_vm.all_not, function(notification) {
+              return _c(
+                "a",
+                {
+                  key: notification.id,
+                  staticClass: "dropdown-item d-flex",
+                  on: {
+                    click: function($event) {
+                      _vm.markAsRead(notification)
+                    }
+                  }
+                },
+                [
+                  _c("span", {
+                    staticClass: "avatar mr-3 align-self-center",
+                    style: {
+                      backgroundImage:
+                        "url(" + notification.user.profile.photo_profile + ")"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [
+                    _vm._v(
+                      "\n      " + _vm._s(notification.message) + "\n\n    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("br")
+                ]
+              )
+            })
           )
-        ],
-        2
-      )
+        : _vm._e()
     ]
   )
 }

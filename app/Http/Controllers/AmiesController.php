@@ -64,7 +64,7 @@ public function delete_invitation($id) {
 
 public function delete_friend($id) {
 
-    $invitation = Amies::where('user_id',$id)->where('friend_id',Auth::id())->first();
+    $invitation = Amies::where('user_id',Auth::id())->where('friend_id',$id)->first();
     $invitation->delete();
     $friend = User::find($invitation->friend_id);
     return   $friend->nom .'  '. $friend->prenom .'deleted';

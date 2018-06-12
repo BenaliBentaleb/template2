@@ -57,8 +57,8 @@ class SuivieNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'nom' => $this->commentaire->user->nom.' ' .$this->commentaire->user->prenom,
-            'message' => $this->commentaire->user->nom.' '.'a commenter votre status',
+            'user' => $this->commentaire->user,
+            'message' => $this->commentaire->user->nom.' '.$this->commentaire->user->prenom. 'a commenter un status',
            // 'profile'=>'http://127.0.0.1:8000/modifier/publication/'.$this->commentaire->publication_id,
            'profile'=> "http://127.0.0.1:8000/single/publication/".$this->commentaire->publication->slug
           

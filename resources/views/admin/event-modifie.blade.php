@@ -147,6 +147,11 @@
                                     <div class="col-md-8 form-group">
                                         <label>Titre de l'évenement</label>
                                         <input type="text" name="titre" required class="form-control" value="{{ $event->titre }}">
+                                        @if ($errors->has('titre'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('titre') }}</strong>
+                                        </span>
+                                        @endif
 
                                     </div>
 
@@ -169,11 +174,21 @@
                                     <div class="col-md-4 form-group ">
                                         <label class="form-label">Date debut</label>
                                         <input type="date" name="debut" value="{{$event->debut}}" class="form-control">
+                                        @if ($errors->has('debut'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('debut') }}</strong>
+                                        </span>
+                                        @endif
                                     </div>
 
                                     <div class="col-md-4 form-group ">
                                         <label class="form-label">Date fin</label>
                                         <input type="date" name="fin" value="{{$event->fin}}" class="form-control">
+                                        @if ($errors->has('fin'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('fin') }}</strong>
+                                        </span>
+                                        @endif
                                     </div>
                                     <div class="col-md-4 form-group">
                                         <label class="form-label">Formation</label>
@@ -198,6 +213,11 @@
                                         </label>
                                         <textarea id="short-content" onkeyup="countChar(this)" required class="form-control" name="description" rows="3" placeholder="Content.."
                                             maxlength="150">{{$event->description}}</textarea>
+                                            @if ($errors->has('description'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('description') }}</strong>
+                                        </span>
+                                        @endif
 
                                         <script type="text/javascript">
                                             function countChar(val) {
@@ -218,6 +238,11 @@
                                         <textarea id="event-content" name="contenu">
                                             {{$event->contenu}}
                                         </textarea>
+                                        @if ($errors->has('contenu'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('contenu') }}</strong>
+                                        </span>
+                                        @endif
 
                                         <!-- Event content here! -->
 

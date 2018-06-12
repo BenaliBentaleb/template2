@@ -20,13 +20,15 @@
 
     <link href="{{asset('assets/css/dashboard.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/css/main.css')}}" rel="stylesheet"/>
-    <script src="{{asset('assets/js/vendors/mixitup.js')}}"></script>
+   
     <script src="{{asset('assets/js/vendors/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{asset('assets/js/dashboard.js')}}"></script>
     <script src="{{asset('assets/js/core.js')}}"></script>
+   
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+    <script src="{{asset('assets/js/vendors/mixitup.js')}}"></script>
 
 
 

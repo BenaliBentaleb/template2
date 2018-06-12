@@ -56,7 +56,7 @@ class NewFriendRequest extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'nom' => $this->user->nom.' '.$this->user->prenom,
+            'user' => $this->user,
             'message' => $this->user->nom.' '.'a envoyé une invitation',
             'profile'=>'http://127.0.0.1:8000/profile/'.$this->user->id,//asset('profile/'.$this->user->id),
            

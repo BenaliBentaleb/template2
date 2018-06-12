@@ -25,7 +25,7 @@ export default {
     listen() {
       Echo.private("App.User." + this.id_auth)
       .notification(notification => {
-         // console.log(notification);
+          console.log(notification);
      
       //  alert("new notitfication");
         document.getElementById('noty').play();

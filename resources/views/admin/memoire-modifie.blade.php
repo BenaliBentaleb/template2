@@ -150,6 +150,11 @@
                                         </label>
 
                                         <input type="text" class="form-control" name="titre" required @if($memoire->titre) value="{{$memoire->titre}}" @endif>
+                                        @if ($errors->has('titre'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('titre') }}</strong>
+                                                </span>
+                                                @endif
                                     </div>
 
                                     <div class="form-group">
@@ -189,6 +194,12 @@
                                             <div class="col-md-8">
                                                 <label class="form-label">L'encadreur</label>
                                                 <input type="text" class="form-control" name="encadreur" placeholder="Nom de l'encadreur" @if($memoire->encadreur) value="{{$memoire->encadreur}}" @endif>
+                                         
+                                                @if ($errors->has('encadreur'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('encadreur') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
 
                                             <div class="col-md-4">
@@ -197,6 +208,12 @@
                                                 </label>
                                                 <input name="date" class="form-control" type="text" @if($memoire->date) value="{{$memoire->date}}" @endif required placeholder="Année" maxlength="4"
                                                 minlength="4" pattern="[0-2][0-9][0-9][0-9]">
+                                                @if ($errors->has('date'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('date') }}</strong>
+                                                </span>
+                                                @endif
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -206,6 +223,12 @@
                                             <span class="form-required">*</span>
                                         </label>
                                         <input type="text" class="form-control" name="etudiant1" required @if($memoire->etudiant1) value="{{$memoire->etudiant1}}" @endif>
+                                        @if ($errors->has('etudiant1'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('etudiant1') }}</strong>
+                                                </span>
+                                                @endif
+                                  
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">L'étudiant 2</label>
@@ -225,6 +248,8 @@
 
                                             <input type="file" class="btn btn-secondary btn-block" name="fichier" accept=".pdf"> {{--
                                             <label class="custom-file-label">Choose file</label> --}}
+                                           
+                                            
 
                                         </div>
 
