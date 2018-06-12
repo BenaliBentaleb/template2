@@ -100,6 +100,7 @@
                         </div>
                         <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
                         <input type="hidden" name="type" value="Tutorial">
+                        
                         </div>
                     </form>
                 </div>

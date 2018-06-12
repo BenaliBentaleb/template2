@@ -12,7 +12,12 @@
 
                     <div class="col-md-8 form-group">
                         <label>Titre de l'évenement</label>
-                        <input type="text" name="titre" required="" class="form-control" placeholder="Titre ..">
+                        <input type="text" name="titre"  {{old('titre')}} required="" class="form-control" placeholder="Titre ..">
+                        @if ($errors->has('titre'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('titre') }}</strong>
+                        </span>
+                        @endif
 
                     </div>
 
@@ -31,12 +36,22 @@
 
                     <div class="col-md-4 form-group ">
                         <label class="form-label">Date debut</label>
-                        <input type="date" name="debut" class="form-control" required="">
+                        <input type="date" name="debut" {{old('debut')}} class="form-control" required="">
+                        @if ($errors->has('debut'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('debut') }}</strong>
+                        </span>
+                        @endif
                     </div>
 
                     <div class="col-md-4 form-group ">
                         <label class="form-label">Date fin</label>
-                        <input type="date" name="fin" class="form-control" required="">
+                        <input type="date" name="fin"  {{old('fin')}} class="form-control" required="">
+                        @if ($errors->has('fin'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('fin') }}</strong>
+                        </span>
+                        @endif
                     </div>
                     <div class="col-md-4 form-group">
                         <label class="form-label">Formation</label>
@@ -47,7 +62,11 @@
                             @foreach($departement as $dep)
                             <optgroup label="Déprartement : {{ $dep->nom }}">
                                 @foreach($dep->formation as $formation)
+                                @if(old('formation_id') == $formation->id )
+                                <option value="{{ $formation->id }}" selected>{{ $formation->nom }}</option>
+                                @else
                                 <option value="{{ $formation->id }}">{{ $formation->nom }}</option>
+                                @endif
                                 @endforeach
                             </optgroup>
                             @endforeach
@@ -57,8 +76,13 @@
                         <label class="form-label">Description brève</label>
                         <span class="pull-right">
                             <span id="short-content-size">0</span>/150</span>
-                        <textarea id="short-content" onkeyup="countChar(this)" required="" class="form-control" name="description" rows="3" placeholder="Content.."
-                            maxlength="150"></textarea>
+                        <textarea id="short-content" onkeyup="countChar(this)" required=""  class="form-control" name="description" rows="3" placeholder="Content.."
+                            maxlength="150">{{old('description')}}</textarea>
+                            @if ($errors->has('description'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('description') }}</strong>
+                                        </span>
+                                        @endif
 
                         <script type="text/javascript">
                             function countChar(val) {
@@ -76,7 +100,12 @@
                         <label class="form-label">Description de l'évenement
                             <span class="form-label-small"></span>
                         </label>
-                        <textarea id="event-content" name="contenu"></textarea>
+                    <textarea id="event-content" name="contenu">{{old('contenu')}}</textarea>
+                        @if ($errors->has('contenu'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('contenu') }}</strong>
+                        </span>
+                        @endif
 
                         <!-- Event content here! -->
 

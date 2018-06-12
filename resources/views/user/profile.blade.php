@@ -162,7 +162,7 @@
         <div class="status">
             <div class="row">
                 <div class="col-xs-10" style="padding-right:0;">
-                    <a href="profile.html">
+                    <a href="{{route('user.profile',['id'=>$user->id])}}">
                         <img class="publisher-image" style="background-image:url(&quot;{{asset($publication->user->profile->photo_profile)}}&quot;);width:55px;height:55px;margin-top:15px;margin-left:10px;">
                     </a>
                     <ul class="list-inline" style="padding-top:10px;padding-left:10px;width:74%;">

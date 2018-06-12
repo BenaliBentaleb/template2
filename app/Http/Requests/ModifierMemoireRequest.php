@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MemoireRequest extends FormRequest
+class ModifierMemoireRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class MemoireRequest extends FormRequest
             'type' => 'required',
             'date' => 'required|after:1989|before_or_equal:'.date("Y"),
             'encadreur' => 'required',
-            'etudiant1' => 'required',
-           'fichier' => 'required',
+            'etudiant1' => 'required'//,
+          // 'fichier' => 'required',
 
         ];
     }
@@ -41,8 +41,8 @@ class MemoireRequest extends FormRequest
             'date.after' => 'Le champ Date  est inferieur a 1990 !',
             'date.before_or_equal' => 'Le champ Date  est superieur a '.date("Y"),
             'encadreur.required' => 'Le champ Encadreur est vide !',
-            'etudiant1.required' => 'Le champ Etudiant est vide !',
-           'fichier.required' => 'Le champ Document est vide !',
+            'etudiant1.required' => 'Le champ Etudiant est vide !'
+          // 'fichier.required' => 'Le champ Document est vide !',
 
         ];
     }

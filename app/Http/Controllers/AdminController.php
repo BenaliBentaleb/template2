@@ -9,6 +9,7 @@ use App\Http\Requests\EventRequest;
 use App\Http\Requests\DepartementRequest;
 use App\Http\Requests\FormationRequest;
 use App\Http\Requests\MemoireRequest;
+use App\Http\Requests\ModifierMemoireRequest;
 use App\Http\Requests\ModuleRequest;
 
 use Auth;
@@ -116,6 +117,12 @@ class AdminController extends Controller
         
            // roles array binded with input form
         $roles = ['Administrateur','Enseignant','Etudiant','Gérant-club'];
+        if($request->Etudiant == null &&  !$request->Enseignant ) {
+            $role = new Role;
+            $role->user_id = $user->id;
+            $role->nom = 'Etudiant';
+            $role->save();
+         }
 
         foreach($roles as $r ) {
             if($request->$r) {
@@ -143,6 +150,13 @@ class AdminController extends Controller
 
              // roles array binded with input form
              $roles = ['Administrateur','Enseignant','Etudiant','Gérant-club'];
+
+             if($request->Etudiant == null &&  !$request->Enseignant ) {
+                $role = new Role;
+                $role->user_id = $user->id;
+                $role->nom = 'Etudiant';
+                $role->save();
+             }
 
              foreach($roles as $r ) {
                 
@@ -349,7 +363,7 @@ class AdminController extends Controller
         return redirect()->route('admin.memoire');
 }
         
-    public function editMemoire(MemoireRequest $request, $id) {
+    public function editMemoire(ModifierMemoireRequest $request, $id) {
                 
         $memoire = PortailMemoire::find($id);
         $memoire->formation_id = $request->formation_id;

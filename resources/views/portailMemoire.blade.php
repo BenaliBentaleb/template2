@@ -75,10 +75,7 @@
                             <p>Dr. {{$m->encadreur}}
                                 <br>
                             </p>
-                            <p style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{$m->counter}}</p>
-
-                            <a href="{{route('download.memoire',['id'=>$m->id])}}" class="btn btn-link btn-block" type="button" style="font-size:16px;">
-                                <i class="icon-arrow-down-circle" style="font-size:16px;padding-right:10px;"></i>Télécharger</a>
+                            <downloadmemoire :id="{{$m->id}}"></downloadmemoire>
                         </div>
                     </div>
                 </div>
@@ -123,9 +120,7 @@
                             <p>Dr. {{$m->encadreur}}
                                 <br>
                             </p>
-                            <p style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{$m->counter}}</p>
-                            <a href="{{route('download.memoire',['id'=>$m->id])}}" class="btn btn-link btn-block" type="button" style="font-size:16px;">
-                                <i class="icon-arrow-down-circle" style="font-size:16px;padding-right:10px;"></i>Télécharger</a>
+                        <downloadmemoire :id="{{$m->id}}"></downloadmemoire>
                         </div>
                     </div>
                 </div>

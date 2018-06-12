@@ -8,6 +8,7 @@ use App\Departement;
 use Auth ; 
 use App\User;
 use App\Notifications\ReclamationNotification ;
+use App\Http\Requests\ReclamationRequest;
 
 class ReclamationController extends Controller
 {
@@ -50,12 +51,12 @@ class ReclamationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReclamationRequest $request)
     {
          $reclamation = new Reclamation;
          $reclamation->user_id = Auth::id();
          $reclamation->title = $request->title;
-         $reclamation->Type = $request->Type;
+         $reclamation->Type = $request->type;
          $reclamation->reclamation = $request->reclamation;
 
          $reclamation->save();
@@ -66,7 +67,7 @@ class ReclamationController extends Controller
  
             }
          }
-         return $reclamation;
+         return redirect('/home');
        
 
 

@@ -248,6 +248,28 @@
     <script src="{{ asset('assets/js/mixitup-multifilter.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <script type="text/javascript">
+       
+  $("select[name='type']").change(function(){
+      var type = $(this).val();
+      var token = $("input[name='_token']").val();
+      $.ajax({
+          url: "{{route('getformation.memoire',['type'=>"+type+"])}}",
+          method: 'GET',
+          data: {type:type, _token:token},
+          success: function(data) {
+            let option ="";
+          for (const id of data) {
+              console.log(id.nom);
+              
+                    $("select[name='formation_id']").html(
+                        (option += "<option  value='" + id.id + "'>" + id.nom + "</option>")
+                );
+          }
+        
+          }
+      });
+  });
+
     $('body').on('click', '#submitForm', function(){
         var registerForm = $("#Register");
         var formData = registerForm.serialize();

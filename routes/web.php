@@ -152,6 +152,11 @@ Route::get('/evenement/ajouter', [
     'as' => 'evenement.ajouter',
 ]);
 
+Route::get('/evenementNoAuth', [
+    'uses' => 'EventController@evenmentNoauth',
+    'as' => 'evenement.unregistred',
+]);
+
 Route::post('/evenement/store', [
     'uses' => 'EventController@store',
     'as' => 'evenement.store'
@@ -159,12 +164,13 @@ Route::post('/evenement/store', [
 
 Route::post('/reclamation/store', [
     'uses' => 'ReclamationController@store',
+    'as'=>'user.store.reclamation'
 ]);
 Route::get('/profile/{id}', [
     'uses' => 'ProfileController@profile',
     'as' => 'user.profile',
 
-])->middleware('auth');;
+])->middleware('auth');
 
 Route::post('/commenter', [
     'uses' => 'commentaireController@store',
@@ -310,11 +316,16 @@ Route::post('/memoire/saveFile',[
 
 ])->middleware('auth');
 
-Route::get('/memoire/download/{id}',[
+Route::get('/memoire/download/{id}/{number}',[
     'uses'=>'PortailMemoireController@download',
     'as'=>'download.memoire'
 
 ])->middleware('auth');
+
+Route::get('/memoire/numbre/download/{id}',[
+    'uses'=>'PortailMemoireController@count',
+    'as'=>'download.memoire.number'
+])->middleware('auth');;
 
 Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');

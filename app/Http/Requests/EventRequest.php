@@ -28,8 +28,6 @@ class EventRequest extends FormRequest
 
             'titre' => 'required|string',
             'event_role' => 'required',
-            
-            'formation_id' => 'required',
             'description' => 'required',
             'contenu' => 'required',
             'debut' => 'required|date|date_format:Y-m-d|after:yesterday',
@@ -47,7 +45,6 @@ class EventRequest extends FormRequest
             'titre.string' => 'titre doit etre une chaine de caractére.',
             'titre.required' => 'Svp rempli  le champ titre.',
             'event_role.required' => 'Svp rempli le champ role.',
-            'formation_id.required' => 'Svp selectioner  la formation.',
             'description.required' => 'Svp rempli  le champ description.',
             'contenu.required' => 'Svp rempli  le champ contenu.',
             'debut.required' => 'Svp rempli  le champ date debut.',

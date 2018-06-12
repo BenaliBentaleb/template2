@@ -92,7 +92,7 @@
 
 
                                 <li class="list-group-item border-top">
-                                    <a href="#" class="list-anchor">
+                                    <a href="{{route('evenement.unregistred')}}" class="list-anchor">
                                         <i class="icon-bell icon-sidebar"></i>
                                         <span style="font-size:15px;">Les évenements</span>
                                     </a>
