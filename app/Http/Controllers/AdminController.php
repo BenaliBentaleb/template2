@@ -10,6 +10,7 @@ use App\Http\Requests\DepartementRequest;
 use App\Http\Requests\FormationRequest;
 use App\Http\Requests\MemoireRequest;
 use App\Http\Requests\ModifierMemoireRequest;
+use App\Http\Requests\ModifierDepartementRequest;
 use App\Http\Requests\ModuleRequest;
 
 use Auth;
@@ -201,7 +202,7 @@ class AdminController extends Controller
        return redirect()->route('admin.departement');
     } 
 
-    public function editDepartement(DepartementRequest $request, $id) {
+    public function editDepartement(ModifierDepartementRequest $request, $id) {
         
         $departement = Departement::find($id);
         $departement->nom = $request->nom;

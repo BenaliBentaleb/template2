@@ -4,8 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
-class DepartementRequest extends FormRequest
+class ModifierDepartementRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +24,14 @@ class DepartementRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom'=> 'required|unique:departements'//|regex:/^[A-Z ]+$/'
+            'nom'=> 'required'//|regex:/^[A-Z ]+$/'
         ];
     }
 
     public function messages() {
         return [
             'nom.required'=>'svp rempli le champ Nom',
-            'nom.unique'=>'le nom de departement doit etre unique',
+           // 'nom.unique'=>'le nom de departement doit etre unique',
            // 'nom.regex'=>'le nom de departement doit etre une chaine de caractére et majuscule'
         ];
     }
