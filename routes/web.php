@@ -142,9 +142,23 @@ Route::get('/reclamation', [
     'as' => 'reclamation.index',
 ]);
 
+Route::get('/evenement', [
+    'uses' => 'EventController@index',
+    'as' => 'evenement',
+]);
+
+Route::get('/evenement/ajouter', [
+    'uses' => 'EventController@show',
+    'as' => 'evenement.ajouter',
+]);
+
+Route::post('/evenement/store', [
+    'uses' => 'EventController@store',
+    'as' => 'evenement.store'
+]);
+
 Route::post('/reclamation/store', [
     'uses' => 'ReclamationController@store',
-
 ]);
 Route::get('/profile/{id}', [
     'uses' => 'ProfileController@profile',

@@ -7,7 +7,7 @@
                 <div class="login-clean">
                     <form style="margin-top:70px;overflow:hidden;" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
-                        <h2 class="sr-only">Login Form</h2>
+                        
                         <h2 class="text-uppercase text-center" style="font-size:18px;font-weight:bold;">S&#39;authentifier</h2>
                         <div class="illustration"></div>
 

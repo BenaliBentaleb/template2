@@ -115,13 +115,7 @@ class AdminController extends Controller
            ]);
         
            // roles array binded with input form
-        $roles = ['administrateur','enseignant','etudiant','gclub'];
-        if($request->etudiant == null &&  !$request->enseignant ) {
-            $role = new Role;
-            $role->user_id = $user->id;
-            $role->nom = 'Etudiant';
-            $role->save();
-         }
+        $roles = ['Administrateur','Enseignant','Etudiant','Gérant-club'];
 
         foreach($roles as $r ) {
             if($request->$r) {
@@ -148,15 +142,7 @@ class AdminController extends Controller
         $user->roles()->delete();
 
              // roles array binded with input form
-             $roles = ['administrateur','enseignant','etudiant','gclub'];
-            // dd($request);
-            
-             if($request->etudiant == null &&  !$request->enseignant ) {
-                $role = new Role;
-                $role->user_id = $user->id;
-                $role->nom = 'Etudiant';
-                $role->save();
-             }
+             $roles = ['Administrateur','Enseignant','Etudiant','Gérant-club'];
 
              foreach($roles as $r ) {
                 

@@ -162,20 +162,20 @@
                                 <div class="form-label">Rôles </div>
                                 <div>
                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" value="Administrateur" @if($user->check_if_user_have_this_role("Administrateur")) checked @endif name="administrateur"
+                                        <input type="checkbox" class="custom-control-input" value="Administrateur" @if($user->check_if_user_have_this_role("Administrateur")) checked @endif name="Administrateur"
                                         />
                                         <span class="custom-control-label">Administrateur</span>
                                     </label>
                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                        <input id="ens" type="checkbox" class="custom-control-input " name="enseignant" value="Enseignant" @if($user->check_if_user_have_this_role("Enseignant")) checked @endif onClick="uncheck(1);"/>
+                                        <input id="ens" type="checkbox" class="custom-control-input " name="Enseignant" value="Enseignant" @if($user->check_if_user_have_this_role("Enseignant")) checked @endif onClick="uncheck(1);"/>
                                         <span class="custom-control-label">Enseignant</span>
                                     </label>
                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                        <input id="etud" type="checkbox" class="custom-control-input " name="etudiant" value="Etudiant" @if($user->check_if_user_have_this_role("Etudiant")) checked @endif onClick="uncheck(2);"/>
+                                        <input id="etud" type="checkbox" class="custom-control-input " name="Etudiant" value="Etudiant" @if($user->check_if_user_have_this_role("Etudiant")) checked @endif onClick="uncheck(2);"/>
                                         <span class="custom-control-label">Étudiant</span>
                                     </label>
                                     <label class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" name="gclub" value="Gerant Club" @if($user->check_if_user_have_this_role("Gerant Club")) checked @endif />
+                                        <input type="checkbox" class="custom-control-input" name="Gérant-club" value="Gérant club" @if($user->check_if_user_have_this_role("Gérant club")) checked @endif />
                                         <span class="custom-control-label">Gérant club</span>
                                     </label>
 

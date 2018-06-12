@@ -67958,7 +67958,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67971,8 +67971,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-//
-//
 //
 //
 //
@@ -68090,53 +68088,52 @@ var render = function() {
             staticStyle: { "font-size": "16px" }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "nav-unread" }, [
-            _vm._v(_vm._s(_vm.all_nots_count))
-          ])
+          _vm.all_nots_count > 0
+            ? _c("span", { staticClass: "nav-unread" }, [
+                _vm._v(_vm._s(_vm.all_nots_count))
+              ])
+            : _vm._e()
         ]
       ),
       _vm._v(" "),
-      _vm.all_nots_count > 0
-        ? _c(
-            "div",
+      _c(
+        "div",
+        {
+          staticClass: " dropdown-menu dropdown-menu-right dropdown-menu-arrow",
+          staticStyle: { width: "280px" }
+        },
+        _vm._l(_vm.all_not, function(notification) {
+          return _c(
+            "a",
             {
-              staticClass:
-                " dropdown-menu dropdown-menu-right dropdown-menu-arrow",
-              staticStyle: { width: "280px" }
+              key: notification.id,
+              staticClass: "dropdown-item d-flex",
+              on: {
+                click: function($event) {
+                  _vm.markAsRead(notification)
+                }
+              }
             },
-            _vm._l(_vm.all_not, function(notification) {
-              return _c(
-                "a",
-                {
-                  key: notification.id,
-                  staticClass: "dropdown-item d-flex",
-                  on: {
-                    click: function($event) {
-                      _vm.markAsRead(notification)
-                    }
-                  }
-                },
-                [
-                  _c("span", {
-                    staticClass: "avatar mr-3 align-self-center",
-                    style: {
-                      backgroundImage:
-                        "url(" + notification.user.profile.photo_profile + ")"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", [
-                    _vm._v(
-                      "\n        " + _vm._s(notification.message) + "\n\n      "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            })
+            [
+              _c("span", {
+                staticClass: "avatar mr-3 align-self-center",
+                style: {
+                  backgroundImage:
+                    "url(" + notification.user.profile.photo_profile + ")"
+                }
+              }),
+              _vm._v(" "),
+              _c("span", [
+                _vm._v(
+                  "\n        " + _vm._s(notification.message) + "\n\n      "
+                )
+              ]),
+              _vm._v(" "),
+              _c("br")
+            ]
           )
-        : _vm._e()
+        })
+      )
     ]
   )
 }

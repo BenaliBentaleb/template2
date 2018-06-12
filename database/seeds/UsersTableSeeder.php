@@ -93,7 +93,7 @@ class UsersTableSeeder extends Seeder
         ]); 
         App\Role::create([
             'user_id'=> $user2->id,
-            'nom' =>'Gerant Club'
+            'nom' =>'Gérant club'
         ]);
     }
 }

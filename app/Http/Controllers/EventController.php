@@ -4,18 +4,53 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\Departement;
 use Auth;
 class EventController extends Controller
 {
+    public function index(){
+        $nticien_events = Event::whereNull('formation_id')->get();
+        //$events = array();
+        $events_all = Event::whereNotNull('formation_id')->get();
+        //dd($events_all);
+       /*  foreach($events_all as $e){
+            
+            $formation_id = $e->formation_id;
+            //dd($formation_id);
+            array_push($events,'formation_id => $formation_id' );
+
+        } */
+
+        //dd($events);
+        return view('evenement')->with('nticien_events',$nticien_events)
+                                    ->with('events',$events_all);
+    }
+
+    public function show(){
+        foreach(Auth::user()->roles as $role){
+            if($role->nom == "Administrateur" || $role->nom == "Enseignant" || $role->nom == "Gérant club" ){
+                return view('evenement-ajouter');
+            }            
+            break; 
+        }
+       
+        return redirect()->route('home');
+    
+        
+    }
+
     public function store(Request $request) {
         $event  = new Event;
         $event->user_id = Auth::id();
+        $event->event_role = $request->event_role;
+        $event->formation_id = $request->formation_id;
         $event->titre = $request->titre;
+        $event->description = $request->description;
         $event->contenu = $request->contenu;
         $event->debut = $request->debut;
         $event->fin = $request->fin;
         $event->save();
-        return redirect()->back();
+        return redirect()->route('evenement');
      }
 
      public function update($id,Request $request) {

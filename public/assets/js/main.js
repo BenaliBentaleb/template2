@@ -1,4 +1,6 @@
-$('#summernote-status').summernote({
+
+$(document).ready(function () {
+  $('#summernote-status').summernote({
   placeholder: 'Enter le contenu du status ..',
   height: 100
   });
@@ -14,7 +16,17 @@ $('#summernote-status').summernote({
   placeholder: 'Enter le contenu du sondage ..',
   height: 100
   });
-  
+
+                    
+
+                        // initialize summernote
+                        $('#event-content').summernote({
+                            height: 100
+                        });
+                        // and set code
+                        $('#event-content').summernote('code', contents);
+                    
+
   
   $('#profile-picture').change(function() {
     $('#profile-picture-form').submit();
@@ -35,3 +47,5 @@ $('#summernote-status').summernote({
   $('.shuffle li').click(function(){
         $(this).addClass('selected').siblings().removeClass('selected');
     })
+
+  });

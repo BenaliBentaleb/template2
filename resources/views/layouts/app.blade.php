@@ -26,11 +26,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/Login-Form-Clean.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/Navigation-with-Search.css') }}">
     <link rel="stylesheet" href="{{asset('assets/css/reclamation.css')}}">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 
     
     <link rel="stylesheet" href="{{asset('assets/css/Navigation-Clean.css')}}">
   
-   
+
     <link href="{{asset('assets/css/main.css')}}" rel="stylesheet" />
     
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
@@ -150,7 +151,7 @@
                         <div class="col-md-3">
                                 <ul class="list-group side-bar">
                                     <li class="list-group-item" style="padding-top:10px;">
-                                        <a href="{{route('home')}}" class="list-anchor">
+                                        <a href="{{route('home')}}" class="list-anchor {{ Request::is('home') ? 'active' : '' }}" >
                                             <span class="nticien-circle">
                                                 <i class="fa fa-star"></i>
                                             </span>
@@ -167,28 +168,28 @@
                                     @foreach($dep->formation as $formation) @if(str_contains($formation->nom,'Tronc Commun'))
 
                                     <li class="list-group-item">
-                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor ">
+                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor  {{ Request::is("formation/$formation->nom") ? 'active' : '' }}">
                                             <span class="l1-circle">{{ substr($formation->nom,0,2) }}</span>
                                             <span>{{$formation->nom}}</span>
                                         </a>
                                     </li>
                                     @endif @if(str_contains($formation->nom,'Licence'))
                                     <li class="list-group-item">
-                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-l3">
+                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-l3 {{ Request::is("formation/$formation->nom") ? 'active' : '' }}">
                                             <span class="licence-circle">L3</span>
                                             <span>{{$formation->nom}}</span>
                                         </a>
                                     </li>
                                     @endif @if(str_contains($formation->nom,'Master 1'))
                                     <li class="list-group-item">
-                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master1">
+                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master1 {{ Request::is("formation/$formation->nom") ? 'active' : '' }}">
                                             <span class="master1-circle">M1</span>
                                             <span>{{$formation->nom}}</span>
                                         </a>
                                     </li>
                                     @endif @if(str_contains($formation->nom,'Master 2'))
                                     <li class="list-group-item">
-                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master2">
+                                        <a href="{{route('formation',['id'=>$formation->nom])}}" class="list-anchor list-anchor-master2 {{ Request::is("formation/$formation->nom") ? 'active' : '' }}" >
                                             <span class="master2-circle">M2</span>
                                             <span>{{$formation->nom}}</span>
                                         </a>
@@ -197,13 +198,13 @@
 
 
                                     <li class="list-group-item border-top">
-                                        <a href="#" class="list-anchor">
+                                        <a href="{{route('evenement')}}" class="list-anchor {{ Request::is('evenement') ? 'active' : '' }}">
                                             <i class="icon-bell icon-sidebar"></i>
                                             <span style="font-size:15px;">Les évenements</span>
                                         </a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="{{route('portail.memoire')}}" class="list-anchor">
+                                        <a href="{{route('portail.memoire')}}" class="list-anchor  {{ Request::is('portail/memoire') ? 'active' : '' }}">
                                             <i class="icon-graduation icon-sidebar"></i>
                                             <span style="font-size:15px;">Portail mémoires</span>
                                         </a>
@@ -211,7 +212,7 @@
 
                                     @if(!Auth::user()->isAdmin())
                                     <li class="list-group-item">
-                                        <a href="{{route('reclamation.index')}}" class="list-anchor">
+                                        <a href="{{route('reclamation.index')}}" class="list-anchor {{ Request::is('reclamation') ? 'active' : '' }}">
                                             <i class="icon-exclamation icon-sidebar"></i>
                                             <span style="font-size:15px;">Déposer réclamation</span>
                                         </a>
@@ -230,34 +231,23 @@
         </div>
 
 
-
-
-
-
-
     </div>
 
     <!-- Scripts -->
 
 
     <script src="{{asset('assets/js/jquery.min.js') }}"></script>
-    
-    
+
     <script src="{{ asset('js/app.js') }}"></script>
-    
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--  <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>-->
     <script src="{{ asset('assets/js/custom-file-input.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <script src="{{asset('assets/js/custom-file-input.js')}}"></script>
-
-
     <script src="{{ asset('assets/js/mixitup.min.js')}}"></script>
     <script src="{{ asset('assets/js/mixitup-multifilter.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
-  
-
-<script type="text/javascript">
+    <script type="text/javascript">
     $('body').on('click', '#submitForm', function(){
         var registerForm = $("#Register");
         var formData = registerForm.serialize();

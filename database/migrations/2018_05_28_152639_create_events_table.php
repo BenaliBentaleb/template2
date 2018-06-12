@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('event_role');
             $table->string('titre');
             $table->string('description');
-            $table->longText('contenu');
+            $table->longText('contenu')->nullable();
             $table->date('debut');
             $table->date('fin');
             $table->boolean('is_archived')->default('0');

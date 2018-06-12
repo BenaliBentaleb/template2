@@ -182,7 +182,7 @@
                                                 <span class="role-admin">Administrateur</span>
                                                 @endif @if($role->nom =="Enseignant")
                                                 <span class="role-prof">Enseignant</span>
-                                                @endif @if($role->nom =="Gerant Club")
+                                                @endif @if($role->nom =="Gérant club")
                                                 <span class="role-club">Gérant Club</span>
                                                 @endif @if($role->nom =="Etudiant")
                                                 <span class="role-etudiant">Etudiant</span>

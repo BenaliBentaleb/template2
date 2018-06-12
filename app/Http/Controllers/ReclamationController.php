@@ -22,8 +22,16 @@ class ReclamationController extends Controller
      */
     public function index()
     {
+        foreach(Auth::user()->roles as $role){
+            if($role->nom == "Administrateur" || $role->nom == "Enseignant" || $role->nom == "Gérant club" ){
+                return redirect()->route('home');
+            }            
+            break; 
+        }
         $departement = Departement::all();
         return view('reclamation') ->with('departement',$departement);
+        
+        
     }
 
     /**

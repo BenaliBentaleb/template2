@@ -6,8 +6,9 @@
 .role-admin,
 .role-etudiant,
 .role-prof,
-.role-club {
-    font-size: 12px;
+.role-club,
+.role-etud {
+    font-size: 11px;
     color: #fff;
     padding-left: 8px;
     padding-right: 8px;
