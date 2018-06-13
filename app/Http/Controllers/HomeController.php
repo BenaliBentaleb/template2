@@ -104,10 +104,16 @@ class HomeController extends Controller
     public function download($id)
     {
         $fichier = PublicationFichier::find($id);
+       // dd($fichier);
+      
         $headers = ['Content-Type: application/*'];
 
         return response()->download($fichier->chemin_fichier, $fichier->nom_fichier, $headers);
 
+    }
+    public function NumberOfdownload($id) {
+        $fichier = PublicationFichier::find($id);
+        return $fichier->counter;
     }
 
     /* public function notifications()

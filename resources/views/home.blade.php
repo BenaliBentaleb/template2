@@ -395,10 +395,11 @@
             <ul class="list-unstyled files-list">
                 @foreach($publication->publication_avec_fichier as $fichier)
                 <li class="single-file">
-                    <span>{{$fichier->nom_fichier}}</span>
-                    <a href="{{route('file.download',['id'=>$fichier->id])}}" class="download-file-link" style="float:right;">
+                    <span>{{$fichier->nom}}</span>
+                <a  href="{{route('file.download',['id'=>$fichier->id])}}"  type="button"
+                         class="download-file-link" style="float:right;">
                         <i class="icon-arrow-down-circle download-icon"></i>
-                        <span style="font-size:16px;">&nbsp;Télécharger</span>
+                        <span style="font-size:16px;" >Télécharger</span>
                     </a>
                 </li>
                 <li class="clearfix divider"></li>

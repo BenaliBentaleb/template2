@@ -192,6 +192,10 @@ Route::get("/download/{id}", [
     'uses' => 'HomeController@download',
     'as' => 'file.download',
 ])->middleware('auth');
+Route::get("/file/numbre/download/{id}", [
+    'uses' => 'HomeController@NumberOfdownload'
+   
+])->middleware('auth');
 
 Route::get("/remove/file/{id}", [
     'uses' => 'HomeController@remove',

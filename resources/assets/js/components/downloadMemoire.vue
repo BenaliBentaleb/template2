@@ -19,7 +19,7 @@
                 numberDownloader:'',
             }
         },
-        created() {
+        mounted() {
             this.getNumberOfdownloads();
         },
         methods: {
@@ -38,9 +38,6 @@
                     console.log(this.numberDownloader);
                 });
             }
-        },
-        computed: {
-           
         }
 
 
