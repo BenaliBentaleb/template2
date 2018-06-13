@@ -7,7 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Profile;
+<<<<<<< HEAD
 use App\Departement;
+=======
+use App\Role;
+>>>>>>> 7164d444c562c985f83f130baecb0a6ea3e702a1
 
 class RegisterController extends Controller
 {
@@ -90,6 +94,10 @@ class RegisterController extends Controller
             'instagram' => null,
             'youtube' => null,
             
+       ]);
+       Role::create([
+        'user_id' =>  $user->id,
+        'nom'=>'Etudiant'
        ]);
        return $user;
     }

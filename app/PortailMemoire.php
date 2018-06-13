@@ -25,34 +25,7 @@ class PortailMemoire extends Model
         return $this->belongsTo(Formation::class);
     }
     
-    public static function rules()
-    {
-        return [
-
-            'formation' => 'required',
-            'titre' => 'required',
-            'niveau' => 'required',
-            'annee' => 'required',
-            'encadreur' => 'required',
-            'etudiant1' => 'required',
-            'fichier' => 'required',
-
-        ];
-    }
-    public static function messages()
-    {
-        return [
-            'formation.required' => 'Le champ Specialité est vide !',
-            'titre.required' => 'Le champ titre est vide !',
-
-            'niveau.required' => 'Le champ Niveau est vide !',
-            'annee.required' => 'Le champ Date  est vide !',
-            'encadreur.required' => 'Le champ Encadreur est vide !',
-            'etudiant1.required' => 'Le champ Etudiant est vide !',
-            'fichier.required' => 'Le champ Document est vide !',
-
-        ];
-    }
+  
     // get formation name  ex: 1 => Ti
     public function getFormation($id)
     {

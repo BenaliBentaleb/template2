@@ -19,6 +19,7 @@ class CreatePublicationFichiersTable extends Migration
             $table->string('nom_fichier');
             $table->string('chemin_fichier');
             $table->string('type_fichier');
+            $table->integer('counter')->default(0);
 
           
             $table->timestamps();

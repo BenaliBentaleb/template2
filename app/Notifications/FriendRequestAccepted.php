@@ -56,8 +56,8 @@ class FriendRequestAccepted extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'nom' => $this->user->nom.' '.$this->user->prenom,
-            'message' => $this->user->nom.' '.'a accepter votre anvitation',
+            'user' => $this->user,
+            'message' => $this->user->nom.' '.'a accepter votre invitation',
             'profile'=>'http://127.0.0.1:8000/profile/'.$this->user->id,
            
         ];

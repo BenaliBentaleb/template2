@@ -143,7 +143,12 @@
                                     {{ csrf_field() }}
                                     <div class="form-group">
                                         <label class="form-label">Nom</label>
-                                        <input type="text" class="form-control" name="nom" required>
+                                        <input type="text" class="form-control" value="{{old('nom')}}"   name="nom" required>
+                                        @if ($errors->has('nom'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('nom') }}</strong>
+                                        </span>
+                                        @endif
                                     </div>
 
 

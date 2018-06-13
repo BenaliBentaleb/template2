@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User ; 
 use App\Module;
 use App\Departement;
+use App\Event;
 
 
 class Formation extends Model
@@ -25,6 +26,10 @@ class Formation extends Model
 
     public function departement() {
         return $this->belongsTo(Departement::class);
+    }
+
+    public function events() {
+        return $this->hasMany(Event::class);
     }
 
     public function getSemestreModules($formation,$semestre) {

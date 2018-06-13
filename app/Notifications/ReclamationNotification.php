@@ -56,7 +56,7 @@ class ReclamationNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'nom' => $this->reclamation->user->nom.' ' .$this->reclamation->user->prenom,
+            'user' => $this->reclamation->user,
             'message' => $this->reclamation->user->nom.' ' .$this->reclamation->user->prenom.' a envoyer une reclamation',
             'url' => 'http://127.0.0.1:8000/reclamation/'.$this->reclamation->id
              

@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Response;
+use App\Http\Requests\MemoireRequest;
 
 class PortailMemoireController extends Controller
 {
@@ -33,23 +34,33 @@ class PortailMemoireController extends Controller
         return view('portialMemoirNoAuth')->with('memoire',$memoire); 
     }
 
-    public function download($id) {
+    public function download($id,$number) {
         
         $fichier = PortailMemoire::find($id);
-       
-        $fichier->counter++;
-        
-        
+        $fichier->counter = $number;
         $fichier->save();
+       
        // dd($fichier);
         $headers = ['Content-Type: application/*'];
 
-        return response()->download($fichier->fichier, $fichier->titre, $headers);
+        return  response()->download($fichier->fichier, $fichier->titre, $headers);
+        
+        
+
+        
+    }
+
+    public function count($id) {
+        $fichier = PortailMemoire::find($id); 
+        return $fichier->counter;
     }
 
     public function show()
     {
-        return view('addMemoire');
+        return view('addMemoire')->with('formations_licence',Formation::where('type','licence')->get())
+        ->with('formations_master',Formation::where([
+            ['type', '=', 'master'],
+            ['nom', 'like', '%2%']])->get());;
     }
 
     public function getformation(Request $request)
@@ -68,50 +79,32 @@ class PortailMemoireController extends Controller
         return $request->fichier->getClientOriginalName();
     }
 
-    public function saveFile(Request $request)
+    public function saveFile(MemoireRequest $request)
     {
+       // dd($request);
+        $memoire = new PortailMemoire;
+        $memoire->user_id = Auth::id();
+        $memoire->formation_id = $request->formation_id;
+        $memoire->titre = $request->titre;
+        $memoire->type = $request->type;
+        $memoire->date = $request->date;
         
-
-        $validator = Validator::make($request->all(), PortailMemoire::rules(), PortailMemoire::messages());
+        $memoire->encadreur = $request->encadreur;
+        $memoire->etudiant1 = $request->etudiant1;
+        $memoire->etudiant2 = $request->etudiant2;
+        $memoire->etudiant3 = $request->etudiant3;
+        $memoire->etudiant4 = $request->etudiant4;
+        
        
-        if ($validator->passes()) {
-            $memoire = new PortailMemoire;
-            $memoire->user_id = Auth::id();
-            $memoire->formation_id = $request->formation;
-            $memoire->titre = $request->titre;
-            $memoire->type = $request->niveau;
-            $memoire->date = $request->annee;
-            $memoire->encadreur = $request->encadreur;
-            $memoire->etudiant1 = $request->etudiant1;
-            $memoire->etudiant2 = $request->etudiant2;
-            $memoire->etudiant3 = $request->etudiant3;
-            $memoire->etudiant4 = $request->etudiant4;
-
-            $file = $request->fichier;
-
-            // remove extra parts
-            $exploded = explode(",", $file);
-            // extention
-            if (str_contains($exploded[0], 'pdf')) {
-                $ext = 'pdf';
-            }
-            // decode
-            $decode = base64_decode($exploded[1]);
-            $filename = time() . str_random(7). "." . $ext;
-            //path of your local folder
-            $path = public_path() . "/files/" . $filename;
-            //upload image to your path
-            if (file_put_contents($path, $decode)) {
-                $memoire->fichier = "files/" . $filename;
-               // dd($memoire->fichier) ;
-                $memoire->save();
-                //return $memoire;
-                return Response::json(['success' => '1']);
-            }
-
            
-        }
-        return Response::json(['errors'=> $validator->errors()]);
+        $file =$request->fichier;
+        //dd($file);
+        $memoireFileNewName= time() . $file->getClientOriginalName();
+        $file->move('files',$memoireFileNewName);
+        $memoire->fichier='files/' . $memoireFileNewName; 
+      
+        $memoire->save();
+        return redirect()->back();
 
     }
 

@@ -145,7 +145,12 @@
                                     {{ csrf_field() }}
                                     <div class="form-group">
                                         <label class="form-label">Nom</label>
-                                        <input type="text" class="form-control" name="nom" required >
+                                        <input type="text" class="form-control"  value="{{old('nom')}}"   name="nom" required >
+                                              @if ($errors->has('nom'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('nom') }}</strong>
+                                                </span>
+                                                @endif
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Formation</label>
@@ -154,7 +159,10 @@
                                             @foreach($departements as $departement)
                                                 <optgroup label="Déprartement : {{ $departement->nom }}">
                                                     @foreach($departement->formation as $formation)
-                                                        <option value="{{ $formation->id }}" >{{ $formation->nom }}</option>
+                                                      @if(old('nom') == $formation->id )
+                                                      @else
+                                                      <option value="{{ $formation->id }}" >{{ $formation->nom }}</option>
+                                                      @endif
                                                     @endforeach                                            
                                                 </optgroup>
                                             @endforeach

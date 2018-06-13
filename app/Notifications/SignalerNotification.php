@@ -59,8 +59,8 @@ class SignalerNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'nom' =>$this->user->nom.' ' .$this->user->prenom,
-            'message' =>$this->user->nom.' ' .$this->user->prenom.' a signaler une publication',
+            'user' =>$this->user,
+            'message' =>$this->user->nom.' ' .$this->user->prenom.' a signalée une publication',
             'url' => 'http://127.0.0.1:8000/publication/signaler/'.$this->signaler->id
         ];
     }

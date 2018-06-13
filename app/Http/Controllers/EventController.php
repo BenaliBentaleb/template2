@@ -6,23 +6,37 @@ use Illuminate\Http\Request;
 use App\Event;
 use App\Departement;
 use Auth;
+use App\Formation;
+use App\Http\Requests\EventRequest;
 class EventController extends Controller
 {
     public function index(){
         $nticien_events = Event::whereNull('formation_id')->get();
+        $formation = Formation::all();
+
+        $this->collection = collect([]);
+
+        foreach($formation  as  $f) {
+            $this->collection->put($f->nom, $f->events);
+        }
+
+        //dd ($this->collection);
         //$events = array();
         $events_all = Event::whereNotNull('formation_id')->get();
-        //dd($events_all);
-       /*  foreach($events_all as $e){
-            
-            $formation_id = $e->formation_id;
-            //dd($formation_id);
-            array_push($events,'formation_id => $formation_id' );
 
-        } */
+          return view('evenement')->with('nticien_events',$nticien_events)
+                                    ->with('events',$this->collection);
+      
+       /* return view('evenement')->with('nticien_events',$nticien_events)
+                                    ->with('events',$events_all);*/
+    }
 
-        //dd($events);
-        return view('evenement')->with('nticien_events',$nticien_events)
+    public function evenmentNoauth() {
+        $nticien_events = Event::whereNull('formation_id')->get();
+        //$events = array();
+        $events_all = Event::whereNotNull('formation_id')->get();
+      
+        return view('evenementNoAuth')->with('nticien_events',$nticien_events)
                                     ->with('events',$events_all);
     }
 
@@ -39,7 +53,7 @@ class EventController extends Controller
         
     }
 
-    public function store(Request $request) {
+    public function store(EventRequest $request) {
         $event  = new Event;
         $event->user_id = Auth::id();
         $event->event_role = $request->event_role;

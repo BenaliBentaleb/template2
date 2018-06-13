@@ -91,8 +91,11 @@
                 @if(count($events) == 0)
                 <div class="alert alert-warning" role="alert">Pas d'évenements partagé pour le moment</div>
                 @else 
+                @foreach($events as  $key =>$events)
+                @if(count($events))
+                <h4  class="">Événement du : <strong>{{ $key }}</strong></h4>
                 @foreach($events as $ev)
-                    <h4  class="">Événement du : <strong>{{ $ev->formation->nom }}</strong></h4>
+                   
                     @if($ev->is_archived == 0)
                     <div class="evenement 
                     @if($ev->event_role =='Administrateur' )
@@ -151,6 +154,9 @@
                     </div>
                     </div>
                     @endif
+                @endforeach
+                @endif
+              
                 @endforeach
                    
                 @endif

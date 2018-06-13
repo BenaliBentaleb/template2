@@ -144,6 +144,11 @@
                                     <div class="form-group">
                                         <label class="form-label">Nom</label>
                                     <input type="text" class="form-control" name="nom" required value="{{ $departement->nom }}">
+                                    @if ($errors->has('nom'))
+                                        <span class="text-danger">
+                                            <strong>{{ $errors->first('nom') }}</strong>
+                                        </span>
+                                        @endif
                                     </div> 
 
 

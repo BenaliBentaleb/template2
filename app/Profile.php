@@ -26,7 +26,7 @@ class Profile extends Model
     return [
         'formation' => 'required',
        
-        'numero_telephone' => 'required',
+        'numero_telephone' => 'required|numeric',
         'date_naissance' => 'required',
         'addresse' => 'required',
         'informations' => 'required'
@@ -38,8 +38,8 @@ class Profile extends Model
     return [
         'addresse.required' => 'Le champ Adresse est vide !',
         'formation.required' => 'Le champ Formation est vide !',
-       
         'numero_telephone.required' => 'Le champ Numéro de téléphone est vide !',
+        'numero_telephone.numeric' => 'Le Numéro de téléphone doit etre numerique !',
         'date_naissance.required' => 'Le champ Date de naissance est vide !',
         'informations.required' => 'Le champ A propos est vide !'
      
