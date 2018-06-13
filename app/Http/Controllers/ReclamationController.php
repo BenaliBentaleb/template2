@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Departement;
 use Auth ; 
 use App\User;
+use App\ReclamationChat;
 use App\Notifications\ReclamationNotification ;
 use App\Http\Requests\ReclamationRequest;
 
@@ -30,7 +31,9 @@ class ReclamationController extends Controller
             break; 
         }
         $departement = Departement::all();
-        return view('reclamation') ->with('departement',$departement);
+        $reclamations = Reclamation::where('user_id','=',Auth::id())->get();
+        return view('reclamation') ->with('departement',$departement)
+                                    ->with('reclamations',$reclamations);
         
         
     }
@@ -58,7 +61,16 @@ class ReclamationController extends Controller
          $reclamation->title = $request->title;
          $reclamation->Type = $request->type;
          $reclamation->reclamation = $request->reclamation;
+         
 
+         
+         //dd($file);
+         if($request->hasfile('fichier')) {
+            $file =$request->fichier;
+            $reclamationFile= time() . $file->getClientOriginalName();
+            $file->move('files',$reclamationFile);
+            $reclamation->fichier='files/' . $reclamationFile; 
+         }
          $reclamation->save();
 
          foreach(User::all() as $user ) {
@@ -71,6 +83,38 @@ class ReclamationController extends Controller
        
 
 
+    }
+
+    public function download($id)
+    {
+        $fichier = Reclamation::find($id);
+       // dd($fichier);
+      
+        $headers = ['Content-Type: application/*'];
+
+        return response()->download($fichier->fichier, $fichier->titre, $headers);
+
+    }
+
+
+    public function sendMessageReclamation(Request $request, $id) {
+                
+        //dd($request);
+        //$r = Reclamation::find($id);
+        $rChat  = new ReclamationChat;
+        $rChat->reclamation_id = $id;
+        $rChat->sender_id = Auth::id();
+        $rChat->chat = $request->msg;
+        $rChat->save();
+        return redirect()->back();
+    }
+
+    public function repondreReclamation($id) {
+        $chat = ReclamationChat::where('reclamation_id','=',$id)->get();
+        //dd($chat);
+        return view('reclamationRepondre')->with('reclamation',Reclamation::find($id))
+                                            ->with('reclamation_chat',$chat);
+                                            
     }
 
     /**

@@ -67964,7 +67964,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67977,24 +67977,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -68093,7 +68075,86 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    { staticClass: " dropdown", staticStyle: { "margin-top": "5px" } },
+    [
+      _c(
+        "a",
+        { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
+        [
+          _c("i", {
+            staticClass: "fe fe-bell",
+            staticStyle: { "font-size": "16px" }
+          }),
+          _vm._v(" "),
+          _vm.all_nots_count > 0
+            ? _c("span", { staticClass: "nav-unread" })
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: " dropdown-menu dropdown-menu-right dropdown-menu-arrow",
+          staticStyle: { width: "280px" }
+        },
+        [
+          _vm._l(_vm.all_not, function(notification) {
+            return _c(
+              "a",
+              {
+                key: notification.id,
+                staticClass: "dropdown-item d-flex",
+                on: {
+                  click: function($event) {
+                    _vm.markAsRead(notification)
+                  }
+                }
+              },
+              [
+                _c("span", {
+                  staticClass: "avatar mr-3 align-self-center",
+                  style: {
+                    backgroundImage:
+                      "url(" + notification.user.profile.photo_profile + ")"
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "notif-msg" }, [
+                  _vm._v("\n      " + _vm._s(notification.message) + "\n\n    ")
+                ])
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _vm.all_nots_count == 0
+            ? _c("div", { staticClass: "dropdown-divider" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "dropdown-item text-center text-muted-dark",
+                    staticStyle: { padding: "10px" },
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("Accune notification")]
+                )
+              ])
+            : _vm._e()
+        ],
+        2
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -69356,7 +69417,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69367,10 +69428,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -69493,25 +69550,7 @@ var render = function() {
     "li",
     { staticClass: "dropdown", staticStyle: { "margin-top": "5px" } },
     [
-      _c(
-        "a",
-        { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
-        [
-          _c("i", {
-            staticClass: "fe fe-alert-octagon",
-            staticStyle: { "font-size": "16px" }
-          }),
-          _vm._v("\n<<<<<<< HEAD\n        "),
-          _vm.all_nots_count > 0
-            ? _c("span", { staticClass: "nav-unread" })
-            : _vm._e(),
-          _vm._v("\n=======\n        "),
-          _c("span", { staticClass: "nav-unread" }, [
-            _vm._v(_vm._s(_vm.all_nots_count))
-          ]),
-          _vm._v("\n>>>>>>> 7164d444c562c985f83f130baecb0a6ea3e702a1\n      ")
-        ]
-      ),
+      _vm._m(0),
       _vm._v(" "),
       _vm.all_nots_count > 0
         ? _c(
@@ -69544,9 +69583,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("span", [
                     _vm._v(
-                      "\n          " +
-                        _vm._s(notification.message) +
-                        "\n\n        "
+                      "\n      " + _vm._s(notification.message) + "\n\n    "
                     )
                   ]),
                   _vm._v(" "),
@@ -69559,7 +69596,25 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
+      [
+        _c("i", {
+          staticClass: "fe fe-alert-octagon",
+          staticStyle: { "font-size": "16px" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "nav-unread" })
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

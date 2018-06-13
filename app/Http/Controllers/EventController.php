@@ -40,10 +40,20 @@ class EventController extends Controller
                                     ->with('events',$events_all);
     }
 
-    public function show(){
+    public function show($formation){
+        //dd($formation);
         foreach(Auth::user()->roles as $role){
             if($role->nom == "Administrateur" || $role->nom == "Enseignant" || $role->nom == "Gérant club" ){
-                return view('evenement-ajouter');
+                if($formation == "NTICIEN"){
+                    //$formation_clicked = Formation::where('nom','=',$formation)->first();
+                    //dd($formation_clicked->id);
+                    return view('evenement-ajouter')->with('formation_clicked','NTICIEN');
+                }else{
+                    $formation_clicked = Formation::where('nom','=',$formation)->first();
+                    //dd($formation_clicked->id);
+                    return view('evenement-ajouter')->with('formation_clicked',$formation_clicked);
+                }
+                
             }            
             break; 
         }

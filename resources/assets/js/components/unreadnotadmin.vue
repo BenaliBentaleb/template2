@@ -2,11 +2,7 @@
     <li class="dropdown" style="margin-top: 5px;">
       <a class="nav-link icon" data-toggle="dropdown">
         <i class="fe fe-alert-octagon" style="font-size:16px;"></i>
-<<<<<<< HEAD
-        <span class="nav-unread" v-if="all_nots_count > 0"><!-- {{ all_nots_count }} --></span>
-=======
-        <span class="nav-unread" >{{ all_nots_count }}</span>
->>>>>>> 7164d444c562c985f83f130baecb0a6ea3e702a1
+        <span class="nav-unread" ><!-- {{ all_nots_count }} --></span>
       </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="width: 280px;" v-if="all_nots_count > 0">
       <a @click="markAsRead(notification)" class="dropdown-item d-flex" v-for="notification in all_not" :key="notification.id">

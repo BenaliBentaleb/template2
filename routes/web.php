@@ -142,12 +142,21 @@ Route::get('/reclamation', [
     'as' => 'reclamation.index',
 ]);
 
+Route::post('/reclamation/sendmsg/{id}', [
+    'uses'=>'ReclamationController@sendMessageReclamation',
+    'as'=>'user.reclamation.sendmsg'
+]);
+Route::get('/reclamation/{id}', [
+    'uses'=>'ReclamationController@repondreReclamation',
+    'as'=>'user.reclamation.repondre'
+]);
+
 Route::get('/evenement', [
     'uses' => 'EventController@index',
     'as' => 'evenement',
 ]);
 
-Route::get('/evenement/ajouter', [
+Route::get('/evenement/ajouter/{formation}', [
     'uses' => 'EventController@show',
     'as' => 'evenement.ajouter',
 ]);
@@ -165,6 +174,10 @@ Route::post('/evenement/store', [
 Route::post('/reclamation/store', [
     'uses' => 'ReclamationController@store',
     'as'=>'user.store.reclamation'
+]);
+Route::get("/reclamation/download/{id}", [
+    'uses' => 'ReclamationController@download',
+    'as' => 'reclamation.download',
 ]);
 Route::get('/profile/{id}', [
     'uses' => 'ProfileController@profile',

@@ -142,4 +142,7 @@ class User extends Authenticatable
 
     }
 
+    public static function getProfile($id){
+        return Profile::where('user_id','=',$id)->first();
+    }
 }

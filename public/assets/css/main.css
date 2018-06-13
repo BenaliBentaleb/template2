@@ -160,3 +160,35 @@
 .notif-msg:hover{
     cursor: pointer;
 }
+.reclamation-table{
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(229, 236, 244);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.05);
+}
+.badge {
+    text-shadow: none;
+    color: #fff;
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 3px;
+}
+
+.badge-warning {
+    background-color: #f1c40f;
+}
+
+.badge-success {
+    background-color: #5eba00;
+}
+.badge-danger {
+    background-color: #cd201f;
+}
+

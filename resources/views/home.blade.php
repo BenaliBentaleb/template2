@@ -427,7 +427,7 @@
 <div class="col-md-3">
     @foreach(Auth::user()->roles as $role) @if($role->nom == "Administrateur" || $role->nom == "Enseignant" || $role->nom ==
     "Gérant club" )
-    <a href="{{route('evenement.ajouter')}}" class="btn btn-success btn-block ">Ajouter un évènement</a>
+    <a href="{{route('evenement.ajouter',['formation'=> "NTICIEN"]) }}" class="btn btn-success btn-block ">Ajouter un évènement</a>
     @break 
     @endif 
     @endforeach

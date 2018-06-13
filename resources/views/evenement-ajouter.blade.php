@@ -65,7 +65,12 @@
                                 @if(old('formation_id') == $formation->id )
                                 <option value="{{ $formation->id }}" selected>{{ $formation->nom }}</option>
                                 @else
-                                <option value="{{ $formation->id }}">{{ $formation->nom }}</option>
+                                <option value="{{ $formation->id }}"
+                                    @if($formation_clicked != "NTICIEN") 
+                                    @if($formation->id == $formation_clicked->id )
+                                    selected 
+                                    @endif 
+                                    @endif>{{ $formation->nom }}</option>
                                 @endif
                                 @endforeach
                             </optgroup>

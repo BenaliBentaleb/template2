@@ -7,12 +7,12 @@
       </a>
       <div class=" dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="width: 280px;">
       <a @click="markAsRead(notification)" class="dropdown-item d-flex" v-for="notification in all_not" :key="notification.id">
-<<<<<<< HEAD
         
-        <div class="notif-msg">
+        <span class="avatar mr-3 align-self-center" v-bind:style="{backgroundImage: 'url('+ notification.user.profile.photo_profile +')'}"></span>
+        <span class="notif-msg">
           {{ notification.message }}
-           
-        </div>
+
+        </span>
       </a>
       <div class="dropdown-divider"  v-if="all_nots_count == 0">
         <span href="#" class="dropdown-item text-center text-muted-dark" style="padding: 10px;">Accune notification</span>
@@ -21,24 +21,6 @@
       </div>
     </li>
  
-=======
-        <span class="avatar mr-3 align-self-center" v-bind:style="{backgroundImage: 'url('+ notification.user.profile.photo_profile +')'}"></span>
-        <span>
-          {{ notification.message }}
-
-        </span>
-          <br>
-      </a>
-
-
-    </div>
-
-
-  </li>
-
-
-
->>>>>>> 7164d444c562c985f83f130baecb0a6ea3e702a1
 </template>
 
 

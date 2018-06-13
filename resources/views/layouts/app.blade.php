@@ -199,7 +199,7 @@
 
 
                                     <li class="list-group-item border-top">
-                                        <a href="{{route('evenement')}}" class="list-anchor {{ Request::is('evenement') ? 'active' : '' }}">
+                                        <a href="{{route('evenement')}}" class="list-anchor {{ Request::is('evenement/*') ? 'active' : '' }} {{ Request::is('evenement') ? 'active' : '' }}" >
                                             <i class="icon-bell icon-sidebar"></i>
                                             <span style="font-size:15px;">Les évenements</span>
                                         </a>
@@ -216,9 +216,9 @@
                                             @break
                                         @endif
                                         <li class="list-group-item">
-                                            <a href="{{route('reclamation.index')}}" class="list-anchor {{ Request::is('reclamation') ? 'active' : '' }}">
+                                            <a href="{{route('reclamation.index')}}" class="list-anchor {{ Request::is('reclamation') ? 'active' : '' }} {{ Request::is('reclamation/*') ? 'active' : '' }}">
                                                 <i class="icon-exclamation icon-sidebar"></i>
-                                                <span style="font-size:15px;">Déposer réclamation</span>
+                                                <span style="font-size:15px;">Déposer une réclamation</span>
                                             </a>
                                         </li>
                                         @break
