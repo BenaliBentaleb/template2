@@ -66,6 +66,22 @@
 
         </div>
 
+        <div class="form-group">
+                <label class="form-label">Formation</label>
+                <select name="formation_id" class="form-control custom-select" required>
+                    <optgroup label="NTICien">
+                        <option value="" selected >Etudiant exterieur</option>
+                    </optgroup>
+                    @foreach($departements as $departement)
+                        <optgroup label="Déprartement : {{ $departement->nom }}">
+                            @foreach($departement->formation as $formation)
+                                <option value="{{ $formation->id }}" >{{ $formation->nom }}</option>
+                            @endforeach                                            
+                        </optgroup>
+                    @endforeach
+                </select>      
+            </div>
+
         <div class="form-group" style="font-weight:normal;">
             <button class="btn btn-primary btn-block" type="submit" style="background-color:#fe5e3a;">S'inscrire</button>
         </div>

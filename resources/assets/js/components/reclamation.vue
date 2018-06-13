@@ -26,6 +26,7 @@
                                 <select class="form-control reclamation-type" v-model="type" required="">
                                     <option value="Reclamation generale" selected="">Réclamation générale</option>
                                     <option value="Faute de calcule">Faute de calcule</option>
+                                    <option value="Changer le rôle">Changer le rôle</option>
                                     <option value="Suggestion">Suggestion</option>
                                 </select>
                             </div>

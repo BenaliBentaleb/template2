@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Profile;
+use App\Departement;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'prenom' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'formation_id' => 'required'
         ]);
     }
 
@@ -69,7 +71,7 @@ class RegisterController extends Controller
             'prenom' => $data['prenom'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-           
+            'formation_id' => $data['formation_id']
              
         ]);
         
@@ -91,4 +93,8 @@ class RegisterController extends Controller
        ]);
        return $user;
     }
+    protected function showRegistrationForm() {
+        
+        return view('auth.register')->with('departements',Departement::all());
+     }
 }

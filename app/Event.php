@@ -30,6 +30,14 @@ class Event extends Model
 }
 
 
-
+    public static  function AllArchived($events){
+        
+        foreach($events as $e){
+            if($e->is_archived == 0){
+                return false;    
+            }
+        }
+        return true;
+    }
 
 }

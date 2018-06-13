@@ -140,7 +140,7 @@
                             <div class="col-md-12">
                                 <ul class="list-inline">
                                     <li>
-                                        <img class="publisher-image" style="background-image:url({{$publication->user->profile->photo_profile}});">
+                                        <img class="publisher-image" style="background-image:url({{asset($publication->user->profile->photo_profile)}});">
                                     </li>
                                     <li>
                                         <ul class="list-unstyled publisher-info">
@@ -198,7 +198,18 @@
                             <h3 class="status-title">{{$publication->titre}}</h3>
                             <hr> @if($publication->module_id)
                         <div style="text-align:center;">
-                            <span>Status de module :&nbsp;</span>
+                                <span>
+                                        @if($publication->type =="Sondage")
+                                        Sondage
+                                        @elseif($publication->type =="FAQ")
+                                        FAQ
+                                        @elseif($publication->type =="Status")
+                                        Status
+                                        @else
+                                        Tutoriel
+                                        @endif
+                                        de module :&nbsp;
+                                </span>
                             <span class="module">
                                 <a href="{{route('publication.filtrer.module',['id'=>$publication->module_id])}}">{{$publication->module->nom}}</a>
                                 <br>

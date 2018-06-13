@@ -35,7 +35,7 @@
     <link href="{{asset('assets/css/main.css')}}" rel="stylesheet" />
     
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
- 
+    <script src="{{asset('assets/js/jquery.min.js') }}"></script>
   
     
 </head>
@@ -58,26 +58,17 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     
-                    <form class="navbar-form navbar-left" target="_self">
+                    {{-- <form class="navbar-form navbar-left" target="_self">
                         <div class="form-group">
                             <label class="control-label" for="search-field">
                                 <i class="glyphicon glyphicon-search"></i>
                             </label>
                             <input class="form-control search-field" type="search" name="search" id="search-field">
                         </div>
-                    </form>
+                    </form> --}}
                     
-                    @auth
-                    <a href="/chat" class="btn btn-default navbar-btn chat-btn" type="button">
-                        <i class="icon-bubbles"></i>
-                    </a>
-                    @endauth
-                    <ul class="nav navbar-nav navbar-right">
-                       
-                        
-                            
-                            
-                        </ul>
+                   
+                    
 
                     @guest
 
@@ -89,10 +80,20 @@
 
                     <ul class="nav navbar-nav navbar-right">
                             @auth
-                            <notification   :id_auth="{{ Auth::id() }}" ></notification>  
+                            <li>
+                                <a href="/chat" class="btn btn-default navbar-btn chat-btn" >
+                                    <i class="icon-bubbles"></i>
+                                </a>
+                            </li>
+                            <li><notification   :id_auth="{{ Auth::id() }}" ></notification> </li> 
                            <unreadnot></unreadnot>
                             @if(Auth::user()->isAdmin())
                             <unreadnotadmin></unreadnotadmin>
+                            <li>
+                                <a href="{{route('admin.index')}}" class="btn btn-default navbar-btn admin-btn" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
+                                    <i class="fe fe-settings"></i>
+                                </a>
+                            </li>
                             @endif
                         
                            
@@ -210,14 +211,18 @@
                                         </a>
                                     </li>
 
-                                    @if(!Auth::user()->isAdmin())
-                                    <li class="list-group-item">
-                                        <a href="{{route('reclamation.index')}}" class="list-anchor {{ Request::is('reclamation') ? 'active' : '' }}">
-                                            <i class="icon-exclamation icon-sidebar"></i>
-                                            <span style="font-size:15px;">Déposer réclamation</span>
-                                        </a>
-                                    </li>
-                                    @endif
+                                    @foreach(Auth::user()->roles as $role)
+                                        @if($role->nom == "Administrateur" || $role->nom == "Enseignant"  )
+                                            @break
+                                        @endif
+                                        <li class="list-group-item">
+                                            <a href="{{route('reclamation.index')}}" class="list-anchor {{ Request::is('reclamation') ? 'active' : '' }}">
+                                                <i class="icon-exclamation icon-sidebar"></i>
+                                                <span style="font-size:15px;">Déposer réclamation</span>
+                                            </a>
+                                        </li>
+                                        @break
+                                    @endforeach
                                 </ul>
                             </div>
                        @endif
@@ -236,7 +241,7 @@
     <!-- Scripts -->
 
 
-    <script src="{{asset('assets/js/jquery.min.js') }}"></script>
+    
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

@@ -65776,7 +65776,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65787,6 +65787,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -65987,6 +65988,10 @@ var render = function() {
                     _vm._v(" "),
                     _c("option", { attrs: { value: "Faute de calcule" } }, [
                       _vm._v("Faute de calcule")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Changer le rôle" } }, [
+                      _vm._v("Changer le rôle")
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "Suggestion" } }, [
@@ -67956,7 +67961,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67967,6 +67972,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -68062,9 +68069,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _vm.all_nots_count > 0
-            ? _c("span", { staticClass: "nav-unread" }, [
-                _vm._v(_vm._s(_vm.all_nots_count))
-              ])
+            ? _c("span", { staticClass: "nav-unread" })
             : _vm._e()
         ]
       ),
@@ -68089,34 +68094,30 @@ var render = function() {
                 }
               },
               [
-                _c("span", {
-                  staticClass: "avatar mr-3 align-self-center",
-                  staticStyle: {
-                    "background-image": "url(demo/faces/female/18.jpg)"
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", [
-                  _c("strong", [_vm._v("User name")]),
-                  _vm._v(" " + _vm._s(notification.message) + "\n       \n    ")
+                _c("div", { staticClass: "notif-msg" }, [
+                  _vm._v(
+                    "\n      " +
+                      _vm._s(notification.message) +
+                      "\n       \n    "
+                  )
                 ])
               ]
             )
           }),
           _vm._v(" "),
           _vm.all_nots_count == 0
-            ? _c("div", { staticClass: "dropdown-divider" })
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "dropdown-item text-center text-muted-dark",
-              staticStyle: { padding: "10px" },
-              attrs: { href: "#" }
-            },
-            [_vm._v("Accune notification")]
-          )
+            ? _c("div", { staticClass: "dropdown-divider" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "dropdown-item text-center text-muted-dark",
+                    staticStyle: { padding: "10px" },
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("Accune notification")]
+                )
+              ])
+            : _vm._e()
         ],
         2
       )
@@ -70358,9 +70359,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _vm.all_nots_count > 0
-            ? _c("span", { staticClass: "nav-unread" }, [
-                _vm._v(_vm._s(_vm.all_nots_count))
-              ])
+            ? _c("span", { staticClass: "nav-unread" })
             : _vm._e()
         ]
       ),

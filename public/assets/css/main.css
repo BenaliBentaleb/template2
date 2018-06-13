@@ -146,10 +146,17 @@
 
 .nav-unread {
     position: absolute;
-    top: .25rem;
-    right: .25rem;
+    top: 14px;
+    right: 11px;
     background: #cd201f;
-    width: .5rem;
-    height: .5rem;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
+}
+
+.notif-msg{
+    margin:10px 5px;
+}
+.notif-msg:hover{
+    cursor: pointer;
 }

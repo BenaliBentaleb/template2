@@ -108,7 +108,7 @@
                                         </label>
                                     </div>
                                     <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
-                                    <input type="hidden" name="type" value="blog">
+                                    <input type="hidden" name="type" value="Tutorial">
 
                                 </form>
                             </div>
@@ -194,17 +194,9 @@
 
                                         <button id="add-choix" class="btn btn-outline-primary btn-sm" type="button">Ajouter Choix</button>
                                     </div>
-                                    <input type="file" name="file" multiple="" id="file_sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
-                                    <div class="box" style="margin-left:10px;display:  inline-block;">
-                                        <input type="file" name="files[]" id="file-sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
-                                            multiple="">
-                                        <label for="file-sondage" style="border: 1px solid #448ccb; ">
-                                            <span></span>
-                                            <strong style="font-weight:400;">Choose a file…</strong>
-                                        </label>
-                                    </div>
-                                    <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
-
+                                    
+                                    <button class="btn btn-default pull-right" type="submit" id="publier-status" style="margin-bottom:10px;">Publier</button>
+                                    <div class="clearfix"></div>
                                 </form>
 
                             </div>
@@ -214,49 +206,10 @@
                 </div>
                 @foreach($publications as $module) @foreach($module->publications as $publication) @if($publication->signaler == 0)
                 <div class="status">
-<<<<<<< HEAD
                     <div class="col-md-12">
                         <ul class="list-inline">
-=======
-                        <div class="col-md-12">
-                    <ul class="list-inline">
-                        <li>
-                            <img class="publisher-image" style="background-image:url({{$publication->user->profile->photo_profile}});">
-                        </li>
-                        <li>
-                            <ul class="list-unstyled publisher-info">
-                                <li class="publisher-name"><a href="{{route('user.profile',['id'=>$publication->user->id])}}">{{$publication->user->nom}} {{$publication->user->prenom}}</a></li>
-                                <li>
-                                    <ul style="padding-left:0;" style="padding-left:0;">
-                                        @foreach($publication->user->roles as $role)
-                                                    @if($role->nom == "Administrateur")
-                                                    <li class="role-admin">{{$role->nom}}</li>
-                                                    @endif
-                                                    @if($role->nom == "Enseignant")
-                                                    <li class="role-prof">{{$role->nom}}</li>
-                                                    @endif
-                                                    @if($role->nom == "Gérant club")
-                                                    <li class="role-club">{{$role->nom}}</li>
-                                                    @endif
-                                                    @if($role->nom == "Etudiant")
-                                                    <li class="role-etud">{{$role->nom}}</li>
-                                                    @endif
-                                                @endforeach
-                                        </ul>
-                                </li>
-                                <li class="status-time">{{$publication->created_at->diffForHumans()}}</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon-options status-options"></i>
-                        </a>
-                        <ul class="list-unstyled dropdown-menu dropdown-menu-right" style="margin-top:20px;">
-                            @if($publication->user->id == Auth::id())
->>>>>>> 3c51bede5edb31b7dffafef860306d5da20b7c3f
                             <li>
-                                <img class="publisher-image" style="background-image:url({{$publication->user->profile->photo_profile}});">
+                                <img class="publisher-image" style="background-image:url({{asset($publication->user->profile->photo_profile)}});">
                             </li>
                             <li>
                                 <ul class="list-unstyled publisher-info">
@@ -313,7 +266,18 @@
                     <h3 class="status-title">{{$publication->titre}}</h3>
                     <hr>
                     <div style="text-align:center;">
-                        <span>Status de module :&nbsp;</span>
+                            <span>
+                                    @if($publication->type =="Sondage")
+                                    Sondage
+                                    @elseif($publication->type =="FAQ")
+                                    FAQ
+                                    @elseif($publication->type =="Status")
+                                    Status
+                                    @else
+                                    Tutoriel
+                                    @endif
+                                    de module :&nbsp;
+                                </span>
                         <span class="module">
                             <a href="{{route('publication.filtrer.module',['id'=>$publication->module_id])}}">{{$module->nom}}</a>
                             <br>
