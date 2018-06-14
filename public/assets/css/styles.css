@@ -3003,3 +3003,12 @@ input[type="radio"], input[type="checkbox"] {
   position: fixed;
   z-index: 99;
 }
+
+.dropdown-toggle:active{
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #216a94;
+  text-decoration: none;
+}

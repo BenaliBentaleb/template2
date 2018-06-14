@@ -322,7 +322,7 @@
                 @endforeach
                 <h4 class="text-center">Les évènements du :</h4>
                 <h4  class="text-center"><strong>{{ $formation_nom }}</strong></h4>
-                @if(count($events) == 0)
+                @if(count($events) == 0 || \App\Event::AllArchived($events))
                 <div class="alert alert-warning" role="alert">Pas d'évenements partagé pour le moment</div>
                 @else @foreach($events as $event) @if($event->is_archived == 0)
                 <div class="evenement 

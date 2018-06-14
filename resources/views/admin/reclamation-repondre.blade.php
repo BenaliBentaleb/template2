@@ -242,7 +242,7 @@
                                                     @if($reclamation->fichier)
                                                     <a href="{{ route('reclamation.download',['id'=>$reclamation->id]) }}" class="btn btn-link pt-0" style="text-decoration:none"><i class="fe fe-download"></i> Téléchargé</a>
                                                     <div class="alert alert-icon alert-danger" role="alert">
-                                                        <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i>Faire attention lors le téléchargement des fichiers uploader par les utilisateurs !
+                                                        <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i>Faite attention lors le téléchargement des fichiers uploadés par les utilisateurs !
                                                     </div>
                                                     @else
                                                     --

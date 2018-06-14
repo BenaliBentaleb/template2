@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/Login-Form-Clean.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/Navigation-with-Search.css') }}">
     <link rel="stylesheet" href="{{asset('assets/css/reclamation.css')}}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 
     
@@ -397,7 +399,7 @@ handleClick: function (event) {
     var link = $(this);
     swal({
             title: "Etes-Vous sur ?",
-            text: "Apres la suppression, you will not be able to recover this imaginary file!",
+            text: "L'évenement sera supprimé définitivement",
             icon: "warning",
             buttons: true,
             dangerMode: true,

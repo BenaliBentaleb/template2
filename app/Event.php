@@ -31,13 +31,27 @@ class Event extends Model
 
 
     public static  function AllArchived($events){
-        
+        $events->toArray();
+        //dd($events);
         foreach($events as $e){
             if($e->is_archived == 0){
                 return false;    
             }
         }
         return true;
+        /* $events->toArray();
+        //dd($events);
+        for($i = 0 ; $i < count($events); $i++){
+            //dd($i);
+            //dd($events[$i]);
+            //dd($events[$i]->is_archived);
+            
+            if($events[$i]->is_archived == 0){
+                return false;    
+            }
+        }
+        return true; */
     }
+    
 
 }
