@@ -89,6 +89,22 @@ class AdminController extends Controller
         return view('admin.ajouterUtilisateur');
     }
 
+
+    public function search(Request $request) {
+      //  dd($request);
+        $q =  $request->search;
+        $user = User::where('nom','LIKE','%'.$q.'%')->orWhere('prenom','LIKE','%'.$q.'%')
+        ->orWhere('email','LIKE','%'.$q.'%')->get();
+        if(count($user) > 0) {
+            return view('admin.searchUtilisateur')->withDetails($user)->withQuery ( $q );
+        } 
+
+       return view ('admin.searchUtilisateur')->withMessage('accune  information !');
+        
+    }
+
+
+
     public function ajouter_utilisateur(StoreUser $request) {
 
         $user = new User;

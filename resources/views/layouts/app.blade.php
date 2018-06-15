@@ -248,6 +248,16 @@
     <script src="{{ asset('assets/js/mixitup-multifilter.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <script type="text/javascript">
+
+     $("#add-choix").click(function () {
+      if($(".sondage-form input").length <5) {
+        input = jQuery('<li><label class="form-label">Choix ' + ($(".sondage-form input").length + 1) + ':</label><input class="form-control" type="text" name="choix' +($(".sondage-form input").length + 1) + '"></li>');
+      jQuery('.sondage-form').append(input);
+      input.hide().show('slow');
+      }else {
+        $("#add-choix").hide('slow');
+      }
+    });
        
   $("select[name='type']").change(function(){
       var type = $(this).val();

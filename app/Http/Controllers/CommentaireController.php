@@ -7,6 +7,7 @@ use App\Publication;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use App\Events\NewComment;
 
 class CommentaireController extends Controller
 {
@@ -51,6 +52,7 @@ class CommentaireController extends Controller
         $commentaire->save();
 
         $comment = Commentaire::find($commentaire->id);
+        broadcast(new NewComment($comment))->toOthers();
         $publication = Publication::find($request->publication_id);
 
         // send me notification if some one comment my status and not me

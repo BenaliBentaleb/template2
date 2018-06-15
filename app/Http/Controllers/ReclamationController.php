@@ -59,7 +59,12 @@ class ReclamationController extends Controller
          $reclamation->Type = $request->type;
          $reclamation->reclamation = $request->reclamation;
 
+         
+         
          $reclamation->save();
+        
+
+         
 
          foreach(User::all() as $user ) {
             if($user->isAdmin()) {

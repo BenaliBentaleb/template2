@@ -51,7 +51,10 @@
                                     <strong>{{ $errors->first('reclamation') }}</strong>
                                 </span>
                                 @endif
+                                
                         </div>
+
+                        
                         <div class="col-md-6 col-md-offset-4">
                             <button class="btn btn-default submit-button" type="submit">Envoyer</button>
                         </div>

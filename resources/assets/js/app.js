@@ -53,12 +53,13 @@ Vue.component('chat',require('./components/chat.vue'));
 Vue.component('downloadmemoire',require('./components/downloadMemoire.vue'))
 Vue.component('onlineuser', require('./components/OnlineUser.vue'));
 Vue.component('sondage', require('./components/sondage.vue'));
+//Vue.component('sondagekbir', require('./components/sondagekbir.vue'));
 Vue.component('suivie', require('./components/suivie.vue'));
 Vue.component('unreadnotadmin', require('./components/unreadnotadmin.vue'));
 Vue.component('downloadpdf', require('./components/downloadPdf.vue'));
 import {store} from './store';
 
-const app = new Vue({
+export const app = new Vue({
     el: '#app',
     
     store,

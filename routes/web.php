@@ -344,6 +344,11 @@ Route::get('/admin/index', [
     'as'=>'admin.index'
 ])->middleware('admin');
 
+Route::get('user/search', [
+    'uses' => 'AdminController@search',
+    'as' => 'user.search'
+]);
+
 Route::get('/admin/utilisateur', [
     'uses'=>'AdminController@utilisateur',
     'as'=>'admin.utilisateur'

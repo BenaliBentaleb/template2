@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
 
         $departement = Departement::all();
-        $publications = Publication::where('signaler', 0)->orderBy('created_at', 'desc')->simplePaginate(2);
+        $publications = Publication::where('signaler', 0)->orderBy('created_at', 'desc')->simplePaginate(5);
         $events = Event::whereNull('formation_id')->get();
         //dd($events->all());
         //dd($events);
@@ -46,10 +46,10 @@ class HomeController extends Controller
 
     public function WithoutAuth()
     {
-        $publications = Publication::where('signaler', 0)->orderBy('created_at', 'desc')->simplePaginate(2);
-
+        $publications = Publication::where('signaler', 0)->where('type','<>', 'Sondage')->orderBy('created_at', 'desc')->simplePaginate(2);
+        $events = Event::whereNull('formation_id')->get();
         // $semestre = Semestre::all();
-        return view('homeAnauth')->with('publications', $publications);
+        return view('homeAnauth')->with('publications', $publications)->with('events', $events);
 
     }
 
@@ -79,6 +79,7 @@ class HomeController extends Controller
     {
 
         $departement = Departement::all();
+        $events = Event::whereNull('formation_id')->get();
         $formation = Formation::where('nom', '=', $nom)->first();
         $this->collection = collect([]);
         foreach ($formation->modules as $m) {
@@ -90,7 +91,7 @@ class HomeController extends Controller
 
         return view('formationAnauth')->with('modules', $this->collection)
             ->with('departement', $departement)
-            ->with('publications', $formation->modules);
+            ->with('publications', $formation->modules)->with('events',$events);;
 
     }
 

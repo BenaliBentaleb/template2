@@ -279,7 +279,11 @@
         </div>
         @endif
       
-        <sondage :pubcontenu="{{$publication}}" :authuser="{{Auth::user()}}"></sondage>
+        <div class="content">
+                {!! $publication->contenu !!}
+                <br>
+            <sondage :pubcontenu="{{$publication->id}}" :authuser="{{Auth::user()}}"></sondage>
+        </div>
       
 
         <hr style="width:100%;">

@@ -9,20 +9,21 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Chat;
-class BroadcastChat  implements ShouldBroadcast
+use App\Like;
+
+class NewLike implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $chat;
+    public $like;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Chat $chat)
+    public function __construct(Like $like)
     {
-        $this->chat = $chat;
+        $this->like = $like;
     }
 
     /**
@@ -32,8 +33,15 @@ class BroadcastChat  implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('Chat.' . $this->chat->user_id . '.' . $this->chat->friend_id);
+        return new PresenceChannel('like');
     }
 
-    
+    public function broadcastWith()
+    {
+        return [
+            
+            'like' => $this->like
+            
+        ];
+    }
 }
