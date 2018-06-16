@@ -142,12 +142,21 @@ Route::get('/reclamation', [
     'as' => 'reclamation.index',
 ]);
 
+Route::post('/reclamation/sendmsg/{id}', [
+    'uses'=>'ReclamationController@sendMessageReclamation',
+    'as'=>'user.reclamation.sendmsg'
+]);
+Route::get('/reclamation/{id}', [
+    'uses'=>'ReclamationController@repondreReclamation',
+    'as'=>'user.reclamation.repondre'
+]);
+
 Route::get('/evenement', [
     'uses' => 'EventController@index',
     'as' => 'evenement',
 ]);
 
-Route::get('/evenement/ajouter', [
+Route::get('/evenement/ajouter/{formation}', [
     'uses' => 'EventController@show',
     'as' => 'evenement.ajouter',
 ]);
@@ -162,9 +171,37 @@ Route::post('/evenement/store', [
     'as' => 'evenement.store'
 ]);
 
+Route::post('/evenement/edit/{id}', [
+    'uses'=>'EventController@update',
+    'as'=>'user.evenement.edit'
+]);
+
+Route::get('/evenement/modifie/{id}', [
+    'uses'=>'EventController@modifieEvent',
+    'as'=>'user.evenement.modifie'
+]);
+
+Route::get('/evenement/archiver/{id}', [
+    'uses'=>'EventController@archiverEvent',
+    'as'=>'user.evenement.archiver'
+]);
+Route::get('/evenement/unarchive/{id}', [
+    'uses'=>'EventController@unarchiveEvent',
+    'as'=>'user.evenement.unarchive'
+]);
+
+Route::get('/evenement/delete/{id}', [
+    'uses'=>'EventController@destroy',
+    'as'=>'user.evenement.delete'
+]);
+
 Route::post('/reclamation/store', [
     'uses' => 'ReclamationController@store',
     'as'=>'user.store.reclamation'
+]);
+Route::get("/reclamation/download/{id}", [
+    'uses' => 'ReclamationController@download',
+    'as' => 'reclamation.download',
 ]);
 Route::get('/profile/{id}', [
     'uses' => 'ProfileController@profile',

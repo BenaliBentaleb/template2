@@ -152,6 +152,7 @@ class AdminController extends Controller
         }
        
         return redirect()->route('admin.utilisateur');
+        return redirect()->route('admin.utilisateur');
 
     }
 

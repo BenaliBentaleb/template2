@@ -40,10 +40,20 @@ class EventController extends Controller
                                     ->with('events',$events_all);
     }
 
-    public function show(){
+    public function show($formation){
+        //dd($formation);
         foreach(Auth::user()->roles as $role){
             if($role->nom == "Administrateur" || $role->nom == "Enseignant" || $role->nom == "Gérant club" ){
-                return view('evenement-ajouter');
+                if($formation == "NTICIEN"){
+                    //$formation_clicked = Formation::where('nom','=',$formation)->first();
+                    //dd($formation_clicked->id);
+                    return view('evenement-ajouter')->with('formation_clicked','NTICIEN');
+                }else{
+                    $formation_clicked = Formation::where('nom','=',$formation)->first();
+                    //dd($formation_clicked->id);
+                    return view('evenement-ajouter')->with('formation_clicked',$formation_clicked);
+                }
+                
             }            
             break; 
         }
@@ -67,15 +77,23 @@ class EventController extends Controller
         return redirect()->route('evenement');
      }
 
+     public function modifieEvent($id) {
+        return view('evenement-modifie')->with('event',Event::find($id))                                   
+                                          ->with('departements',Departement::all());                                    
+    }
+
      public function update($id,Request $request) {
         $event  =  Event::find($id);
         $event->user_id = Auth::id();
         $event->titre = $request->titre;
         $event->contenu = $request->contenu;
+        $event->description = $request->description;
+        $event->event_role = $request->event_role;
+        $event->formation_id = $request->formation_id;
         $event->debut = $request->debut;
         $event->fin = $request->fin;
         $event->save();
-        return redirect()->back();
+        return redirect()->route('evenement');
      }
 
      public function destroy($id) {
@@ -83,5 +101,19 @@ class EventController extends Controller
         $event->delete();
         return redirect()->back();
      }
+
+     public function archiverEvent($id) {      
+        $event = Event::find($id);
+        $event->is_archived = 1;
+        $event->save();
+        return redirect()->back();
+    } 
+
+    public function unarchiveEvent($id) {      
+        $event = Event::find($id);
+        $event->is_archived = 0;
+        $event->save();
+        return redirect()->back();
+    } 
 
 }

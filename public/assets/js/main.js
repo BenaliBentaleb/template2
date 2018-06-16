@@ -28,13 +28,11 @@ $(document).ready(function () {
                     
 
   
-  $('#profile-picture').change(function() {
-    $('#profile-picture-form').submit();
+
+
   });
+
   
-  $('#cover').change(function() {
-    $('#cover-form').submit();
-  });
   var mixer = mixitup('.memoires',{
     multifilter: {
         enable: true // enable the multifilter extension for the mixer
@@ -51,5 +49,3 @@ $(document).ready(function () {
   $('.shuffle li').click(function(){
         $(this).addClass('selected').siblings().removeClass('selected');
     })
-
-  });

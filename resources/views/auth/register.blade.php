@@ -5,7 +5,7 @@
 <div class="login-clean">
     <form style="margin-top:10px;" method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
-        <h2 class="sr-only">Login Form</h2>
+        
         <h2 class="text-uppercase" style="text-align:center;font-size:18px;font-weight:bold;">Inscription</h2>
 
         <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
@@ -65,6 +65,23 @@
                 required>
 
         </div>
+
+        <div class="form-group">
+                
+                <select name="formation_id" class="form-control custom-select" required>
+                    <option value="Formation" selected disabled></option>
+                    <optgroup label="NTICien" >
+                        <option value="" selected >Etudiant exterieur</option>
+                    </optgroup>
+                    @foreach($departements as $departement)
+                        <optgroup label="Déprartement : {{ $departement->nom }}">
+                            @foreach($departement->formation as $formation)
+                                <option value="{{ $formation->id }}" >{{ $formation->nom }}</option>
+                            @endforeach                                            
+                        </optgroup>
+                    @endforeach
+                </select>      
+            </div>
 
         <div class="form-group" style="font-weight:normal;">
             <button class="btn btn-primary btn-block" type="submit" style="background-color:#fe5e3a;">S'inscrire</button>

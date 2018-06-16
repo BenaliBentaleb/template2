@@ -184,7 +184,7 @@
                                         </div>
                                     </div>
                                     </a>
-                                    @if($reclamation->user->profile->formation)
+                                    
                                     <div class="form-group">
                                         <div class="row gutters-xs">
                                             <div class="col-3 my2">
@@ -192,13 +192,19 @@
                                             </div>
 
                                             <div class="col-6">
-                                                {{$reclamation->user->profile->formation->nom}}
+                                                @if($reclamation->user->profile->formation)
+                                                
+                                                {{$reclamation->user->profile->formation->nom}} 
+                                                @else
+                                                Étudiant extérieur
+
+                                                @endif
                                             </div>
 
                                         </div>
 
                                     </div>
-                                    @endif
+                                    
                                     <div class="form-group">
                                         <div class="row gutters-xs">
                                             <div class="col-3 my-2">
@@ -226,11 +232,37 @@
                                         </div>
 
                                     </div>
+                                    
+                                    <div class="form-group">
+                                            <div class="row gutters-xs">
+                                                <div class="col-3 my-2">
+                                                    <span class="">Le fichier attaché :</span>
+                                                </div>
+                                                <div class="col-9 my-2">
+                                                    @if($reclamation->fichier)
+                                                    <a href="{{ route('reclamation.download',['id'=>$reclamation->id]) }}" class="btn btn-link pt-0" style="text-decoration:none"><i class="fe fe-download"></i> Téléchargé</a>
+                                                    <div class="alert alert-icon alert-danger" role="alert">
+                                                        <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i>Faite attention lors le téléchargement des fichiers uploadés par les utilisateurs !
+                                                    </div>
+                                                    @else
+                                                    --
 
+                                                    @endif
+                                                </div>
+                                                
+                                            </div>
+    
+                                    </div>
+                                    
                                     <div class="form-group">
                                         <span>Chat :</span>
-                                        <div class="row reclamation-chat-content mt-2">
-                                            <div class="form-group col-11 mx-auto chat-content">
+                                        @if(count($chat) == 0)
+                                            <div role="alert" class="alert alert-warning" style="margin-bottom:40px; margin-top:30px">
+                                                Pas de messages ! 
+                                            </div>
+                                        @else
+                                        <div class="row reclamation-chat-content mt-2" style="@if(count($chat)<=2)     height: -webkit-calc(25vh); "@endif>
+                                            <div class="form-group col-11 mx-auto chat-content"  >
                                                 <div class="messages">
 
                                                     @foreach($chat as $c) @if($c->sender_id == Auth::id())
@@ -247,7 +279,7 @@
                                                     @else
                                                     <div class="msg-sent">
 
-                                                        <span class="avatar" style="background-image:url({{ asset($reclamation->user->profile->photo_profile)}})">
+                                                        <span class="avatar" style="background-image:url({{ asset(\App\User::getProfile($c->sender_id)->photo_profile)}})">
                                                         </span>
                                                         <span class="msg-time">{{$c->created_at->diffForHumans()}}</span>
                                                         <p>
@@ -262,7 +294,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        @endif
                                     </div>
 
                                     @if($reclamation->status ==0)

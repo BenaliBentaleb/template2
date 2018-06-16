@@ -128,7 +128,7 @@ export default {
           .then(response => {
             this.commentaires.push(response.data);
             this.commentaire = "";
-            console.log(response.data);
+            console.log(this.commentaires);
           })
           .catch(err => {
             console.log(err);

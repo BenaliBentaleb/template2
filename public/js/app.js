@@ -65800,7 +65800,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65811,6 +65811,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -66011,6 +66012,10 @@ var render = function() {
                     _vm._v(" "),
                     _c("option", { attrs: { value: "Faute de calcule" } }, [
                       _vm._v("Faute de calcule")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Changer le rôle" } }, [
+                      _vm._v("Changer le rôle")
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "Suggestion" } }, [
@@ -66374,7 +66379,7 @@ var moment = __webpack_require__(0);
         }).then(function (response) {
           _this.commentaires.push(response.data);
           _this.commentaire = "";
-          console.log(response.data);
+          console.log(_this.commentaires);
         }).catch(function (err) {
           console.log(err);
         });
@@ -69975,20 +69980,7 @@ var render = function() {
     "li",
     { staticClass: "dropdown", staticStyle: { "margin-top": "5px" } },
     [
-      _c(
-        "a",
-        { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
-        [
-          _c("i", {
-            staticClass: "fe fe-alert-octagon",
-            staticStyle: { "font-size": "16px" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "nav-unread" }, [
-            _vm._v(_vm._s(_vm.all_nots_count))
-          ])
-        ]
-      ),
+      _vm._m(0),
       _vm._v(" "),
       _vm.all_nots_count > 0
         ? _c(
@@ -70034,7 +70026,25 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
+      [
+        _c("i", {
+          staticClass: "fe fe-alert-octagon",
+          staticStyle: { "font-size": "16px" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "nav-unread" })
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

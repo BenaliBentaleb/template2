@@ -98,10 +98,10 @@
   color:#465765;
 }
 
-.navigation-clean-search.navbar-default .navbar-nav > li > a:focus, .navigation-clean-search.navbar-default .navbar-nav > li > a:hover {
+/* .navigation-clean-search.navbar-default .navbar-nav > li > a:focus, .navigation-clean-search.navbar-default .navbar-nav > li > a:hover {
   color:#37434d !important;
   background-color:transparent;
-}
+} */
 
 .navigation-clean-search .navbar-nav > li > .dropdown-menu {
   margin-top:-5px;

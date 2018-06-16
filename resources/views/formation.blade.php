@@ -108,7 +108,7 @@
                                         </label>
                                     </div>
                                     <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
-                                    <input type="hidden" name="type" value="blog">
+                                    <input type="hidden" name="type" value="Tutorial">
 
                                 </form>
                             </div>
@@ -194,17 +194,9 @@
 
                                         <button id="add-choix" class="btn btn-outline-primary btn-sm" type="button">Ajouter Choix</button>
                                     </div>
-                                    <input type="file" name="file" multiple="" id="file_sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
-                                    <div class="box" style="margin-left:10px;display:  inline-block;">
-                                        <input type="file" name="files[]" id="file-sondage" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
-                                            multiple="">
-                                        <label for="file-sondage" style="border: 1px solid #448ccb; ">
-                                            <span></span>
-                                            <strong style="font-weight:400;">Choose a file…</strong>
-                                        </label>
-                                    </div>
-                                    <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
-
+                                    
+                                    <button class="btn btn-default pull-right" type="submit" id="publier-status" style="margin-bottom:10px;">Publier</button>
+                                    <div class="clearfix"></div>
                                 </form>
 
                             </div>
@@ -217,7 +209,7 @@
                     <div class="col-md-12">
                         <ul class="list-inline">
                             <li>
-                                <img class="publisher-image" style="background-image:url({{$publication->user->profile->photo_profile}});">
+                                <img class="publisher-image" style="background-image:url({{asset($publication->user->profile->photo_profile)}});">
                             </li>
                             <li>
                                 <ul class="list-unstyled publisher-info">
@@ -274,7 +266,18 @@
                     <h3 class="status-title">{{$publication->titre}}</h3>
                     <hr>
                     <div style="text-align:center;">
-                        <span>Status de module :&nbsp;</span>
+                            <span>
+                                    @if($publication->type =="Sondage")
+                                    Sondage
+                                    @elseif($publication->type =="FAQ")
+                                    FAQ
+                                    @elseif($publication->type =="Status")
+                                    Status
+                                    @else
+                                    Tutoriel
+                                    @endif
+                                    de module :&nbsp;
+                                </span>
                         <span class="module">
                             <a href="{{route('publication.filtrer.module',['id'=>$publication->module_id])}}">{{$module->nom}}</a>
                             <br>
@@ -313,13 +316,13 @@
             <div class="col-md-3">
                 @foreach(Auth::user()->roles as $role) 
                     @if($role->nom == "Administrateur" || $role->nom == "Enseignant" || $role->nom == "Gérant club" )
-                        <a href="{{route('evenement.ajouter')}}" class="btn btn-success btn-block ">Ajouter un évènement</a>
+                        <a href="{{route('evenement.ajouter',['formation'=>$formation_nom]) }}" class="btn btn-success btn-block ">Ajouter un évènement</a>
                         @break
                     @endif 
                 @endforeach
                 <h4 class="text-center">Les évènements du :</h4>
                 <h4  class="text-center"><strong>{{ $formation_nom }}</strong></h4>
-                @if(count($events) == 0)
+                @if(count($events) == 0 || \App\Event::AllArchived($events))
                 <div class="alert alert-warning" role="alert">Pas d'évenements partagé pour le moment</div>
                 @else @foreach($events as $event) @if($event->is_archived == 0)
                 <div class="evenement 

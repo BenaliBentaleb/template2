@@ -19,8 +19,7 @@ class CreateReclamationsTable extends Migration
             $table->string('title');
             $table->string('Type');
             $table->text('reclamation');
-            
-            
+            $table->string('fichier')->nullable();  
             $table->integer('status')->unsigned()->default(0);
             // status 0 = en attent 
             // status 1 = terminé

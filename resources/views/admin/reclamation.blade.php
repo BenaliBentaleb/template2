@@ -155,8 +155,8 @@
                                             <th>Nom</th>
                                             <th>Titre</th>
                                             <th>Contenu</th>
-                                            <th>Etat</th>
                                             <th>Type</th>
+                                            <th>Etat</th>
                                             <th>Créer à</th>
                                             <th></th>
                                             <th></th>
@@ -181,23 +181,20 @@
                                             <td>
                                                 {{str_limit($r->reclamation,30)}}
                                             </td>
-                                            <td>
-                                                @if($r->status == 0)
-                                                <span class="badge badge-warning">En attente</span>
-                                                @elseif($r->status == 1)
-                                                <span class="badge badge-success">Terminé</span>
-                                                @elseif($r->status == 2)
-                                                <span class="badge badge-danger">Rejeté</span>
-                                                @endif
-
-
-
-
-                                            </td>
+                                            
                                             <td>
                                                 {{ $r->Type }}
                                             </td>
-
+                                            <td>
+                                                    @if($r->status == 0)
+                                                    <span class="badge badge-warning">En attente</span>
+                                                    @elseif($r->status == 1)
+                                                    <span class="badge badge-success">Terminé</span>
+                                                    @elseif($r->status == 2)
+                                                    <span class="badge badge-danger">Rejeté</span>
+                                                    @endif
+    
+                                            </td>
                                             <td>
                                                 {{$r->created_at->toFormattedDateString()}}
                                             </td>
@@ -215,13 +212,23 @@
                                                         <i class="fe fe-more-vertical"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
+                                                            {{-- 
+                                                            // status 0 = en attent 
+                                                            // status 1 = terminé
+                                                            // status 2 = rejecté --}}
                                                         <a href="{{ route('admin.reclamation.repondre',['id' => $r->id]) }}" class="dropdown-item">
                                                             <i class="dropdown-icon fe fe-eye"></i> Voire réclamation </a>
-                                                            @if($r->status !=1)
-                                                        <a href="{{ route('admin.reclamation.terminer',['id' => $r->id]) }}" class="dropdown-item">
+                                                            @if($r->status ==1)      
+                                                            <a href="{{ route('admin.reclamation.rejeter',['id' => $r->id]) }}" class="dropdown-item">
+                                                            <i class="dropdown-icon fe fe-alert-octagon"></i> Marquer comme rejeter </a>
+                                                            @elseif($r->status ==2)
+                                                            <a href="{{ route('admin.reclamation.terminer',['id' => $r->id]) }}" class="dropdown-item">
                                                             <i class="dropdown-icon fe fe-check-circle"></i> Marquer comme terminé </a>
-                                                            @elseif($r->status !=2)
-                                                        <a href="{{ route('admin.reclamation.rejeter',['id' => $r->id]) }}" class="dropdown-item">
+                                                            @else
+                                                            <a href="{{ route('admin.reclamation.terminer',['id' => $r->id]) }}" class="dropdown-item">
+                                                            <i class="dropdown-icon fe fe-check-circle"></i> Marquer comme terminé </a>
+
+                                                            <a href="{{ route('admin.reclamation.rejeter',['id' => $r->id]) }}" class="dropdown-item">
                                                             <i class="dropdown-icon fe fe-alert-octagon"></i> Marquer comme rejeter </a>
                                                             @endif
 
