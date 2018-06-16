@@ -111,19 +111,22 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
+    public function chatRomMessages()
+    {
+        return $this->hasMany(ChatRomMessage::class);
+    }
+
     public function isAdmin()
     {
 
-      
-
-            foreach ($this->roles as $role) {
-                if ($role->nom == "Administrateur") {
-                    return true;
-
-                }
+        foreach ($this->roles as $role) {
+            if ($role->nom == "Administrateur") {
+                return true;
 
             }
-       
+
+        }
+
         return false;
 
     }
@@ -142,7 +145,8 @@ class User extends Authenticatable
 
     }
 
-    public static function getProfile($id){
-        return Profile::where('user_id','=',$id)->first();
+    public static function getProfile($id)
+    {
+        return Profile::where('user_id', '=', $id)->first();
     }
 }

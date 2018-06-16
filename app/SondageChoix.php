@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Sondage;
-use App\SondageChoixUser;
+use App\sondageChoixUser;
 
 class SondageChoix extends Model
 {
+    //public $with = ['sondage_choix_user'];
     protected $fillable = [
         'sondage_id','choix','nombre_reponse'
     ];
@@ -17,6 +18,6 @@ class SondageChoix extends Model
     }
 
     public function sondage_choix_user() {
-        return $this->hasMany(SondageChoixUser::class);
+        return $this->hasMany(sondageChoixUser::class);
     }
 }

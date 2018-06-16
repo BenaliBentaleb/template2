@@ -381,6 +381,11 @@ Route::get('/admin/index', [
     'as'=>'admin.index'
 ])->middleware('admin');
 
+Route::get('user/search', [
+    'uses' => 'AdminController@search',
+    'as' => 'user.search'
+]);
+
 Route::get('/admin/utilisateur', [
     'uses'=>'AdminController@utilisateur',
     'as'=>'admin.utilisateur'
@@ -620,3 +625,12 @@ Route::get('/admin/event/delete/{id}', [
     'as'=>'admin.event.delete'
 ])->middleware('admin');
 /* END SECTION EVENT */
+
+
+
+/* start  chat room */
+Route::get('/chatRom', 'ChatsRomController@index');
+Route::get('messages', 'ChatsRomController@fetchMessages');
+Route::post('messages', 'ChatsRomController@sendMessage');
+
+/* end chat room */

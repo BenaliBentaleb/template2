@@ -39,6 +39,44 @@
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <script src="{{asset('assets/js/jquery.min.js') }}"></script>
   
+    <style>
+        .chat {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+      
+        .chat li {
+          margin-bottom: 10px;
+          padding-bottom: 5px;
+          border-bottom: 1px dotted #B3A9A9;
+        }
+      
+        .chat li .chat-body p {
+          margin: 0;
+          color: #777777;
+        }
+      
+        .panel-body {
+          overflow-y: scroll;
+          height: 350px;
+        }
+      
+        ::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+          background-color: #F5F5F5;
+        }
+      
+        ::-webkit-scrollbar {
+          width: 12px;
+          background-color: #F5F5F5;
+        }
+      
+        ::-webkit-scrollbar-thumb {
+          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+          background-color: #555;
+        }
+      </style>
     
 </head>
 
@@ -255,6 +293,24 @@
     <script src="{{ asset('assets/js/mixitup-multifilter.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <script type="text/javascript">
+
+          $('#profile-picture').change(function() {
+    $('#profile-picture-form').submit();
+  });
+  
+  $('#cover').change(function() {
+    $('#cover-form').submit();
+  });
+
+     $("#add-choix").click(function () {
+      if($(".sondage-form input").length <5) {
+        input = jQuery('<li><label class="form-label">Choix ' + ($(".sondage-form input").length + 1) + ':</label><input class="form-control" type="text" name="choix' +($(".sondage-form input").length + 1) + '"></li>');
+      jQuery('.sondage-form').append(input);
+      input.hide().show('slow');
+      }else {
+        $("#add-choix").hide('slow');
+      }
+    });
        
   $("select[name='type']").change(function(){
       var type = $(this).val();

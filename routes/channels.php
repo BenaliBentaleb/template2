@@ -22,3 +22,18 @@ Broadcast::channel('Chat.{user_id}.{friend_id}', function ($user, $user_id, $fri
 Broadcast::channel('Online', function ($user) {
     return $user;
 });
+
+Broadcast::channel('comment', function ($user) {
+    return [
+        'id' => $user->id,
+        'name' => $user->name,
+    ];
+});
+
+Broadcast::channel('like', function ($user) {
+    return $user;
+});
+
+Broadcast::channel('chatroom', function ($user) {
+    return Auth::check();
+  });

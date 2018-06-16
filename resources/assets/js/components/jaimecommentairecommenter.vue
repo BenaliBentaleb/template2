@@ -77,107 +77,131 @@
 </template>
 
 <script>
-let moment = require('moment');
-  import commentaire from "./commentaire.vue";
-  import jaime from "./jaime.vue";
-  import jaimecomment from "./jaimecomment.vue";
-  export default {
-    props: ["publication", "id","image"],
-    components: {
-      commentaire: commentaire,
-      jaime: jaime,
-      jaimecomment: jaimecomment
-    },
-    data() {
-      return {
-        commentaire: "",
-        commentaires: [],
-        likeComment: [],
-        comment: [], //,
-        idC: "",
-        moment:moment,
-        isNewComment: true,
-        editedComment : '',
-        idEditComment : ''
-      };
-    },
-      notifications: {
+let moment = require("moment");
+import commentaire from "./commentaire.vue";
+import jaime from "./jaime.vue";
+import jaimecomment from "./jaimecomment.vue";
+export default {
+  props: ["publication", "id", "image"],
+  components: {
+    commentaire: commentaire,
+    jaime: jaime,
+    jaimecomment: jaimecomment
+  },
+  data() {
+    return {
+      commentaire: "",
+      commentaires: [],
+      likeComment: [],
+      comment: [], //,
+      idC: "",
+      moment: moment,
+      isNewComment: true,
+      editedComment: "",
+      idEditComment: ""
+    };
+  },
+  notifications: {
     delete: {
       // You can have any name you want instead of 'showLoginError'
       title: "Supprimer votre commentaire",
       message: "Vous voulez supprimer votre commentaire",
       type: "success" // You also can use 'VueNotifications.types.error' instead of 'error'
-    },
-   
-   
+    }
   },
 
-    mounted() {
-      this.getcommentaire;
-      this.getJaimeCommentaire;
-      
+  mounted() {
+    this.listen();
+    this.getcommentaire;
+    this.getJaimeCommentaire;
+  },
+
+  methods: {
+    commenter() {
+      if (this.commentaire.trim()) {
+        axios
+          .post("/commenter", {
+            publication_id: this.publication,
+            user_id: this.id,
+            commentaire: this.commentaire
+          })
+          .then(response => {
+            this.commentaires.push(response.data);
+            this.commentaire = "";
+            console.log(this.commentaires);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
     },
 
-    methods: {
-      commenter() {
-        if (this.commentaire.trim()) {
-          axios.post("/commenter", {
-              publication_id: this.publication,
-              user_id: this.id,
-              commentaire: this.commentaire
-            })
-            .then(response => {
-              this.commentaires.push(response.data);
-              this.commentaire = "";
-            console.log(response.data);
-            }).catch(err => {
-              console.log(err)});
-        }
-      },
-
-      updateComment() {
-         if (this.commentaire.trim()) {
-         axios.post(`/commentaire/update/${this.idEditComment}/${this.commentaire}`)
-         .then(response => {
-            let comment =  this.commentaires.find(value => value.id === this.idEditComment);
-            comment.commentaire =  this.commentaire;
+    updateComment() {
+      if (this.commentaire.trim()) {
+        axios
+          .post(`/commentaire/update/${this.idEditComment}/${this.commentaire}`)
+          .then(response => {
+            let comment = this.commentaires.find(
+              value => value.id === this.idEditComment
+            );
+            comment.commentaire = this.commentaire;
             this.isNewComment = true;
-              this.commentaire = "";
-             
-            
-         })
-         }
-      },
+            this.commentaire = "";
+          });
+      }
+    },
 
-      EditComment(id,comment) {
-        this.isNewComment = false;
-        this.idEditComment = id;
-        this.editedComment = comment;
-         this.commentaire = comment;
-        
+    EditComment(id, comment) {
+      this.isNewComment = false;
+      this.idEditComment = id;
+      this.editedComment = comment;
+      this.commentaire = comment;
+    },
 
-      },
-
-      deleteComment(id) {
-        axios.get(`/commentaire/delete/${id}`)
+    deleteComment(id) {
+      axios
+        .get(`/commentaire/delete/${id}`)
         .then(response => {
           console.log(response);
-          this.commentaires.forEach((value, key ) => {
-            if(value.id === id) {
-              this.commentaires.splice(key,1);
+          this.commentaires.forEach((value, key) => {
+            if (value.id === id) {
+              this.commentaires.splice(key, 1);
             }
-          })
-        }).catch(err => console.log(err));
-      }
-
-      
-
-      
+          });
+        })
+        .catch(err => console.log(err));
     },
-    computed: {
-      getcommentaire() {
-        axios.get(`/allcomment/${this.publication}`).then(response => {
-         // console.log(response.data);
+
+    listen() {
+      Echo.join("comment")
+        .here(users => {
+         // this.count = users.length;
+        })
+        .joining(user => {
+       //   this.count++;
+        })
+        .leaving(user => {
+        //  this.count--;
+        })
+        .listen("NewComment", e => {
+       //   console.log('new comment');
+        //  console.log(e.commentaire);
+
+         
+        if(e.commentaire.publication_id === this.publication ) {
+           this.commentaires.push(e.commentaire);
+           console.log('new comment');
+           console.log(e.commentaire);
+        }
+        });
+    }
+  },
+  computed: {
+    getcommentaire() {
+      axios
+        .get(`/allcomment/${this.publication}`)
+        .then(response => {
+          // console.log(response.data);
           response.data.forEach(value => {
             this.commentaires.push(value);
             //  if (this.likeComment.indexOf(this.id)  && response.data.id == idComment) {
@@ -185,23 +209,21 @@ let moment = require('moment');
             //this.likeComment.push(value);
 
             //  }
-        //    console.log(value);
+            //    console.log(value);
           });
-        }).catch(err=> console.log(err));
-      },
+        })
+        .catch(err => console.log(err));
+    },
 
-      getNumberOfComment() {
-        return this.commentaires.length;
-      }
-       
-
-
+    getNumberOfComment() {
+      return this.commentaires.length;
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
-  .commenter {
-    cursor: pointer;
-  }
+.commenter {
+  cursor: pointer;
+}
 </style>

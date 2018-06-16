@@ -72,6 +72,9 @@ class ReclamationController extends Controller
             $reclamation->fichier='files/' . $reclamationFile; 
          }
          $reclamation->save();
+        
+
+         
 
          foreach(User::all() as $user ) {
             if($user->isAdmin()) {

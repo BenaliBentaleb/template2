@@ -250,14 +250,14 @@
                                     <div class="like">
                                         <a href="{{route('login')}}">
                                             <i class="fa fa-thumbs-o-up"></i>
-                                            <span>J'aime</span>
+                                            <span>J'aime({{$publication->likes->count()}})</span>
                                         </a>
                         
                                     </div>
                                     <div class="comment">
                                         <a href="{{route('login')}}">
                                             <i class="icon-bubble"></i>
-                                            <span>Commenter</span>
+                                            <span>Commenter({{$publication->commentaires->count()}})</span>
                                         </a>
                         
                                     </div>

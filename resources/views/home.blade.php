@@ -89,19 +89,6 @@
 
                         <textarea class="form-control content" name="blog" id="summernote-blog" required></textarea>
                         <div style="padding-top:0;padding-bottom:11px;">
-<<<<<<< HEAD
-                            <input type="file" name="file" multiple="" id="file_blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
-                            <div class="box" style="margin-left:10px;display:  inline-block;">
-                                <input type="file" name="files[]" id="file-blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
-                                    multiple="">
-                                <label for="file-blog" style="border: 1px solid #448ccb; ">
-                                    <span></span>
-                                    <strong style="font-weight:400;">Choose a file…</strong>
-                                </label>
-                            </div>
-                            <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
-                            <input type="hidden" name="type" value="Tutorial">
-=======
                         <input type="file" name="file" multiple="" id="file_blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected">
                         <div class="box" style="margin-left:10px;display:  inline-block;">
                             <input type="file" name="files[]" id="file-blog" class="inputfile inputfile-6" data-multiple-caption="{count} files selected"
@@ -114,7 +101,6 @@
                         <button class="btn btn-default" type="submit" id="publier-status">Publier</button>
                         <input type="hidden" name="type" value="Tutorial">
                         
->>>>>>> 7164d444c562c985f83f130baecb0a6ea3e702a1
                         </div>
                     </form>
                 </div>

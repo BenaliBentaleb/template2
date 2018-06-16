@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Like;
 use Illuminate\Http\Request;
 use App\Publication;
+use App\Events\NewLike;
 use Auth ;
 
 class LikeController extends Controller
@@ -97,7 +98,9 @@ class LikeController extends Controller
         $jaime->user_id = Auth::id();
         $jaime->publication_id = $publication->id;
         $jaime->save();
+      
         $l = Like::find($jaime->id);
+        broadcast(new NewLike($l))->toOthers();
         return $l;
 
 

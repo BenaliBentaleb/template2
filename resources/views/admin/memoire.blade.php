@@ -240,8 +240,18 @@
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    
     <script type="text/javascript">
+    var mixer = mixitup("#memoires", {
+                selectors: {
+                    control: '[data-mixitup-control]'
+                }
+            });
+
+            $('.shuffle button').click(function () {
+                $(this).addClass('selected').siblings().removeClass('selected');
+            });
+            
         function uncheck(check) {
             var ens = document.getElementById("ens");
             var etud = document.getElementById("etud");
@@ -457,15 +467,7 @@
 
 
 
-            var mixer = mixitup("#memoires", {
-                selectors: {
-                    control: '[data-mixitup-control]'
-                }
-            });
-
-            $('.shuffle button').click(function () {
-                $(this).addClass('selected').siblings().removeClass('selected');
-            });
+            
 
         });
        

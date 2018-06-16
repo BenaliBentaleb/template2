@@ -9,20 +9,35 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Chat;
-class BroadcastChat  implements ShouldBroadcast
+use App\User;
+use App\ChatRomMessage;
+
+class MessageRomeSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $chat;
+      /**
+     * User that sent the message
+     *
+     * @var User
+     */
+    public $user;
+
+    /**
+     * Message details
+     *
+     * @var Message
+     */
+    public $message;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Chat $chat)
+    public function __construct(User $user, ChatRomMessage $message)
     {
-        $this->chat = $chat;
+        $this->user = $user;
+        $this->message = $message;
     }
 
     /**
@@ -32,8 +47,6 @@ class BroadcastChat  implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('Chat.' . $this->chat->user_id . '.' . $this->chat->friend_id);
+        return new PrivateChannel('chatroom');
     }
-
-    
 }

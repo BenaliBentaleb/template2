@@ -136,99 +136,100 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Utilisateurs</h3>
-                                <div class="col-lg-4 ml-auto">
-                                <form class="input-icon my-3 my-lg-0" action="{{route('user.search')}}"  method="GET">
-                                   
-                                    <input type="search" name="search" class="form-control header-search" placeholder="Chercher avec le nom ,prenom ou email" tabindex="1">
-                                        <div class="input-icon-addon">
-                                            <i class="fe fe-search"></i>
-                                        </div>
-                                    </form>
-                                </div>
+                               
 
-                                <a href="{{route('admin.form.ajouter.utilisateur')}}" class="btn btn-azure ml-auto">Ajouter utilisateur</a>
+            <!--    <a href="{{route('admin.form.ajouter.utilisateur')}}" class="btn btn-azure ml-auto">Ajouter utilisateur</a>-->
+            <div class="btn-list ml-auto  text-right">
+
+                <a href="#" class="btn btn-secondary" onclick="window.history.back(); return false;">Annuler</a>
+            </div>
                             </div>
 
                            
                             <div class="table-responsive">
-                                <table class="table card-table table-vcenter users-table text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="w-1">Id</th>
-                                            <th class="w-1"></th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Email</th>
-                                            <th>Créer à</th>
-                                            <th>Rôles</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($users as $user)
-                                        <tr>
-                                            <td>
-                                                <span class="text-muted">{{$user->id}}</span>
-                                            </td>
-                                            <td>
-                                                <span class="avatar" style="background-image: url({{asset($user->profile->photo_profile)}})"></span>
-                                            </td>
-                                            <td>
-                                                <a href="{{route('user.profile',['id'=>$user->id])}}" class="text-inherit">{{$user->nom}}</a>
-                                            </td>
-                                            <td>
-                                                {{$user->prenom}}
-                                            </td>
-                                            <td>
-                                                {{$user->email}}
-                                            </td>
-                                            <td>
-                                                {{$user->created_at->toFormattedDateString()}}
-                                            </td>
-                                            <td>
-                                                @foreach($user->roles as $role) @if($role->nom =="Administrateur")
-                                                <span class="role-admin">Administrateur</span>
-                                                @endif @if($role->nom =="Enseignant")
-                                                <span class="role-prof">Enseignant</span>
-                                                @endif @if($role->nom =="Gérant club")
-                                                <span class="role-club">Gérant Club</span>
-                                                @endif @if($role->nom =="Etudiant")
-                                                <span class="role-etudiant">Etudiant</span>
-                                                @endif @endforeach
-                                            </td>
+                               @if(isset($details))
+                               <table class="table card-table table-vcenter users-table text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="w-1">Id</th>
+                                        <th class="w-1"></th>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Email</th>
+                                        <th>Créer à</th>
+                                        <th>Rôles</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($details as $user)
+                                    <tr>
+                                        <td>
+                                            <span class="text-muted">{{$user->id}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="avatar" style="background-image: url({{asset($user->profile->photo_profile)}})"></span>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('user.profile',['id'=>$user->id])}}" class="text-inherit">{{$user->nom}}</a>
+                                        </td>
+                                        <td>
+                                            {{$user->prenom}}
+                                        </td>
+                                        <td>
+                                            {{$user->email}}
+                                        </td>
+                                        <td>
+                                            {{$user->created_at->toFormattedDateString()}}
+                                        </td>
+                                        <td>
+                                            @foreach($user->roles as $role) @if($role->nom =="Administrateur")
+                                            <span class="role-admin">Administrateur</span>
+                                            @endif @if($role->nom =="Enseignant")
+                                            <span class="role-prof">Enseignant</span>
+                                            @endif @if($role->nom =="Gérant club")
+                                            <span class="role-club">Gérant Club</span>
+                                            @endif @if($role->nom =="Etudiant")
+                                            <span class="role-etudiant">Etudiant</span>
+                                            @endif @endforeach
+                                        </td>
 
-                                            <td class="w-0">
-                                                <a class="icon" href="{{route('user.profile',['id'=>$user->id])}}" title="" data-toggle="tooltip" data-original-title="Profil">
-                                                    <i class="fe fe-user"></i>
-                                                </a>
-                                            </td>
-                                            <td class="w-0">
-                                                <a class="icon" href="{{route('admin.form.modifier.utilisateur',['id'=>$user->id])}}" title="" data-toggle="tooltip" data-original-title="Modifier">
-                                                    <i class="fe fe-edit"></i>
-                                                </a>
-                                            </td>
-                                            <td class="w-0">
-                                                @if($user->id != Auth::id())
-                                                <a class="icon" id="delete-user" href="{{route('admin.utilisateur.delete',['id'=>$user->id])}}" title="" data-toggle="tooltip" data-original-title="Supprimer">
-                                                    <i class="fe fe-trash text-danger" id="delete"></i>
-                                                </a>
-                                                @endif
+                                        <td class="w-0">
+                                            <a class="icon" href="{{route('user.profile',['id'=>$user->id])}}" title="" data-toggle="tooltip" data-original-title="Profil">
+                                                <i class="fe fe-user"></i>
+                                            </a>
+                                        </td>
+                                        <td class="w-0">
+                                            <a class="icon" href="{{route('admin.form.modifier.utilisateur',['id'=>$user->id])}}" title="" data-toggle="tooltip" data-original-title="Modifier">
+                                                <i class="fe fe-edit"></i>
+                                            </a>
+                                        </td>
+                                        <td class="w-0">
+                                            @if($user->id != Auth::id())
+                                            <a class="icon" id="delete-user" href="{{route('admin.utilisateur.delete',['id'=>$user->id])}}" title="" data-toggle="tooltip" data-original-title="Supprimer">
+                                                <i class="fe fe-trash text-danger" id="delete"></i>
+                                            </a>
+                                            @endif
 
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
 
-                                        @endforeach
+                                    @endforeach
 
-                                    </tbody>
-                                </table>
+                                </tbody>
+                            </table>
+                               @else
+                        <div class="text-center py-5">{{$message}}</div>
+
+                               @endif
                             </div>
                         </div>
 
 
-                        {{$users->links('vendor.pagination.bootstrap-4')}}
+                       
 
                     </div>
 
@@ -238,7 +239,7 @@
         </div>
     </div>
 
-   
+    
     <script type="text/javascript">
         function uncheck(check) {
             var ens = document.getElementById("ens");
