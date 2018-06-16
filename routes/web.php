@@ -345,10 +345,24 @@ Route::get('/portail/memoire/unregestred',[
 
 ]);
 
-Route::get('/ajouter/memoire',[
+Route::get('/memoire/ajouter',[
     'uses'=>'PortailMemoireController@show',
     'as'=>'ajouter.memoire'
+])->middleware('auth');
 
+Route::get('/memoire/modifie/{id}',[
+    'uses'=>'PortailMemoireController@modifie',
+    'as'=>'modifie.memoire'
+])->middleware('auth');
+
+Route::post('/memoire/edit/{id}',[
+    'uses'=>'PortailMemoireController@edit',
+    'as'=>'edit.memoire'
+])->middleware('auth');
+
+Route::get('/memoire/delete/{id}',[
+    'uses'=>'PortailMemoireController@delete',
+    'as'=>'delete.memoire'
 ])->middleware('auth');
 
 Route::post('/memoire/saveFile',[

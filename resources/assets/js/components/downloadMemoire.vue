@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p style="margin-top:10px;margin-bottom:0;">Nombre de telechargement : {{numberDownloader}} </p>
+        <h5 style="margin-top:0px;margin-bottom:0;">Nombre de telechargement : {{numberDownloader}} </h5>
         <a  @click="download(id)"
          class="btn btn-link btn-block" type="button" style="font-size:16px;">
         <i class="icon-arrow-down-circle" style="font-size:16px;padding-right:10px;" >

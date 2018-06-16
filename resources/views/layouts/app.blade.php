@@ -245,7 +245,8 @@
                                         </a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="{{route('portail.memoire')}}" class="list-anchor  {{ Request::is('portail/memoire') ? 'active' : '' }}">
+                                        <a href="{{route('portail.memoire')}}" class="list-anchor  {{ Request::is('portail/memoire') ? 'active' : '' }}
+                                        {{ Request::is('memoire/*') ? 'active' : '' }}">
                                             <i class="icon-graduation icon-sidebar"></i>
                                             <span style="font-size:15px;">Portail mémoires</span>
                                         </a>
@@ -443,35 +444,67 @@
         };
         signaler.init();
      var supprimer = {
-linkSelector: "a#supprimer-btn",
-init: function () {
-    $(this.linkSelector).on('click', {
-        self: this
-    }, this.handleClick);
-},
-handleClick: function (event) {
-    event.preventDefault();
-    var self = event.data.self;
-    var link = $(this);
-    swal({
-            title: "Etes-Vous sur ?",
-            text: "L'évenement sera supprimé définitivement",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if (willDelete) {
-              /*  swal("Poof! Your imaginary file has been deleted!", {
-                    icon: "success",
-                });*/ window.location = link.attr('href');
-            }/* else {
-                swal("votre donneé est protegé!");
-            }*/
-        });
-},
-};
-supprimer.init();
+        linkSelector: "a#supprimer-btn",
+        init: function () {
+            $(this.linkSelector).on('click', {
+                self: this
+            }, this.handleClick);
+        },
+        handleClick: function (event) {
+            event.preventDefault();
+            var self = event.data.self;
+            var link = $(this);
+            swal({
+                    title: "Etes-Vous sur ?",
+                    text: "L'évenement sera supprimé définitivement",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                    /*  swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        });*/ window.location = link.attr('href');
+                    }/* else {
+                        swal("votre donneé est protegé!");
+                    }*/
+                });
+        },
+        };
+        supprimer.init();
+
+        var memoire_supprimer = {
+        linkSelector: "a#delete-memoire",
+        init: function () {
+            $(this.linkSelector).on('click', {
+                self: this
+            }, this.handleClick);
+        },
+        handleClick: function (event) {
+            event.preventDefault();
+            var self = event.data.self;
+            var link = $(this);
+            swal({
+                    title: "Etes-Vous sur ?",
+                    text: "Le mémoire sera supprimé définitivement",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                    /*  swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        });*/ window.location = link.attr('href');
+                    }/* else {
+                        swal("votre donneé est protegé!");
+                    }*/
+                });
+        },
+        };
+        memoire_supprimer.init();
+
 </script>
 
 

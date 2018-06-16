@@ -68861,7 +68861,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("p", { staticStyle: { "margin-top": "10px", "margin-bottom": "0" } }, [
+    _c("h5", { staticStyle: { "margin-top": "0px", "margin-bottom": "0" } }, [
       _vm._v("Nombre de telechargement : " + _vm._s(_vm.numberDownloader) + " ")
     ]),
     _vm._v(" "),

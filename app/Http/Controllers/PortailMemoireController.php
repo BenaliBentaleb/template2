@@ -60,7 +60,7 @@ class PortailMemoireController extends Controller
         return view('addMemoire')->with('formations_licence',Formation::where('type','licence')->get())
         ->with('formations_master',Formation::where([
             ['type', '=', 'master'],
-            ['nom', 'like', '%2%']])->get());;
+            ['nom', 'like', '%2%']])->get());
     }
 
     public function getformation(Request $request)
@@ -108,4 +108,43 @@ class PortailMemoireController extends Controller
 
     }
 
+    public function modifie($id){
+        return view('PortailMemoire-modifie')->with('formations_licence',Formation::where('type','licence')->get())
+                                            ->with('formations_master',Formation::where([
+                                                ['type', '=', 'master'],
+                                                ['nom', 'like', '%2%']])->get())
+                                            ->with('memoire',PortailMemoire::find($id));
+    }
+
+    public function edit(Request $request,$id){
+
+        $memoire = PortailMemoire::find($id);
+        $memoire->user_id = Auth::id();
+        $memoire->formation_id = $request->formation_id;
+        $memoire->titre = $request->titre;
+        $memoire->type = $request->type;
+        $memoire->date = $request->date;
+        
+        $memoire->encadreur = $request->encadreur;
+        $memoire->etudiant1 = $request->etudiant1;
+        $memoire->etudiant2 = $request->etudiant2;
+        $memoire->etudiant3 = $request->etudiant3;
+        $memoire->etudiant4 = $request->etudiant4;
+
+        if($request->hasFile('fichier')){
+            $file =$request->fichier;
+            $memoireFileNewName= time() . $file->getClientOriginalName();
+            $file->move('files',$memoireFileNewName);
+            $memoire->fichier='files/' . $memoireFileNewName;
+        }
+        $memoire->save();
+        return redirect()->route('portail.memoire');
+    }
+
+    public function delete ($id){
+        $memoire = PortailMemoire::find($id);
+        $memoire->delete();
+        
+        return redirect()->back();
+    }
 }
