@@ -336,7 +336,40 @@
                     ">
                     <a href="#event-collapse{{$event->id}}" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="event-collaspe{{$event->id}}"
                         style="text-decoration:none;">
-                        <h3 class="text-info even-title">{{$event->titre}}</h3>
+                        <h3 class="text-info even-title @if(Auth::id() == $event->user_id || Auth::user()->isAdmin()) pull-left @endif">{{$event->titre}}</h3>
+                        @if(Auth::id() == $event->user_id || Auth::user()->isAdmin())
+                        <div class="pull-right">
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fe fe-more-vertical" style="padding:5px;font-size:15px;color:#4e4e4e"></i>
+                                </a>
+                                <ul class="list-unstyled dropdown-menu dropdown-menu-right" >
+                                    
+                                    <li>
+                                        <a href="{{route('user.evenement.modifie',['id' => $event->id ])}}">
+                                            <i class="fe fe-edit"></i>
+                                            <span>&nbsp; Modifier</span>
+                                        </a>
+                                    </li>
+                                   
+                                    <li>
+                                        <a id="supprimer-btn" href="{{route('user.evenement.delete',['id' => $event->id ])}}">
+                                            <i class="fe fe-trash"></i>
+                                            <span>&nbsp; Supprimer</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('user.evenement.archiver',['id' => $event->id ])}}">
+                                            <i class="fe fe-eye-off"></i>
+                                            <span>&nbsp; Archiver</span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        @endif
                     </a>
                     <div id="event-collapse{{$event->id}}" class="collapse in">
                         <p>{{ $event->description}}

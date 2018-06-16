@@ -12,6 +12,7 @@
 
                     <div class="col-md-8 form-group">
                         <label>Titre de l'évenement</label>
+                        <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
                         <input type="text" name="titre"  {{old('titre')}} value="{{$event->titre}}" required="" class="form-control" placeholder="Titre ..">
                         @if ($errors->has('titre'))
                         <span class="text-danger">
@@ -23,6 +24,7 @@
 
                     <div class="col-md-4 form-group">
                         <label>Publier en tant que</label>
+                        <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
                         <select class="form-control" required="" name="event_role" style="margin-right:0;">
                             @foreach(Auth::user()->roles as $role) 
                             @if($role->nom == "Administrateur")
@@ -38,6 +40,7 @@
 
                     <div class="col-md-4 form-group ">
                         <label class="form-label">Date debut</label>
+                        <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
                         <input type="date" name="debut" {{old('debut')}} value="{{$event->debut}}" class="form-control" required="">
                         @if ($errors->has('debut'))
                         <span class="text-danger">
@@ -48,6 +51,7 @@
 
                     <div class="col-md-4 form-group ">
                         <label class="form-label">Date fin</label>
+                        <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
                         <input type="date" name="fin"  {{old('fin')}} value="{{$event->fin}}" class="form-control" required="">
                         @if ($errors->has('fin'))
                         <span class="text-danger">
@@ -57,6 +61,7 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label class="form-label">Formation</label>
+                        <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
                         <select name="formation_id" class="form-control custom-select" required="">
                             <optgroup label="NTICien">
                                 <option value="" selected="">Général - NTICien</option>
@@ -76,8 +81,9 @@
                     </div>
                     <div class="col-md-12 form-group">
                         <label class="form-label">Description brève</label>
+                        <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
                         <span class="pull-right">
-                            <span id="short-content-size">{{ strlen($event->description) -150 }}</span>/150</span>
+                            <span id="short-content-size">{{ 150 - strlen($event->description)  }}</span>/150</span>
                         <textarea id="short-content" onkeyup="countChar(this)" required=""  class="form-control" name="description" rows="3" placeholder="Content.."
                             maxlength="150">{{old('description')}} {{ $event->description }}</textarea>
                             @if ($errors->has('description'))
