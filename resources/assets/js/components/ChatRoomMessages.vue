@@ -10,9 +10,9 @@
                         <a :href="'http://127.0.0.1:8000/profile/'+message.user.id">{{ message.user.nom }} {{message.user.prenom}}</a>
                     </strong>
                 </div>
-                <p>
+                <div>
                     {{ message.message }} <h6>{{moment(message.created_at).fromNow()}}</h6>
-                </p>
+                </div>
             </div>
         </li>
     </ul>
