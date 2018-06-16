@@ -625,3 +625,12 @@ Route::get('/admin/event/delete/{id}', [
     'as'=>'admin.event.delete'
 ])->middleware('admin');
 /* END SECTION EVENT */
+
+
+
+/* start  chat room */
+Route::get('/chatRom', 'ChatsRomController@index');
+Route::get('messages', 'ChatsRomController@fetchMessages');
+Route::post('messages', 'ChatsRomController@sendMessage');
+
+/* end chat room */

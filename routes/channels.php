@@ -33,3 +33,7 @@ Broadcast::channel('comment', function ($user) {
 Broadcast::channel('like', function ($user) {
     return $user;
 });
+
+Broadcast::channel('chatroom', function ($user) {
+    return Auth::check();
+  });
