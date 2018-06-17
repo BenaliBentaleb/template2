@@ -12,7 +12,7 @@
 
                     <div class="col-md-8 form-group">
                         <label>Titre de l'évenement</label>
-                        <input type="text" name="titre"  {{old('titre')}} required="" class="form-control" placeholder="Titre ..">
+                        <input type="text" name="titre"  value="{{old('titre')}}" required="" class="form-control" placeholder="Titre ..">
                         @if ($errors->has('titre'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('titre') }}</strong>
@@ -36,7 +36,7 @@
 
                     <div class="col-md-4 form-group ">
                         <label class="form-label">Date debut</label>
-                        <input type="date" name="debut" {{old('debut')}} class="form-control" required="">
+                        <input type="date" name="debut" value="{{old('debut')}}" class="form-control" required="">
                         @if ($errors->has('debut'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('debut') }}</strong>
@@ -46,7 +46,7 @@
 
                     <div class="col-md-4 form-group ">
                         <label class="form-label">Date fin</label>
-                        <input type="date" name="fin"  {{old('fin')}} class="form-control" required="">
+                        <input type="date" name="fin"  value="{{old('fin')}}" class="form-control" required="">
                         @if ($errors->has('fin'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('fin') }}</strong>
@@ -105,7 +105,7 @@
                         <label class="form-label">Description de l'évenement
                             <span class="form-label-small"></span>
                         </label>
-                    <textarea id="event-content" name="contenu">{{old('contenu')}}</textarea>
+                    <textarea id="event-content" name="contenu">{!! old('contenu') !!}</textarea>
                         @if ($errors->has('contenu'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('contenu') }}</strong>

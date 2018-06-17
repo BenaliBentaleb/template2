@@ -18,8 +18,7 @@ class CreateCommentairesTable extends Migration
             $table->integer('publication_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('commentaire');
-            
-           
+            $table->integer('best_answer')->default('0');
             $table->timestamps();
         });
     }
