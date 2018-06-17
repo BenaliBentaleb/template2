@@ -17,22 +17,24 @@ $(document).ready(function () {
   height: 100
   });
 
+
+// initialize summernote
+$('#event-content').summernote({
+    height: 100
+});
+// and set code
+$('#event-content').summernote('code', contents);
                     
-
-                        // initialize summernote
-                        $('#event-content').summernote({
-                            height: 100
-                        });
-                        // and set code
-                        $('#event-content').summernote('code', contents);
-                    
-
+$('#pub-modifie').summernote({
+    height: 100
+});
+// and set code
+$('#pub-modifie').summernote('code', contents);
   
+});
 
 
-  });
 
-  
   var mixer = mixitup('.memoires',{
     multifilter: {
         enable: true // enable the multifilter extension for the mixer

@@ -503,6 +503,8 @@
                         <span class="role-prof">{{$role->nom}}</span>
                         @elseif($role->nom == "Gérant club")
                         <span class="role-club">{{$role->nom}}</span>
+                        @elseif($role->nom =="Etudiant")
+                        <span class="role-etud"> {{$role->nom}}</span>
                         @endif @endforeach
 
                     </li>

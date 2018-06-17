@@ -6,12 +6,14 @@
         {{ csrf_field() }}
         <input type="file" accept="image/*" name="cover" id="cover" style="display:none;">
         <div class="profile-cover" style="background:url({{asset($user->profile->coverture)}});background-size:cover;background-repeat:no-repeat;background-position:center center;background-attachment:fixed;">
+            @if($user->id == Auth::id())
             <div class="mask text-center">
                 <label for="cover">
                     <span class="uploader-photo" style="width:100%;margin-top:16px;">
                         <i class="icon-picture" style="margin-right:10px;"></i>Modifier photo de couverutre</span>
                 </label>
             </div>
+            @endif
         </div>
     </form>
 </div>
@@ -24,12 +26,14 @@
                     <input type="file" accept="image/*" name="profilepicture" id="profile-picture" style="display:none;">
                     <label for="profile-picture"></label>
                     <div class="profile-img" style="background-image:url({{asset($user->profile->photo_profile)}});background-size:cover;background-repeat:no-repeat;">
+                        @if($user->id == Auth::id())
                         <div class="upload-profile-picture text-center">
                             <label for="profile-picture" style="margin-top:86px;">
                                 <span class="uploader-photo">
                                     <i class="icon-picture" style="margin-right:10px;"></i>Modifie photo</span>
                             </label>
                         </div>
+                        @endif
                     </div>
                 </form>
                 <ul class="list-inline social-links text-center">
@@ -154,10 +158,10 @@
 </div>
 
 
-
+<div class="container">
 <div class="row">
     @if(count($publications)) @foreach($publications as $publication)
-    <div class="col-md-6" style="padding-left:0;">
+    <div class="col-md-6 pull-right" style="padding-left:0;">
 
         <div class="status">
             <div class="row">
@@ -265,7 +269,7 @@
     <h1 class="text-center">accune publication</h1>
     @endif
 </div>
-
+</div>
 <!-- action="{{route('user.profile.update',['id'=>Auth::id()])}}"-->
  <form   id="Register" method="post" >
     {{ csrf_field() }}

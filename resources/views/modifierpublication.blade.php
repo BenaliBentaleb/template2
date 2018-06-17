@@ -1,13 +1,18 @@
-@extends('admin.index') @section('admin')
+@extends('layouts.app') @section('content')
          
-            <div class="container d-flex justify-content-center mt-5">
-                <div class="col-md-9 ">
-                    <div class="card">
+<div class="row">
+        <div class="col-md-8">
+                    <div class="status" style="margin-top:0;padding:15px;">
                         <div class="card-header">
-                            <h3 class="card-title">Modifier status</h3>
-                         
-                            <h3 class="card-title ml-auto" >Publier dans : L1 - Tronc Commun</h3>
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="card-title">Modifier publication</h4>
+                                </div>
+                                     
+                                <div class="col-md-6">
+                                    <h4 class="card-title ml-auto" >Publier dans : @if(isset($publication->module->formation->nom)) {{ $publication->module->formation->nom }} @else NTICien - Général @endif</h4>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <form id="submit-modifier-publication"   action="{{route('publication.update',['id'=>$publication->id])}}" method="POST" enctype="multipart/form-data" >
@@ -21,10 +26,11 @@
                                     </div>
                                        
                                     
-                                    @if($publication->module_id)
+                                    
                                     <div class="col-md-4 form-group">
                                             <label>Module</label>
                                             <select  name ="module_id" class="form-control" style="margin-right:0;">
+                                                    @if($publication->module_id)
                                                     @foreach($publication->getModules($publication->module_id) as $key => $module )
                                                     <optgroup label="{{$key}}">
                                                             @foreach( $module as $m )
@@ -34,12 +40,17 @@
                                                       
                                                         </optgroup>
                                                         @endforeach
-                                                   
+
+                                                        @else
+                                                    <optgroup label="NTICien">
+                                                        <option value="">Général</option>
+                                                    </optgroup>
+                                                    @endif
                                                
                                             </select>
                                         </div>
 
-                                    @endif
+                                    
 
                                    
                                 </div>
@@ -47,7 +58,7 @@
                                    
 
                                         <!-- Past code here! -->
-                                       <textarea name="contenu" id="summernote"> {!! $publication->contenu !!}</textarea>
+                                       <textarea name="contenu" id="event-content"> {!! $publication->contenu !!}</textarea>
 
                                    
                                 </div>
@@ -60,7 +71,6 @@
                                         <li class="single-file">
                                             <span>{{$fichier->nom_fichier}}</span>
                                             <a href="{{route('file.remove',['id'=>$fichier->id])}}" class="download-file-link" style="float:right;">
-                                                <i class="icon-arrow-down-circle download-icon"></i>
                                                 <span style="font-size:16px;">&nbsp;Supprimer</span>
                                             </a>
                                         </li>
@@ -73,7 +83,7 @@
                             </form>
 
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer" style="margin-top:20px;">
                             <div class="btn-list text-right">
                                 <a href="{{route('publication.update',['id'=>$publication->id])}}" onclick=" event.preventDefault();
                                 document.getElementById('submit-modifier-publication').submit();" class="btn btn-primary">Sauvgarder</a>
