@@ -13,7 +13,7 @@
                     <div class="col-md-8 form-group">
                         <label>Titre de l'évenement</label>
                         <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
-                        <input type="text" name="titre"  {{old('titre')}} value="{{$event->titre}}" required="" class="form-control" placeholder="Titre ..">
+                        <input type="text" name="titre"  value="{{$event->titre}}" required="" class="form-control" placeholder="Titre ..">
                         @if ($errors->has('titre'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('titre') }}</strong>
@@ -41,7 +41,7 @@
                     <div class="col-md-4 form-group ">
                         <label class="form-label">Date debut</label>
                         <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
-                        <input type="date" name="debut" {{old('debut')}} value="{{$event->debut}}" class="form-control" required="">
+                        <input type="date" name="debut" value="{{$event->debut}}" class="form-control" required="">
                         @if ($errors->has('debut'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('debut') }}</strong>
@@ -52,7 +52,7 @@
                     <div class="col-md-4 form-group ">
                         <label class="form-label">Date fin</label>
                         <span style="color: rgb(248, 0, 0);">&nbsp;*</span>
-                        <input type="date" name="fin"  {{old('fin')}} value="{{$event->fin}}" class="form-control" required="">
+                        <input type="date" name="fin"   value="{{$event->fin}}" class="form-control" required="">
                         @if ($errors->has('fin'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('fin') }}</strong>
@@ -85,7 +85,7 @@
                         <span class="pull-right">
                             <span id="short-content-size">{{ 150 - strlen($event->description)  }}</span>/150</span>
                         <textarea id="short-content" onkeyup="countChar(this)" required=""  class="form-control" name="description" rows="3" placeholder="Content.."
-                            maxlength="150">{{old('description')}} {{ $event->description }}</textarea>
+                            maxlength="150"> {{ $event->description }}</textarea>
                             @if ($errors->has('description'))
                                         <span class="text-danger">
                                             <strong>{{ $errors->first('description') }}</strong>
@@ -108,7 +108,7 @@
                         <label class="form-label">Description de l'évenement
                             <span class="form-label-small"></span>
                         </label>
-                    <textarea id="event-content" name="contenu">{{old('contenu')}} {{ $event->contenu }}</textarea>
+                    <textarea id="event-content" name="contenu"> {{ $event->contenu }}</textarea>
                         @if ($errors->has('contenu'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('contenu') }}</strong>

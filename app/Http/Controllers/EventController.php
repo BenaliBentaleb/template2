@@ -97,7 +97,7 @@ class EventController extends Controller
                                           ->with('departements',Departement::all());                                    
     }
 
-     public function update($id,Request $request) {
+     public function update($id,EventRequest $request) {
         $event  =  Event::find($id);
         $event->user_id = Auth::id();
         $event->titre = $request->titre;

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BlogRequest;
 
 use App\Notifications\SignalerNotification;
+use App\Http\Requests\ModifierPublicationRequest;
 
 class PublicationController extends Controller
 {
@@ -132,7 +133,7 @@ class PublicationController extends Controller
      * @param  \App\Publication  $publication
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(ModifierPublicationRequest $request,$id)
     {
        $publication = Publication::find($id);
        if(!$publication) {
@@ -143,7 +144,7 @@ class PublicationController extends Controller
        $publication->module_id = $request->module_id;
        $publication->contenu = $request->contenu;
        $publication->save();
-       return  redirect()->back();
+       return  redirect('/home');
     }
 
     /**

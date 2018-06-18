@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Response;
 use App\Http\Requests\MemoireRequest;
-
+use App\Http\Requests\ModifierMemoireRequest;
 class PortailMemoireController extends Controller
 {
 
@@ -116,7 +116,7 @@ class PortailMemoireController extends Controller
                                             ->with('memoire',PortailMemoire::find($id));
     }
 
-    public function edit(Request $request,$id){
+    public function edit(ModifierMemoireRequest $request,$id){
 
         $memoire = PortailMemoire::find($id);
         $memoire->user_id = Auth::id();

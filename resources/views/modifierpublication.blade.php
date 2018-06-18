@@ -21,7 +21,12 @@
 
                                     <div class="col-md-8 form-group">
                                         <label>Titre</label>
-                                        <input type="text" name="titre" class="form-control" value="{{$publication->titre}}">
+                                        <input type="text" name="titre" class="form-control" value="{{$publication->titre}}" required>
+                                        @if ($errors->has('titre'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('titre') }}</strong>
+                                            </span>
+                                            @endif
 
                                     </div>
                                        
@@ -58,10 +63,15 @@
                                    
 
                                         <!-- Past code here! -->
-                                       <textarea name="contenu" id="event-content"> {!! $publication->contenu !!}</textarea>
+                                    <textarea name="contenu" id="event-content" required >{!! $publication->contenu !!}</textarea>
+                                  
+                                       
 
                                    
                                 </div>
+
+                        
+
                                 @if( count($publication->publication_avec_fichier))
                                 <div class="files-uploaded">
                                     <h4 class="files-uploaded-header">Les fichiers Télécharger</h4>
