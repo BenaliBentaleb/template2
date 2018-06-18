@@ -50,13 +50,27 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+        $messages = [
+            'nom.required' => 'Svp rempli le champ nom !',
+            'nom.regex' => 'Le champ nom doit etre une chaine de caractères !',
+            'prenom.required' => 'Svp rempli le champ prenom !',
+            'prenom.regex' => 'Le champ prenom doit etre une chaine de caractères !',
+
+            'email.required' => 'Svp rempli le champ email !',
+            'email.unique' => 'le champ email doit etre unique !',
+            'email.email' => 'Le format d\'email est invalide',
+            'password.required' => 'Svp rempli le champ mot de pass !',
+            'password.min' => 'Le mot de pass doit etre composé au moins de 6 caractères !',
+            'password.confirmed' => 'Le mot de pass doit etre identique !',
+        ];
         return Validator::make($data, [
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
+            'nom' => 'required|regex:/^[A-z]+$/|string|max:255',
+            'prenom' => 'required|regex:/^[A-z]+$/|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed'
             
-        ]);
+        ],$messages);
     }
 
     /**

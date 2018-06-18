@@ -261,14 +261,15 @@
         <div style="text-align:center;">
             <span>Status de module :&nbsp;</span>
             <span class="module">
-                <a href="index.html">$publication->module->nom</a>
+                <a href="{{route('publication.filtrer.module',['id'=>$publication->module_id])}}">{{$publication->module->nom}}</a>
                 <br>
             </span>
         </div>
         @endif
-
-        <sondage :pubcontenu="{{$publication}}" :authuser="{{Auth::user()}}"></sondage>
-
+        <div class="content">
+            {!! $publication->contenu !!}
+         <sondage :pubcontenu="{{$publication->id}}"  :authuser="{{Auth::user()}}"></sondage>
+        </div>
 
         <hr style="width:100%;">
 

@@ -1,8 +1,9 @@
 <template>
    
-            <div class="content">
-               
-                <div class="custom-controls-stacked" :id="'sondage-options'+pubcontenu">
+           
+           
+                <div>
+                  <div class="custom-controls-stacked" :id="'sondage-options'+pubcontenu">
 
                     <label class="custom-control custom-radio" v-for="sondage in sondages" :key="sondage.id">
                         <input type="radio" class="custom-control-input"
@@ -28,8 +29,9 @@
                  
    
                 </div>
+                </div>
              
-            </div>
+           
              
        
 </template>

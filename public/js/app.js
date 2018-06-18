@@ -69171,7 +69171,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69185,6 +69185,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sondageChoix_vue__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sondageChoix_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__sondageChoix_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(6);
+//
+//
 //
 //
 //
@@ -69527,7 +69529,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content" }, [
+  return _c("div", [
     _c(
       "div",
       {
@@ -69853,13 +69855,13 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(274)
+  __webpack_require__(247)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(249)
 /* template */
-var __vue_template__ = __webpack_require__(276)
+var __vue_template__ = __webpack_require__(250)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -69898,8 +69900,46 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 247 */,
-/* 248 */,
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(248);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("09e8d0c1", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e06a7abc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./unreadnotadmin.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e06a7abc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./unreadnotadmin.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.admin-noti[data-v-e06a7abc] {\r\n  cursor: pointer;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 249 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70017,7 +70057,93 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 250 */,
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    { staticClass: "dropdown", staticStyle: { "margin-top": "5px" } },
+    [
+      _c(
+        "a",
+        { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
+        [
+          _c("i", {
+            staticClass: "fe fe-alert-octagon",
+            staticStyle: { "font-size": "16px" }
+          }),
+          _vm._v(" "),
+          _vm.all_nots_count > 0
+            ? _c("span", { staticClass: "nav-unread" })
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-menu dropdown-menu-right dropdown-menu-arrow",
+          staticStyle: { width: "280px" }
+        },
+        [
+          _vm._l(_vm.all_not, function(notification) {
+            return _vm.all_nots_count > 0
+              ? _c(
+                  "a",
+                  {
+                    key: notification.id,
+                    staticClass: "dropdown-item d-flex",
+                    on: {
+                      click: function($event) {
+                        _vm.markAsRead(notification)
+                      }
+                    }
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "avatar mr-3 align-self-center",
+                      style: {
+                        backgroundImage:
+                          "url(" + notification.user.profile.photo_profile + ")"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", [
+                      _vm._v(
+                        "\n      " + _vm._s(notification.message) + "\n\n    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("br")
+                  ]
+                )
+              : _vm._e()
+          }),
+          _vm._v(" "),
+          _vm.all_nots_count === 0
+            ? _c("span", [_vm._v("Accune notification")])
+            : _vm._e()
+        ],
+        2
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e06a7abc", module.exports)
+  }
+}
+
+/***/ }),
 /* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -71531,142 +71657,6 @@ var index_esm = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(275);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("09e8d0c1", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e06a7abc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./unreadnotadmin.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e06a7abc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./unreadnotadmin.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 275 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.admin-noti[data-v-e06a7abc] {\r\n  cursor: pointer;\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 276 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "li",
-    { staticClass: "dropdown", staticStyle: { "margin-top": "5px" } },
-    [
-      _c(
-        "a",
-        { staticClass: "nav-link icon", attrs: { "data-toggle": "dropdown" } },
-        [
-          _c("i", {
-            staticClass: "fe fe-alert-octagon",
-            staticStyle: { "font-size": "16px" }
-          }),
-          _vm._v(" "),
-          _vm.all_nots_count > 0
-            ? _c("span", { staticClass: "nav-unread" })
-            : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "dropdown-menu dropdown-menu-right dropdown-menu-arrow",
-          staticStyle: { width: "280px" }
-        },
-        [
-          _vm._l(_vm.all_not, function(notification) {
-            return _vm.all_nots_count > 0
-              ? _c(
-                  "a",
-                  {
-                    key: notification.id,
-                    staticClass: "dropdown-item d-flex",
-                    on: {
-                      click: function($event) {
-                        _vm.markAsRead(notification)
-                      }
-                    }
-                  },
-                  [
-                    _c("span", {
-                      staticClass: "avatar mr-3 align-self-center",
-                      style: {
-                        backgroundImage:
-                          "url(" + notification.user.profile.photo_profile + ")"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("span", [
-                      _vm._v(
-                        "\n      " + _vm._s(notification.message) + "\n\n    "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("br")
-                  ]
-                )
-              : _vm._e()
-          }),
-          _vm._v(" "),
-          _vm.all_nots_count === 0
-            ? _c("span", [_vm._v("Accune notification")])
-            : _vm._e()
-        ],
-        2
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e06a7abc", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
