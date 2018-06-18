@@ -127,10 +127,12 @@
 
                 </ul>
                 <div>
+                    @if($user->profile->information)
                     <span style="font-size:16px;font-weight:bold;">&nbsp;A propos :</span>
                     <p>{{$user->profile->information}}
                         <br>
                     </p>
+                    @endif
                     <div style="margin-bottom:10px;">
                         <h4 style="font-size:16px;font-weight:bold;">Informations personnels :</h4>
                         <div style="margin-top:5px;margin-bottom:5px;">

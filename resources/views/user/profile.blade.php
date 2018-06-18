@@ -390,7 +390,7 @@
                             <div class="col-md-6">
                                 <label for="numero_telephone">Numéro de téléphone :</label>
                                 <div class="form-group ">
-                                    <input type="number" name="numero_telephone" value ="{{$user->profile->telephone}}" value="{{ old('numero_telephone') }}" placeholder="Numéro de téléphone" id="numero_telephone" class="form-control">
+                                    <input type="text"  pattern="[0]{1}[5-7]{1}-[4-9]{1}[0-9]{1}-[0-9]{1}[0-9]{1}-[0-9]{1}[0-9]{1}-[0-9]{1}[0-9]{1}" title="format 0x-xx-xx-xx-xx" name="numero_telephone" value ="{{$user->profile->telephone}}"{{--  value="{{ old('numero_telephone') }}" --}} placeholder="Numéro de téléphone" id="numero_telephone" class="form-control" required>
                                   
                                     <span class="text-danger">
                                         <strong id="numero_telephone-error"></strong>
@@ -451,7 +451,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    <button type="button" id ="submitForm"class="btn btn-success" data-id="{{Auth::id()}}">Enregistrer</button>
+                    <button type="button" id ="submitForm" class="btn btn-success" data-id="{{Auth::id()}}">Enregistrer</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
                 </form> 
 </div>

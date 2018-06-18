@@ -25,7 +25,7 @@ class Profile extends Model
    public static  function rules(){
     return [
         'formation' => 'required',
-        'numero_telephone' => 'required|numeric|digits:10',
+        'numero_telephone' => 'numeric|digits:10',
         'facebook' => 'url',
         'twitter' => 'url',
         'instagram' => 'url',
