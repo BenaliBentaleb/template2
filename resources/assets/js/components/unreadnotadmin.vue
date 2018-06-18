@@ -2,10 +2,10 @@
     <li class="dropdown" style="margin-top: 5px;">
       <a class="nav-link icon" data-toggle="dropdown">
         <i class="fe fe-alert-octagon" style="font-size:16px;"></i>
-        <span class="nav-unread" ><!-- {{ all_nots_count }} --></span>
+        <span class="nav-unread" v-if="all_nots_count > 0"></span>
       </a>
-      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="width: 280px;" v-if="all_nots_count > 0">
-      <a @click="markAsRead(notification)" class="dropdown-item d-flex" v-for="notification in all_not" :key="notification.id">
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" style="width: 280px;" >
+      <a  v-if="all_nots_count > 0" @click="markAsRead(notification)" class="dropdown-item d-flex" v-for="notification in all_not" :key="notification.id">
         <span class="avatar mr-3 align-self-center" v-bind:style="{backgroundImage: 'url('+ notification.user.profile.photo_profile +')'}"></span>
          <span>
           {{ notification.message }}
@@ -14,6 +14,7 @@
         <br>
         
       </a>
+      <span v-if="all_nots_count === 0">Accune notification</span>
       
       </div>
     </li>
@@ -115,5 +116,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.admin-noti {
+  cursor: pointer;
+}
 </style>

@@ -263,7 +263,7 @@
                             </ul>
                         </div>
                     </div>
-                    <h3 class="status-title">{{$publication->titre}}</h3>
+                    <h3 class="status-title"><a href="{{route('publication.single',['slug'=>$publication->slug])}}" style="color:black">{{$publication->titre}}</a></h3>
                     <hr>
                     <div style="text-align:center;">
                             <span>

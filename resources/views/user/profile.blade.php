@@ -236,7 +236,9 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-            <h3 class="status-title" style="margin-top:10px;">{{$publication->titre}}
+           
+                <h3 class="status-title" style="margin-top:10px;"><a href="{{route('publication.single',['slug'=>$publication->slug])}}" style="color:black">{{$publication->titre}}</a></h3>
+
                 <br>
             </h3>
             <hr>

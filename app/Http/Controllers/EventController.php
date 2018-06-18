@@ -42,8 +42,23 @@ class EventController extends Controller
 
     public function show($formation){
         //dd($formation);
+
+        if(Auth::user()->isAdmin()) {
+            //if($role->nom == "Administrateur" || $role->nom == "Enseignant" || $role->nom == "Gérant club" ){
+                if($formation == "NTICIEN"){
+                    //$formation_clicked = Formation::where('nom','=',$formation)->first();
+                    //dd($formation_clicked->id);
+                    return view('evenement-ajouter')->with('formation_clicked','NTICIEN');
+                }else{
+                    $formation_clicked = Formation::where('nom','=',$formation)->first();
+                    //dd($formation_clicked->id);
+                    return view('evenement-ajouter')->with('formation_clicked',$formation_clicked);
+                }
+                
+           // }   
+        }
         foreach(Auth::user()->roles as $role){
-            if($role->nom == "Administrateur" || $role->nom == "Enseignant" || $role->nom == "Gérant club" ){
+            if( $role->nom == "Enseignant" || $role->nom == "Gérant club" ){
                 if($formation == "NTICIEN"){
                     //$formation_clicked = Formation::where('nom','=',$formation)->first();
                     //dd($formation_clicked->id);
@@ -55,7 +70,7 @@ class EventController extends Controller
                 }
                 
             }            
-            break; 
+            continue; 
         }
        
         return redirect()->route('home');

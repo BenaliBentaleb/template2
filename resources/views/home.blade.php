@@ -253,7 +253,7 @@
             </div>
         </div>
         <h3 class="status-title">
-            <br>{{$publication->titre}}
+            <br><a href="{{route('publication.single',['slug'=>$publication->slug])}}" style="color:black">{{$publication->titre}}</a>
             <br>
             <br>
         </h3>
@@ -339,7 +339,7 @@
 
         </div>
         <h3 class="status-title">
-            <br>{{$publication->titre}}
+        <br> <a href="{{route('publication.single',['slug'=>$publication->slug])}}" style="color:black">{{$publication->titre}}</a>
             <br>
             <br>
         </h3>
@@ -387,7 +387,7 @@
             <ul class="list-unstyled files-list">
                 @foreach($publication->publication_avec_fichier as $fichier)
                 <li class="single-file">
-                    <span>{{$fichier->nom}}</span>
+                    <span>{{$fichier->nom_fichier}}</span>
                 <a  href="{{route('file.download',['id'=>$fichier->id])}}"  type="button"
                          class="download-file-link" style="float:right;">
                         <i class="icon-arrow-down-circle download-icon"></i>
@@ -471,7 +471,7 @@
                         @endif
         </a>
         <div id="event-collapse{{$event->id}}" class="collapse in">
-            <p>{{ $event->description}}
+            <p> {{$event->description}}
                 <br>
             </p>
             <div style="font-size:15px;">

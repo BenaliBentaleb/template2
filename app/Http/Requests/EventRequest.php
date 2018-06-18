@@ -29,7 +29,6 @@ class EventRequest extends FormRequest
             'titre' => 'required|string',
             'event_role' => 'required',
             'description' => 'required',
-            'contenu' => 'required',
             'debut' => 'required|date|date_format:Y-m-d|after:yesterday',
             'fin' => 'required|date|date_format:Y-m-d|after_or_equal:debut'
             
@@ -46,7 +45,6 @@ class EventRequest extends FormRequest
             'titre.required' => 'Svp rempli  le champ titre.',
             'event_role.required' => 'Svp rempli le champ role.',
             'description.required' => 'Svp rempli  le champ description.',
-            'contenu.required' => 'Svp rempli  le champ contenu.',
             'debut.required' => 'Svp rempli  le champ date debut.',
             'fin.required' => 'Svp rempli  le champ date fin.',
             'debut.after' => 'date debut doit etre d aujourdhui ou superieur.',

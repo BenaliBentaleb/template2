@@ -129,6 +129,24 @@ class CommentaireController extends Controller
        return $comment;
     }
 
+    public function best_answer($id) {
+        $comment = Commentaire::find($id);
+        $comment->best_answer = 1 ;
+        $comment->save();
+        return $comment; 
+    } 
+
+    public function check_best_answer($id) {
+        $faq = Publication::find($id);
+        // check if faq has best answer 
+        foreach($faq->commentaires as $c) {
+            if($c->best_answer) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
     /**
      * Remove the specified resource from storage.
      *

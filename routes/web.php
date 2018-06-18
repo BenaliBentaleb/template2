@@ -10,10 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-
+/*
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('homeAnauth');
+});*/
+
+Route::get('/',[
+'uses'=>'HomeController@WithoutAuth'
+]);
 
 Auth::routes();
 
@@ -221,6 +225,15 @@ Route::post('/commentaire/update/{id}/{comment}', [
 Route::get('/commentaire/delete/{id}',[
     'uses'=>'commentaireController@delete'
 ]);
+
+Route::get('/commentaire/bestAswer/{id}',[
+    'uses'=>'commentaireController@best_answer'
+]);
+
+Route::get('/check/if/faq/has/bestAnswer/{id}',[
+    'uses'=>'commentaireController@check_best_answer'
+]);
+
 Route::get("/allcomment/{id}", [
     'uses' => 'commentaireController@allcomment',
 ]);

@@ -48,6 +48,17 @@
             <br>
           </p><span class="btn btn-blue" v-if="comment.user.id === id" @click="deleteComment(comment.id)">Supprimer</span>
           <span class="btn btn-blue" v-if="comment.user.id === id" @click="EditComment(comment.id,comment.commentaire)">Edite</span>
+          
+
+          <span v-if="comment.publication.type === 'FAQ' && isBestAnswer === 1 ">
+            <span class="btn btn-blue " style="color:green"  v-if=" comment.best_answer === 1 " 
+             >best answer</span>
+
+
+          </span>
+             <span class="btn btn-blue "
+                @click="bestAnswer(comment.id)" v-if="comment.publication.type === 'FAQ' && isBestAnswer === 0 " >best answer</span>
+
 
           <jaimecomment :comment="comment.id" :id_user="id" ></jaimecomment>
 
@@ -98,7 +109,9 @@ export default {
       moment: moment,
       isNewComment: true,
       editedComment: "",
-      idEditComment: ""
+      idEditComment: "",
+      isBestAnswer:'',
+      idBestanswer:''
     };
   },
   notifications: {
@@ -114,9 +127,18 @@ export default {
     this.listen();
     this.getcommentaire;
     this.getJaimeCommentaire;
+    this.checkIfFaqHasBestAnswer();
   },
 
   methods: {
+
+
+    checkIfFaqHasBestAnswer() {
+        axios.get(`/check/if/faq/has/bestAnswer/${this.publication}`).then(response => {
+          console.log(response);
+          this.isBestAnswer = response.data;
+        });
+    },
     commenter() {
       if (this.commentaire.trim()) {
         axios
@@ -128,13 +150,29 @@ export default {
           .then(response => {
             this.commentaires.push(response.data);
             this.commentaire = "";
-            console.log(this.commentaires);
+            console.log('new comment');
+            
+            console.log(response.data);
           })
           .catch(err => {
             console.log(err);
           });
       }
     },
+
+    bestAnswer(id) {
+      console.log(id);
+      axios.get(`/commentaire/bestAswer/${id}`).then(response => {
+        console.log(response);
+        this.isBestAnswer = 1;
+        this.idBestanswer = id;
+        let bestAnswer  =  this.commentaires.find(val => val.id === id);
+        bestAnswer.best_answer = 1;
+
+      });
+      
+    },
+
 
     updateComment() {
       if (this.commentaire.trim()) {
@@ -166,6 +204,10 @@ export default {
           this.commentaires.forEach((value, key) => {
             if (value.id === id) {
               this.commentaires.splice(key, 1);
+              // 
+            }
+            if(this.idBestanswer == value.id) {
+              this.isBestAnswer = 0;
             }
           });
         })
