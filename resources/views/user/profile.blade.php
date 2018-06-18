@@ -59,24 +59,28 @@
                     </li>
                 </ul>
 
-                     @if(Auth::id() == $user->id)
-                   <button class="btn btn-primary btn-block modify-profile" type="button" style="width:75%;margin:0 auto;" data-toggle="modal"
-                    data-target=".modify-profile-modal">
-                    <i class="icon-pencil">
-                        Modifier profile
-                    </i>
+<div style="margin-bottom:20px;">
 
-                  
-                    </button>   
-                    @endif    
-                
-                <!-- <modifierprofile :user_id="{{$user->id}}"></modifierprofile>-->
-                @if(Auth::id() != $user->id)
-               
-                <amie :profile_user_id="{{$user->id}}"></amie>
-                @endif
-              
 
+        @if(Auth::id() == $user->id)
+        <button class="btn btn-primary btn-block modify-profile" type="button" style="width:75%;margin:0 auto;" data-toggle="modal"
+         data-target=".modify-profile-modal">
+         <i class="icon-pencil">
+             Modifier profile
+         </i>
+
+       
+         </button>   
+         @endif    
+     
+     <!-- <modifierprofile :user_id="{{$user->id}}"></modifierprofile>-->
+     @if(Auth::id() != $user->id)
+    
+     <amie :profile_user_id="{{$user->id}}"></amie>
+     @endif
+   
+
+</div>
                <!-- <button class="btn btn-danger btn-block" type="button" style="width:75%;margin:5px auto;">
                     <i class="icon-user-unfollow"></i>Supprimer
                 </button>-->
@@ -88,6 +92,8 @@
                 <h2>{{$user->nom.' '. $user->prenom}}</h2>
                 @if($formation_user)
                 <h5>{{ $formation_user->nom}}</h5>
+                @else
+                <h5>Étudiant extérieur</h5>
                 @endif
                 <ul style="padding-left:0;">
                     @foreach($user->roles as $role) @if($role->nom == "Administrateur")
@@ -104,28 +110,37 @@
 
                 </ul>
                 <div>
-                    <span style="font-size:16px;font-weight:bold;">&nbsp;A propos :</span>
-                    <p>{{$user->profile->information}}
-                        <br>
-                    </p>
+                    @if(isset($user->profile->information))
+                        <span style="font-size:16px;font-weight:bold;">&nbsp;A propos :</span>
+                        <p>{{$user->profile->information}}
+                            <br>
+                        </p>
+                    @endif
                     <div style="margin-bottom:10px;">
                         <h4 style="font-size:16px;font-weight:bold;">Informations personnels :</h4>
                         <div style="margin-top:5px;margin-bottom:5px;">
                             <span style="font-weight:bold;">Email :&nbsp;</span>
                             <span>{{$user->profile->email}}</span>
                         </div>
+                        @if(isset($user->profile->telephone))
                         <div style="margin-bottom:5px;">
                             <span style="font-weight:bold;">Numéro de téléphone :&nbsp;</span>
-                            <span>+213-{{$user->profile->telephone}}</span>
+                            <span>(+213)&nbsp;{{$user->profile->telephone}}</span>
                         </div>
+                        @endif
+
+                        @if(isset($user->profile->date_naissance))
                         <div style="margin-bottom:5px;">
                             <span style="font-weight:bold;">Date de naissance :&nbsp;</span>
                             <span>{{$user->profile->date_naissance}}</span>
                         </div>
+                        @endif
+                        @if(isset($user->profile->addresse))
                         <div>
                             <span style="font-weight:bold;">Adresse :&nbsp;</span>
                             <span>{{$user->profile->addresse}}.</span>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -266,7 +281,7 @@
 
     </div>
     @endforeach @else
-    <h1 class="text-center">accune publication</h1>
+    <h1 class="text-center">aucune publication</h1>
     @endif
 </div>
 </div>
@@ -373,7 +388,7 @@
                             <div class="col-md-6">
                                 <label for="numero_telephone">Numéro de téléphone :</label>
                                 <div class="form-group ">
-                                    <input type="text" name="numero_telephone" value ="{{$user->profile->telephone}}" value="{{ old('numero_telephone') }}" placeholder="Numéro de téléphone" id="numero_telephone" class="form-control">
+                                    <input type="number" name="numero_telephone" value ="{{$user->profile->telephone}}" value="{{ old('numero_telephone') }}" placeholder="Numéro de téléphone" id="numero_telephone" class="form-control">
                                   
                                     <span class="text-danger">
                                         <strong id="numero_telephone-error"></strong>
@@ -395,24 +410,39 @@
                                     </span>
                                     <input type="url" name="facebook" placeholder="Lien de votre profile Facebook" value="{{$user->profile->facebook}}" class="form-control" aria-describedby="facebook-input">
                                 </div>
+                                <span class="text-danger">
+                                    <strong id="facebook-error"></strong>
+                                </span>
                                 <div class="input-group form-group ">
                                     <span id="twitter-input" class="input-group-addon">
                                         <i class="fa fa-twitter"></i>
                                     </span>
                                     <input type="url" name="twitter" placeholder="Lien de votre profile Twitter "  value="{{$user->profile->twitter}}" class="form-control" aria-describedby="facebook-input">
+                                   
                                 </div>
+                                <span class="text-danger">
+                                    <strong id="twitter-error"></strong>
+                                </span>
                                 <div class="input-group form-group ">
                                     <span id="insta-input" class="input-group-addon">
                                         <i class="fa fa-instagram"></i>
                                     </span>
                                     <input type="url" name="instagram" placeholder="Lien de votre profile Instagram"  value="{{$user->profile->instagram}}" class="form-control" aria-describedby="facebook-input">
+                                    
                                 </div>
+                                <span class="text-danger">
+                                    <strong id="instagram-error"></strong>
+                                </span>
                                 <div class="input-group form-group ">
                                     <span id="youtube-input" class="input-group-addon">
                                         <i class="fa fa-youtube"></i>
                                     </span>
                                     <input type="url" name="youtube" value="{{$user->profile->youtube}}" placeholder="Lien de votre chaine Youtube" class="form-control" aria-describedby="facebook-input">
+                                    
                                 </div>
+                                <span class="text-danger">
+                                    <strong id="youtube-error"></strong>
+                                </span>
                             </div>
                         </div>
                     </div>

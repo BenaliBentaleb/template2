@@ -54,8 +54,8 @@ class RegisterController extends Controller
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'formation_id' => 'required'
+            'password' => 'required|string|min:6|confirmed'
+            
         ]);
     }
 
@@ -67,21 +67,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //dd($data);
         $user =  User::create([
             'nom' => $data['nom'],
             'prenom' => $data['prenom'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'formation_id' => $data['formation_id']
+            'password' => bcrypt($data['password'])
+            /* 'formation_id' => $data['formation_id'] */
              
         ]);
         
         Profile::create([
             'user_id' =>  $user->id,
-            'photo_profile'=> '/uploads/avatars/1526153957mal.png',
-            'coverture' => null,
+            'photo_profile'=> '/uploads/avatars/1529122477av4.png',
+            'coverture' => 'uploads/covertures/1529275249slider3.png',
             'information' => null,
-            'formation_id'=>null,
+            'formation_id'=> $data['formation_id'],
             'email' =>$user->email,
             'telephone'=>null,
             'date_naissance'=>null,

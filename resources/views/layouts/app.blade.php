@@ -352,6 +352,7 @@
             success:function(data) {
                 //console.log(data.errors.addresse[0]);
                 if(data.errors) {
+                    
                     if(data.errors.addresse){
                         $( '#addresse-error' ).text( data.errors.addresse[0] );
                     }
@@ -367,6 +368,20 @@
                     if(data.errors.informations){
                         $( '#informations-error' ).html( data.errors.informations[0] );
                     }
+
+                    if(data.errors.facebook){
+                        $( '#facebook-error' ).html( data.errors.facebook[0] );
+                    }
+                    if(data.errors.instagram){
+                        $( '#instagram-error' ).html( data.errors.instagram[0] );
+                    }
+                    if(data.errors.youtube){
+                        $( '#youtube-error' ).html( data.errors.youtube[0] );
+                    }
+                    if(data.errors.twitter){
+                        $( '#twitter-error' ).html( data.errors.twitter[0] );
+                    }
+
                     console.log(data.errors);
                 }
               if(data.success) {

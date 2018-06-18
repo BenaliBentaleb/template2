@@ -69,9 +69,9 @@
         <div class="form-group">
                 
                 <select name="formation_id" class="form-control custom-select" required>
-                    <option value="Formation" selected disabled></option>
+                    
                     <optgroup label="NTICien" >
-                        <option value="" selected >Etudiant exterieur</option>
+                        <option value="" selected >Étudiant extérieur</option>
                     </optgroup>
                     @foreach($departements as $departement)
                         <optgroup label="Déprartement : {{ $departement->nom }}">
