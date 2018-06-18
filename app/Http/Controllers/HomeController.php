@@ -8,6 +8,7 @@ use App\Publication;
 use App\PublicationFichier;
 use App\Semestre;
 use App\Event;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class HomeController extends Controller
     {
 
         $departement = Departement::all();
-        $publications = Publication::where('signaler', 0)->orderBy('created_at', 'desc')->simplePaginate(5);
+        $publications = Publication::where('signaler', 0)->orderBy('created_at', 'desc')->simplePaginate(15);
         $events = Event::whereNull('formation_id')->get();
         //dd($events->all());
         //dd($events);
@@ -46,7 +47,7 @@ class HomeController extends Controller
 
     public function WithoutAuth()
     {
-        $publications = Publication::where('signaler', 0)->where('type','<>', 'Sondage')->orderBy('created_at', 'desc')->simplePaginate(2);
+        $publications = Publication::where('signaler', 0)->where('type','<>', 'Sondage')->orderBy('created_at', 'desc')->simplePaginate(15);
         $events = Event::whereNull('formation_id')->get();
         // $semestre = Semestre::all();
         return view('homeAnauth')->with('publications', $publications)->with('events', $events);
@@ -115,6 +116,15 @@ class HomeController extends Controller
     public function NumberOfdownload($id) {
         $fichier = PublicationFichier::find($id);
         return $fichier->counter;
+    }
+
+    public function modify_password($id,Request $request) {
+        
+        $user = User::find($id);
+        $user->password = bcrypt($request->password);
+        $user->save();
+        //Auth::loginUsingId($user->id);
+        return redirect()->to('/home');
     }
 
     /* public function notifications()
