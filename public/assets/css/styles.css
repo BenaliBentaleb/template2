@@ -3012,3 +3012,27 @@ a:hover, a:focus {
   color: #216a94;
   text-decoration: none;
 }
+#facebook-input {
+  background: #3b5998;
+  color: #fff;
+  border: none;
+}
+
+#youtube-input {
+  background: #cd201f;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+}
+
+#insta-input {
+  background: #e4405f;
+  color: #fff;
+  border: none;
+}
+
+#twitter-input {
+  background: #55acee;
+  color: #fff;
+  border: none;
+}
