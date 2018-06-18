@@ -25,11 +25,11 @@ class Profile extends Model
    public static  function rules(){
     return [
         'formation' => 'required',
-        'numero_telephone' => 'numeric|digits:10',
-        'facebook' => 'url',
-        'twitter' => 'url',
-        'instagram' => 'url',
-        'youtube' => 'url'
+        'numero_telephone' => 'nullable|numeric|digits:10',
+        'facebook' => 'nullable|url',
+        'twitter' => 'nullable|url',
+        'instagram' => 'nullable|url',
+        'youtube' => 'nullable|url'
         
     ];
 }
@@ -38,7 +38,6 @@ class Profile extends Model
     return [
         'addresse.required' => 'Le champ Adresse est vide !',
         'formation.required' => 'Le champ Formation est vide !',
-        'numero_telephone.required' => 'Le champ Numéro de téléphone est vide !',
         'numero_telephone.numeric' => 'Le Numéro de téléphone doit etre numerique !',
         'numero_telephone.digits' => 'Le numéro de téléphone doit être composé de 10 chiffres !',
         'date_naissance.required' => 'Le champ Date de naissance est vide !',

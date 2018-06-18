@@ -437,7 +437,7 @@
                 
                 <div class="col-md-3">
                   
-                    <h4 class="text-center">Les évènements</h4>
+                    <h4 class="text-center" style="margin-top: 0">Les évènements</h4>
                     <h4  class="text-center"><strong>NTICien - Général</strong></h4>
                     @if(count($events) == 0)
                     <div class="alert alert-warning" role="alert">Pas d'évenements partagé pour le moment</div>

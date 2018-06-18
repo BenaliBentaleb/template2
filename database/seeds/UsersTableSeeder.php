@@ -44,32 +44,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
 
-        $user3 = App\User::create([
-            'nom' => 'Benali',
-            'prenom' =>'Djamel',
-            'email' => 'd@gmail.com',
-            'password' => bcrypt('123456')
-        ]);
-
-       App\Profile::create([
-            'user_id' => $user3->id,
-            'photo_profile'=> 'assets/img/team-1-copyright-485x598.jpg',
-            'telephone' => '066666666',
-            'formation_id' =>1,
-            'coverture' =>'assets/img/header.png',
-            'information' => 'Lorem ipsum dolor sit amet consecteturae quod velit quo aut aperiam iste',
-            'facebook' => 'facebook.com',
-            'youtube' =>'youtube.com',
-            'instagram' =>'instagram.com',
-            'twitter' =>'twitter.com'
-        ]);
-
-
-        App\Role::create([
-            'user_id'=> $user3->id,
-            'nom' =>'Administrateur'
-        ]);
-
+      
       
 
         $user2 = App\User::create([

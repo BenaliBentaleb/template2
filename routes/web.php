@@ -393,13 +393,24 @@ Route::get('/memoire/download/{id}/{number}',[
 Route::get('/memoire/numbre/download/{id}',[
     'uses'=>'PortailMemoireController@count',
     'as'=>'download.memoire.number'
-])->middleware('auth');;
+])->middleware('auth');
 
 Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
 Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
 Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
 Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
 
+
+/*google*/
+Route::get('/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/callback', 'SocialAuthGoogleController@callback');
+
+Route::post('/modify/password/{id}', [
+'uses' => 'HomeController@modify_password',
+'as'=> 'modify.password'
+]);
+
+/*fin google*/
 
 
 
