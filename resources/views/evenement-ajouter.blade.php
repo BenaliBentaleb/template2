@@ -89,17 +89,6 @@
                                         </span>
                                         @endif
 
-                        <script type="text/javascript">
-                            function countChar(val) {
-                                var len = val.value.length;
-                                if (len >= 150) {
-                                    val.value = val.value.substring(0, 150);
-                                } else {
-                                    $('#short-content-size').text(150 - len);
-                                }
-                            };
-                        </script>
-
                     </div>
                     <div class=" col-md-12 form-group">
                         <label class="form-label">Description de l'évenement

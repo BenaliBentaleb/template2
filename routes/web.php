@@ -107,7 +107,7 @@ Route::get('/formation/{nom}', [
     'as' => 'formation',
 ])->middleware('auth');
 
-Route::get('/withoutAuthformation/{nom}', [
+Route::get('/formation/{nom}/withoutAuthformation', [
     'uses' => 'HomeController@without_auth_modules',
     'as' => 'formationWithoutAuth',
 ]);

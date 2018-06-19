@@ -150,7 +150,7 @@
 
 </div>
 
-<div class="row pub-header" style="margin-top:20px;">
+<div class="row pub-header" style="margin-top:20px;margin-bottom:20px;">
     <div class="col-sm-8" style="margin-bottom:10px;">
         <h4 style="display:inline-block;margin-top:20px;margin-bottom:0px;">Les publication partagé par :&nbsp;</h4>
         <h4 style="display:inline-block;margin-top:0px;">{{$user->nom.' '.$user->prenom }}</h4>
@@ -242,22 +242,78 @@
                 <br>
             </h3>
             <hr>
-            <div style="text-align:center;">
-
-
-                <span>Status Generale</span>
-
-            </div>
+            @if($publication->module_id)
+                        <div style="text-align:center;">
+                                <span>
+                                        @if($publication->type =="Sondage")
+                                        Sondage
+                                        @elseif($publication->type =="FAQ")
+                                        FAQ
+                                        @elseif($publication->type =="Status")
+                                        Status
+                                        @else
+                                        Tutoriel
+                                        @endif
+                                        de module :&nbsp;
+                                </span>
+                            <span class="module">
+                                <a href="{{route('publication.filtrer.module',['id'=>$publication->module_id])}}">{{$publication->module->nom}}</a>
+                                <br>
+                            </span>
+                        </div>
+                        @else
+                        <div style="text-align:center;">
+                            <span>Status Generale</span>
+                
+                        </div>
+                        @endif
             <div>
                 <div class="content">{!! $publication->contenu !!}
                     <br>
                 </div>
+                @if($publication->type =="FAQ")               
+                            <div class="files-uploaded" style="border: 2px solid #50d093;">
+                                    <h4 class="files-uploaded-header text-center" style="background-color:#50d093"><span style="color:#fff;">Meilleur réponse</span></h4>
+                                    <div class="list-unstyled files-list">                                                         
+                                            @foreach($publication->commentaires as $comment)
+                                                @if($comment->best_answer == 1)
+                                                <div class="single-file text-center" style="margin-bottom:20px;" >
+                                                    <span class="text-center">
+                                                            <div style="margin:10px">
+                                                                    <a href="{{route('user.profile',['id'=>$comment->user_id])}}">
+                                                                        <img class="avatar avatar-lg" style="background-image:url({{asset($comment->user->profile->photo_profile)}});">
+                                                                    </a>
+                                                                    <ul class="list-unstyled publisher-info" style="margin-left:10px;display:inline-block;">
+                                                                        <li>
+                                                                            <a href="{{route('user.profile',['id'=>$comment->user_id])}}" >
+                                                                                <strong>{{$comment->user->nom . ' ' . $comment->user->prenom }}</strong>
+                                                                            </a>
+                                                                            <span >
+                                                                                {{$comment->created_at->diffForHumans()}}
+                                                                            </span>
+                                                                        </li>
+                                                                        
+                                                                    </ul>
+                                                                </div>
+                                                        <span class="text-center" >
+                                                            {{ $comment->commentaire }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                @break
+                                                @endif
+                                           
+                                            @endforeach
+            
+                                    </div>
+                                </div>
+                            @endif
                 
             </div>
 
             @if( count($publication->publication_avec_fichier))
             <div class="files-uploaded">
-                <h4 class="files-uploaded-header">Les fichiers Télécharger</h4>
+                <h4 class="files-uploaded-header text-center"><span style="color:#fff;">Les fichiers Télécharger</span></h4>
                 <ul class="list-unstyled files-list">
                     @foreach($publication->publication_avec_fichier as $fichier)
                     <li class="single-file">

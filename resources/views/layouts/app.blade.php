@@ -59,7 +59,7 @@
       
         .panel-body {
           overflow-y: scroll;
-          height: 350px;
+          height: 427px;
         }
       
         ::-webkit-scrollbar-track {
@@ -88,7 +88,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                    <a class="navbar-brand navbar-image" href="{{route('home')}}" style="margin-left:0px;"></a>
+                    <a class="navbar-brand navbar-image" href="{{route('home')}}"></a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -112,28 +112,44 @@
 
                     @guest
 
-                    <a class="navbar-link navbar-right" href="{{ route('login') }}">S'authentifier</a>
-                    <a class="navbar-link navbar-right inscrire-btn" href="{{ route('register') }}">S'inscrire</a>
 
+                    <ul class="nav navbar-nav navbar-right visible-xs">
+                            <li>
+                                <a class="btn btn-deult navbar-link navbar-right" href="{{ route('login') }}">S'authentifier</a>
+                            </li>
+                            <li>
+                                <a class="navbar-link navbar-right inscrire-btn" href="{{ route('register') }}">S'inscrire</a>
+                            </li>
+                    </ul>
                     @else
 
 
                     <ul class="nav navbar-nav navbar-right">
                             @auth
-                            <li>
+                            <li class="hidden-xs">
                                 <a href="/chat" class="btn btn-default navbar-btn chat-btn" >
                                     <i class="icon-bubbles"></i>
                                 </a>
                             </li>
+                            <li class="visible-xs">
+                                    <a href="/chat" class="btn btn-default navbar-btn chat-btn" >
+                                        <i class="icon-bubbles"></i> &nbsp;Discussion instantané
+                                    </a>
+                                </li>
                             <li><notification   :id_auth="{{ Auth::id() }}" ></notification> </li> 
                            <unreadnot></unreadnot>
                             @if(Auth::user()->isAdmin())
                             <unreadnotadmin></unreadnotadmin>
-                            <li>
+                            <li class="hidden-xs">
                                 <a href="{{route('admin.index')}}" class="btn btn-default navbar-btn admin-btn" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
                                     <i class="fe fe-settings"></i>
                                 </a>
                             </li>
+                            <li class="visible-xs">
+                                    <a href="{{route('admin.index')}}" class="btn btn-default navbar-btn admin-btn" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
+                                        <i class="fe fe-settings"></i>&nbsp;Control Panel
+                                    </a>
+                                </li>
                             @endif
                         
                            
@@ -294,7 +310,14 @@
     <script src="{{ asset('assets/js/mixitup-multifilter.min.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <script type="text/javascript">
-
+        function countChar(val) {
+                            var len = val.value.length;
+                        if (len >= 150) {
+                        val.value = val.value.substring(0, 150);
+                } else {
+                     $('#short-content-size').text(150 - len);
+                }
+        };
           $('#profile-picture').change(function() {
     $('#profile-picture-form').submit();
   });

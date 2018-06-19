@@ -42,14 +42,20 @@
         <div>
                 <nav class="navbar navbar-default navigation-clean-search navbar-fixed-top">
                     <div class="container">
-                        <div class="navbar-header"><a class="navbar-brand navbar-image" href="{{route('WithoutAuth')}}" style="margin-left:0px;"></a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
-                        <div
-                            class="collapse navbar-collapse" id="navcol-1">
-                        
-                            <form class="navbar-form navbar-left" target="_self">
-                            </form>
-                            <a class="navbar-link navbar-right inscrire-btn" href="{{ route('register') }}">S'inscrire</a>
-                            <a class="navbar-link navbar-right" href="{{ route('login') }}">S'authentifier</a></div>
+                        <div class="navbar-header"><a class="navbar-brand navbar-image" href="{{route('WithoutAuth')}}" ></a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                        <div class="collapse navbar-collapse" id="navcol-1">
+                
+                                <a class="navbar-link navbar-right inscrire-btn hidden-xs" href="{{ route('register') }}">S'inscrire</a>
+                                <a class="navbar-link navbar-right hidden-xs" href="{{ route('login') }}">S'authentifier</a>
+                                <ul class="navbar-link  visible-xs list-unstyled">
+                                        <li>
+                                            <a class="btn btn-block navbar-link " href="{{ route('login') }}">S'authentifier</a>
+                                        </li>
+                                        <li>
+                                            <a class=" btn btn-block navbar-link navbar-right inscrire-btn" href="{{ route('register') }}">S'inscrire</a>
+                                        </li>
+                                </ul>
+                        </div>
             </div>
             </nav>
             </div>
@@ -113,7 +119,7 @@
                                     </a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{{route('portail.memoire.withoutAuth')}}" class="list-anchor">
+                                    <a href="{{route('portail.memoire.withoutAuth')}}" class="list-anchor active">
                                         <i class="icon-graduation icon-sidebar"></i>
                                         <span style="font-size:15px;">Portail mémoires</span>
                                     </a>
@@ -127,14 +133,12 @@
                 </div>
                 <div class="col-md-9 memoire-container">
                         <div class="row " style="margin-bottom:5px;">
-                                <div class="col-md-9" style="padding:6px;">
+                                <div class="col-md-12" style="padding:6px;">
                                     <h3 style="display:inline-block;margin-bottom:0px;margin-top:6px;">Portail mémoires&nbsp;</h3>
                                 </div>
                                 
                                
-                                <div class="col-md-3 text-right" style="padding:6px;">
-                                    <a href="{{route('ajouter.memoire')}}" class="btn btn-azure">Ajouter mémoire</a>
-                                </div>
+                               
                                
                         
                             </div>

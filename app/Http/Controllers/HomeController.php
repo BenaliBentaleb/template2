@@ -83,6 +83,7 @@ class HomeController extends Controller
         $events = Event::whereNull('formation_id')->get();
         $formation = Formation::where('nom', '=', $nom)->first();
         $this->collection = collect([]);
+        $events = Event::where('formation_id' , '=', $formation->id)->get();
         foreach ($formation->modules as $m) {
             $s = Semestre::find($m->semestre->id);
             if (!$this->collection->contains($s->nom)) {
@@ -91,6 +92,7 @@ class HomeController extends Controller
         }
 
         return view('formationAnauth')->with('modules', $this->collection)
+            ->with('formation_nom',$formation)
             ->with('departement', $departement)
             ->with('publications', $formation->modules)->with('events',$events);;
 

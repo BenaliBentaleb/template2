@@ -34,11 +34,11 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-    'google' => [
+   /* 'google' => [
         'client_id' => '1069833133210-v45g46sui3pdqstqkn5m5rr2svcmpc46.apps.googleusercontent.com',
         'client_secret' => 'bAkpgSAVcVjxSnZ4V0Vlgtnt',
         'redirect' => 'http://127.0.0.1:8000/callback',
-    ],
+    ],*/
 
 
 ];

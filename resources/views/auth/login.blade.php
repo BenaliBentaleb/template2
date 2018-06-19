@@ -46,9 +46,9 @@
                         <div class="form-group">
                          
                             <button class="btn btn-primary btn-block" type="submit" style="background-color:#448ccb;">S'authentifier</button>
-                            <a href="{{ url('/redirect') }}" class="btn btn-primary">Authentifier par Google</a>
+                            <a href="{{ url('/redirect') }}" class="btn btn-primary btn-block" style="margin-top:10px;"><i class="fa fa-google" style="padding-right:10px;"></i>Authentifier par Google</a>
                             
-                                <a href="{{ route('password.request') }}" class="forgot">vous avez oublié votre mot de pass ?</a></form>
+                                <a href="{{ route('password.request') }}" class="forgot" style="margin-top:10px">vous avez oublié votre mot de pass ?</a></form>
                             </form>
                         </div>
                   

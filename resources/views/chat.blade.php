@@ -4,8 +4,11 @@
     <div class="container-fluid" style="padding-top: 77px;">
       
         <div class="row chat-container">
-            <div class="col-sm-3 users-chat" style="padding:0;">
+            <div class="@forelse ($friends as $friend) col-sm-3 @empty col-sm-4 col-sm-offset-4 @endforelse users-chat" style="padding:0;@forelse ($friends as $friend)  @empty margin-top:150px; @endforelse">
                 <ul class="nav nav-pills nav-stacked">
+                        <li>
+                                <a href="/chatRom" class="btn btn-block btn-primary chatroom" style="">Chat Room</a>
+                            </li>
                     @forelse ($friends as $friend)
                     <li>
                         <a href="#user-{{$friend->id}}" role="tab" data-toggle="tab">
@@ -16,8 +19,10 @@
                         </a>
                     </li>
                     @empty
-                    <div class="panel-block">
-                        You don't have any friends
+                    
+                    <div class="panel-block" style="margin-top:20px;">
+                            <div class="alert alert-warning" role="alert">Vous n'avez pas des amis</div>
+
                     </div>
                     @endforelse
 

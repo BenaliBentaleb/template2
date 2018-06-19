@@ -43,14 +43,20 @@
     <div>
         <nav class="navbar navbar-default navigation-clean-search navbar-fixed-top">
             <div class="container">
-                <div class="navbar-header"><a class="navbar-brand navbar-image" href="{{route('WithoutAuth')}}" style="margin-left:0px;"></a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
-                <div
-                    class="collapse navbar-collapse" id="navcol-1">
+                <div class="navbar-header"><a class="navbar-brand navbar-image" href="{{route('WithoutAuth')}}"></a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                <div class="collapse navbar-collapse" id="navcol-1">
                 
-                    <form class="navbar-form navbar-left" target="_self">
-                    </form>
-                    <a class="navbar-link navbar-right inscrire-btn" href="{{ route('register') }}">S'inscrire</a>
-                    <a class="navbar-link navbar-right" href="{{ route('login') }}">S'authentifier</a></div>
+                        <a class="navbar-link navbar-right inscrire-btn hidden-xs" href="{{ route('register') }}">S'inscrire</a>
+                        <a class="navbar-link navbar-right hidden-xs" href="{{ route('login') }}">S'authentifier</a>
+                        <ul class="navbar-link  visible-xs list-unstyled">
+                                <li>
+                                    <a class="btn btn-block navbar-link " href="{{ route('login') }}">S'authentifier</a>
+                                </li>
+                                <li>
+                                    <a class=" btn btn-block navbar-link navbar-right inscrire-btn" href="{{ route('register') }}">S'inscrire</a>
+                                </li>
+                        </ul>
+                </div>
     </div>
     </nav>
 
@@ -67,7 +73,7 @@
 </div>
 <div class="col-md-10 col-md-offset-1 profile" style="margin-top:-100px;">
     <div class="row">
-        <div class="col-sm-4 text-center">
+        <div class="col-sm-4 col-xs-12 text-center">
             <div>
 
                    
@@ -106,7 +112,7 @@
 
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 col-xs-12">
             <div class="user-info">
                 <h2>{{$user->nom.' '. $user->prenom}}</h2>
                 @if($formation_user)
@@ -135,22 +141,30 @@
                     @endif
                     <div style="margin-bottom:10px;">
                         <h4 style="font-size:16px;font-weight:bold;">Informations personnels :</h4>
+                        @if(isset($user->profile->email))
                         <div style="margin-top:5px;margin-bottom:5px;">
                             <span style="font-weight:bold;">Email :&nbsp;</span>
                             <span>{{$user->profile->email}}</span>
                         </div>
+                        @endif
+                        @if(isset($user->profile->telephone))
                         <div style="margin-bottom:5px;">
                             <span style="font-weight:bold;">Numéro de téléphone :&nbsp;</span>
                             <span>+213-{{$user->profile->telephone}}</span>
                         </div>
+                        @endif
+                        @if(isset($user->profile->date_naissance))
                         <div style="margin-bottom:5px;">
                             <span style="font-weight:bold;">Date de naissance :&nbsp;</span>
                             <span>{{$user->profile->date_naissance}}</span>
                         </div>
+                        @endif
+                        @if(isset($user->profile->addresse))
                         <div>
                             <span style="font-weight:bold;">Adresse :&nbsp;</span>
                             <span>{{$user->profile->addresse}}.</span>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -159,7 +173,7 @@
 </div>
 
         </div>
-        <div class="row pub-header" style="margin-top:20px;">
+        <div class="row pub-header" style="margin-top:20px;margin-bottom:20px;">
             <div class="col-sm-8" style="margin-bottom:10px;">
                 <h4 style="display:inline-block;margin-top:20px;margin-bottom:0px;">Les publication partagé par :&nbsp;</h4>
                 <h4 style="display:inline-block;margin-top:0px;">{{$user->nom.' '.$user->prenom }}</h4>
@@ -172,7 +186,7 @@
         
                 <div class="status">
                     <div class="row">
-                        <div class="col-xs-10" style="padding-right:0;">
+                        <div class="col-xs-12" style="padding-right:0;">
                             <a href="profile.html">
                                 <img class="publisher-image" style="background-image:url(&quot;{{asset($publication->user->profile->photo_profile)}}&quot;);width:55px;height:55px;margin-top:15px;margin-left:10px;">
                             </a>
@@ -203,29 +217,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-xs-2" style="padding-left:0;">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-options status-options" style="padding:5px;"></i>
-                                </a>
-                                <ul class="list-unstyled dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="{{route('publication.modifier',['id'=>$publication->id])}}">
-                                            <i class="icon-pencil"></i>
-                                            <span>&nbsp; Modifier</span>
-                                        </a>
-                                    </li>
-        
-                                    <li>
-                                        <a  id="supprimer-btn"  href="{{route('publication.destroy',['id'=>$publication->id])}}">
-                                            <i   class="icon-trash"></i>
-                                            <span>&nbsp; Supprimer</span>
-                                        </a>
-                                    </li>
-        
-                                </ul>
-                            </div>
-                        </div>
+                    
                     </div>
                     <div class="clearfix"></div>
                     <h3 class="status-title" style="margin-top:10px;">{{$publication->titre}}
@@ -234,28 +226,76 @@
                     <hr>
                     @if($publication->module_id)
                         <div style="text-align:center;">
-                            <span>Status de module :&nbsp;</span>
-                            <span class="module">
-                                <a href="{{route('publication.filtrer.module',['id'=>$publication->module_id])}}">{{$publication->module->nom}}</a>
-                                <br>
-                            </span>
-                        </div>
-                        @else
-                        <div style="text-align:center;">
-                            <span>Status Generale</span>
-                
-                        </div>
-                        @endif
+                        <span>
+                            @if($publication->type =="Sondage")
+                                Sondage
+                            @elseif($publication->type =="FAQ")
+                                FAQ
+                            @elseif($publication->type =="Status")
+                                Status
+                            @else
+                                Tutoriel
+                            @endif
+                            de module :&nbsp;
+                                        </span>
+                                    <span class="module">
+                                        <a href="{{route('publication.filtrer.module',['id'=>$publication->module_id])}}">{{$publication->module->nom}}</a>
+                                        <br>
+                                    </span>
+                                </div>
+                                @else
+                                <div style="text-align:center;">
+                                    <span>Status Generale</span>
+                        
+                            </div>
+                    @endif
+                    
                     <div>
                         <div class="content">{!! $publication->contenu !!}
                             <br>
                         </div>
-                        
+                        @if($publication->type =="FAQ")               
+                            <div class="files-uploaded" style="border: 2px solid #50d093;">
+                                    <h4 class="files-uploaded-header text-center" style="background-color:#50d093"><span style="color:#fff;">Meilleur réponse</span></h4>
+                                    <div class="list-unstyled files-list">                                                         
+                                            @foreach($publication->commentaires as $comment)
+                                                @if($comment->best_answer == 1)
+                                                <div class="single-file text-center" style="margin-bottom:20px;" >
+                                                    <span class="text-center">
+                                                            <div style="margin:10px">
+                                                                    <a href="{{route('user.profile.unregistred',['id'=>$comment->user_id])}}">
+                                                                        <img class="avatar avatar-lg" style="background-image:url({{asset($comment->user->profile->photo_profile)}});">
+                                                                    </a>
+                                                                    <ul class="list-unstyled publisher-info" style="margin-left:10px;display:inline-block;">
+                                                                        <li>
+                                                                            <a href="{{route('user.profile.unregistred',['id'=>$comment->user_id])}}" >
+                                                                                <strong>{{$comment->user->nom . ' ' . $comment->user->prenom }}</strong>
+                                                                            </a>
+                                                                            <span >
+                                                                                {{$comment->created_at->diffForHumans()}}
+                                                                            </span>
+                                                                        </li>
+                                                                        
+                                                                    </ul>
+                                                                </div>
+                                                        <span class="text-center" >
+                                                            {{ $comment->commentaire }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                @break
+                                                @endif
+                                           
+                                            @endforeach
+            
+                                    </div>
+                                </div>
+                            @endif
                     </div>
         
                     @if( count($publication->publication_avec_fichier))
                     <div class="files-uploaded">
-                        <h4 class="files-uploaded-header">Les fichiers Télécharger</h4>
+                        <h4 class="files-uploaded-header text-center"><span style="color:#fff;">Les fichiers Télécharger</span></h4>
                         <ul class="list-unstyled files-list">
                             @foreach($publication->publication_avec_fichier as $fichier)
                             <li class="single-file">
